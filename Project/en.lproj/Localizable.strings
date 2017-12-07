@@ -1,0 +1,190 @@
+/* 
+  Localizable.strings
+  English
+
+  Created by andrea sponziello on 17/09/12.
+
+*/
+
+// General
+"CancelLKey" = "Cancel";
+"DoneLKey" = "Done";
+"CloseLKey" = "Close";
+"BackLKey" = "Back";
+"SendLKey" = "Public";
+"RequiredPlaceholderLKey" = "Required";
+"ConnectionErrorLKey" = "Connection error!";
+"TimeToStringDateFormat" = "MMMM d";
+"Saving" = "Saving...";
+"NetworkErrorTitle" = "Network error";
+"NetworkError" = "An network error occurred during connection.";
+
+"FewSecondsAgoLKey" = "few seconds ago";
+"AboutAMinuteAgoLKey" = "about a minute ago";
+"MinutesAgoLKey" = "minutes ago";
+"AboutAnHourAgoLKey" = "about one hour ago";
+"HoursAgoLKey" = "hours ago";
+
+// *** tabbar menu labels ***
+
+"Authenticating" = "Authenticating...";
+"UsernamePasswordInvalid" = "Username o password non validi";
+"NetworkError" = "A network error occurred";
+"NetworkErrorTitle" = "Netword error";
+"UnknownError" = "Unknown error";
+
+"Chat" = "Chat";
+"Profile" = "Profile";
+"Help" = "Need help?";
+
+// *** chat labels ***
+
+"NoConversationsYet" = "No Conversation yet";
+"DeleteConversationTitle" = "Delete this Conversation?";
+"DeleteConversationMessage" = "Are you sure you want to delete this Conversation? Don't worry, all the messages will stay safe. Just reopen the chat with the group or user to see all exchanged messages";
+"ChatConnected" = "connected";
+"ChatDisconnected" = "connecting...";
+"ChatSend" = "Send";
+
+// settings view
+"ChatTerms" = "Terms of use";
+"ChatPrivacy" = "Privacy";
+"ChatLicences" = "Licences";
+
+// select user (new message) view
+"NewMessage" = "New Message";
+"NewGroup" = "New group";
+"Groups" = "Groups";
+
+"last seen" = "last seen";
+"group summary" = "group";
+
+// chat profile
+"Synchronizing contacts" = "Synchronizing contacts...";
+"ChatProfile" = "Profile";
+"ChatSignoutAlert" = "Are you sure?";
+"ChatCancel" = "Cancel";
+"ChatSave" = "Save";
+"ChatSettingsMenuOption" = "Settings";
+"ChatHelpMenuOption" = "Help and support";
+"ChatLogoutMenuOption" = "Logout";
+"ChatLogoutChatOption" = "Chat";
+"Open link" = "Open in Safari";
+"Copy link" = "Copy";
+"Group administrator" = "administrator";
+"Select group" = "Select group";
+"Member info" = "Info";
+"Member remove" = "Remove member";
+"Send message" = "Send message";
+"Members" = "Members";
+"Add user to group" = "Add %@ to group %@?";
+"Add" = "Add";
+"Just in group" = "Just in group";
+"Add member" = "Add Member";
+"You was added to group" = "You was added to group \"%@\"";
+"You created the group" = "You created the group \"%@\"";
+"You" = "You";
+"ShortDateFormat" = "yyyy/M/d";
+"yesterday" = "yesterday";
+"today" = "today";
+"group info" = "Group info";
+"new group" = "New group";
+"create group info message" = "Setup the group's subject and icon (optional)";
+"group name placeholder" = "Group's name";
+"next" = "Next";
+"cancel" = "Cancel";
+"create" = "Create";
+"contact name" = "Contact name";
+"remove" = "Remove";
+"add members" = "Add members";
+"group created by" = "Group created by %@";
+"group created on" = "Created on %@";
+"GroupNamePlaceholder" = "Set the group name";
+"GroupNameTitle" = "Group name";
+"all contacts" = "All contacts";
+"change fullname" = "Change Full name";
+"change password" = "Change Password";
+"settingsLegalSection" = "Legal";
+// profile
+"PROFILE-modify name header" = "Modify full name";
+"PROFILE-modify password header" = "Insert a valid password of minimum 8 characters long";
+"PROFILE-fullname new" = "Full name";
+"PROFILE-fullname save" = "Save";
+"PROFILE-fullname invalid" = "Invalid name";
+"PROFILE-password current" = "Current password";
+"PROFILE-password new" = "New password";
+"PROFILE-password confirm" = "Confirm new password";
+"PROFILE-password save" = "Save";
+"PROFILE-password incorrect" = "Incorrect password";
+"PROFILE-password wrong length" = "The new password must be at least %d characters long";
+"PROFILE-password different passwords" = "The passwords are different";
+"PROFILE-fullname section" = "CHANGE FULL NAME";
+"PROFILE-password section" = "MODIFY PASSOWORD";
+"digit message" = "Type your message...";
+
+//** QUOTES **//
+
+"authentication claim" = "From private lessons to baby sitters. We connect you with those who can help";
+"hello message template - quote" = "Hello Labot, I'm looking for a quotation: %@\nZip code: %@\nSkill: %@";
+"hello message template - cv" = "Hello Labot, I submit my skill to work with you.\n%@\nZip code: %@\nSkill: %@\nMy telephone: %@";
+
+"new quote" = "Find a professional";
+
+"I want to work" = "I want to work";
+
+"want work view title" = "I want to work";
+"select skill" = "Select one skill";
+
+"skill where" = "Where";
+"skill where subtitle" = "Where will you offer your skills?";
+"skill where subtitle2" = "Actually we only operate in Rome and Milan";
+"skill where placeholder" = "Zip code";
+
+"quote where" = "Where";
+"quote where subtitle" = "Where do you need an help?";
+"quote where placeholder" = "Zip code";
+
+"your resume" = "Your CV at a glance";
+"your resume subtitle" = "Briefly describe your experience for the selected skill";
+"working experience" = "Working experience";
+
+"telephone view title" = "Telephone";
+"telephone title" = "Your telephone";
+"telephone subtitle" = "You will be contacted by our operator";
+"telephone placeholder" = "number";
+
+"summary view title" = "Request summary";
+"summary title" = "Resuming";
+"summary skill" = "Your skill:";
+"summary where" = "Where:";
+"summary telephone" = "We call you on this number:";
+"summary cv" = "Your CV in brief";
+"summary send" = "Send";
+"summary send dialog title" = "Are you ready to work with us?";
+"summary send dialog not yet" = "Not yet";
+"summary send dialog yes" = "Yes, send";
+
+"quote view title" = "Find a professional";
+"quote title" = "What skills do you need?";
+
+"description view title" = "Describe";
+"description title" = "Please sintesize your need";
+"description subtitle" = "Your request will be sent to nearest professionals who will contact you in chat, where you can contract price and availability.";
+
+"quote summary view title" = "Request summary";
+"quote summary title" = "Resuming";
+"quote summary category" = "What";
+"quote summary where" = "Where";
+"quote summary description" = "Your need";
+"quote summary send" = "Send";
+"quote summary send dialog title" = "Send quote?";
+"quote summary send dialog yes" = "Yes, send";
+"quote summary send dialog not yet" = "Not yet";
+
+"Someone is looking for a professional around" = "%@ is looking for a professional with your skills around you. Click here chat://%@ to start a chat with him.";
+"Chat and convince him you are the right pro" = "Chat with %@ to convince him that you are the right professional he is looking for";
+"This conversation refers to" = "This conversation refers to the search of a profile: \"%@\", ad: \"%@\" - Zone: %@";
+
+"Welcome message point 1" = "Search for a professional.";
+"Welcome message point 2" = "Your request will be sent to professionals around who will contact you with chat.";
+"Welcome message point 3" = "Use the chat to come to an agreement on pricing and availability.";

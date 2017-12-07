@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Settings</key>
+	<dict>
+		<key>urlTermsPage</key>
+		<string>http://blog.ciaotrip.it/chat21/terms-of-use</string>
+		<key>enableButtonExit</key>
+		<true/>
+		<key>enableButtonFacebook</key>
+		<true/>
+		<key>urlPrivacyPage</key>
+		<string>http://www.smart21.it/privacy</string>
+	</dict>
+	<key>HeaderAuthentication</key>
+	<dict>
+		<key>imageBackground</key>
+		<string>banner-login-labot.jpg</string>
+		<key>urlImageBackground</key>
+		<string></string>
+		<key>colorBackground</key>
+		<string>eeeeee</string>
+		<key>colorViewHeader</key>
+		<string>000000</string>
+		<key>alphaViewHeader</key>
+		<real>0.3</real>
+		<key>titleFontColor</key>
+		<string>ffffff</string>
+		<key>titleFontSize</key>
+		<string>40</string>
+		<key>titleFont</key>
+		<string>Heiti SC</string>
+		<key>descriptionFontColor</key>
+		<string>ffffff</string>
+		<key>descriptionFontSize</key>
+		<string>14</string>
+		<key>descriptionFont</key>
+		<string>Heiti SC</string>
+		<key>buttonFontColor</key>
+		<string>ffffff</string>
+		<key>buttonFont</key>
+		<string>Heiti SC</string>
+		<key>buttonFontSize</key>
+		<string>22</string>
+	</dict>
+	<key>HeaderResetPassword</key>
+	<dict>
+		<key>imageBackground</key>
+		<string>CZ-background010.jpg</string>
+		<key>urlImageBackground</key>
+		<string></string>
+		<key>colorBackground</key>
+		<string>eeeeee</string>
+		<key>colorViewHeader</key>
+		<string>000000</string>
+		<key>alphaViewHeader</key>
+		<real>0.3</real>
+		<key>titleFontColor</key>
+		<string>ffffff</string>
+		<key>titleFontSize</key>
+		<string>40</string>
+		<key>titleFont</key>
+		<string>Heiti SC</string>
+		<key>descriptionFontColor</key>
+		<string>ffffff</string>
+		<key>descriptionFontSize</key>
+		<string>14.0</string>
+		<key>descriptionFont</key>
+		<string>Heiti SC</string>
+	</dict>
+</dict>
+</plist>

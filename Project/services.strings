@@ -1,0 +1,135 @@
+/*
+  services.strings
+  Smart21
+
+  Created by andrea sponziello on 13/06/12.
+  Copyright (c) 2012 __Frontiere21.it__. All rights reserved.
+*/
+
+"service.base" = "/service/v1";
+"service.products" = "/products";
+"service.contents" = "/contents";
+//ex.: service.products/oid?lat=%f&lon=%f
+"service.timeline" = "/timeline";
+"service.brands" = "/brands";
+"service.shops" = "/shops";
+
+//CART
+"service.functions" = "/functions";
+
+
+
+
+// shop detail
+// /@serviceHost/service/v1/shops/@shop.oid
+// ex.: http://www.ciaotrip.it/service/v1/shops/8f728113a7d896ea1000bc54a89c285fc7729647
+
+// nearest shops
+// /@serviceHost/service/v1/shops?lat=%f&lon=%f
+// ex.: http://www.ciaotrip.it/service/v1/shops?lat=18.0&lon=41.0
+
+// nearest shops mixed with google places results (searches are performed using internal db, not solr)
+"service.shops.mixed_search" = "/shops/search";
+// /@serviceHost/service/v1/shops/search?name=%@
+// ex.: http://www.ciaotrip.it/service/v1/shops/search?name=nomenegozio
+
+// all contents for a shop
+// http://www.ciaotrip.it/service/v1/products?shop=f16282f731c0f5ff1faf0f4f3d382d9823932094&page=0&pageSize=20
+
+"service.categories" = "/categories";
+// category icon:
+// @serviceHost/imagerepo/service/images/search?url=/@serviceTenant/category@cat.oid/icon.png
+// ex. http://www.ciaotrip.it/imagerepo/service/images/search?url=/default/category/deal/eat-deal/icon.png (serviceHost:http://www.ciaotrip.it, cat.oid = /deal/eat-deal, serviceTenant = default)
+"service.like" = "/like";
+"service.unlike" = "/unlike";
+"service.likes" = "/likes"; // returns all users who liked a content
+"service.signin" = "/signin";
+//ex. /signin?username=%@&password=%@
+// GET method, with only metadata
+"service.signup" = "/signup";
+// POST method, multipart-form-data with image & metadata
+"service.signupwithphoto" = "/signupwithphoto";
+//ex. POST /signup?fullName=%@&username=%@&email=%@&password=%@&facebookToken=%@
+// POST method, multipart-form-data only user image
+//"service.uploaduserphoto" = "/people/uploadphoto";
+"service.uploaduserphoto" = "/people/me/updatephoto";
+
+"service.people" = "/people";
+"service.images" = "/images";
+"service.report" = "/abuse/report"; // http post
+"service.connections.find" = "/connections/find";
+"service.connections.me" = "/connections/me";
+//ex. /connections/find?providerId=facebook&accessToken=%@
+"service.firebaseToken" = "/runtime/firebase/generateToken";
+"service.uploaduser" = "/people/me/save";
+"service.uploaduserchangepassword" = "/users/me/change_password";
+
+"service.upload.image" = "/imagerepo/service/images/add.json";
+
+// WEB SERVICES WORDPRESS
+//service.host wordpress site
+//"service.host.web" = "http://ciaotrip.icitymap.org/";
+// era: service.host.web
+"wordpress.host" = "http://blog.ciaotrip.it/";
+
+// CONFIGURAZIONE DEL DOMINIO DI TERZO LIVELLO utilizzato per alcuni servizi,
+// come per esempio le notifiche
+
+// TODO: SERVE ANCORA????
+// "service.path.web" = "ciaotripmobile";
+
+///"wordpress.tenant" = "eurofood";
+
+// *** PAGINA WEB DELLE NOTIFICHE ***
+// SVILUPPO:
+//"service.path.domain" = "frontiere21.it";
+// PRODUZIONE:
+"service.path.domain" = "ciaotrip.it";
+
+
+// esempio di chiamata della pagina delle notifiche:
+// http://blog.ciaotrip.it/it/notification/?basicAuth=XXXXXXXXXXXXXXX&tenant=www&domain=frontiere21.it
+//"service.institutional.web" = "http://google.com/";
+// - Register a device token with user in basic-auth
+"service.notifications.register" = "/notifications/register";
+// params: source={ios|android}&regId={token}
+// ex. /notifications/register?source=ios&regId=523831ADB064C13A79CBC7EBF11E68DB1138902713DF336D30B43CFF163A4255
+// - Register a device without user (no basic-auth)
+"service.notifications.registerdevice" = "/notifications/registerdevice";
+// params: source={ios|android}&regId={token}
+// ex. /notifications/register?source=ios&regId=523831ADB064C13A79CBC7EBF11E68DB1138902713DF336D30B43CFF163A4255
+
+// unregister a device token (basic-auth)
+"service.notifications.unregister" = "/notifications/unregister";
+// params: source={android|ios}&regId=token
+// ex. /notifications/register?source=ios&regId=523831ADB064C13A79CBC7EBF11E68DB1138902713DF336D30B43CFF163A4255
+
+"service.notifications.usersend" = "/notifications/usersend";
+
+// last N notifications (for the user in basic-auth)
+"service.notifications.last" = "/notifications";
+// ex. /notifications
+
+// new notifications (for the user in basic-auth)
+"service.notifications.count" = "/notifications/hasnew";
+// ex. /notifications/hasnew
+
+"service.search.products" = "/search/products";
+//ex.: service.search.products?q=%@&lat=%f&lon=%f&page=%d&pageSize=%d
+"service.search.shops" = "/search/shops";
+//ex.: service.search.shops?q=%@&lat=%f&lon=%f&page=%d&pageSize=%d
+"service.search.users" = "/search/people";
+//ex.: service.search.users?q=%@&lat=%f&lon=%f&page=%d&pageSize=%d
+"service.auth.html.form" = "/shoppino/default/signin";
+
+
+
+//HOST
+//HOST EXTENSIONS
+"phpextensions.host" = "http://ext.ciaotrip.it";//"http://www.smart21.it/phpextensions"; //
+//HOST CONSOLE
+"phpextensions.path_ecommerce" = "/_ecommerce";
+"phpextensions.path_services" = "/_services";
+
+//CONSOLE
+"console.url" = "http://console.ciaotrip.it";//"http://www.smart21.it/";
