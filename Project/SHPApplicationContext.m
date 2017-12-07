@@ -10,7 +10,7 @@
 #import "SHPCaching.h"
 #import "SHPAuth.h"
 #import "SHPUser.h"
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 #import "SHPConstants.h"
 #import "SHPSendTokenDC.h"
 #import "SHPAppDelegate.h"

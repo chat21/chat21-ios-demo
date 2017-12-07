@@ -12,7 +12,7 @@
 #import "SHPCaching.h"
 #import "SHPConstants.h"
 #import "SHPUser.h"
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 #import "SHPAuth.h"
 #import "SHPConnectionsController.h"
 #import "SHPObjectCache.h"
@@ -73,8 +73,8 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
                             root:kDBRootDropbox]; // either kDBRootAppFolder or kDBRootDropbox
     [DBSession setSharedSession:dbSession];
     
-    [FBLoginView class];
-    [FBProfilePictureView class];
+//    [FBLoginView class];
+//    [FBProfilePictureView class];
     
     // chat config
     // ChatManager *chat = [ChatManager getSharedInstance];
@@ -716,25 +716,25 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     [self.applicationContext.categoryIconsCache empty];
 }
 
--(BOOL)application:(UIApplication *)application
-           openURL:(NSURL *)url
- sourceApplication:(NSString *)sourceApplication
-        annotation:(id)annotation{
-    NSLog(@"AppDelegate openURL");
-    //    if ([[DBSession sharedSession] handleOpenURL:url]) {
-    //        if ([[DBSession sharedSession] isLinked]) {
-    //            NSLog(@"App linked successfully!");
-    //            // At this point you can start making API calls
-    //        }
-    //        return YES;
-    //    }
-    if ([[DBChooser defaultChooser] handleOpenURL:url]) {
-        // This was a Chooser response and handleOpenURL automatically ran the
-        // completion block
-        NSLog(@"DBChooser openURL");
-        return YES;
-    }
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
-}
+//-(BOOL)application:(UIApplication *)application
+//           openURL:(NSURL *)url
+// sourceApplication:(NSString *)sourceApplication
+//        annotation:(id)annotation{
+//    NSLog(@"AppDelegate openURL");
+//    //    if ([[DBSession sharedSession] handleOpenURL:url]) {
+//    //        if ([[DBSession sharedSession] isLinked]) {
+//    //            NSLog(@"App linked successfully!");
+//    //            // At this point you can start making API calls
+//    //        }
+//    //        return YES;
+//    //    }
+//    if ([[DBChooser defaultChooser] handleOpenURL:url]) {
+//        // This was a Chooser response and handleOpenURL automatically ran the
+//        // completion block
+//        NSLog(@"DBChooser openURL");
+//        return YES;
+//    }
+//    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+//}
 
 @end

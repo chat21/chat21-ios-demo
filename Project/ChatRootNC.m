@@ -11,7 +11,7 @@
 #import "SHPAppDelegate.h"
 #import "ChatConversationsVC.h"
 #import "NotConnectedVC.h"
-#import "CZAuthenticationVC.h"
+//#import "CZAuthenticationVC.h"
 
 @interface ChatRootNC ()
 
