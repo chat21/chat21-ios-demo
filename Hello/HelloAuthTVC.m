@@ -1,12 +1,12 @@
 //
-//  DocAuthTVC.m
-//  bppmobile
+//  HelloAuthTVC.h
+//  tilechat
 //
 //  Created by Andrea Sponziello on 19/07/2017.
 //  Copyright © 2017 Frontiere21. All rights reserved.
 //
 
-#import "DocAuthTVC.h"
+#import "HelloAuthTVC.h"
 //#import "AlfrescoRepositorySession.h"
 #import "SHPApplicationContext.h"
 #import "SHPUser.h"
@@ -17,15 +17,15 @@
 #import "SHPAppDelegate.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
-#import "DocChatUtil.h"
+#import "HelloChatUtil.h"
 @import Firebase;
 
-@interface DocAuthTVC () {
+@interface HelloAuthTVC () {
     MBProgressHUD *HUD;
 }
 @end
 
-@implementation DocAuthTVC
+@implementation HelloAuthTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -132,9 +132,9 @@
     
     SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
     
-    __weak DocAuthTVC *weakSelf = self;
+    __weak HelloAuthTVC *weakSelf = self;
     
-    [DocChatUtil firebaseAuthEmail:email password:password completion:^(FIRUser *fir_user, NSError *error) {
+    [HelloChatUtil firebaseAuthEmail:email password:password completion:^(FIRUser *fir_user, NSError *error) {
         [weakSelf hideWaiting];
         if (error) {
             NSLog(@"Firebase auth error: %@", error);
@@ -158,7 +158,7 @@
             [userPreferences synchronize];
             
             
-            [DocChatUtil initChat];
+            [HelloChatUtil initChat];
             
             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
                 SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];

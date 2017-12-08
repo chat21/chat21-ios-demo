@@ -42,7 +42,7 @@
 		<array>
 			<dict>
 				<key>StoryboardName</key>
-				<string>DocNavigator</string>
+				<string>HelloChat</string>
 				<key>StoryboardControllerID</key>
 				<string>home-vc</string>
 				<key>icon</key>
@@ -64,7 +64,7 @@
 				<key>icon</key>
 				<string>ic_linear_profile</string>
 				<key>StoryboardName</key>
-				<string>DocNavigator</string>
+				<string>HelloChat</string>
 				<key>StoryboardControllerID</key>
 				<string>profile-vc</string>
 			</dict>

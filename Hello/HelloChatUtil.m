@@ -1,12 +1,12 @@
 //
-//  DocChatUtil.m
-//  bppmobile
+//  HelloAuthTVC.h
+//  tilechat
 //
 //  Created by Andrea Sponziello on 17/10/2017.
 //  Copyright © 2017 Frontiere21. All rights reserved.
 //
 
-#import "DocChatUtil.h"
+#import "HelloChatUtil.h"
 #import "ChatUser.h"
 #import "SHPAppDelegate.h"
 #import "SHPApplicationContext.h"
@@ -19,7 +19,7 @@
 
 @import Firebase;
 
-@implementation DocChatUtil
+@implementation HelloChatUtil
 
 +(void)initChat {
     SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];

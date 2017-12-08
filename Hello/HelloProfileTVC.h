@@ -1,6 +1,6 @@
 //
-//  DocProfileTVC.h
-//  bppmobile
+//  HelloAuthTVC.h
+//  tilechat
 //
 //  Created by Andrea Sponziello on 19/07/2017.
 //  Copyright © 2017 Frontiere21. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DocProfileTVC : UITableViewController
+@interface HelloProfileTVC : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 - (IBAction)logoutAction:(id)sender;

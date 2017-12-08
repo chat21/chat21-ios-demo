@@ -1,12 +1,12 @@
 //
-//  DocProfileTVC.m
-//  bppmobile
+//  HelloAuthTVC.h
+//  tilechat
 //
 //  Created by Andrea Sponziello on 19/07/2017.
 //  Copyright © 2017 Frontiere21. All rights reserved.
 //
 
-#import "DocProfileTVC.h"
+#import "HelloProfileTVC.h"
 #import "SHPApplicationContext.h"
 #import "ChatManager.h"
 //#import "HomeMenuTableViewController.h"
@@ -19,11 +19,11 @@
 #import "HelpFacade.h"
 #import "HelpFacade.h"
 
-@interface DocProfileTVC ()
+@interface HelloProfileTVC ()
 
 @end
 
-@implementation DocProfileTVC
+@implementation HelloProfileTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

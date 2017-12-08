@@ -28,10 +28,10 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import <DBChooser/DBChooser.h>
 #import <UserNotifications/UserNotifications.h>
-#import "DocAuthTVC.h"
+#import "HelloAuthTVC.h"
 #import "ChatContactsSynchronizer.h"
 #import "ChatUser.h"
-#import "DocChatUtil.h"
+#import "HelloChatUtil.h"
 
 #import <sys/utsname.h>
 @import Firebase;
@@ -92,7 +92,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     // end chat config
     // initial chat signin
     if ((context.loggedUser)) {
-        [DocChatUtil initChat]; // initialize logged user so I can get chat-history from DB, regardless of a real Firebase successfull authentication/connection
+        [HelloChatUtil initChat]; // initialize logged user so I can get chat-history from DB, regardless of a real Firebase successfull authentication/connection
         
 //        // updates user's email and password
 //        [DocChatUtil firebaseAuth:context.loggedUser.username password:context.loggedUser.password completion:^(NSError *error) {
@@ -132,7 +132,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"REMOTE NOTIFICATION STARTED THE APPLICATION!");
-        [DocChatUtil initChat];
+        [HelloChatUtil initChat];
         [self processRemoteNotification:userInfo];
     }
     

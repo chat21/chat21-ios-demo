@@ -35,7 +35,7 @@
 #import <DBChooser/DBChooser.h>
 #import "SHPAppDelegate.h"
 #import "ChatGroupsHandler.h"
-#import "DocChatUtil.h"
+#import "HelloChatUtil.h"
 #import "ChatUIManager.h"
 
 @interface ChatMessagesVC (){
