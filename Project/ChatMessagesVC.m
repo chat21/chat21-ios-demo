@@ -33,7 +33,6 @@
 #import "ChatStatusTitle.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import <DBChooser/DBChooser.h>
-#import "DocNavigatorTVC.h"
 #import "SHPAppDelegate.h"
 #import "ChatGroupsHandler.h"
 #import "DocChatUtil.h"
@@ -565,43 +564,43 @@
 }
 
 - (IBAction)addContentAction:(id)sender {
-    UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle:nil
-                                 message:@"Allega"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* documenti = [UIAlertAction
-                           actionWithTitle:@"Documenti"
-                           style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action)
-                           {
-                               NSLog(@"Documenti");
-                               UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
-                               UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
-                               DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
-                               navigatorVC.selectionMode = YES;
-                               navigatorVC.selectionDelegate = self;
-                               [self.navigationController presentViewController:nc animated:YES completion:nil];
-                           }];
-//    UIAlertAction* dropbox = [UIAlertAction
-//                           actionWithTitle:@"Dropbox"
+//    UIAlertController * view=   [UIAlertController
+//                                 alertControllerWithTitle:nil
+//                                 message:@"Allega"
+//                                 preferredStyle:UIAlertControllerStyleActionSheet];
+//
+//    UIAlertAction* documenti = [UIAlertAction
+//                           actionWithTitle:@"Documenti"
 //                           style:UIAlertActionStyleDefault
 //                           handler:^(UIAlertAction * action)
 //                           {
-//                               NSLog(@"Open dropbox");
-//                               [self openDropbox];
+//                               NSLog(@"Documenti");
+//                               UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
+//                               UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
+//                               DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
+//                               navigatorVC.selectionMode = YES;
+//                               navigatorVC.selectionDelegate = self;
+//                               [self.navigationController presentViewController:nc animated:YES completion:nil];
 //                           }];
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"CancelLKey", nil)
-                             style:UIAlertActionStyleCancel
-                             handler:^(UIAlertAction * action)
-                             {
-                                 NSLog(@"cancel");
-                             }];
-    [view addAction:documenti];
-//    [view addAction:dropbox];
-    [view addAction:cancel];
-    [self presentViewController:view animated:YES completion:nil];
+////    UIAlertAction* dropbox = [UIAlertAction
+////                           actionWithTitle:@"Dropbox"
+////                           style:UIAlertActionStyleDefault
+////                           handler:^(UIAlertAction * action)
+////                           {
+////                               NSLog(@"Open dropbox");
+////                               [self openDropbox];
+////                           }];
+//    UIAlertAction* cancel = [UIAlertAction
+//                             actionWithTitle:NSLocalizedString(@"CancelLKey", nil)
+//                             style:UIAlertActionStyleCancel
+//                             handler:^(UIAlertAction * action)
+//                             {
+//                                 NSLog(@"cancel");
+//                             }];
+//    [view addAction:documenti];
+////    [view addAction:dropbox];
+//    [view addAction:cancel];
+//    [self presentViewController:view animated:YES completion:nil];
 }
 
 -(void)openDropbox {
@@ -635,10 +634,10 @@
      }];
 }
 
--(void)selectedDocument:(AlfrescoNode *)document {
-    NSLog(@"Document selected %@ url: %@", document.name, [DocNavigatorTVC documentURLByNode:document]);
-    [self sendAlfrescoMessage:document.name link:[DocNavigatorTVC documentURLByNode:document]];
-}
+//-(void)selectedDocument:(AlfrescoNode *)document {
+//    NSLog(@"Document selected %@ url: %@", document.name, [DocNavigatorTVC documentURLByNode:document]);
+//    [self sendAlfrescoMessage:document.name link:[DocNavigatorTVC documentURLByNode:document]];
+//}
 
 -(void)dismissKeyboardFromTableView:(BOOL)activated {
 //    NSLog(@"DISMISSING");

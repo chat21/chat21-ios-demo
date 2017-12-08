@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SHPApplicationSettings.h"
 #import "SHPImageCache.h"
-#import "AlfrescoRepositorySession.h"
-#import "AlfrescoRepositoryInfo.h"
 
 @class SHPUser;
 @class CLLocation;
@@ -52,24 +50,11 @@
 @property (nonatomic, strong) NSMutableDictionary *dictionaryArrayCart;
 @property (nonatomic, strong) ChatManager *chatManager;
 
-@property (nonatomic, strong) AlfrescoRepositorySession *docSession;
-@property (nonatomic, strong) AlfrescoRepositoryInfo *docInfo;
-@property (nonatomic, strong) AlfrescoFolder *docStartFolder;
-
 - (void)setVariable:(NSString *)key withValue:(NSObject *)value;
 - (NSObject *)getVariable:(NSString *)key;
 - (void)removeVariable:(NSString *)key;
 - (NSDictionary *)variablesDictionary;
 
-+(void)saveSearchLocation:(CLLocation *)searchLocation;
-+(CLLocation *)restoreSearchLocation;
-+(void)saveSearchLocationName:(NSString *)searchLocationName;
-+(NSString *)restoreSearchLocationName;
-+(void)deleteSearchLocationInfo;
-+(void)saveLastPhone:(NSString *)phone;
-+(void)saveLastEmail:(NSString *)email;
-+(NSString *)restoreLastPhone;
-+(NSString *)restoreLastEmail;
 +(int)tabIndexByName:(NSString *)tab_name;// context:(SHPApplicationContext *)context;
 
 //+(void)saveLastWizardShop:(SHPShop *)shop;

@@ -12,7 +12,7 @@
 #import "SHPApplicationContext.h"
 #import "SHPUser.h"
 #import "ChatManager.h"
-#import "FirebaseAuth.h"
+//#import "FirebaseAuth.h"
 #import "ChatUIManager.h"
 #import "SHPHomeProfileTVC.h"
 #import "ChatMessagesVC.h"
@@ -54,11 +54,11 @@
     // plug the show image view
 }
 
-+(NSString *)firebaseUserID:(NSString *)username {
-    NSString *normalizedUsername = [username stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-    NSString *firebase_UID = normalizedUsername; //[[NSString alloc] initWithFormat:@"%@-%@", app.tenant, normalizedUsername];
-    return firebase_UID;
-}
+//+(NSString *)firebaseUserID:(NSString *)username {
+//    NSString *normalizedUsername = [username stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+//    NSString *firebase_UID = normalizedUsername; //[[NSString alloc] initWithFormat:@"%@-%@", app.tenant, normalizedUsername];
+//    return firebase_UID;
+//}
 
 +(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback {
     [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRUser *user, NSError *error) {
@@ -78,30 +78,30 @@
     }];
 }
 
-+(void)firebaseAuth:(NSString *)username password:(NSString *)password completion:(void (^)(NSError *))callback {
-    FirebaseAuth *auth = [[FirebaseAuth alloc] init];
-    NSString *firebase_UserID = [DocChatUtil firebaseUserID:username];
-    NSLog(@"Creating Custom Token for username: %@", firebase_UserID);
-    [auth generateToken:firebase_UserID password:password completion:^(NSString *token) {
-        NSLog(@"Token received: %@", token);
-        if (!token) {
-            NSLog(@"Token is nil. Firebase Authentication failed.");
-            return;
-        }
-        [[FIRAuth auth] signInWithCustomToken:token completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-            if (error) {
-                NSLog(@"Firebase signin error: %@", error);
-                callback(error);
-            }
-            else {
-                NSLog(@"Firebase successufully logged in.");
-                SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
-                [app startPushNotifications];
-                [DocChatUtil initChat];
-                callback(nil);
-            }
-        }];
-    }];
-}
+//+(void)firebaseAuth:(NSString *)username password:(NSString *)password completion:(void (^)(NSError *))callback {
+//    FirebaseAuth *auth = [[FirebaseAuth alloc] init];
+//    NSString *firebase_UserID = [DocChatUtil firebaseUserID:username];
+//    NSLog(@"Creating Custom Token for username: %@", firebase_UserID);
+//    [auth generateToken:firebase_UserID password:password completion:^(NSString *token) {
+//        NSLog(@"Token received: %@", token);
+//        if (!token) {
+//            NSLog(@"Token is nil. Firebase Authentication failed.");
+//            return;
+//        }
+//        [[FIRAuth auth] signInWithCustomToken:token completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+//            if (error) {
+//                NSLog(@"Firebase signin error: %@", error);
+//                callback(error);
+//            }
+//            else {
+//                NSLog(@"Firebase successufully logged in.");
+//                SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+//                [app startPushNotifications];
+//                [DocChatUtil initChat];
+//                callback(nil);
+//            }
+//        }];
+//    }];
+//}
 
 @end

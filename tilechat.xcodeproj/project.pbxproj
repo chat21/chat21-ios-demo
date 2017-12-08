@@ -8,29 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		92F6C2F0BF9B790EC16ED3B9 /* libPods-tilechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */; };
-		B20D6A7A1D8C65990071FAEA /* babysitter.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D6A741D8C65990071FAEA /* babysitter.png */; };
-		B20D6A7B1D8C65990071FAEA /* babysitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D6A751D8C65990071FAEA /* babysitter@2x.png */; };
-		B20D6A7C1D8C65990071FAEA /* babysitter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D6A761D8C65990071FAEA /* babysitter@3x.png */; };
-		B20D6A831D8C68790071FAEA /* lezioniprivate.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D6A801D8C68790071FAEA /* lezioniprivate.png */; };
-		B20D6A841D8C68790071FAEA /* lezioniprivate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D6A811D8C68790071FAEA /* lezioniprivate@2x.png */; };
-		B20D6A851D8C68790071FAEA /* lezioniprivate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20D6A821D8C68790071FAEA /* lezioniprivate@3x.png */; };
 		B20D931E1D6C8F7100ADC264 /* SHPSendTokenDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B20D931D1D6C8F7100ADC264 /* SHPSendTokenDC.m */; };
 		B20D93211D6C90C800ADC264 /* SHPServiceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B20D93201D6C90C800ADC264 /* SHPServiceUtil.m */; };
 		B20D93241D6C912E00ADC264 /* SHPMiniWebBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B20D93231D6C912E00ADC264 /* SHPMiniWebBrowserVC.m */; };
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B20FC6A11BEA7CC9009D57D3 /* ChatImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A01BEA7CC9009D57D3 /* ChatImageCache.m */; };
 		B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */; };
-		B21656251F4B2FAD00CF7C71 /* AlfrescoSearchDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21656241F4B2FAD00CF7C71 /* AlfrescoSearchDC.m */; };
 		B22048101C387F3D00AF84CE /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */; };
-		B22167971EF9830F0041252A /* MRService.m in Sources */ = {isa = PBXBuildFile; fileRef = B22167961EF9830F0041252A /* MRService.m */; };
-		B22F97E71D05BFF600415D82 /* Job_request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B22F97E61D05BFF600415D82 /* Job_request.storyboard */; };
-		B22F97EB1D05D70300415D82 /* MRCategoryStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B22F97EA1D05D70300415D82 /* MRCategoryStepTVC.m */; };
-		B22F97EE1D0609D600415D82 /* MRPositionStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B22F97ED1D0609D600415D82 /* MRPositionStepTVC.m */; };
-		B22F97F41D06A6F400415D82 /* MRPreviewStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B22F97F31D06A6F400415D82 /* MRPreviewStepTVC.m */; };
-		B22F97F71D06A71400415D82 /* MRDescriptionStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B22F97F61D06A71400415D82 /* MRDescriptionStepTVC.m */; };
 		B235393D1F4D7BA0000BA684 /* ChatMiniBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B235393C1F4D7BA0000BA684 /* ChatMiniBrowserVC.m */; };
 		B23A812B1F95D31F001344C0 /* DocChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* DocChatUtil.m */; };
-		B23AE8DA1F26390F00BEB4B8 /* AlfrescoUsersDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B23AE8D91F26390F00BEB4B8 /* AlfrescoUsersDC.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
 		B23AE8E91F278E8800BEB4B8 /* ic_linear_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DD1F278E8800BEB4B8 /* ic_linear_chat@2x.png */; };
 		B23AE8EA1F278E8800BEB4B8 /* ic_linear_chat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DE1F278E8800BEB4B8 /* ic_linear_chat@3x.png */; };
@@ -44,13 +30,11 @@
 		B23AE8F21F278E8800BEB4B8 /* ic_linear_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8E61F278E8800BEB4B8 /* ic_linear_profile@2x.png */; };
 		B23AE8F31F278E8800BEB4B8 /* ic_linear_profile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8E71F278E8800BEB4B8 /* ic_linear_profile@3x.png */; };
 		B23AE8F81F28F54500BEB4B8 /* user-profile-man.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8F71F28F54500BEB4B8 /* user-profile-man.jpg */; };
-		B23AE8FB1F29D69100BEB4B8 /* DocMiniBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B23AE8FA1F29D69100BEB4B8 /* DocMiniBrowserVC.m */; };
 		B23D1BA91F7A62910009029D /* ChatSelectGroupLocalTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B23D1BA81F7A62910009029D /* ChatSelectGroupLocalTVC.m */; };
 		B23D1BAF1F7A75FA0009029D /* ChatGroupsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B23D1BAE1F7A75FA0009029D /* ChatGroupsDB.m */; };
 		B23E8E831F6B0A6B00682C84 /* ChatCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B23E8E821F6B0A6B00682C84 /* ChatCustomView.m */; };
 		B241F3F01F879C4B00871202 /* bppmobileintranet-contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = B241F3EF1F879C4B00871202 /* bppmobileintranet-contacts.json */; };
 		B246FCD41F6E5F6A00D22DB2 /* ContactsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B246FCD31F6E5F6A00D22DB2 /* ContactsDB.m */; };
-		B24AB7481F21F48000B63642 /* FirebaseAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AB7471F21F48000B63642 /* FirebaseAuth.m */; };
 		B24AD7AB1F83E77600A526E9 /* ic_linear_support_gray_01.png in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7A81F83E77600A526E9 /* ic_linear_support_gray_01.png */; };
 		B24AD7AC1F83E77600A526E9 /* ic_linear_support_gray_01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7A91F83E77600A526E9 /* ic_linear_support_gray_01@2x.png */; };
 		B24AD7AD1F83E77600A526E9 /* ic_linear_support_gray_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7AA1F83E77600A526E9 /* ic_linear_support_gray_01@3x.png */; };
@@ -67,11 +51,9 @@
 		B250D0161F8CD61A00FACFBF /* status_title_ios11.xib in Resources */ = {isa = PBXBuildFile; fileRef = B250D0151F8CD61A00FACFBF /* status_title_ios11.xib */; };
 		B269FA5F1C6B7EAF00B3800B /* SHPModifyProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B269FA5E1C6B7EAF00B3800B /* SHPModifyProfileTVC.m */; };
 		B27C51311C345EC70069F5E7 /* NotConnectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B27C51301C345EC70069F5E7 /* NotConnectedVC.m */; };
-		B287C7FF1CDB9D9100F7B6FB /* app_icon_no_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B287C7FE1CDB9D9000F7B6FB /* app_icon_no_background.png */; };
 		B290C3801C29C06700EF8616 /* NotificationAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B290C37F1C29C06700EF8616 /* NotificationAlertVC.m */; };
 		B290C3831C313B4E00EF8616 /* FakeHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B290C3821C313B4D00EF8616 /* FakeHomeViewController.m */; };
 		B290C3861C31615500EF8616 /* ChatRootNC.m in Sources */ = {isa = PBXBuildFile; fileRef = B290C3851C31615500EF8616 /* ChatRootNC.m */; };
-		B297D78A1F6284D60006944F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B297D7801F6284D60006944F /* Reachability.m */; };
 		B297D7981F683AAB0006944F /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B297D7971F683AAB0006944F /* Chat.storyboard */; };
 		B297D79B1F683AE60006944F /* ChatContactsSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B297D79A1F683AE60006944F /* ChatContactsSynchronizer.m */; };
 		B297D79F1F683B1D0006944F /* ChatConversationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B297D79D1F683B1D0006944F /* ChatConversationHandler.m */; };
@@ -83,15 +65,9 @@
 		B297D7AF1F683BC30006944F /* ChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B297D7AE1F683BC30006944F /* ChatUtil.m */; };
 		B297D7B21F6934100006944F /* ChatSelectUserLocalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B297D7B11F6934100006944F /* ChatSelectUserLocalVC.m */; };
 		B297D7B51F6A912F0006944F /* ChatSelectGroupMembersLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B297D7B41F6A912F0006944F /* ChatSelectGroupMembersLocal.m */; };
-		B29ACA151D1D977F002261BC /* MRJobSkillStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B29ACA141D1D977F002261BC /* MRJobSkillStepTVC.m */; };
-		B29ACA1B1D1E9478002261BC /* MRJobSkillTelephoneStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B29ACA1A1D1E9478002261BC /* MRJobSkillTelephoneStepTVC.m */; };
-		B29ACA1E1D241A39002261BC /* MRJobSkillPreviewStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B29ACA1D1D241A39002261BC /* MRJobSkillPreviewStepTVC.m */; };
-		B29ACA211D25160E002261BC /* MRJobSkillCVStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B29ACA201D25160E002261BC /* MRJobSkillCVStepTVC.m */; };
 		B2A763CB1F0D339D0055A7E2 /* chat_mrlupo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A763C91F0D339D0055A7E2 /* chat_mrlupo@2x.png */; };
 		B2A763CC1F0D339D0055A7E2 /* chat_mrlupo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A763CA1F0D339D0055A7E2 /* chat_mrlupo@3x.png */; };
 		B2A763EA1F13A08F0055A7E2 /* logo_labot_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A763E91F13A08F0055A7E2 /* logo_labot_1024.png */; };
-		B2A764531D2D6C1200BDA5D3 /* MRJobCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A764521D2D6C1200BDA5D3 /* MRJobCategory.m */; };
-		B2A764561D35580500BDA5D3 /* MRJobSkillPositionStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A764551D35580500BDA5D3 /* MRJobSkillPositionStepTVC.m */; };
 		B2AA879A1FD6FE46004FE7E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2AA87991FD6FE46004FE7E0 /* GoogleService-Info.plist */; };
 		B2AA87A01FD87538004FE7E0 /* ChatUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AA879F1FD87538004FE7E0 /* ChatUIManager.m */; };
 		B2AA87A31FD93393004FE7E0 /* ChatStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AA87A21FD93393004FE7E0 /* ChatStringUtil.m */; };
@@ -102,29 +78,12 @@
 		B2BC945F1F1F68EF000DDF52 /* DocAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC945E1F1F68EF000DDF52 /* DocAuthTVC.m */; };
 		B2BC94621F1FCE04000DDF52 /* DocProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC94611F1FCE04000DDF52 /* DocProfileTVC.m */; };
 		B2CE2F411F1CF60C002E2150 /* DocNavigator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F401F1CF60C002E2150 /* DocNavigator.storyboard */; };
-		B2CE2F4B1F1DF859002E2150 /* calcolo.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F431F1DF859002E2150 /* calcolo.png */; };
-		B2CE2F4C1F1DF859002E2150 /* cartella.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F441F1DF859002E2150 /* cartella.png */; };
-		B2CE2F4D1F1DF859002E2150 /* ic_unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F451F1DF859002E2150 /* ic_unknown.png */; };
-		B2CE2F4E1F1DF859002E2150 /* ic_zip.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F461F1DF859002E2150 /* ic_zip.png */; };
-		B2CE2F4F1F1DF859002E2150 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F471F1DF859002E2150 /* image.png */; };
-		B2CE2F501F1DF859002E2150 /* pdf.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F481F1DF859002E2150 /* pdf.png */; };
-		B2CE2F511F1DF859002E2150 /* presentazione.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F491F1DF859002E2150 /* presentazione.png */; };
-		B2CE2F521F1DF859002E2150 /* testo.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F4A1F1DF859002E2150 /* testo.png */; };
-		B2CE2F5D1F1E636F002E2150 /* ic_clients.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F581F1E636F002E2150 /* ic_clients.png */; };
-		B2CE2F5E1F1E636F002E2150 /* ic_disclosures.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F591F1E636F002E2150 /* ic_disclosures.png */; };
-		B2CE2F5F1F1E636F002E2150 /* ic_monitoring.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F5A1F1E636F002E2150 /* ic_monitoring.png */; };
-		B2CE2F601F1E636F002E2150 /* ic_safety.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F5B1F1E636F002E2150 /* ic_safety.png */; };
-		B2CE2F611F1E636F002E2150 /* ic_services.png in Resources */ = {isa = PBXBuildFile; fileRef = B2CE2F5C1F1E636F002E2150 /* ic_services.png */; };
 		B2DB07A61FD3E3640062E8D0 /* Help_request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2DB07A51FD3E3640062E8D0 /* Help_request.storyboard */; };
 		B2DB07A81FD3E37B0062E8D0 /* HelpCategoryStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DB07A71FD3E37B0062E8D0 /* HelpCategoryStepTVC.m */; };
 		B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */; };
 		B2DC48FC1FBCA97100698CE7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DC48FB1FBCA97100698CE7 /* CloudKit.framework */; };
-		B2DC49081FC4630D00698CE7 /* CifraDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DC49071FC4630D00698CE7 /* CifraDC.m */; };
-		B2E631051F73C94F009A0CD7 /* DocVersionControlDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E631041F73C94F009A0CD7 /* DocVersionControlDC.m */; };
 		B2E794B31D904A99007B5A8E /* __chat_mrlupo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E794B11D904A99007B5A8E /* __chat_mrlupo@2x.png */; };
 		B2E794B41D904A99007B5A8E /* __chat_mrlupo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E794B21D904A99007B5A8E /* __chat_mrlupo@3x.png */; };
-		B2EDE7A81F6BD7F900D7FF26 /* HomeMenuDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EDE7A71F6BD7F900D7FF26 /* HomeMenuDC.m */; };
-		B2EDE7AC1F6BE7AB00D7FF26 /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EDE7AB1F6BE7AB00D7FF26 /* NSData+Additions.m */; };
 		B2EF24F11C87515E000827CC /* jsonsearch.json.txt in Resources */ = {isa = PBXBuildFile; fileRef = B2EF24F01C87515E000827CC /* jsonsearch.json.txt */; };
 		B2EF24F61C8ED60E000827CC /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EF24F51C8ED60E000827CC /* ChatMessageCell.m */; };
 		B2EF3D6F1CC226C10074836A /* notification_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2EF3D6E1CC226C10074836A /* notification_view.xib */; };
@@ -325,12 +284,6 @@
 		32378CCCFAD647706436F432 /* Pods-mobichat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobichat.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobichat/Pods-mobichat.release.xcconfig"; sourceTree = "<group>"; };
 		A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tilechat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE93058BDB602E5AB534A56 /* Pods-tilechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tilechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tilechat/Pods-tilechat.debug.xcconfig"; sourceTree = "<group>"; };
-		B20D6A741D8C65990071FAEA /* babysitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babysitter.png; sourceTree = "<group>"; };
-		B20D6A751D8C65990071FAEA /* babysitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "babysitter@2x.png"; sourceTree = "<group>"; };
-		B20D6A761D8C65990071FAEA /* babysitter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "babysitter@3x.png"; sourceTree = "<group>"; };
-		B20D6A801D8C68790071FAEA /* lezioniprivate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lezioniprivate.png; sourceTree = "<group>"; };
-		B20D6A811D8C68790071FAEA /* lezioniprivate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lezioniprivate@2x.png"; sourceTree = "<group>"; };
-		B20D6A821D8C68790071FAEA /* lezioniprivate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lezioniprivate@3x.png"; sourceTree = "<group>"; };
 		B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHPModalCallerDelegate.h; sourceTree = "<group>"; };
 		B20D931C1D6C8F7100ADC264 /* SHPSendTokenDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPSendTokenDC.h; sourceTree = "<group>"; };
 		B20D931D1D6C8F7100ADC264 /* SHPSendTokenDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPSendTokenDC.m; sourceTree = "<group>"; };
@@ -344,28 +297,13 @@
 		B20FC6A21BEB39F5009D57D3 /* ChatImageWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageWrapper.h; sourceTree = "<group>"; };
 		B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageWrapper.m; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B21656231F4B2FAD00CF7C71 /* AlfrescoSearchDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSearchDC.h; sourceTree = "<group>"; };
-		B21656241F4B2FAD00CF7C71 /* AlfrescoSearchDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlfrescoSearchDC.m; sourceTree = "<group>"; };
 		B220480E1C387F3D00AF84CE /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
 		B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
 		B22048111C399F3400AF84CE /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
-		B22167951EF9830F0041252A /* MRService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRService.h; sourceTree = "<group>"; };
-		B22167961EF9830F0041252A /* MRService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRService.m; sourceTree = "<group>"; };
-		B22F97E61D05BFF600415D82 /* Job_request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Job_request.storyboard; path = Project/Job_request.storyboard; sourceTree = "<group>"; };
-		B22F97E91D05D70300415D82 /* MRCategoryStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCategoryStepTVC.h; sourceTree = "<group>"; };
-		B22F97EA1D05D70300415D82 /* MRCategoryStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCategoryStepTVC.m; sourceTree = "<group>"; };
-		B22F97EC1D0609D600415D82 /* MRPositionStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRPositionStepTVC.h; sourceTree = "<group>"; };
-		B22F97ED1D0609D600415D82 /* MRPositionStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRPositionStepTVC.m; sourceTree = "<group>"; };
-		B22F97F21D06A6F400415D82 /* MRPreviewStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRPreviewStepTVC.h; sourceTree = "<group>"; };
-		B22F97F31D06A6F400415D82 /* MRPreviewStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRPreviewStepTVC.m; sourceTree = "<group>"; };
-		B22F97F51D06A71400415D82 /* MRDescriptionStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRDescriptionStepTVC.h; sourceTree = "<group>"; };
-		B22F97F61D06A71400415D82 /* MRDescriptionStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRDescriptionStepTVC.m; sourceTree = "<group>"; };
 		B235393B1F4D7BA0000BA684 /* ChatMiniBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMiniBrowserVC.h; sourceTree = "<group>"; };
 		B235393C1F4D7BA0000BA684 /* ChatMiniBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMiniBrowserVC.m; sourceTree = "<group>"; };
 		B23A81291F95D31E001344C0 /* DocChatUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocChatUtil.h; sourceTree = "<group>"; };
 		B23A812A1F95D31E001344C0 /* DocChatUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocChatUtil.m; sourceTree = "<group>"; };
-		B23AE8D81F26390F00BEB4B8 /* AlfrescoUsersDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoUsersDC.h; sourceTree = "<group>"; };
-		B23AE8D91F26390F00BEB4B8 /* AlfrescoUsersDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlfrescoUsersDC.m; sourceTree = "<group>"; };
 		B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_linear_chat.png; sourceTree = "<group>"; };
 		B23AE8DD1F278E8800BEB4B8 /* ic_linear_chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_chat@2x.png"; sourceTree = "<group>"; };
 		B23AE8DE1F278E8800BEB4B8 /* ic_linear_chat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_chat@3x.png"; sourceTree = "<group>"; };
@@ -379,8 +317,6 @@
 		B23AE8E61F278E8800BEB4B8 /* ic_linear_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_profile@2x.png"; sourceTree = "<group>"; };
 		B23AE8E71F278E8800BEB4B8 /* ic_linear_profile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_profile@3x.png"; sourceTree = "<group>"; };
 		B23AE8F71F28F54500BEB4B8 /* user-profile-man.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-profile-man.jpg"; sourceTree = "<group>"; };
-		B23AE8F91F29D69100BEB4B8 /* DocMiniBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocMiniBrowserVC.h; sourceTree = "<group>"; };
-		B23AE8FA1F29D69100BEB4B8 /* DocMiniBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocMiniBrowserVC.m; sourceTree = "<group>"; };
 		B23D1BA71F7A62910009029D /* ChatSelectGroupLocalTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupLocalTVC.h; sourceTree = "<group>"; };
 		B23D1BA81F7A62910009029D /* ChatSelectGroupLocalTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupLocalTVC.m; sourceTree = "<group>"; };
 		B23D1BAD1F7A75FA0009029D /* ChatGroupsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsDB.h; sourceTree = "<group>"; };
@@ -390,8 +326,6 @@
 		B241F3EF1F879C4B00871202 /* bppmobileintranet-contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bppmobileintranet-contacts.json"; sourceTree = "<group>"; };
 		B246FCD21F6E5F6A00D22DB2 /* ContactsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDB.h; sourceTree = "<group>"; };
 		B246FCD31F6E5F6A00D22DB2 /* ContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDB.m; sourceTree = "<group>"; };
-		B24AB7461F21F48000B63642 /* FirebaseAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseAuth.h; sourceTree = "<group>"; };
-		B24AB7471F21F48000B63642 /* FirebaseAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseAuth.m; sourceTree = "<group>"; };
 		B24AD7A81F83E77600A526E9 /* ic_linear_support_gray_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_linear_support_gray_01.png; sourceTree = "<group>"; };
 		B24AD7A91F83E77600A526E9 /* ic_linear_support_gray_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_support_gray_01@2x.png"; sourceTree = "<group>"; };
 		B24AD7AA1F83E77600A526E9 /* ic_linear_support_gray_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_support_gray_01@3x.png"; sourceTree = "<group>"; };
@@ -417,15 +351,12 @@
 		B274DB2C1EF848920055EDD0 /* Labot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Labot.entitlements; sourceTree = "<group>"; };
 		B27C512F1C345EC70069F5E7 /* NotConnectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotConnectedVC.h; sourceTree = "<group>"; };
 		B27C51301C345EC70069F5E7 /* NotConnectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotConnectedVC.m; sourceTree = "<group>"; };
-		B287C7FE1CDB9D9000F7B6FB /* app_icon_no_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_no_background.png; sourceTree = "<group>"; };
 		B290C37E1C29C06700EF8616 /* NotificationAlertVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationAlertVC.h; sourceTree = "<group>"; };
 		B290C37F1C29C06700EF8616 /* NotificationAlertVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertVC.m; sourceTree = "<group>"; };
 		B290C3811C313B4D00EF8616 /* FakeHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeHomeViewController.h; sourceTree = "<group>"; };
 		B290C3821C313B4D00EF8616 /* FakeHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeHomeViewController.m; sourceTree = "<group>"; };
 		B290C3841C31615500EF8616 /* ChatRootNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRootNC.h; sourceTree = "<group>"; };
 		B290C3851C31615500EF8616 /* ChatRootNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRootNC.m; sourceTree = "<group>"; };
-		B297D77F1F6284D60006944F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		B297D7801F6284D60006944F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B297D7971F683AAB0006944F /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		B297D7991F683AE60006944F /* ChatContactsSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContactsSynchronizer.h; sourceTree = "<group>"; };
 		B297D79A1F683AE60006944F /* ChatContactsSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsSynchronizer.m; sourceTree = "<group>"; };
@@ -446,21 +377,9 @@
 		B297D7B11F6934100006944F /* ChatSelectUserLocalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectUserLocalVC.m; sourceTree = "<group>"; };
 		B297D7B31F6A912F0006944F /* ChatSelectGroupMembersLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupMembersLocal.h; sourceTree = "<group>"; };
 		B297D7B41F6A912F0006944F /* ChatSelectGroupMembersLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupMembersLocal.m; sourceTree = "<group>"; };
-		B29ACA131D1D977F002261BC /* MRJobSkillStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRJobSkillStepTVC.h; sourceTree = "<group>"; };
-		B29ACA141D1D977F002261BC /* MRJobSkillStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRJobSkillStepTVC.m; sourceTree = "<group>"; };
-		B29ACA191D1E9478002261BC /* MRJobSkillTelephoneStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRJobSkillTelephoneStepTVC.h; sourceTree = "<group>"; };
-		B29ACA1A1D1E9478002261BC /* MRJobSkillTelephoneStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRJobSkillTelephoneStepTVC.m; sourceTree = "<group>"; };
-		B29ACA1C1D241A39002261BC /* MRJobSkillPreviewStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRJobSkillPreviewStepTVC.h; sourceTree = "<group>"; };
-		B29ACA1D1D241A39002261BC /* MRJobSkillPreviewStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRJobSkillPreviewStepTVC.m; sourceTree = "<group>"; };
-		B29ACA1F1D25160E002261BC /* MRJobSkillCVStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRJobSkillCVStepTVC.h; sourceTree = "<group>"; };
-		B29ACA201D25160E002261BC /* MRJobSkillCVStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRJobSkillCVStepTVC.m; sourceTree = "<group>"; };
 		B2A763C91F0D339D0055A7E2 /* chat_mrlupo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_mrlupo@2x.png"; sourceTree = "<group>"; };
 		B2A763CA1F0D339D0055A7E2 /* chat_mrlupo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_mrlupo@3x.png"; sourceTree = "<group>"; };
 		B2A763E91F13A08F0055A7E2 /* logo_labot_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_labot_1024.png; sourceTree = "<group>"; };
-		B2A764511D2D6C1200BDA5D3 /* MRJobCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRJobCategory.h; sourceTree = "<group>"; };
-		B2A764521D2D6C1200BDA5D3 /* MRJobCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRJobCategory.m; sourceTree = "<group>"; };
-		B2A764541D35580500BDA5D3 /* MRJobSkillPositionStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRJobSkillPositionStepTVC.h; sourceTree = "<group>"; };
-		B2A764551D35580500BDA5D3 /* MRJobSkillPositionStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRJobSkillPositionStepTVC.m; sourceTree = "<group>"; };
 		B2AA87991FD6FE46004FE7E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2AA879E1FD87538004FE7E0 /* ChatUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUIManager.h; sourceTree = "<group>"; };
 		B2AA879F1FD87538004FE7E0 /* ChatUIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUIManager.m; sourceTree = "<group>"; };
@@ -475,95 +394,14 @@
 		B2BC945E1F1F68EF000DDF52 /* DocAuthTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocAuthTVC.m; sourceTree = "<group>"; };
 		B2BC94601F1FCE04000DDF52 /* DocProfileTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocProfileTVC.h; sourceTree = "<group>"; };
 		B2BC94611F1FCE04000DDF52 /* DocProfileTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocProfileTVC.m; sourceTree = "<group>"; };
-		B2CE2EFD1F191A0D002E2150 /* AlfrescoActivityEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoActivityEntry.h; sourceTree = "<group>"; };
-		B2CE2EFE1F191A0D002E2150 /* AlfrescoActivityStreamService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoActivityStreamService.h; sourceTree = "<group>"; };
-		B2CE2EFF1F191A0D002E2150 /* AlfrescoAspectDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoAspectDefinition.h; sourceTree = "<group>"; };
-		B2CE2F001F191A0D002E2150 /* AlfrescoBatchProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoBatchProcessor.h; sourceTree = "<group>"; };
-		B2CE2F011F191A0D002E2150 /* AlfrescoCloudNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoCloudNetwork.h; sourceTree = "<group>"; };
-		B2CE2F021F191A0D002E2150 /* AlfrescoCloudSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoCloudSession.h; sourceTree = "<group>"; };
-		B2CE2F031F191A0D002E2150 /* AlfrescoComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoComment.h; sourceTree = "<group>"; };
-		B2CE2F041F191A0D002E2150 /* AlfrescoCommentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoCommentService.h; sourceTree = "<group>"; };
-		B2CE2F051F191A0D002E2150 /* AlfrescoCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoCompany.h; sourceTree = "<group>"; };
-		B2CE2F061F191A0D002E2150 /* AlfrescoConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoConstants.h; sourceTree = "<group>"; };
-		B2CE2F071F191A0D002E2150 /* AlfrescoContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoContent.h; sourceTree = "<group>"; };
-		B2CE2F081F191A0D002E2150 /* AlfrescoContentFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoContentFile.h; sourceTree = "<group>"; };
-		B2CE2F091F191A0D002E2150 /* AlfrescoContentStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoContentStream.h; sourceTree = "<group>"; };
-		B2CE2F0A1F191A0D002E2150 /* AlfrescoDefaultFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoDefaultFileManager.h; sourceTree = "<group>"; };
-		B2CE2F0B1F191A0D002E2150 /* AlfrescoDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoDocument.h; sourceTree = "<group>"; };
-		B2CE2F0C1F191A0D002E2150 /* AlfrescoDocumentFolderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoDocumentFolderService.h; sourceTree = "<group>"; };
-		B2CE2F0D1F191A0D002E2150 /* AlfrescoDocumentTypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoDocumentTypeDefinition.h; sourceTree = "<group>"; };
-		B2CE2F0E1F191A0D002E2150 /* AlfrescoErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoErrors.h; sourceTree = "<group>"; };
-		B2CE2F0F1F191A0D002E2150 /* AlfrescoFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoFileManager.h; sourceTree = "<group>"; };
-		B2CE2F101F191A0D002E2150 /* AlfrescoFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoFolder.h; sourceTree = "<group>"; };
-		B2CE2F111F191A0D002E2150 /* AlfrescoFolderTypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoFolderTypeDefinition.h; sourceTree = "<group>"; };
-		B2CE2F121F191A0D002E2150 /* AlfrescoKeywordSearchOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoKeywordSearchOptions.h; sourceTree = "<group>"; };
-		B2CE2F131F191A0D002E2150 /* AlfrescoListingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoListingContext.h; sourceTree = "<group>"; };
-		B2CE2F141F191A0D002E2150 /* AlfrescoListingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoListingFilter.h; sourceTree = "<group>"; };
-		B2CE2F151F191A0D002E2150 /* AlfrescoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoLog.h; sourceTree = "<group>"; };
-		B2CE2F161F191A0D002E2150 /* AlfrescoModelDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoModelDefinition.h; sourceTree = "<group>"; };
-		B2CE2F171F191A0D002E2150 /* AlfrescoModelDefinitionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoModelDefinitionService.h; sourceTree = "<group>"; };
-		B2CE2F181F191A0D002E2150 /* AlfrescoNetworkProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoNetworkProvider.h; sourceTree = "<group>"; };
-		B2CE2F191F191A0D002E2150 /* AlfrescoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoNode.h; sourceTree = "<group>"; };
-		B2CE2F1A1F191A0D002E2150 /* AlfrescoNodeTypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoNodeTypeDefinition.h; sourceTree = "<group>"; };
-		B2CE2F1B1F191A0D002E2150 /* AlfrescoOAuthData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoOAuthData.h; sourceTree = "<group>"; };
-		B2CE2F1C1F191A0D002E2150 /* AlfrescoOAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoOAuthHelper.h; sourceTree = "<group>"; };
-		B2CE2F1D1F191A0D002E2150 /* AlfrescoOAuthLoginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoOAuthLoginDelegate.h; sourceTree = "<group>"; };
-		B2CE2F1E1F191A0D002E2150 /* AlfrescoOAuthLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoOAuthLoginViewController.h; sourceTree = "<group>"; };
-		B2CE2F1F1F191A0D002E2150 /* AlfrescoOAuthUILoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoOAuthUILoginViewController.h; sourceTree = "<group>"; };
-		B2CE2F201F191A0D002E2150 /* AlfrescoPagingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoPagingResult.h; sourceTree = "<group>"; };
-		B2CE2F211F191A0D002E2150 /* AlfrescoPermissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoPermissions.h; sourceTree = "<group>"; };
-		B2CE2F221F191A0D002E2150 /* AlfrescoPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoPerson.h; sourceTree = "<group>"; };
-		B2CE2F231F191A0D002E2150 /* AlfrescoPersonService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoPersonService.h; sourceTree = "<group>"; };
-		B2CE2F241F191A0D002E2150 /* AlfrescoProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoProperty.h; sourceTree = "<group>"; };
-		B2CE2F251F191A0D002E2150 /* AlfrescoPropertyDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoPropertyDefinition.h; sourceTree = "<group>"; };
-		B2CE2F261F191A0D002E2150 /* AlfrescoRatingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoRatingService.h; sourceTree = "<group>"; };
-		B2CE2F271F191A0D002E2150 /* AlfrescoRepositoryCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoRepositoryCapabilities.h; sourceTree = "<group>"; };
-		B2CE2F281F191A0D002E2150 /* AlfrescoRepositoryInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoRepositoryInfo.h; sourceTree = "<group>"; };
-		B2CE2F291F191A0D002E2150 /* AlfrescoRepositorySession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoRepositorySession.h; sourceTree = "<group>"; };
-		B2CE2F2A1F191A0D002E2150 /* AlfrescoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoRequest.h; sourceTree = "<group>"; };
-		B2CE2F2B1F191A0D002E2150 /* AlfrescoSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSDK.h; sourceTree = "<group>"; };
-		B2CE2F2C1F191A0D002E2150 /* AlfrescoSearchLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSearchLanguage.h; sourceTree = "<group>"; };
-		B2CE2F2D1F191A0D002E2150 /* AlfrescoSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSearchService.h; sourceTree = "<group>"; };
-		B2CE2F2E1F191A0D002E2150 /* AlfrescoSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSession.h; sourceTree = "<group>"; };
-		B2CE2F2F1F191A0D002E2150 /* AlfrescoSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSite.h; sourceTree = "<group>"; };
-		B2CE2F301F191A0D002E2150 /* AlfrescoSiteService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoSiteService.h; sourceTree = "<group>"; };
-		B2CE2F311F191A0D002E2150 /* AlfrescoTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoTag.h; sourceTree = "<group>"; };
-		B2CE2F321F191A0D002E2150 /* AlfrescoTaggingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoTaggingService.h; sourceTree = "<group>"; };
-		B2CE2F331F191A0D002E2150 /* AlfrescoTaskTypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoTaskTypeDefinition.h; sourceTree = "<group>"; };
-		B2CE2F341F191A0D002E2150 /* AlfrescoVersionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoVersionService.h; sourceTree = "<group>"; };
-		B2CE2F351F191A0D002E2150 /* AlfrescoWorkflowProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoWorkflowProcess.h; sourceTree = "<group>"; };
-		B2CE2F361F191A0D002E2150 /* AlfrescoWorkflowProcessDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoWorkflowProcessDefinition.h; sourceTree = "<group>"; };
-		B2CE2F371F191A0D002E2150 /* AlfrescoWorkflowService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoWorkflowService.h; sourceTree = "<group>"; };
-		B2CE2F381F191A0D002E2150 /* AlfrescoWorkflowTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlfrescoWorkflowTask.h; sourceTree = "<group>"; };
 		B2CE2F401F1CF60C002E2150 /* DocNavigator.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DocNavigator.storyboard; sourceTree = "<group>"; };
-		B2CE2F431F1DF859002E2150 /* calcolo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calcolo.png; sourceTree = "<group>"; };
-		B2CE2F441F1DF859002E2150 /* cartella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartella.png; sourceTree = "<group>"; };
-		B2CE2F451F1DF859002E2150 /* ic_unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_unknown.png; sourceTree = "<group>"; };
-		B2CE2F461F1DF859002E2150 /* ic_zip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_zip.png; sourceTree = "<group>"; };
-		B2CE2F471F1DF859002E2150 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		B2CE2F481F1DF859002E2150 /* pdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdf.png; sourceTree = "<group>"; };
-		B2CE2F491F1DF859002E2150 /* presentazione.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = presentazione.png; sourceTree = "<group>"; };
-		B2CE2F4A1F1DF859002E2150 /* testo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testo.png; sourceTree = "<group>"; };
-		B2CE2F581F1E636F002E2150 /* ic_clients.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_clients.png; sourceTree = "<group>"; };
-		B2CE2F591F1E636F002E2150 /* ic_disclosures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_disclosures.png; sourceTree = "<group>"; };
-		B2CE2F5A1F1E636F002E2150 /* ic_monitoring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_monitoring.png; sourceTree = "<group>"; };
-		B2CE2F5B1F1E636F002E2150 /* ic_safety.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_safety.png; sourceTree = "<group>"; };
-		B2CE2F5C1F1E636F002E2150 /* ic_services.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_services.png; sourceTree = "<group>"; };
 		B2DB07A51FD3E3640062E8D0 /* Help_request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Help_request.storyboard; sourceTree = "<group>"; };
 		B2DB07A71FD3E37B0062E8D0 /* HelpCategoryStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategoryStepTVC.m; sourceTree = "<group>"; };
 		B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		B2DC48FB1FBCA97100698CE7 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		B2DC49061FC4630D00698CE7 /* CifraDC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CifraDC.h; sourceTree = "<group>"; };
-		B2DC49071FC4630D00698CE7 /* CifraDC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CifraDC.m; sourceTree = "<group>"; };
-		B2E631031F73C94F009A0CD7 /* DocVersionControlDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocVersionControlDC.h; sourceTree = "<group>"; };
-		B2E631041F73C94F009A0CD7 /* DocVersionControlDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocVersionControlDC.m; sourceTree = "<group>"; };
 		B2E794B11D904A99007B5A8E /* __chat_mrlupo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "__chat_mrlupo@2x.png"; sourceTree = "<group>"; };
 		B2E794B21D904A99007B5A8E /* __chat_mrlupo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "__chat_mrlupo@3x.png"; sourceTree = "<group>"; };
 		B2ED7F001F8E62E4006E3BDA /* ChatGroupsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroupsDelegate.h; sourceTree = "<group>"; };
-		B2EDE7A61F6BD7F900D7FF26 /* HomeMenuDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuDC.h; sourceTree = "<group>"; };
-		B2EDE7A71F6BD7F900D7FF26 /* HomeMenuDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuDC.m; sourceTree = "<group>"; };
-		B2EDE7AA1F6BE7AB00D7FF26 /* NSData+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Additions.h"; sourceTree = "<group>"; };
-		B2EDE7AB1F6BE7AB00D7FF26 /* NSData+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Additions.m"; sourceTree = "<group>"; };
 		B2EF24F01C87515E000827CC /* jsonsearch.json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jsonsearch.json.txt; sourceTree = "<group>"; };
 		B2EF24F41C8ED60E000827CC /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
 		B2EF24F51C8ED60E000827CC /* ChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
@@ -876,38 +714,9 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B20D6A5B1D8B13040071FAEA /* images */ = {
-			isa = PBXGroup;
-			children = (
-				B20D6A741D8C65990071FAEA /* babysitter.png */,
-				B20D6A751D8C65990071FAEA /* babysitter@2x.png */,
-				B20D6A761D8C65990071FAEA /* babysitter@3x.png */,
-				B20D6A801D8C68790071FAEA /* lezioniprivate.png */,
-				B20D6A811D8C68790071FAEA /* lezioniprivate@2x.png */,
-				B20D6A821D8C68790071FAEA /* lezioniprivate@3x.png */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
-		B22F97E51D05BFA600415D82 /* Job-Request-Wizard */ = {
-			isa = PBXGroup;
-			children = (
-				B22F97E91D05D70300415D82 /* MRCategoryStepTVC.h */,
-				B22F97EA1D05D70300415D82 /* MRCategoryStepTVC.m */,
-				B22F97EC1D0609D600415D82 /* MRPositionStepTVC.h */,
-				B22F97ED1D0609D600415D82 /* MRPositionStepTVC.m */,
-				B22F97F51D06A71400415D82 /* MRDescriptionStepTVC.h */,
-				B22F97F61D06A71400415D82 /* MRDescriptionStepTVC.m */,
-				B22F97F21D06A6F400415D82 /* MRPreviewStepTVC.h */,
-				B22F97F31D06A6F400415D82 /* MRPreviewStepTVC.m */,
-			);
-			name = "Job-Request-Wizard";
-			sourceTree = "<group>";
-		};
 		B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */ = {
 			isa = PBXGroup;
 			children = (
-				B297D76D1F6284D60006944F /* Reachability */,
 				B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */,
 				B23AE8DD1F278E8800BEB4B8 /* ic_linear_chat@2x.png */,
 				B23AE8DE1F278E8800BEB4B8 /* ic_linear_chat@3x.png */,
@@ -950,168 +759,20 @@
 			path = Project/Support;
 			sourceTree = "<group>";
 		};
-		B27BFDE51F02A228006C1EC7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B2A764511D2D6C1200BDA5D3 /* MRJobCategory.h */,
-				B2A764521D2D6C1200BDA5D3 /* MRJobCategory.m */,
-				B22167951EF9830F0041252A /* MRService.h */,
-				B22167961EF9830F0041252A /* MRService.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		B297D76D1F6284D60006944F /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				B297D77F1F6284D60006944F /* Reachability.h */,
-				B297D7801F6284D60006944F /* Reachability.m */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
-		B29ACA0E1D1D74FC002261BC /* Job-Skill-Wizard */ = {
-			isa = PBXGroup;
-			children = (
-				B29ACA131D1D977F002261BC /* MRJobSkillStepTVC.h */,
-				B29ACA141D1D977F002261BC /* MRJobSkillStepTVC.m */,
-				B2A764541D35580500BDA5D3 /* MRJobSkillPositionStepTVC.h */,
-				B2A764551D35580500BDA5D3 /* MRJobSkillPositionStepTVC.m */,
-				B29ACA1F1D25160E002261BC /* MRJobSkillCVStepTVC.h */,
-				B29ACA201D25160E002261BC /* MRJobSkillCVStepTVC.m */,
-				B29ACA191D1E9478002261BC /* MRJobSkillTelephoneStepTVC.h */,
-				B29ACA1A1D1E9478002261BC /* MRJobSkillTelephoneStepTVC.m */,
-				B29ACA1C1D241A39002261BC /* MRJobSkillPreviewStepTVC.h */,
-				B29ACA1D1D241A39002261BC /* MRJobSkillPreviewStepTVC.m */,
-			);
-			name = "Job-Skill-Wizard";
-			sourceTree = "<group>";
-		};
-		B29ACA121D1D7566002261BC /* Job */ = {
-			isa = PBXGroup;
-			children = (
-				B27BFDE51F02A228006C1EC7 /* Model */,
-				B20D6A5B1D8B13040071FAEA /* images */,
-				B22F97E61D05BFF600415D82 /* Job_request.storyboard */,
-				B29ACA0E1D1D74FC002261BC /* Job-Skill-Wizard */,
-				B22F97E51D05BFA600415D82 /* Job-Request-Wizard */,
-			);
-			name = Job;
-			sourceTree = "<group>";
-		};
-		B2CE2EFC1F191A0D002E2150 /* alfrescoSDK */ = {
-			isa = PBXGroup;
-			children = (
-				B2CE2EFD1F191A0D002E2150 /* AlfrescoActivityEntry.h */,
-				B2CE2EFE1F191A0D002E2150 /* AlfrescoActivityStreamService.h */,
-				B2CE2EFF1F191A0D002E2150 /* AlfrescoAspectDefinition.h */,
-				B2CE2F001F191A0D002E2150 /* AlfrescoBatchProcessor.h */,
-				B2CE2F011F191A0D002E2150 /* AlfrescoCloudNetwork.h */,
-				B2CE2F021F191A0D002E2150 /* AlfrescoCloudSession.h */,
-				B2CE2F031F191A0D002E2150 /* AlfrescoComment.h */,
-				B2CE2F041F191A0D002E2150 /* AlfrescoCommentService.h */,
-				B2CE2F051F191A0D002E2150 /* AlfrescoCompany.h */,
-				B2CE2F061F191A0D002E2150 /* AlfrescoConstants.h */,
-				B2CE2F071F191A0D002E2150 /* AlfrescoContent.h */,
-				B2CE2F081F191A0D002E2150 /* AlfrescoContentFile.h */,
-				B2CE2F091F191A0D002E2150 /* AlfrescoContentStream.h */,
-				B2CE2F0A1F191A0D002E2150 /* AlfrescoDefaultFileManager.h */,
-				B2CE2F0B1F191A0D002E2150 /* AlfrescoDocument.h */,
-				B2CE2F0C1F191A0D002E2150 /* AlfrescoDocumentFolderService.h */,
-				B2CE2F0D1F191A0D002E2150 /* AlfrescoDocumentTypeDefinition.h */,
-				B2CE2F0E1F191A0D002E2150 /* AlfrescoErrors.h */,
-				B2CE2F0F1F191A0D002E2150 /* AlfrescoFileManager.h */,
-				B2CE2F101F191A0D002E2150 /* AlfrescoFolder.h */,
-				B2CE2F111F191A0D002E2150 /* AlfrescoFolderTypeDefinition.h */,
-				B2CE2F121F191A0D002E2150 /* AlfrescoKeywordSearchOptions.h */,
-				B2CE2F131F191A0D002E2150 /* AlfrescoListingContext.h */,
-				B2CE2F141F191A0D002E2150 /* AlfrescoListingFilter.h */,
-				B2CE2F151F191A0D002E2150 /* AlfrescoLog.h */,
-				B2CE2F161F191A0D002E2150 /* AlfrescoModelDefinition.h */,
-				B2CE2F171F191A0D002E2150 /* AlfrescoModelDefinitionService.h */,
-				B2CE2F181F191A0D002E2150 /* AlfrescoNetworkProvider.h */,
-				B2CE2F191F191A0D002E2150 /* AlfrescoNode.h */,
-				B2CE2F1A1F191A0D002E2150 /* AlfrescoNodeTypeDefinition.h */,
-				B2CE2F1B1F191A0D002E2150 /* AlfrescoOAuthData.h */,
-				B2CE2F1C1F191A0D002E2150 /* AlfrescoOAuthHelper.h */,
-				B2CE2F1D1F191A0D002E2150 /* AlfrescoOAuthLoginDelegate.h */,
-				B2CE2F1E1F191A0D002E2150 /* AlfrescoOAuthLoginViewController.h */,
-				B2CE2F1F1F191A0D002E2150 /* AlfrescoOAuthUILoginViewController.h */,
-				B2CE2F201F191A0D002E2150 /* AlfrescoPagingResult.h */,
-				B2CE2F211F191A0D002E2150 /* AlfrescoPermissions.h */,
-				B2CE2F221F191A0D002E2150 /* AlfrescoPerson.h */,
-				B2CE2F231F191A0D002E2150 /* AlfrescoPersonService.h */,
-				B2CE2F241F191A0D002E2150 /* AlfrescoProperty.h */,
-				B2CE2F251F191A0D002E2150 /* AlfrescoPropertyDefinition.h */,
-				B2CE2F261F191A0D002E2150 /* AlfrescoRatingService.h */,
-				B2CE2F271F191A0D002E2150 /* AlfrescoRepositoryCapabilities.h */,
-				B2CE2F281F191A0D002E2150 /* AlfrescoRepositoryInfo.h */,
-				B2CE2F291F191A0D002E2150 /* AlfrescoRepositorySession.h */,
-				B2CE2F2A1F191A0D002E2150 /* AlfrescoRequest.h */,
-				B2CE2F2B1F191A0D002E2150 /* AlfrescoSDK.h */,
-				B2CE2F2C1F191A0D002E2150 /* AlfrescoSearchLanguage.h */,
-				B2CE2F2D1F191A0D002E2150 /* AlfrescoSearchService.h */,
-				B2CE2F2E1F191A0D002E2150 /* AlfrescoSession.h */,
-				B2CE2F2F1F191A0D002E2150 /* AlfrescoSite.h */,
-				B2CE2F301F191A0D002E2150 /* AlfrescoSiteService.h */,
-				B2CE2F311F191A0D002E2150 /* AlfrescoTag.h */,
-				B2CE2F321F191A0D002E2150 /* AlfrescoTaggingService.h */,
-				B2CE2F331F191A0D002E2150 /* AlfrescoTaskTypeDefinition.h */,
-				B2CE2F341F191A0D002E2150 /* AlfrescoVersionService.h */,
-				B2CE2F351F191A0D002E2150 /* AlfrescoWorkflowProcess.h */,
-				B2CE2F361F191A0D002E2150 /* AlfrescoWorkflowProcessDefinition.h */,
-				B2CE2F371F191A0D002E2150 /* AlfrescoWorkflowService.h */,
-				B2CE2F381F191A0D002E2150 /* AlfrescoWorkflowTask.h */,
-			);
-			path = alfrescoSDK;
-			sourceTree = "<group>";
-		};
 		B2CE2F391F19314E002E2150 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				B2EDE7A91F6BD80B00D7FF26 /* model */,
 				B23AE8F41F28ADAD00BEB4B8 /* images */,
 				B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */,
-				B2CE2F571F1E636F002E2150 /* icone-home */,
-				B2CE2F421F1DF859002E2150 /* icone-tipo-file */,
 				B2CE2F401F1CF60C002E2150 /* DocNavigator.storyboard */,
 				B2BC945D1F1F68EF000DDF52 /* DocAuthTVC.h */,
 				B2BC945E1F1F68EF000DDF52 /* DocAuthTVC.m */,
 				B2BC94601F1FCE04000DDF52 /* DocProfileTVC.h */,
 				B2BC94611F1FCE04000DDF52 /* DocProfileTVC.m */,
-				B23AE8F91F29D69100BEB4B8 /* DocMiniBrowserVC.h */,
-				B23AE8FA1F29D69100BEB4B8 /* DocMiniBrowserVC.m */,
 				B23A81291F95D31E001344C0 /* DocChatUtil.h */,
 				B23A812A1F95D31E001344C0 /* DocChatUtil.m */,
 			);
 			path = Documents;
-			sourceTree = "<group>";
-		};
-		B2CE2F421F1DF859002E2150 /* icone-tipo-file */ = {
-			isa = PBXGroup;
-			children = (
-				B2CE2F431F1DF859002E2150 /* calcolo.png */,
-				B2CE2F441F1DF859002E2150 /* cartella.png */,
-				B2CE2F451F1DF859002E2150 /* ic_unknown.png */,
-				B2CE2F461F1DF859002E2150 /* ic_zip.png */,
-				B2CE2F471F1DF859002E2150 /* image.png */,
-				B2CE2F481F1DF859002E2150 /* pdf.png */,
-				B2CE2F491F1DF859002E2150 /* presentazione.png */,
-				B2CE2F4A1F1DF859002E2150 /* testo.png */,
-			);
-			path = "icone-tipo-file";
-			sourceTree = "<group>";
-		};
-		B2CE2F571F1E636F002E2150 /* icone-home */ = {
-			isa = PBXGroup;
-			children = (
-				B2CE2F581F1E636F002E2150 /* ic_clients.png */,
-				B2CE2F591F1E636F002E2150 /* ic_disclosures.png */,
-				B2CE2F5A1F1E636F002E2150 /* ic_monitoring.png */,
-				B2CE2F5B1F1E636F002E2150 /* ic_safety.png */,
-				B2CE2F5C1F1E636F002E2150 /* ic_services.png */,
-			);
-			path = "icone-home";
 			sourceTree = "<group>";
 		};
 		B2CEBCEB1C1830F200F3516F /* Utility */ = {
@@ -1139,27 +800,6 @@
 				B2AA87A21FD93393004FE7E0 /* ChatStringUtil.m */,
 			);
 			name = Utility;
-			sourceTree = "<group>";
-		};
-		B2EDE7A91F6BD80B00D7FF26 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				B2EDE7AA1F6BE7AB00D7FF26 /* NSData+Additions.h */,
-				B2EDE7AB1F6BE7AB00D7FF26 /* NSData+Additions.m */,
-				B24AB7461F21F48000B63642 /* FirebaseAuth.h */,
-				B24AB7471F21F48000B63642 /* FirebaseAuth.m */,
-				B23AE8D81F26390F00BEB4B8 /* AlfrescoUsersDC.h */,
-				B23AE8D91F26390F00BEB4B8 /* AlfrescoUsersDC.m */,
-				B21656231F4B2FAD00CF7C71 /* AlfrescoSearchDC.h */,
-				B21656241F4B2FAD00CF7C71 /* AlfrescoSearchDC.m */,
-				B2EDE7A61F6BD7F900D7FF26 /* HomeMenuDC.h */,
-				B2EDE7A71F6BD7F900D7FF26 /* HomeMenuDC.m */,
-				B2E631031F73C94F009A0CD7 /* DocVersionControlDC.h */,
-				B2E631041F73C94F009A0CD7 /* DocVersionControlDC.m */,
-				B2DC49061FC4630D00698CE7 /* CifraDC.h */,
-				B2DC49071FC4630D00698CE7 /* CifraDC.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		B2EF3D801CCCC0FE0074836A /* ChatModel */ = {
@@ -1230,9 +870,6 @@
 				B274DB2C1EF848920055EDD0 /* Labot.entitlements */,
 				B24AD7B11F8612A400A526E9 /* Support */,
 				B2CE2F391F19314E002E2150 /* Documents */,
-				B2CE2EFC1F191A0D002E2150 /* alfrescoSDK */,
-				B29ACA121D1D7566002261BC /* Job */,
-				B287C7FE1CDB9D9000F7B6FB /* app_icon_no_background.png */,
 				BFBFD36A1AEA544F00657874 /* Project */,
 				BFBFD4F01AEA5B5600657874 /* Frameworks */,
 				BFBFD3691AEA544F00657874 /* Products */,
@@ -1789,7 +1426,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CE2F5E1F1E636F002E2150 /* ic_disclosures.png in Resources */,
 				B2F75C1D1C65158F00EFBCD2 /* inline.caf in Resources */,
 				B2F75C1E1C65158F00EFBCD2 /* newnotif.caf in Resources */,
 				DCC254E21BD1106D00B2160C /* icon_standard_cerca.png in Resources */,
@@ -1804,7 +1440,6 @@
 				BFBFD6AD1AEAB4C900657874 /* button_navbar_disabled@2x.png in Resources */,
 				B2A763EA1F13A08F0055A7E2 /* logo_labot_1024.png in Resources */,
 				BFBFD6B11AEAB4DD00657874 /* icon_like_white_60X60.png in Resources */,
-				B22F97E71D05BFF600415D82 /* Job_request.storyboard in Resources */,
 				B24FD4081CBEE2F5000EF70E /* DEPRECATED_status_title.xib in Resources */,
 				BFBFD6B71AEAB4FD00657874 /* icon_route_map.png in Resources */,
 				DCC254DC1BD1106D00B2160C /* icon_standard_altro.png in Resources */,
@@ -1818,7 +1453,6 @@
 				DCC254E41BD1106D00B2160C /* icon_standard_chat.png in Resources */,
 				B2FBAEE91F34D4F40040D2DF /* plus_icon@2x.png in Resources */,
 				DCC254BB1BD1105900B2160C /* icon_light_ristorante@2x.png in Resources */,
-				B20D6A831D8C68790071FAEA /* lezioniprivate.png in Resources */,
 				DCC254AE1BD1105900B2160C /* icon_light_chat.png in Resources */,
 				DCD3E01F1BC513AC00D81E19 /* mail1@2x.png in Resources */,
 				BF1338061B2879BF003FD42A /* background.png in Resources */,
@@ -1836,12 +1470,9 @@
 				DCC254F01BD1106D00B2160C /* icon_standard_plus.png in Resources */,
 				DCC254B11BD1105900B2160C /* icon_light_foto@2x.png in Resources */,
 				DCC254FB1BD1106D00B2160C /* icon_standard_star@2x.png in Resources */,
-				B2CE2F4F1F1DF859002E2150 /* image.png in Resources */,
 				BFBFD6A91AEAB4C900657874 /* botton_navbar_white.png in Resources */,
 				B2B3700B1C5B680700C21AE7 /* PROFILO-modifica-profilo@2x.png in Resources */,
-				B2CE2F5F1F1E636F002E2150 /* ic_monitoring.png in Resources */,
 				DCC254F41BD1106D00B2160C /* icon_standard_poi.png in Resources */,
-				B20D6A7A1D8C65990071FAEA /* babysitter.png in Resources */,
 				DCC254F21BD1106D00B2160C /* icon_standard_plus2.png in Resources */,
 				B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */,
 				DCC254E11BD1106D00B2160C /* icon_standard_carrello@2x.png in Resources */,
@@ -1856,9 +1487,6 @@
 				B2CE2F411F1CF60C002E2150 /* DocNavigator.storyboard in Resources */,
 				DCC254EE1BD1106D00B2160C /* icon_standard_notifiche.png in Resources */,
 				BFBFD6801AEAB49400657874 /* heart_red_icon_iphone.png in Resources */,
-				B2CE2F601F1E636F002E2150 /* ic_safety.png in Resources */,
-				B2CE2F501F1DF859002E2150 /* pdf.png in Resources */,
-				B20D6A7B1D8C65990071FAEA /* babysitter@2x.png in Resources */,
 				B23AE8EC1F278E8800BEB4B8 /* ic_linear_file@2x.png in Resources */,
 				B2F75C0A1C63C15400EFBCD2 /* icon_light_profile@2x.png in Resources */,
 				DCC254EF1BD1106D00B2160C /* icon_standard_notifiche@2x.png in Resources */,
@@ -1868,22 +1496,18 @@
 				B2F75C111C63CA2900EFBCD2 /* chat21_help_icon@2x.png in Resources */,
 				BFBFD6171AEAB41500657874 /* icon_mirino@2x.png in Resources */,
 				DCC254EB1BD1106D00B2160C /* icon_standard_home@2x.png in Resources */,
-				B2CE2F511F1DF859002E2150 /* presentazione.png in Resources */,
 				DCD3E01E1BC513AC00D81E19 /* mail1.png in Resources */,
 				BFBFD71A1AEF79B300657874 /* button_back_.png in Resources */,
 				DCC254F51BD1106D00B2160C /* icon_standard_poi@2x.png in Resources */,
-				B2CE2F4E1F1DF859002E2150 /* ic_zip.png in Resources */,
 				DCC254B41BD1105900B2160C /* icon_light_notifiche.png in Resources */,
 				DCC254DD1BD1106D00B2160C /* icon_standard_altro@2x.png in Resources */,
 				DC2BD6BF1BD9346D00E2C289 /* icon_light_watch@2x.png in Resources */,
 				B23AE8EF1F278E8800BEB4B8 /* ic_linear_home@2x.png in Resources */,
-				B2CE2F4B1F1DF859002E2150 /* calcolo.png in Resources */,
 				BFBFD6B01AEAB4DD00657874 /* icon_like_red_60X60.png in Resources */,
 				DCC254901BCFE67B00B2160C /* FB-f-Logo__gray_144.png in Resources */,
 				DCC254ED1BD1106D00B2160C /* icon_standard_news@2x.png in Resources */,
 				BFBFD7121AEE713200657874 /* checkbox-circle.png in Resources */,
 				DCC254E71BD1106D00B2160C /* icon_standard_chat2@2x.png in Resources */,
-				B2CE2F521F1DF859002E2150 /* testo.png in Resources */,
 				B2EF3D6F1CC226C10074836A /* notification_view.xib in Resources */,
 				B23AE8F01F278E8800BEB4B8 /* ic_linear_home@3x.png in Resources */,
 				B2DB07A61FD3E3640062E8D0 /* Help_request.storyboard in Resources */,
@@ -1904,14 +1528,12 @@
 				BFBFD6161AEAB41500657874 /* icon_mirino.png in Resources */,
 				DCC2548E1BCFE50700B2160C /* FB-f-Logo__blue_144.png in Resources */,
 				B23AE8F31F278E8800BEB4B8 /* ic_linear_profile@3x.png in Resources */,
-				B2CE2F4D1F1DF859002E2150 /* ic_unknown.png in Resources */,
 				DCC254EC1BD1106D00B2160C /* icon_standard_news.png in Resources */,
 				DCC254B51BD1105900B2160C /* icon_light_notifiche@2x.png in Resources */,
 				BFBFD6AC1AEAB4C900657874 /* button_navbar_disabled.png in Resources */,
 				BFBFD6811AEAB49400657874 /* heart_red_icon_iphone@2x.png in Resources */,
 				B2F75C101C63CA2900EFBCD2 /* chat21_help_icon.png in Resources */,
 				B297D7981F683AAB0006944F /* Chat.storyboard in Resources */,
-				B2CE2F611F1E636F002E2150 /* ic_services.png in Resources */,
 				B2FA6FF41C37144200B46213 /* chat_check.png in Resources */,
 				B2F75C121C63CA2900EFBCD2 /* chat21_settings_icon.png in Resources */,
 				BFBFD6A71AEAB4C900657874 /* botton_navbar_disabled_white.png in Resources */,
@@ -1924,15 +1546,11 @@
 				DCC254F71BD1106D00B2160C /* icon_standard_ristorante@2x.png in Resources */,
 				DCF65D581BE3D0AE003B471D /* avatar.png in Resources */,
 				DCC254B91BD1105900B2160C /* icon_light_poi@2x.png in Resources */,
-				B2CE2F4C1F1DF859002E2150 /* cartella.png in Resources */,
 				B2A763CB1F0D339D0055A7E2 /* chat_mrlupo@2x.png in Resources */,
 				BFBFD6A81AEAB4C900657874 /* botton_navbar_disabled_white@2x.png in Resources */,
-				B2CE2F5D1F1E636F002E2150 /* ic_clients.png in Resources */,
 				BFBFD6AA1AEAB4C900657874 /* botton_navbar_white@2x.png in Resources */,
 				DCC254EA1BD1106D00B2160C /* icon_standard_home.png in Resources */,
 				B23AE8F21F278E8800BEB4B8 /* ic_linear_profile@2x.png in Resources */,
-				B20D6A7C1D8C65990071FAEA /* babysitter@3x.png in Resources */,
-				B287C7FF1CDB9D9100F7B6FB /* app_icon_no_background.png in Resources */,
 				B2FBAEE81F34D4F40040D2DF /* plus_icon.png in Resources */,
 				B2B3700A1C5B680700C21AE7 /* PROFILO-modifica-profilo.png in Resources */,
 				BFBFD6AB1AEAB4C900657874 /* button_navbar@2x.png in Resources */,
@@ -1941,7 +1559,6 @@
 				B2F75BF51C5BCC3600EFBCD2 /* Profile.storyboard in Resources */,
 				DCC254B61BD1105900B2160C /* icon_light_notifiche2.png in Resources */,
 				DCC255001BD1683200B2160C /* icon_light_star.png in Resources */,
-				B20D6A841D8C68790071FAEA /* lezioniprivate@2x.png in Resources */,
 				DC2BD6C01BD9346D00E2C289 /* icon_light_watch.png in Resources */,
 				B24AD7AD1F83E77600A526E9 /* ic_linear_support_gray_01@3x.png in Resources */,
 				B23AE8EA1F278E8800BEB4B8 /* ic_linear_chat@3x.png in Resources */,
@@ -1952,7 +1569,6 @@
 				B23AE8E91F278E8800BEB4B8 /* ic_linear_chat@2x.png in Resources */,
 				B24AD7C11F86392700A526E9 /* help-info.plist in Resources */,
 				DCC254B81BD1105900B2160C /* icon_light_poi.png in Resources */,
-				B20D6A851D8C68790071FAEA /* lezioniprivate@3x.png in Resources */,
 				B2F75C091C63C15400EFBCD2 /* icon_light_profile.png in Resources */,
 				DCC254BA1BD1105900B2160C /* icon_light_ristorante.png in Resources */,
 				B241F3F01F879C4B00871202 /* bppmobileintranet-contacts.json in Resources */,
@@ -2029,30 +1645,23 @@
 				BFBFD5661AEA811D00657874 /* SHPObjectCache.m in Sources */,
 				B2B36F8C1C4FCA5000C21AE7 /* ChatTitleVC.m in Sources */,
 				DCF65D561BE3D092003B471D /* GroupMembersVC.m in Sources */,
-				B23AE8FB1F29D69100BEB4B8 /* DocMiniBrowserVC.m in Sources */,
 				B297D79F1F683B1D0006944F /* ChatConversationHandler.m in Sources */,
-				B22F97F71D06A71400415D82 /* MRDescriptionStepTVC.m in Sources */,
 				DC4A1B9B1BE0B8C700464D0A /* QBPopupMenuItem.m in Sources */,
 				B2F75BF91C5CA1D700EFBCD2 /* ChatSettingsTVC.m in Sources */,
 				B297D7AC1F683BA70006944F /* ChatUser.m in Sources */,
-				B29ACA211D25160E002261BC /* MRJobSkillCVStepTVC.m in Sources */,
 				B297D7B21F6934100006944F /* ChatSelectUserLocalVC.m in Sources */,
 				BFBFD52C1AEA5FA900657874 /* SHPApplicationSettings.m in Sources */,
 				BFBFD3951AEA54DA00657874 /* SHPAppDelegate.m in Sources */,
 				BFBFD55D1AEA80A400657874 /* SHPStringUtil.m in Sources */,
-				B24AB7481F21F48000B63642 /* FirebaseAuth.m in Sources */,
 				B297D7A01F683B1D0006944F /* ChatConversationsHandler.m in Sources */,
 				BFBFD53F1AEA7C5C00657874 /* SHPImageRequest.m in Sources */,
 				B297D7A81F683B880006944F /* ChatDB.m in Sources */,
 				B2F066C01CAAD7E500C0112E /* ChatMessageComponents.m in Sources */,
 				B2EF3D791CC7CB0F0074836A /* ChatUploadsController.m in Sources */,
 				DCF65D411BE3D07D003B471D /* ChatGroupsHandler.m in Sources */,
-				B29ACA151D1D977F002261BC /* MRJobSkillStepTVC.m in Sources */,
 				BFBFD4E31AEA59D100657874 /* main.m in Sources */,
-				B29ACA1B1D1E9478002261BC /* MRJobSkillTelephoneStepTVC.m in Sources */,
 				B235393D1F4D7BA0000BA684 /* ChatMiniBrowserVC.m in Sources */,
 				BFBFD4DE1AEA598000657874 /* SHPUsersLoaderStrategy.m in Sources */,
-				B2A764531D2D6C1200BDA5D3 /* MRJobCategory.m in Sources */,
 				DCF65D341BE3D07D003B471D /* ChatConversation.m in Sources */,
 				BFBFD4D71AEA598000657874 /* SHPUser.m in Sources */,
 				B20D931E1D6C8F7100ADC264 /* SHPSendTokenDC.m in Sources */,
@@ -2065,26 +1674,18 @@
 				DC4A1B9E1BE0B8C700464D0A /* QBPopupMenuPagenatorView.m in Sources */,
 				BFBFD5751AEA834900657874 /* SHPDataController.m in Sources */,
 				B24FD40B1CBEE477000EF70E /* ChatStatusTitle.m in Sources */,
-				B23AE8DA1F26390F00BEB4B8 /* AlfrescoUsersDC.m in Sources */,
-				B22F97EE1D0609D600415D82 /* MRPositionStepTVC.m in Sources */,
 				B2BC945F1F1F68EF000DDF52 /* DocAuthTVC.m in Sources */,
-				B2DC49081FC4630D00698CE7 /* CifraDC.m in Sources */,
 				B2EF3D7F1CC7D1400074836A /* ChatImageUploadDC.m in Sources */,
 				BFBFD5291AEA5F4E00657874 /* SHPApplicationContext.m in Sources */,
 				BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */,
-				B2EDE7AC1F6BE7AB00D7FF26 /* NSData+Additions.m in Sources */,
 				B2AA87A01FD87538004FE7E0 /* ChatUIManager.m in Sources */,
 				B269FA5F1C6B7EAF00B3800B /* SHPModifyProfileTVC.m in Sources */,
-				B2EDE7A81F6BD7F900D7FF26 /* HomeMenuDC.m in Sources */,
 				B23D1BA91F7A62910009029D /* ChatSelectGroupLocalTVC.m in Sources */,
 				B2EF3D7C1CC7CBE50074836A /* ChatUpload.m in Sources */,
-				B22F97F41D06A6F400415D82 /* MRPreviewStepTVC.m in Sources */,
 				BFBFD4901AEA590900657874 /* MBProgressHUD.m in Sources */,
 				DCF65D401BE3D07D003B471D /* ParseChatNotification.m in Sources */,
-				B21656251F4B2FAD00CF7C71 /* AlfrescoSearchDC.m in Sources */,
 				B27C51311C345EC70069F5E7 /* NotConnectedVC.m in Sources */,
 				BFBFD4DD1AEA598000657874 /* SHPSearchUsersLoader.m in Sources */,
-				B2E631051F73C94F009A0CD7 /* DocVersionControlDC.m in Sources */,
 				DCF65D351BE3D07D003B471D /* ChatMessage.m in Sources */,
 				BFBFD5721AEA81A200657874 /* SHPIconDownloader.m in Sources */,
 				B20FC6A11BEA7CC9009D57D3 /* ChatImageCache.m in Sources */,
@@ -2095,7 +1696,6 @@
 				DC7F59C71BCB95AD007523B1 /* UPStackMenu.m in Sources */,
 				B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */,
 				B22048101C387F3D00AF84CE /* ChatPresenceHandler.m in Sources */,
-				B29ACA1E1D241A39002261BC /* MRJobSkillPreviewStepTVC.m in Sources */,
 				B2EF3D721CC2298B0074836A /* NotificationAlertView.m in Sources */,
 				B2AA87A31FD93393004FE7E0 /* ChatStringUtil.m in Sources */,
 				BFBFD5531AEA7F2C00657874 /* SHPConstants.m in Sources */,
@@ -2108,7 +1708,6 @@
 				B2EF24F61C8ED60E000827CC /* ChatMessageCell.m in Sources */,
 				DC4A1B9C1BE0B8C700464D0A /* QBPopupMenuItemView.m in Sources */,
 				B24AD7C41F8670C400A526E9 /* HelpDescriptionStepTVC.m in Sources */,
-				B2A764561D35580500BDA5D3 /* MRJobSkillPositionStepTVC.m in Sources */,
 				B297D7B51F6A912F0006944F /* ChatSelectGroupMembersLocal.m in Sources */,
 				BFBFD53C1AEA7C4800657874 /* SHPCaching.m in Sources */,
 				BFBFD5561AEA7F6700657874 /* SHPUserInterfaceUtil.m in Sources */,
@@ -2118,13 +1717,11 @@
 				B297D79B1F683AE60006944F /* ChatContactsSynchronizer.m in Sources */,
 				BFBFD5391AEA7C3700657874 /* SHPImageCache.m in Sources */,
 				BFBFD4D21AEA598000657874 /* SHPSigninServiceDC.m in Sources */,
-				B22F97EB1D05D70300415D82 /* MRCategoryStepTVC.m in Sources */,
 				BFBFD5631AEA810F00657874 /* SHPConnectionsController.m in Sources */,
 				B2F066B91CA3198300C0112E /* ChatMessagesTVC.m in Sources */,
 				B290C3861C31615500EF8616 /* ChatRootNC.m in Sources */,
 				DC4A1B9D1BE0B8C700464D0A /* QBPopupMenuOverlayView.m in Sources */,
 				DCF65D321BE3D07D003B471D /* ChatUsersDC.m in Sources */,
-				B22167971EF9830F0041252A /* MRService.m in Sources */,
 				B2DB07A81FD3E37B0062E8D0 /* HelpCategoryStepTVC.m in Sources */,
 				B24AD7B61F86134800A526E9 /* HelpCategory.m in Sources */,
 				DCF65D331BE3D07D003B471D /* ChatGroup.m in Sources */,
@@ -2132,7 +1729,6 @@
 				B2BC94621F1FCE04000DDF52 /* DocProfileTVC.m in Sources */,
 				B20D93241D6C912E00ADC264 /* SHPMiniWebBrowserVC.m in Sources */,
 				DCF65D371BE3D07D003B471D /* SHPFirebaseTokenDC.m in Sources */,
-				B297D78A1F6284D60006944F /* Reachability.m in Sources */,
 				DCF65D3E1BE3D07D003B471D /* SHPPushNotification.m in Sources */,
 				BFBFD55A1AEA807900657874 /* UIView+Property.m in Sources */,
 				B2F75BF61C5BCC3600EFBCD2 /* SHPHomeProfileTVC.m in Sources */,

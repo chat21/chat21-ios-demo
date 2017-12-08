@@ -106,38 +106,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 //        [[FIRAuth auth].currentUser updateEmail:@"walter.cavalcante@mobilesoft.it" completion:^(NSError *_Nullable error) {
 //            NSLog(@"updated email. error: %@", error);
 //        }];
-        
-        // initial document auth
-//        [DocAuthTVC repositoryReSignin:context.loggedUser.username password:context.loggedUser.password completion:^(NSError *error) {
-//            if (error) {
-//                NSLog(@"Error connecting to repository: %@", error);
-//            }
-//            else {
-//                NSLog(@"Successfully connected to repository");
-//            }
-//        }];
-//        [self startPushNotifications];
     }
-    
-    //    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Settings"];
-    //    if([settingsDictionary valueForKey:@"TAB_NOTIFICATIONS_INDEX"]){
-    //        TAB_NOTIFICATIONS_INDEX = [[settingsDictionary valueForKey:@"TAB_NOTIFICATIONS_INDEX"] intValue];
-    //    } else {
-    //        TAB_NOTIFICATIONS_INDEX = -1;
-    //    }
-    
-    //    SHPImageCache *smallImagesCache = [[SHPImageCache alloc] init];
-    //    smallImagesCache.maxSize = self.applicationContext.settings.smallImagesCacheSize;
-    //    context.smallImagesCache = smallImagesCache;
-    
-//    SHPConnectionsController *connectionsController = [[SHPConnectionsController alloc] init];
-//    self.applicationContext.connectionsController = connectionsController;
-    
-    
-    //    if (![context isFirstLaunch]) {
-    //    }
-//    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-//    self.applicationContext.tabBarController = tabController;
     
     [self buildTabBar];
     [self configTabBar];
@@ -555,30 +524,22 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     }
 }
 
--(void)configTabBar{
+-(void)configTabBar {
     //----------------------------------------------------------------------------//
     //CONFIG TABBAR
     //----------------------------------------------------------------------------//
     // http://stackoverflow.com/questions/18795117/change-tab-bar-tint-color-ios-7
     //http://www.appcoda.com/ios-programming-how-to-customize-tab-bar-background-appearance/
-    
+
     if ([[UITabBar class] respondsToSelector:@selector(appearance)]) {
         NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
         UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
         [[UITabBar appearance] setTintColor: tintColor]; //set button active
-        //[[UITabBar appearance] setSelectedImageTintColor:tintColor];
-        
+
         UIColor *barTintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"barTintColor"]];
         [[UITabBar appearance] setBarTintColor:barTintColor]; //set background tabbar
-        
-        
-        // [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }
-        //                                        forState:UIControlStateNormal];
         [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : tintColor }
                                                  forState:UIControlStateSelected];
-        //[[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-        //                                                            NSForegroundColorAttributeName : [UIColor redColor]
-        //                                                            } forState:UIControlStateNormal];
     }
 }
 

@@ -13,7 +13,6 @@
 #import "SHPImageDownloader.h"
 #import "QBPopupMenu.h"
 #import <AudioToolbox/AudioToolbox.h>
-#import "DocNavigatorTVC.h"
 
 @import Firebase;
 
@@ -32,7 +31,7 @@
 @class ChatGroup;
 @class ChatUser;
 
-@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, SHPChatDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, DocSelectionDelegate> {
+@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, SHPChatDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     BOOL keyboardShow;
     CGFloat heightTable;
     CGFloat originalViewHeight;
