@@ -648,6 +648,7 @@ static ChatManager *sharedInstance = nil;
     ChatUser *user = self.loggedUser;
     if (!user) {
         NSLog(@"ERROR: CAN'T REMOVE THE INSTANCE IF LOGGED USER IS NULL. Hey...did you signed out before removing InstanceID?");
+        return;
     }
     NSString *user_path = [ChatUtil userPath:user.userId];
     NSLog(@"Removing instanceId (FCMToken) on path: %@", user_path);
