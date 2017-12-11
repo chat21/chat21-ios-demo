@@ -10,6 +10,7 @@
 
 static int const MSG_STATUS_FAILED = -100;
 static int const MSG_STATUS_SENDING = 0;
+static int const MSG_STATUS_QUEUED = 50;
 static int const MSG_STATUS_SENT = 100;
 static int const MSG_STATUS_RECEIVED = 200;
 static int const MSG_STATUS_SEEN = 300;
@@ -20,6 +21,7 @@ static NSString* const MSG_FIELD_TYPE = @"type";
 static NSString* const MSG_FIELD_TEXT = @"text";
 static NSString* const MSG_FIELD_SENDER = @"sender";
 static NSString* const MSG_FIELD_SENDER_FULLNAME = @"sender_fullname";
+static NSString* const MSG_FIELD_RECIPIENT_FULLNAME = @"recipient_fullname";
 static NSString* const MSG_FIELD_RECIPIENT = @"recipient";
 static NSString* const MSG_FIELD_RECIPIENT_GROUP_ID = @"recipientGroupId";
 static NSString* const MSG_FIELD_LANG = @"language";
@@ -49,6 +51,7 @@ static NSString* const MSG_DROPBOX_ICONURL = @"dropbox_iconURL";
 @property (nonatomic, strong) NSString *sender; // firebase
 @property (nonatomic, strong) NSString *senderFullname; // firebase
 @property (nonatomic, strong) NSString *recipient; // firebase
+@property (nonatomic, strong) NSString *recipientFullName; // firebase
 @property (nonatomic, strong) NSString *recipientGroupId; // firebase
 @property (nonatomic, strong) NSString *conversationId;
 @property (nonatomic, strong) NSString *lang;

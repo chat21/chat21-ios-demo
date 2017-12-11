@@ -34,7 +34,9 @@
 // Fullname custom getter
 - (NSString*) fullname {
     if (!_fullname) {
-        NSString *fullname = [NSString stringWithFormat:@"%@ %@", self.firstname, self.lastname];
+        NSString *__firstName = self.firstname ? self.firstname : @"";
+        NSString *__lastName = self.lastname ? self.lastname : @"";
+        NSString *fullname = [NSString stringWithFormat:@"%@ %@", __firstName, __lastName];
         return fullname;
     }
     else {

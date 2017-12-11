@@ -42,12 +42,13 @@
         }
     }
     
-    // if fullname not available use username instead
-    if (!displayName) {
+    if (!displayName && self.firstName && self.lastName) {
+        displayName = [[NSString alloc] initWithFormat:@"%@ %@", self.firstName, self.lastName];
+    }
+    else {
         displayName = self.username;
     }
-    NSString *_displayName = [[NSString alloc] initWithFormat:@"%@", displayName];
-    return _displayName;
+    return displayName;
 }
 
 @end

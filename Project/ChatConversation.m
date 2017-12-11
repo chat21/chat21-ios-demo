@@ -51,8 +51,8 @@
     // only if one-to-one
     if (self.recipient) {
         [conversation_dict setValue:self.recipient forKey:CONV_RECIPIENT_KEY];
-        [conversation_dict setValue:self.conversWith forKey:CONV_CONVERS_WITH_KEY];
-        [conversation_dict setValue:self.conversWith_fullname forKey:CONV_CONVERS_WITH_FULLNAME_KEY];
+//        [conversation_dict setValue:self.conversWith forKey:CONV_CONVERS_WITH_KEY];
+//        [conversation_dict setValue:self.conversWith_fullname forKey:CONV_CONVERS_WITH_FULLNAME_KEY];
     }
     // only if group
     if (self.groupId) {
@@ -70,8 +70,9 @@
     NSString *sender = snapshot.value[CONV_SENDER_KEY];
     NSLog(@"sender__ %@", sender);
     NSString *senderFullname = snapshot.value[CONV_SENDER_FULLNAME_KEY];
+    NSString *recipientFullname = snapshot.value[CONV_RECIPIENT_FULLNAME_KEY];
 //    NSString *conversWith = snapshot.value[CONV_CONVERS_WITH_KEY];
-    NSString *conversWith_fullname = snapshot.value[CONV_CONVERS_WITH_FULLNAME_KEY];
+//    NSString *conversWith_fullname = snapshot.value[CONV_CONVERS_WITH_FULLNAME_KEY];
     NSString *groupId = snapshot.value[CONV_GROUP_ID_KEY];
     NSString *groupName = snapshot.value[CONV_GROUP_NAME_KEY];
     NSNumber *timestamp = snapshot.value[CONV_TIMESTAMP_KEY];
@@ -80,12 +81,15 @@
     NSMutableDictionary *attributes = snapshot.value[CONV_ATTRIBUTES_KEY];
     
     NSString *conversWith = nil;
+    NSString *conversWithFullName = nil;
     if (!groupId) { // direct
         if ([me.userId isEqualToString:sender]) {
             conversWith = recipient;
+            conversWithFullName = recipientFullname;
         }
         else {
             conversWith = sender;
+            conversWithFullName = senderFullname;
         }
     }
     
@@ -100,7 +104,7 @@
     conversation.date = [NSDate dateWithTimeIntervalSince1970:timestamp.doubleValue/1000];
     conversation.is_new = [is_new boolValue];
     conversation.conversWith = conversWith;
-    conversation.conversWith_fullname = conversWith_fullname;
+    conversation.conversWith_fullname = conversWithFullName;
     conversation.groupId = groupId;
     conversation.groupName = groupName;
     conversation.status = (int)[status integerValue];

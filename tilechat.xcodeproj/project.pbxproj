@@ -720,8 +720,6 @@
 		B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */ = {
 			isa = PBXGroup;
 			children = (
-				B2C7CB9C1FDAFD1300F2EFFE /* HelloVC.h */,
-				B2C7CB9B1FDAFD1300F2EFFE /* HelloVC.m */,
 				B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */,
 				B23AE8DD1F278E8800BEB4B8 /* ic_linear_chat@2x.png */,
 				B23AE8DE1F278E8800BEB4B8 /* ic_linear_chat@3x.png */,
@@ -770,6 +768,8 @@
 				B23AE8F41F28ADAD00BEB4B8 /* images */,
 				B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */,
 				B2CE2F401F1CF60C002E2150 /* HelloChat.storyboard */,
+				B2C7CB9C1FDAFD1300F2EFFE /* HelloVC.h */,
+				B2C7CB9B1FDAFD1300F2EFFE /* HelloVC.m */,
 				B2BC945D1F1F68EF000DDF52 /* HelloAuthTVC.h */,
 				B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */,
 				B2BC94601F1FCE04000DDF52 /* HelloProfileTVC.h */,

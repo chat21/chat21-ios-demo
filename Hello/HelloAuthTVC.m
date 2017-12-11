@@ -157,7 +157,6 @@
             [userPreferences setObject:email forKey:@"stored_username"];
             [userPreferences synchronize];
             
-            
             [HelloChatUtil initChat];
             
             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{

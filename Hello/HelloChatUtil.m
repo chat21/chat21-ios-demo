@@ -38,6 +38,13 @@
             NSLog(@"Successfully created contact: %@", loggedUser.fullname);
         }
     }];
+    [chat getContactLocalDB:loggedUser.userId withCompletion:^(ChatUser *user) {
+        loggedUser.firstname = user.firstname;
+        loggedUser.lastname = user.lastname;
+        app.applicationContext.loggedUser.firstName = user.firstname;
+        app.applicationContext.loggedUser.lastName = user.lastname;
+        [app.applicationContext signin:app.applicationContext.loggedUser];
+    }];
     // plug the profile view
     [ChatUIManager getInstance].pushProfileCallback = ^(ChatUser *user, ChatMessagesVC *vc) {
         UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];

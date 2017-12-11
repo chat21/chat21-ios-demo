@@ -44,23 +44,4 @@
 -(ChatConversation *)getConversationById:(NSString *)conversationId;
 -(BOOL)removeConversation:(NSString *)conversationId;
 
-//// groups
-//-(BOOL)insertOrUpdateGroup:(ChatGroup *)group;
-//-(BOOL)insertGroup:(ChatGroup *)group;
-//-(BOOL)updateGroup:(ChatGroup *)group;
-//-(NSArray*)getAllGroups;
-//-(NSArray*)getAllGroupsForUser:(NSString *)user;
-//-(ChatGroup *)getGroupById:(NSString *)groupId;
-//-(BOOL)removeGroup:(NSString *)groupId;
-
-//// contacts
-//-(BOOL)insertOrUpdateContact:(ChatUser *)contact;
-//-(BOOL)insertContact:(ChatUser *)contact;
-//-(BOOL)updateContact:(ChatUser *)contact;
-//-(NSArray*)getAllContacts;
-//-(ChatUser *)getContactById:(NSString *)contactId;
-////-(NSArray*)searchContactsByFullname:(NSString *)searchString;
-//-(void)searchContactsByFullname:(NSString *)searchString completion:(void (^)(NSArray<ChatUser *> *))callback;
-//-(BOOL)removeContact:(NSString *)contactId;
-
 @end

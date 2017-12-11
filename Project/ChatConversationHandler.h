@@ -24,7 +24,7 @@
 
 //@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (strong, nonatomic) ChatUser *user;
-@property (strong, nonatomic) NSString *recipient;
+@property (strong, nonatomic) NSString *recipientId;
 @property (strong, nonatomic) NSString *recipientFullname;
 @property (strong, nonatomic) NSString *groupName;
 @property (strong, nonatomic) NSString *groupId;
@@ -45,7 +45,7 @@
 @property (assign, nonatomic) double lastSentReadNotificationTime;
 
 //-(id)initWithRecipient:(NSString *)recipient recipientFullName:(NSString *)recipientFullName conversationId:(NSString *)conversationId user:(ChatUser *)user;
--(id)initWithRecipient:(NSString *)recipient recipientFullName:(NSString *)recipientFullName user:(ChatUser *)user;
+-(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName user:(ChatUser *)user;
 //-(id)initWithGroupId:(NSString *)groupId conversationId:(NSString *)conversationId user:(ChatUser *)user;
 -(id)initWithGroupId:(NSString *)groupId user:(ChatUser *)user;
 -(void)connect;

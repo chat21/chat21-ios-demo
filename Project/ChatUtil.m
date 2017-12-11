@@ -92,10 +92,12 @@ static NotificationAlertView *notificationAlertInstance = nil;
 }
 
 //+(Firebase *)conversationMessagesRef:(NSString *)conversationId settings:(NSDictionary *)settings {
-+(FIRDatabaseReference *)conversationMessagesRef:(NSString *)conversationId {
++(FIRDatabaseReference *)conversationMessagesRef:(NSString *)recipient_id {
     // path: apps/{tenant}/messages/{conversationId}
-    NSString *tenant = [ChatManager getInstance].tenant;
-    NSString *firebase_conversation_messages_ref = [[NSString alloc] initWithFormat:@"apps/%@/messages/%@",tenant, conversationId];
+    ChatManager *chat = [ChatManager getInstance];
+    NSString *appid = chat.tenant;
+    NSString *me = chat.loggedUser.userId;
+    NSString *firebase_conversation_messages_ref = [[NSString alloc] initWithFormat:@"apps/%@/users/%@/messages/%@", appid, me, recipient_id];
 //    NSLog(@"##### firebase_conversation_messages_ref: %@", firebase_conversation_messages_ref);
     FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
     FIRDatabaseReference *messagesRef = [rootRef child:firebase_conversation_messages_ref];
@@ -165,6 +167,12 @@ static NotificationAlertView *notificationAlertInstance = nil;
     NSString *tenant = [ChatManager getInstance].tenant;
     NSString *contacts_path = [[NSString alloc] initWithFormat:@"/apps/%@/contacts", tenant];
     return contacts_path;
+}
+
++(NSString *)contactPathOfUser:(NSString *)userid {
+    NSString *contacts_path = [ChatUtil contactsPath];
+    NSString *contact_path = [[NSString alloc] initWithFormat:@"%@/%@", contacts_path, userid];
+    return contact_path;
 }
 
 +(void)moveToConversationViewWithRecipient:(ChatUser *)recipient {

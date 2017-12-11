@@ -31,11 +31,7 @@
 -(BOOL)removeContactSynchronized:(NSString *)contactId;
 -(ChatUser *)getMostRecentContact;
 -(BOOL)insertContact:(ChatUser *)contact;
-//-(BOOL)insertContact:(ChatUser *)contact;
-//-(BOOL)updateContact:(ChatUser *)contact;
 -(NSArray*)getAllContacts; // test only
-//-(ChatUser *)getContactById:(NSString *)contactId;
-//-(NSArray*)searchContactsByFullname:(NSString *)searchString;
 -(void)drop_database;
 
 @end

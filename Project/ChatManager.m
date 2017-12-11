@@ -42,22 +42,6 @@ static ChatManager *sharedInstance = nil;
     return self;
 }
 
-//+(void)initializeWithFirebaseRef:(NSString *)firebaseRef tenant:(NSString *)tenant context:(SHPApplicationContext *)applicationContext {
-//    ChatManager *chat =[ChatManager getSharedInstance];
-//    [FIRDatabase database].persistenceEnabled = YES;
-////    chat.firebaseRef = firebaseRef;
-//    chat.rootRef = [[FIRDatabase database] reference];
-//    chat.tenant = tenant;
-//    chat.context = applicationContext;
-//}
-
-//+(void)initializeWithTenant:(NSString *)tenant user:(ChatUser *)user {
-//    ChatManager *chat =[ChatManager getSharedInstance];
-//    [FIRDatabase database].persistenceEnabled = YES;
-//    chat.tenant = tenant;
-//    chat.loggedUser = user;
-//}
-
 +(void)configureWithAppId:(NSString *)app_id {
     sharedInstance = [[super alloc] init];
     [FIRDatabase database].persistenceEnabled = NO;
@@ -66,19 +50,10 @@ static ChatManager *sharedInstance = nil;
     sharedInstance.groupsMode = YES;
 }
 
-//+(void)initializeWithTenant:(NSString *)tenant context:(SHPApplicationContext *)applicationContext {
-//    ChatManager *chat =[ChatManager getSharedInstance];
-//    [FIRDatabase database].persistenceEnabled = YES;
-////    chat.rootRef = [[FIRDatabase database] reference];
-//    chat.tenant = tenant;
-//    chat.context = applicationContext;
-//}
-
 +(ChatManager *)getInstance {
     return sharedInstance;
 }
 
-//-(void)addConversationHandler:(NSString *)id handler:(ChatConversationHandler *)handler {
 -(void)addConversationHandler:(ChatConversationHandler *)handler {
     NSLog(@"Adding handler with key: %@", handler.conversationId);
     [self.handlers setObject:handler forKey:handler.conversationId];
@@ -102,9 +77,6 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(ChatPresenceHandler *)createPresenceHandlerForUser:(ChatUser *)user {
-    //    NSString *className = NSStringFromClass([user class]);
-    //    NSLog(@"user class %@",className);
-    //    ChatPresenceHandler *handler = [[ChatPresenceHandler alloc] initWithFirebaseRef:self.firebaseRef tenant:self.tenant user:user];
     ChatPresenceHandler *handler = [[ChatPresenceHandler alloc] initWithTenant:self.tenant user:user];
     NSLog(@"Setting new handler %@ to Conversations Manager.", handler);
     self.presenceHandler = handler;
@@ -112,12 +84,10 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(void)initPresenceHandler {
-//    ChatManager *chat = [ChatManager getSharedInstance];
     ChatPresenceHandler *handler = self.presenceHandler;
     if (!handler) {
         NSLog(@"Presence Handler not found. Creating & initializing a new one.");
         handler = [self createPresenceHandlerForUser:self.loggedUser];
-//        handler.delegate = self;
         self.presenceHandler = handler;
         NSLog(@"Connecting handler to firebase.");
         [self.presenceHandler setupMyPresence];
@@ -144,8 +114,6 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(void)initGroupsHandler {
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatGroupsHandler *handler = chat.groupsHandler;
     if (!self.groupsHandler) {
         ChatGroupsHandler *handler = self.groupsHandler;
         NSLog(@"Groups Handler not found. Creating & initializing a new one.");
@@ -156,8 +124,6 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(void)initContactsSynchronizer {
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatContactsSynchronizer *synchronizer = chat.contactsSynchronizer;
     if (!self.contactsSynchronizer) {
         NSLog(@"Contacts Synchronizer not found. Creating & initializing a new one.");
         self.contactsSynchronizer = [self createContactsSynchronizerForUser:self.loggedUser];
@@ -297,16 +263,10 @@ static ChatManager *sharedInstance = nil;
         if([snapshot.value boolValue]) {
             NSLog(@"..connected once..");
             callback(YES, nil);
-//            if (self.conversationsVC) {
-//                [self.conversationsVC setUIStatusConnected];
-//            }
         }
         else {
             NSLog(@"..not connected once..");
             callback(NO, nil);
-//            if (self.conversationsVC) {
-//                [self.conversationsVC setUIStatusDisconnected];
-//            }
         }
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
@@ -314,12 +274,8 @@ static ChatManager *sharedInstance = nil;
     }];
 }
 
-//-(void)logout {
-//    [self dispose];
-//}
-
 // IL METODO DISPOSE NON ESEGUE IL LOGOUT PERCHè PUO' ESSERE RICHIAMATO ANCHE PER DISPORRE UNA CHAT
-// CON UTENTE CONNESSO, COME NEL CASO DEL RESET AL CAMBIO UTENTE IN CONVERSATIONSVC.
+// CON UTENTE CONNESSO, COME NEL CASO DI CAMBIO UTENTE.
 -(void)dispose {
     NSLog(@"ChatManager.dispose()");
     [self removeInstanceId];
@@ -327,18 +283,6 @@ static ChatManager *sharedInstance = nil;
     self.conversationsVC = nil;
     [self.conversationsHandler.conversationsRef removeAllObservers];
     self.conversationsHandler = nil;
-//    if (self.conversationsHandler.conversations_ref_handle_added) {
-//        NSLog(@"disposing conversationsHandler.conversations_ref_handle_added...");
-//        [self.conversationsHandler.conversationsRef removeObserverWithHandle:self.conversationsHandler.conversations_ref_handle_added];
-//    }
-//    if (self.conversationsHandler.conversations_ref_handle_changed) {
-//        NSLog(@"disposing conversationsHandler.conversations_ref_handle_changed...");
-//        [self.conversationsHandler.conversationsRef removeObserverWithHandle:self.conversationsHandler.conversations_ref_handle_changed];
-//    }
-//    if (self.conversationsHandler.conversations_ref_handle_removed) {
-//        NSLog(@"disposing conversationsHandler.conversations_ref_handle_removed...");
-//        [self.conversationsHandler.conversationsRef removeObserverWithHandle:self.conversationsHandler.conversations_ref_handle_removed];
-//    }
     if (self.authStateDidChangeListenerHandle) {
         NSLog(@"disposing self.authStateDidChangeListenerHandle...");
         [[FIRAuth auth] removeAuthStateDidChangeListener:self.authStateDidChangeListenerHandle];
@@ -563,55 +507,6 @@ static ChatManager *sharedInstance = nil;
                 // sending notifications
                 //            [self sendNotificationsToGroup:group];
             }];
-            //            [[ChatGroupsDB getSharedInstance] insertOrUpdateGroupSyncronized:group completion:^{
-            //                NSLog(@"DB.Group created locally.");
-            //                NSLog(@"DB.Group id: %@", group.groupId);
-            //                NSLog(@"DB.Group name: %@", group.name);
-            //                NSLog(@"DB.Group members: %@", [ChatUtil groupMembersAsStringForUI:group.members]);
-            //
-            //                NSLog(@"VERIFYING IF GROUP %@ IS IN DB...", groupId);
-            //                ChatGroup *group_on_db = [[ChatManager getSharedInstance] groupById:groupId];
-            //                NSLog(@"GROUP. name: %@, id: %@", group_on_db.name, group_on_db.groupId);
-            //
-            //                // create new conversation for this group on local DB
-            //                // a local DB conversation entry is created to manage, locally, the group creation workflow.
-            //                // ex. success/failure on creation - add/removing members - change group title etc.
-            //                NSString *group_conv_id = _groupId; //[ChatUtil conversationIdForGroup:_groupId];
-            //                NSLog(@"group_conv_id created (%@): %@",me, group_conv_id);
-            //                NSString *conversation_message_for_admin = [self groupCreatedMessageForMemberInGroup:group];
-            //                NSString *conversation_message_for_member = [self groupInvitedMessageForMemberInGroup:group];
-            //                ChatConversation *groupConversation = [[ChatConversation alloc] init];
-            //                groupConversation.conversationId = group_conv_id;
-            //                groupConversation.user = me; //.username;
-            //                groupConversation.key = group_conv_id;
-            //                groupConversation.groupId = _groupId;
-            //                groupConversation.groupName = group.name; // compare nella cella al posto di "conversWith"
-            //                groupConversation.last_message_text = conversation_message_for_admin;
-            //                NSDate *now = [[NSDate alloc] init];
-            //                groupConversation.date = now;
-            //                groupConversation.status = CONV_STATUS_JUST_CREATED;
-            //                BOOL result = [[ChatDB getSharedInstance] insertOrUpdateConversation:groupConversation];
-            //                NSLog(@">>>>> Conversation insertOrUpdate is %d", result);
-            //                [self.conversationsHandler restoreConversationsFromDB];
-            //
-            //                NSLog(@"creating a remote Firebase conversation for every member...");
-            //                // POSSIBLY UPDATE AS A FAN OUT ON CONVERSATIONS
-            //                NSLog(@"group created by (owner): %@", me); //sanitized_username_for_firebase);
-            //                for (NSString *member_id in membersIDs) {
-            //                    NSLog(@"Group Conversation for %@, admin: %@", member_id, me); //sanitized_username_for_firebase);
-            //                    if (![member_id isEqualToString:me]) {
-            //                        ChatConversation *memberInvitedConversation = [self buildInviteConversationForMember:member_id message:conversation_message_for_member inGRoup:group createdOn:now];
-            //                        [self createOrUpdateConversation:memberInvitedConversation];
-            //                        NSLog(@"Added conversation on Firebase for member: %@ with message: %@", member_id, memberInvitedConversation.last_message_text);
-            //                    }
-            //                }
-            //                // ADDING CONVERSATION FOR ADMIN MEMBER
-            //                ChatConversation *adminInvitedConversation = [self buildInviteConversationForMember:me message:conversation_message_for_admin inGRoup:group createdOn:now];
-            //                [self createOrUpdateConversation:adminInvitedConversation];
-            //                NSLog(@"added group conversation on Firebase for admin: %@", me);
-            //                // sending notifications
-            //                //            [self sendNotificationsToGroup:group];
-            //            }];
         }
     }];
 }
@@ -647,54 +542,6 @@ static ChatManager *sharedInstance = nil;
     
     return memberConversation;
 }
-
-//-(void)sendNotificationsToGroup:(ChatGroup *)group {
-//    NSLog(@"Sending 'invited' notification to every member.");
-//    NSLog(@"members: %d", (int)group.members.count);
-//    for (NSString *member_id in group.members) {
-//        NSLog(@"member: %@", member_id);
-//    }
-//    // Send notification to every member
-//    for (NSString *member_id in group.members) {
-//        [self sendInvitedNotificationToMember:member_id ofGroup:group];
-//    }
-//    NSLog(@"All notifications sent for group %@.", group.name);
-//}
-
-//-(void)sendInvitedNotificationToMember:(NSString *)member_id ofGroup:(ChatGroup *)group {
-//    NSLog(@"Sending notification to user: %@", member_id);
-//
-//    // SMART21
-//    //        SHPPushNotification *notification = [[SHPPushNotification alloc] init];
-//    //        notification.notificationType = NOTIFICATION_TYPE_MEMBER_ADDED_TO_GROUP;
-//    //        notification.toUser = member_id;
-//    //        notification.message = [[NSString alloc] initWithFormat:@"You have been added to group %@", [group.name capitalizedString]];
-//    //        notification.properties = @{ @"t": NOTIFICATION_TYPE_MEMBER_ADDED_TO_GROUP, @"group_id": group.groupId};
-//    //        SHPPushNotificationService *push_service = [[SHPPushNotificationService alloc] init];
-//    //        [push_service sendNotification:notification completionHandler:^(SHPPushNotification *notification, NSError *error) {
-//    //            if (!error) {
-//    //                NSLog(@"Notification sent with message: \"%@\"", notification.message);
-//    //            } else {
-//    //                NSLog(@"Error while sending notification %@. Error: %@", notification.message, error);
-//    //            }
-//    //        } withUser:self.applicationContext.loggedUser];
-//    // SMART21
-//
-////    // PARSE NOTIFICATION
-////    ParseChatNotification *notification = [[ParseChatNotification alloc] init];
-////    NSString *sender = @"";
-////    notification.senderUser = sender;
-////    notification.toUser = member_id;
-////    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"You was added to group", nil), [group.name capitalizedString]];
-////    notification.alert = message;
-////    notification.conversationId = group.groupId;
-////    notification.badge = @"0";
-////    ChatParsePushService *push_service = [[ChatParsePushService alloc] init];
-////    [push_service sendNotification:notification];
-////    // END PARSE NOTIFICATION
-////
-////    NSLog(@"Notification sent to user %@", member_id);
-//}
 
 -(void)addMember:(NSString *)member_id toGroup:(ChatGroup *)group withCompletionBlock:(void (^)(NSError *))completionBlock {
     NSLog(@"Adding member %@ to group %@...", member_id, group.groupId);
@@ -793,9 +640,6 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(ChatGroup *)groupById:(NSString *)groupId {
-    //    return [self.groupsHandler.groupsDictionary objectForKey:groupId];
-    //    ChatGroupsDB *db = [ChatGroupsDB getSharedInstance];
-    //    ChatGroup *group = [db getGroupByIdSyncronized:<#(NSString *)#> completion:<#^(ChatGroup *)callback#>:groupId];
     ChatGroup *group = [self.groupsHandler groupById:groupId];
     return group;
 }
@@ -844,31 +688,27 @@ static ChatManager *sharedInstance = nil;
     }];
 }
 
-//-(void)loadGroupMultipleAttempts:(NSString *)group_id try:(NSInteger)tryCount completion:(void (^)(ChatGroup* group, BOOL error))callback {
+-(void)getContactLocalDB:(NSString *)userid withCompletion:(void(^)(ChatUser *user))callback {
+    ContactsDB *db = [ContactsDB getSharedInstance];
+    [db getContactByIdSyncronized:userid completion:^(ChatUser *user) {
+        callback(user);
+    }];
+}
+
+//-(void)getContact:(NSString *)userid withCompletion(void (^)(ChatUser* user))callback {
 //    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-//    NSString *groups_path = [ChatUtil groupsPath];
-//    NSString *path = [[NSString alloc] initWithFormat:@"%@/%@", groups_path, group_id];
-//    NSLog(@"Load Group on path: %@", path);
-//    FIRDatabaseReference *groupRef = [rootRef child:path];
-//    //    NSLog(@"groupRef = %@", groupRef);
-//
-//    [groupRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//        NSLog(@"NEW GROUP SNAPSHOT::: %@ refStatic: %@", snapshot, groupRef);
-//        if (snapshot.value == [NSNull null]) {
-//            NSLog(@"group snapshot is null.");
-////            if (tryCount == 1) {
-////                NSLog(@"Trying second time.");
-////                [self loadGroupMultipleAttempts:group_id try:2 completion:callback];
-////            }
-////            else {
-////                NSLog(@"Second load also failed. Error loading group.");
-////                callback(nil, YES);
-////            }
+//    NSString *contact_path = [ChatUtil contactPathOfUser:self.loggedUser.userId];
+//    NSLog(@"Contact path of (%@): %@", self.loggedUser.userId, contact_path);
+//    FIRDatabaseReference *contactRef = [rootRef child:contact_path];
+//    [contactRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+//        NSLog(@"NEW CONTACT SNAPSHOT: %@", snapshot);
+//        if (!snapshot || ![snapshot exists]) {
+//            NSLog(@"Errore contact snapshot: !snapshot || !snapshot.exists");
+//            callback(nil);
 //        }
 //        else {
-//            NSLog(@"group successfully loaded. %@", snapshot);
-//            ChatGroup *group = [ChatManager groupFromSnapshotFactory:snapshot];
-//            ChatGroupsHandler *gh = [ChatManager getSharedInstance].groupsHandler;
+//            ChatUser *user = [ChatManager :snapshot];
+//            ChatGroupsHandler *gh = [ChatManager getInstance].groupsHandler;
 //            [gh insertOrUpdateGroup:group completion:^{
 //                callback(group, NO);
 //            }];
@@ -876,73 +716,6 @@ static ChatManager *sharedInstance = nil;
 //    } withCancelBlock:^(NSError *error) {
 //        NSLog(@"%@", error.description);
 //    }];
-//}
-
-// ****************************
-// CHAT INITIALIZATION ********
-// ****************************
-
-//-(void)initChat {
-//    [self initConversationsHandler];
-//    [self initContactsSynchronizer];
-//    if (self.conversationsVC.groupsMode) {
-//        [self initGroupsHandler];
-//    }
-//    [self initPresenceHandler];
-//}
-//
-//-(void)initConversationsHandler {
-////    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatConversationsHandler *handler = self.conversationsHandler;
-//    if (!handler) {
-//        handler = [self createConversationsHandlerForUser:self.loggedUser];
-//        handler.delegateView = self.conversationsVC;
-//        [handler restoreConversationsFromDB];
-//        [self.conversationsVC update_unread];
-//        [self.conversationsVC update_unread_ui];
-//        [handler connect];
-//        self.conversationsHandler = handler;
-//    } else {
-//        handler.delegateView = self.conversationsVC;
-//        self.conversationsHandler = handler;
-//    }
-//}
-//
-//-(void)initContactsSynchronizer {
-////    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatContactsSynchronizer *synchronizer = self.contactsSynchronizer;
-//    if (!synchronizer) {
-//        NSLog(@"Contacts Synchronizer not found. Creating & initializing a new one.");
-//        synchronizer = [self createContactsSynchronizerForUser:self.loggedUser];
-//        [synchronizer startSynchro];
-//        self.conversationsVC.contactSynchronizer = synchronizer;
-//    } else {
-//        [synchronizer startSynchro];
-//    }
-//}
-//
-//-(void)initPresenceHandler {
-////    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatPresenceHandler *handler = self.presenceHandler;
-//    if (!handler) {
-//        NSLog(@"Presence Handler not found. Creating & initializing a new one.");
-//        handler = [self createPresenceHandlerForUser:self.loggedUser];
-////        handler.delegate = self.conversationsVC;
-//        self.presenceHandler = handler;
-//        NSLog(@"Connecting handler to firebase.");
-//        [self.presenceHandler setupMyPresence];
-//    }
-//}
-//
-//-(void)initGroupsHandler {
-////    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatGroupsHandler *handler = self.groupsHandler;
-//    if (!handler) {
-//        NSLog(@"Groups Handler not found. Creating & initializing a new one.");
-//        handler = [self createGroupsHandlerForUser:self.loggedUser];
-//        [handler restoreGroupsFromDB]; // not thread-safe, call this method before firebase synchronization start
-//        [handler connect]; // firebase synchronization starts
-//    }
 //}
 
 @end

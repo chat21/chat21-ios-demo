@@ -27,13 +27,13 @@
 
 @implementation ChatConversationHandler
 
--(id)initWithRecipient:(NSString *)recipient recipientFullName:(NSString *)recipientFullName user:(ChatUser *)user {
+-(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName user:(ChatUser *)user {
     if (self = [super init]) {
-        self.recipient = recipient;
+        self.recipientId = recipientId;
         self.recipientFullname = recipientFullName;
         self.user = user;
         self.senderId = user.userId;
-        self.conversationId = [ChatUtil conversationIdWithSender:user.userId receiver:recipient]; //conversationId;
+        self.conversationId = recipientId; //[ChatUtil conversationIdWithSender:user.userId receiver:recipient]; //conversationId;
         self.messages = [[NSMutableArray alloc] init];
     }
     return self;
@@ -140,14 +140,14 @@
         NSLog(@"Trying to re-open messages_ref_handle %ld while already open. Returning.", self.messages_ref_handle);
         return;
     }
-    self.messagesRef = [ChatUtil conversationMessagesRef:self.conversationId];
+    self.messagesRef = [ChatUtil conversationMessagesRef:self.recipientId];
     
     // AUTHENTICATION DISABLED FOR THE MOMENT!
 //    [self initFirebaseWithRef:self.messagesRef token:self.firebaseToken];
     
     
     self.conversationOnSenderRef = [ChatUtil conversationRefForUser:self.senderId conversationId:self.conversationId];
-    self.conversationOnReceiverRef = [ChatUtil conversationRefForUser:self.recipient conversationId:self.conversationId];
+    self.conversationOnReceiverRef = [ChatUtil conversationRefForUser:self.recipientId conversationId:self.conversationId];
     
     NSInteger lasttime = 0;
     if (self.messages && self.messages.count > 0) {
@@ -261,7 +261,7 @@
     NSDate *now = [[NSDate alloc] init];
     message.date = now;
     message.status = MSG_STATUS_SENDING;
-    message.conversationId = self.conversationId;
+//    message.conversationId = self.conversationId;
     NSString *langID = [[NSLocale currentLocale] objectForKey: NSLocaleLanguageCode];
     message.lang = langID;
     return message;
@@ -280,7 +280,8 @@
         [self sendMessageToGroup:message];
     } else {
         NSLog(@"SENDING MESSAGE DIRECT MODE. User: %@", [FIRAuth auth].currentUser.uid);
-        message.recipient = self.recipient;
+        message.recipient = self.recipientId;
+        message.recipientFullName = self.recipientFullname;
         [self sendDirect:message];
     }
 }
@@ -318,50 +319,38 @@
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
             [self finishedReceivingMessage:message];
             
-            NSLog(@"Updating conversations sender %@ recipient %@", self.senderId, self.recipient);
-            
+//            NSLog(@"Updating conversations sender %@ recipient %@", self.senderId, self.recipient);
             // updates conversations
+//            // Sender-side conversation
+//            ChatManager *chat = [ChatManager getInstance];
+//            ChatConversation *senderConversation = [[ChatConversation alloc] init];
+//            senderConversation.ref = self.conversationOnSenderRef;
+//            senderConversation.last_message_text = message.text;
+//            senderConversation.is_new = NO;
+//            senderConversation.date = message.date;
+//            senderConversation.sender = message.sender;
+//            senderConversation.senderFullname = message.senderFullname;
+//            senderConversation.recipient = self.recipient;
+//            senderConversation.conversWith_fullname = self.recipientFullname;
+//            senderConversation.groupName = self.groupName;
+//            senderConversation.groupId = self.groupId;
+//            senderConversation.status = CONV_STATUS_LAST_MESSAGE;
+//            [chat createOrUpdateConversation:senderConversation];
             
-            // Sender-side conversation
-//            NSLog(@"AGGIORNO LA CONVERSAZIONE DEL MITTENTE.");
-            ChatManager *chat = [ChatManager getInstance];
-//            [chat createOrUpdateConversation:self.conversationOnSenderRef message_text:message.text sender:message.sender recipient:self.recipient timestamp:[message.date timeIntervalSince1970] is_new:NO conversWith:self.recipient];
-            ChatConversation *senderConversation = [[ChatConversation alloc] init];
-            senderConversation.ref = self.conversationOnSenderRef;
-            senderConversation.last_message_text = message.text;
-            senderConversation.is_new = NO;
-            senderConversation.date = message.date;
-            senderConversation.sender = message.sender;
-            senderConversation.senderFullname = message.senderFullname;
-            senderConversation.recipient = self.recipient;
-//            senderConversation.conversWith = self.recipient;
-            senderConversation.conversWith_fullname = self.recipientFullname;
-            senderConversation.groupName = self.groupName;
-            senderConversation.groupId = self.groupId;
-            senderConversation.status = CONV_STATUS_LAST_MESSAGE;
-            [chat createOrUpdateConversation:senderConversation];
-            
-            // Recipient-side: the conversation is new. It becomes !new immediately after the "tap" in recipent-side's converations-list.
-//            NSLog(@"AGGIORNO LA CONVERSAZIONE DEL RICEVENTE (%@) CON IS_NEW = SI", self.recipient);
-//            [chat createOrUpdateConversation:self.conversationOnReceiverRef message_text:message.text sender:self.senderId recipient:self.recipient timestamp:[msg_timestamp longValue] is_new:YES conversWith:self.senderId];
-
-            ChatConversation *receiverConversation = [[ChatConversation alloc] init];
-            receiverConversation.ref = self.conversationOnReceiverRef;
-            receiverConversation.last_message_text = message.text;
-            receiverConversation.is_new = YES;
-            receiverConversation.date = message.date;
-            receiverConversation.sender = message.sender;
-            receiverConversation.senderFullname = message.senderFullname;
-            receiverConversation.recipient = self.recipient;
-//            receiverConversation.conversWith = self.user.userId;
-            receiverConversation.conversWith_fullname = self.user.fullname;
-            receiverConversation.groupName = self.groupName;
-            receiverConversation.groupId = self.groupId;
-            receiverConversation.status = CONV_STATUS_LAST_MESSAGE;
-            // TODO conversation.conversWith_fullname = self.recipient_fullName;
-            [chat createOrUpdateConversation:receiverConversation];
-            
-//            NSLog(@"Finished updating conversations...");
+//            // Recipient-side: the conversation is new. It becomes !new immediately after the "tap" in recipent-side's converations-list.
+//            ChatConversation *receiverConversation = [[ChatConversation alloc] init];
+//            receiverConversation.ref = self.conversationOnReceiverRef;
+//            receiverConversation.last_message_text = message.text;
+//            receiverConversation.is_new = YES;
+//            receiverConversation.date = message.date;
+//            receiverConversation.sender = message.sender;
+//            receiverConversation.senderFullname = message.senderFullname;
+//            receiverConversation.recipient = self.recipient;
+//            receiverConversation.conversWith_fullname = self.user.fullname;
+//            receiverConversation.groupName = self.groupName;
+//            receiverConversation.groupId = self.groupId;
+//            receiverConversation.status = CONV_STATUS_LAST_MESSAGE;
+//            [chat createOrUpdateConversation:receiverConversation];
         }
     }];
 }
@@ -466,18 +455,22 @@
     NSMutableDictionary *message_dict = [[NSMutableDictionary alloc] init];
 //    NSNumber *msg_timestamp = [NSNumber numberWithDouble:[message.date timeIntervalSince1970]];
     // always
-    [message_dict setObject:message.conversationId forKey:MSG_FIELD_CONVERSATION_ID];
+//    [message_dict setObject:message.conversationId forKey:MSG_FIELD_CONVERSATION_ID];
     [message_dict setObject:message.text forKey:MSG_FIELD_TEXT];
-    [message_dict setObject:[FIRServerValue timestamp] forKey:MSG_FIELD_TIMESTAMP];
-    [message_dict setObject:[NSNumber numberWithInt:MSG_STATUS_SENT] forKey:MSG_FIELD_STATUS];
+//    [message_dict setObject:[FIRServerValue timestamp] forKey:MSG_FIELD_TIMESTAMP];
+    [message_dict setObject:[NSNumber numberWithInt:message.status] forKey:MSG_FIELD_STATUS];
     
-    if (message.sender) {
-        NSString *sanitezed_sender = [message.sender stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-        [message_dict setObject:sanitezed_sender forKey:MSG_FIELD_SENDER];
-    }
+//    if (message.sender) {
+//        NSString *sanitezed_sender = [message.sender stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+//        [message_dict setObject:sanitezed_sender forKey:MSG_FIELD_SENDER];
+//    }
     
     if (message.senderFullname) {
         [message_dict setObject:message.senderFullname forKey:MSG_FIELD_SENDER_FULLNAME];
+    }
+    
+    if (message.recipientFullName) {
+        [message_dict setObject:message.recipientFullName forKey:MSG_FIELD_RECIPIENT_FULLNAME];
     }
     
     if (message.mtype) {
@@ -493,15 +486,15 @@
     }
     
     // only if one-to-one
-    if (message.recipient) {
-        NSString *sanitezed_recipient = [message.recipient stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-        [message_dict setValue:sanitezed_recipient forKey:MSG_FIELD_RECIPIENT];
-    }
+//    if (message.recipient) {
+//        NSString *sanitezed_recipient = [message.recipient stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+//        [message_dict setValue:sanitezed_recipient forKey:MSG_FIELD_RECIPIENT];
+//    }
     
     // only if group
-    if (message.recipientGroupId) {
-        [message_dict setValue:message.recipientGroupId forKey:MSG_FIELD_RECIPIENT_GROUP_ID];
-    }
+//    if (message.recipientGroupId) {
+//        [message_dict setValue:message.recipientGroupId forKey:MSG_FIELD_RECIPIENT_GROUP_ID];
+//    }
     return message_dict;
 }
 

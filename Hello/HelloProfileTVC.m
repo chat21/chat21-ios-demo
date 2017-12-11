@@ -86,7 +86,7 @@
     [super viewWillAppear:animated];
     SHPUser *loggedUser = [SHPApplicationContext getSharedInstance].loggedUser;
     self.usernameLabel.text = loggedUser.username;
-    self.fullNameLabel.text = loggedUser.fullName;
+    self.fullNameLabel.text = loggedUser.displayName;
 }
 
 - (void)confirmLogout {

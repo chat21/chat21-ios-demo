@@ -50,10 +50,9 @@
 @property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
 @property (assign, nonatomic) BOOL groupsMode;
 
-//+(void)initializeWithFirebaseRef:(NSString *)firebaseRef tenant:(NSString *)tenant context:(SHPApplicationContext *)applicationContext;
-//+(void)initializeWithTenant:(NSString *)tenant user:(ChatUser *)user;
 +(void)configureWithAppId:(NSString *)app_id;
 +(ChatManager *)getInstance;
+-(void)getContactLocalDB:(NSString *)userid withCompletion:(void(^)(ChatUser *user))callback;
 
 -(void)addConversationHandler:(ChatConversationHandler *)handler;
 -(ChatConversationHandler *)getConversationHandlerByConversationId:(NSString *)conversationId;
@@ -63,15 +62,8 @@
 -(ChatGroupsHandler *)createGroupsHandlerForUser:(ChatUser *)user;
 -(ChatContactsSynchronizer *)createContactsSynchronizerForUser:(ChatUser *)user;
 
-//-(void)setConversationsHandler:(ChatConversationsHandler *)handler;
-//-(void)removeConversationsHandler:(NSString *)id;
-//-(ChatConversationsHandler *)getConversationsHandler;
-
 -(void)startWithUser:(ChatUser *)user;
 -(void)dispose;
-//-(void)logout;
-
-//-(void)firebaseScout;
 
 // === GROUPS ===
 

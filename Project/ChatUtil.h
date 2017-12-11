@@ -21,12 +21,14 @@
 //+(NSString *)conversationIdForGroup:(NSString *)groupId;
 //+(NSString *)usernameOnTenant:(NSString *)tenant username:(NSString *)username;
 +(FIRDatabaseReference *)conversationRefForUser:(NSString *)userId conversationId:(NSString *)conversationId;
-+(FIRDatabaseReference *)conversationMessagesRef:(NSString *)conversationId;
+//+(FIRDatabaseReference *)conversationMessagesRef:(NSString *)conversationId;
++(FIRDatabaseReference *)conversationMessagesRef:(NSString *)recipient_id;
 
 // firebase paths
 +(NSString *)conversationPathForUser:(NSString *)user_id conversationId:(NSString *)conversationId;
 +(NSString *)conversationsPathForUserId:(NSString *)user_id;
 +(NSString *)contactsPath;
++(NSString *)contactPathOfUser:(NSString *)userid;
 +(NSString *)groupsPath;
 +(NSString *)mainGroupsPath;
 // +(FIRDatabaseReference *)groupsRefWithBase:(NSString *)baseRefURL;

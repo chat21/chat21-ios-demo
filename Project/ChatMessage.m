@@ -20,6 +20,16 @@
     return self;
 }
 
+// ConversationId custom getter
+- (NSString *) conversationId {
+    if (!_conversationId) {
+        return _recipient;
+    }
+    else {
+        return _conversationId;
+    }
+}
+
 -(NSString *)dateFormattedForListView {
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     [timeFormat setDateFormat:@"HH:mm"];
