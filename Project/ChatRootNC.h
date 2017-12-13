@@ -18,10 +18,10 @@
 @property (strong, nonatomic) NSDictionary *chatConfig;
 @property (assign, nonatomic) BOOL startupLogin;
 
--(void)openConversationWithRecipient:(ChatUser *)recipient;
--(void)openConversationWithRecipient:(ChatUser *)recipient sendMessage:(NSString *)message;
+-(void)openConversationWithUser:(ChatUser *)user;
+-(void)openConversationWithUser:(ChatUser *)user sendMessage:(NSString *)message;
 -(void)openConversationWithGroup:(NSString *)groupid;
 -(void)openConversationWithGroup:(NSString *)groupid sendMessage:(NSString *)message;
--(void)openConversationWithRecipient:(ChatUser *)recipient orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes;
+-(void)openConversationWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes;
 
 @end

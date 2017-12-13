@@ -13,6 +13,7 @@ static int const MSG_STATUS_SENDING = 0;
 static int const MSG_STATUS_QUEUED = 50;
 static int const MSG_STATUS_SENT = 100;
 static int const MSG_STATUS_RECEIVED = 200;
+static int const MSG_STATUS_RETURN_RECEIPT = 250;
 static int const MSG_STATUS_SEEN = 300;
 
 // firebase fields

@@ -853,20 +853,20 @@
 //    }
 }
 
--(void)openConversationWithRecipient:(ChatUser *)recipient {
-    [self openConversationWithRecipient:recipient orGroup:nil sendMessage:nil attributes:nil];
+-(void)openConversationWithUser:(ChatUser *)user {
+    [self openConversationWithUser:user orGroup:nil sendMessage:nil attributes:nil];
 }
 
--(void)openConversationWithRecipient:(ChatUser *)recipient orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes {
-    NSLog(@"Opening conversation with recipient: %@ or group: %@", recipient.userId, groupid);
+-(void)openConversationWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes {
+    NSLog(@"Opening conversation with recipient: %@ or group: %@", user.userId, groupid);
     [self loadViewIfNeeded];
     [self.navigationController popToRootViewControllerAnimated:NO];
     self.selectedRecipientTextToSend = text;
-    if (recipient) {
-        self.selectedRecipient = recipient.userId;
-        self.selectedRecipientFullname = recipient.fullname;
-        ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-        self.selectedConversationId = [ChatUtil conversationIdWithSender:loggedUser.userId receiver:recipient.userId];
+    if (user) {
+        self.selectedRecipient = user.userId;
+        self.selectedRecipientFullname = user.fullname;
+//        ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+        self.selectedConversationId = user.userId; //[ChatUtil conversationIdWithSender:loggedUser.userId receiver:user.userId];
         NSLog(@"Auto Generated Conversation ID: %@", self.selectedConversationId);
         self.selectedRecipientAttributesToSend = attributes;
     }
@@ -1078,7 +1078,7 @@
         [self dismissViewControllerAnimated:YES completion:^{
             if (user) {
 //                self.selectedRecipientFullname = user.fullname;
-                [self openConversationWithRecipient:user];
+                [self openConversationWithUser:user];
             }
         }];
     }
@@ -1092,7 +1092,7 @@
         [self dismissViewControllerAnimated:YES completion:^{
             if (group) {
                 self.selectedGroupId = group.groupId;
-                [self openConversationWithRecipient:nil orGroup:group.groupId sendMessage:nil attributes:nil];
+                [self openConversationWithUser:nil orGroup:group.groupId sendMessage:nil attributes:nil];
             }
         }];
     }

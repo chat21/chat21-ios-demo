@@ -17,7 +17,7 @@
 
 @interface ChatUtil : NSObject
 
-+(NSString *)conversationIdWithSender:(NSString *)sender receiver:(NSString *)receiver;// tenant:(NSString *)tenant;
+//+(NSString *)conversationIdWithSender:(NSString *)sender receiver:(NSString *)receiver;// tenant:(NSString *)tenant;
 //+(NSString *)conversationIdForGroup:(NSString *)groupId;
 //+(NSString *)usernameOnTenant:(NSString *)tenant username:(NSString *)username;
 +(FIRDatabaseReference *)conversationRefForUser:(NSString *)userId conversationId:(NSString *)conversationId;
@@ -34,11 +34,11 @@
 // +(FIRDatabaseReference *)groupsRefWithBase:(NSString *)baseRefURL;
 +(void)showNotificationWithMessage:(NSString *)message image:(UIImage *)image sender:(NSString *)sender senderFullname:(NSString *)senderFullname;
 
-+(void)moveToConversationViewWithRecipient:(ChatUser *)recipient;
-+(void)moveToConversationViewWithRecipient:(ChatUser *)recipient sendMessage:(NSString *)message;
++(void)moveToConversationViewWithUser:(ChatUser *)user;
++(void)moveToConversationViewWithUser:(ChatUser *)user sendMessage:(NSString *)message;
 +(void)moveToConversationViewWithGroup:(NSString *)groupid;
 +(void)moveToConversationViewWithGroup:(NSString *)groupid sendMessage:(NSString *)message;
-+(void)moveToConversationViewWithRecipient:(ChatUser *)recipient orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes;
++(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes;
 
 +(NSMutableDictionary *)groupMembersAsDictionary:(NSArray *)membersArray;
 +(NSMutableArray *)groupMembersAsArray:(NSDictionary *)membersDictionary;

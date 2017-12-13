@@ -88,8 +88,8 @@
 
 - (IBAction)unwindToConversationsView:(UIStoryboardSegue*)sender;
 
--(void)openConversationWithRecipient:(ChatUser *)recipient;
--(void)openConversationWithRecipient:(ChatUser *)recipient orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes;
+-(void)openConversationWithUser:(ChatUser *)user;
+-(void)openConversationWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes;
 
 // it's bad using this from cellConfigurator to start an image download. SSS
 //- (void)startIconDownload:(NSString *)username forIndexPath:(NSIndexPath *)indexPath;

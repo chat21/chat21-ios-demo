@@ -19,6 +19,7 @@ static NSString *SIGNED_USER_PASSWORD = @"password";
 static NSString *SIGNED_USER_FIRSTNAME = @"firstname";
 static NSString *SIGNED_USER_LASTNAME = @"lastname";
 static NSString *SIGNED_USER_FULLNAME = @"fullname";
+static NSString *SIGNED_USER_EMAIL = @"email";
 
 +(SHPUser *)restoreSavedUser {
     NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
@@ -31,6 +32,7 @@ static NSString *SIGNED_USER_FULLNAME = @"fullname";
         user.firstName = [userPreferences objectForKey:SIGNED_USER_FIRSTNAME];
         user.lastName = [userPreferences objectForKey:SIGNED_USER_LASTNAME];
         user.fullName = [userPreferences objectForKey:SIGNED_USER_FULLNAME];
+        user.email = [userPreferences objectForKey:SIGNED_USER_EMAIL];
         return user;
     }
     
@@ -53,6 +55,7 @@ static NSString *SIGNED_USER_FULLNAME = @"fullname";
     [userPreferences setObject:user.firstName forKey:SIGNED_USER_FIRSTNAME];
     [userPreferences setObject:user.lastName forKey:SIGNED_USER_LASTNAME];
     [userPreferences setObject:user.fullName forKey:SIGNED_USER_FULLNAME];
+    [userPreferences setObject:user.email forKey:SIGNED_USER_EMAIL];
     [userPreferences synchronize];
     
 //    NSMutableDictionary *userDict = [[NSMutableDictionary alloc] init];

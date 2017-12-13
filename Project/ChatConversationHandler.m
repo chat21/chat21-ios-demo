@@ -73,11 +73,11 @@
 //    return self;
 //}
 
-- (void)connect {
-    NSLog(@"Firebase login...");
-//    [self firebaseLogin];
-    [self setupConversation];
-}
+//- (void)connect {
+//    NSLog(@"Firebase login...");
+////    [self firebaseLogin];
+//    [self setupConversation];
+//}
 
 -(void)dispose {
     [self.messagesRef removeObserverWithHandle:self.messages_ref_handle];
@@ -134,7 +134,7 @@
 //    [self.delegateView didFinishInitConversationHandler:self error:error];
 //}
 
--(void)setupConversation {
+-(void)connect {
     NSLog(@"Setting up references' connections with firebase using token: %@", self.firebaseToken);
     if (self.messages_ref_handle) {
         NSLog(@"Trying to re-open messages_ref_handle %ld while already open. Returning.", self.messages_ref_handle);
@@ -162,6 +162,7 @@
         // IMPORTANT: This callback is called also for newly locally created messages not still sent.
         NSLog(@">>>> NEW MESSAGE SNAPSHOT: %@", snapshot);
         ChatMessage *message = [ChatMessage messageFromSnapshotFactory:snapshot];
+        message.conversationId = self.conversationId; // DB query is based on this attribute!!! (conversationID = Interlocutor)
         
         // IMPORTANT (REPEATED)! This callback is called ALSO (and NOT ONLY) for newly locally created messages not still sent (called also with network off!).
         // Then, for every "new" message received (also locally generated) we update the conversation data & his status to "read" (is_new: NO).
@@ -169,9 +170,9 @@
         // updates status only of messages not sent by me
         // HO RICEVUTO UN MESSAGGIO NUOVO
         NSLog(@"self.senderId: %@", self.senderId);
-        if (message.status < MSG_STATUS_RECEIVED && ![message.sender isEqualToString:self.senderId]) {
+        if (![message.sender isEqualToString:self.senderId]) { // message.status < MSG_STATUS_RECEIVED &&
             // NOT RECEIVED = NEW!
-            NSLog(@"NEW MESSAGE RECEIVED!!!!! %@ group %@", message.text, message.recipientGroupId);
+            NSLog(@"NEW MESSAGE!!!!! %@ group %@", message.text, message.recipientGroupId);
             if (!message.recipientGroupId) {
                 [message updateStatusOnFirebase:MSG_STATUS_RECEIVED]; // firebase
             } else {
@@ -208,8 +209,8 @@
             [self updateMessageStatusInMemory:message.messageId withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
             [self finishedReceivingMessage:message];
-        } else if (message.status == MSG_STATUS_RECEIVED) {
-            NSLog(@"Message update: received.");
+        } else if (message.status == MSG_STATUS_RETURN_RECEIPT) {
+            NSLog(@"Message update: return receipt.");
             [self updateMessageStatusInMemory:message.messageId withStatus:message.status];
             [self updateMessageStatusOnDB:message.messageId withStatus:message.status];
             [self finishedReceivingMessage:message];
@@ -261,7 +262,7 @@
     NSDate *now = [[NSDate alloc] init];
     message.date = now;
     message.status = MSG_STATUS_SENDING;
-//    message.conversationId = self.conversationId;
+    message.conversationId = self.conversationId; // = intelocutor-id, for local-db queries
     NSString *langID = [[NSLocale currentLocale] objectForKey: NSLocaleLanguageCode];
     message.lang = langID;
     return message;

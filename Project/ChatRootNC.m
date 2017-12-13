@@ -72,26 +72,26 @@
     }
 }
 
--(void)openConversationWithRecipient:(ChatUser *)recipient {
-    [self openConversationWithRecipient:recipient orGroup:nil sendMessage:nil attributes:nil];
+-(void)openConversationWithUser:(ChatUser *)user {
+    [self openConversationWithUser:user orGroup:nil sendMessage:nil attributes:nil];
 }
 
--(void)openConversationWithRecipient:(ChatUser *)recipient sendMessage:(NSString *)message {
-    [self openConversationWithRecipient:recipient orGroup:nil sendMessage:message attributes:nil];
+-(void)openConversationWithUser:(ChatUser *)user sendMessage:(NSString *)message {
+    [self openConversationWithUser:user orGroup:nil sendMessage:message attributes:nil];
 }
 
 -(void)openConversationWithGroup:(NSString *)groupid {
-    [self openConversationWithRecipient:nil orGroup:groupid sendMessage:nil attributes:nil];
+    [self openConversationWithUser:nil orGroup:groupid sendMessage:nil attributes:nil];
 }
 
 -(void)openConversationWithGroup:(NSString *)groupid sendMessage:(NSString *)message {
-    [self openConversationWithRecipient:nil orGroup:groupid sendMessage:nil attributes:nil];
+    [self openConversationWithUser:nil orGroup:groupid sendMessage:nil attributes:nil];
 }
 
--(void)openConversationWithRecipient:(ChatUser *)recipient orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes {
+-(void)openConversationWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)text attributes:(NSDictionary *)attributes {
     [self setupNC];
     if (self.viewControllers.count > 0 && [self.viewControllers[0] isKindOfClass:[ChatConversationsVC class]]) {
-        NSLog(@"Chat linked. Opening conversation with user: %@", recipient.userId);
+        NSLog(@"Chat linked. Opening conversation with user: %@", user.userId);
         ChatConversationsVC *vc = self.viewControllers[0];
 //        vc.selectedRecipientTextToSend = text;
         NSLog(@"vc.view.window %@", vc.view.window);
@@ -107,7 +107,7 @@
             // the conversationsView is selected (no conversation is on)
             // and viewDidAppear will not work if the tab is already on the chat.
             NSLog(@"no conversation selected. conversations view is visible. switching manually.");
-            [vc openConversationWithRecipient:recipient orGroup:groupid sendMessage:text attributes:attributes];
+            [vc openConversationWithUser:user orGroup:groupid sendMessage:text attributes:attributes];
         
 //        }
         

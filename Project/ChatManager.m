@@ -318,18 +318,12 @@ static ChatManager *sharedInstance = nil;
 // === GROUPS ===
 
 -(NSString *)newGroupId {
-    //    NSString *groupsBaseRefURL = [self.firebaseRef stringByAppendingString:GROUPS_BASE_URL];
-    //    FIRDatabaseReference *groupsRef = [[FIRDatabaseReference alloc] child:groupsBaseRefURL];
-    //    FIRDatabaseReference *groupsRef = [rootRef child:GROUPS_BASE_URL];
-    //    FIRDatabaseReference *groupRef = [groupsRef childByAutoId];
-    
     FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
     NSString *groups_path = [ChatUtil groupsPath];
     FIRDatabaseReference *group_ref = [[rootRef child:groups_path] childByAutoId];
     return group_ref.key;
 }
 
-//-(NSString *)createFirebaseGroup:(ChatGroup*)group {
 -(void)createFirebaseGroup:(ChatGroup*)group withCompletionBlock:(void (^)(NSString *groupId, NSError *))completionBlock {
     // create firebase reference
     

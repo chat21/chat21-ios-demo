@@ -22,7 +22,5 @@
 @property(nonatomic, strong) MBProgressHUD *hud;
 
 -(void)startPushNotifications;
-//-(void)saveParseInstallationWithUsername:(NSString *)username deviceToken:(NSData *)deviceToken;
--(void)downloadLoggedUserData;
 
 @end

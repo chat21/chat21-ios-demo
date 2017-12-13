@@ -251,7 +251,7 @@ static NSString * AFBase64EncodedStringFromString(NSString *string) {
 //        NSLog(@"SWITCHING TO CONVERSATION VIEW. DISABLED.");
         // IF YOU ENABLE THIS IS MANDATORY TO FIND A WAY TO DISMISS OR HANDLE THE CURRENT MODAL VIEW
 //        [nc popToRootViewControllerAnimated:NO];
-        [nc openConversationWithRecipient:userid sendMessage:text];
+        [nc openConversationWithUser:userid sendMessage:text];
         tabController.selectedIndex = chat_tab_index;
     }
 }

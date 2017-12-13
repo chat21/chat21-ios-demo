@@ -165,7 +165,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             NSString *chatToUser = parts[1];
             ChatUser *user = [[ChatUser alloc] init];
             user.userId = chatToUser;
-            [ChatUtil moveToConversationViewWithRecipient:user];
+            [ChatUtil moveToConversationViewWithUser:user];
             NSLog(@"MATCH_TYPE_CHAT_LINK");
         }
     } else {
@@ -260,7 +260,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             NSString *chatToUser = parts[1];
             ChatUser *user = [[ChatUser alloc] init];
             user.userId = chatToUser;
-            [ChatUtil moveToConversationViewWithRecipient:user];
+            [ChatUtil moveToConversationViewWithUser:user];
             NSLog(@"MATCH_TYPE_CHAT_LINK");
         }
     }
@@ -525,12 +525,12 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     NSLog(@"CREO CELLA INDICE: %ld", indexPath.row);
     
     NSArray *messages = self.conversationHandler.messages;
-    NSLog(@"ALL MESSAGES:");
-    int i = 0;
-    for (ChatMessage *m in messages) {
-        NSLog(@"MESSAGE[%d]: %@",i, m.text);
-        i += 1;
-    }
+//    NSLog(@"ALL MESSAGES:");
+//    int i = 0;
+//    for (ChatMessage *m in messages) {
+//        NSLog(@"MESSAGE[%d]: %@",i, m.text);
+//        i += 1;
+//    }
     if (messages && messages.count > 0) {
         message = (ChatMessage *)[messages objectAtIndex:indexPath.row];
         NSLog(@"CURRENT MESSAGE[%ld]: %@", indexPath.row, message.text);
@@ -618,7 +618,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
                 status_image_view.image = [UIImage imageNamed:@"chat_check"];
                 //message_view.textColor = messageColor;
                 break;
-            case MSG_STATUS_RECEIVED:
+            case MSG_STATUS_RETURN_RECEIPT:
                 //                NSLog(@"RECEIVED!!!!!!!!!!");
                 status_image_view.image = [UIImage imageNamed:@"chat_double_check"];
                 //message_view.textColor = messageColor;

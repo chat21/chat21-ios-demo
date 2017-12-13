@@ -395,7 +395,7 @@
         NSLog(@"NOT MESSAGES");
     }
     
-    [ChatUtil moveToConversationViewWithRecipient:self.user];
+    [ChatUtil moveToConversationViewWithUser:self.user];
     
 }
 

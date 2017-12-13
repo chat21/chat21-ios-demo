@@ -31,7 +31,7 @@
 
 @property (strong, nonatomic) NSString *senderId;
 
-@property (strong, nonatomic) NSString *conversationId;
+@property (strong, nonatomic) NSString *conversationId; // Intelocutor-id
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (strong, nonatomic) NSString *firebaseToken;
 @property (strong, nonatomic) FIRDatabaseReference *messagesRef;

@@ -12,7 +12,6 @@
 #import "SHPCaching.h"
 #import "SHPConstants.h"
 #import "SHPUser.h"
-//#import <FacebookSDK/FacebookSDK.h>
 #import "SHPAuth.h"
 #import "SHPConnectionsController.h"
 #import "SHPObjectCache.h"
@@ -38,10 +37,7 @@
 
 @implementation SHPAppDelegate
 
-NSString *const BFTaskMultipleExceptionsException = @"BFMultipleExceptionsException";
-
-@synthesize window = _window;
-@synthesize applicationContext;
+//@synthesize window = _window;
 
 static NSString *NOTIFICATION_TYPE_KEY = @"t"; //type
 static NSString *NOTIFICATION_TYPE_CHAT_KEY = @"chat";
@@ -58,7 +54,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"Initializing...");
+    NSLog(@"didFinishLaunchingWithOptions...");
     
     SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
     self.applicationContext = context;
@@ -73,11 +69,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
                             root:kDBRootDropbox]; // either kDBRootAppFolder or kDBRootDropbox
     [DBSession setSharedSession:dbSession];
     
-//    [FBLoginView class];
-//    [FBProfilePictureView class];
-    
     // chat config
-    // ChatManager *chat = [ChatManager getSharedInstance];
     NSDictionary *settings_config = [plistDictionary objectForKey:@"Config"];
     NSString *tenant = [settings_config objectForKey:@"tenantName"];
     self.applicationContext.tenant = tenant;
@@ -93,6 +85,16 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     // initial chat signin
     if ((context.loggedUser)) {
         [HelloChatUtil initChat]; // initialize logged user so I can get chat-history from DB, regardless of a real Firebase successfull authentication/connection
+        // always authenticates on firebase
+        [HelloChatUtil firebaseAuthEmail:context.loggedUser.email password:context.loggedUser.password completion:^(FIRUser *fir_user, NSError *error) {
+            if (error) {
+                NSLog(@"Firebase authentication error. %@", error);
+            }
+            else {
+                NSLog(@"Firebase authentication success.");
+            }
+        }];
+        
         
 //        // updates user's email and password
 //        [DocChatUtil firebaseAuth:context.loggedUser.username password:context.loggedUser.password completion:^(NSError *error) {
@@ -323,15 +325,16 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     NSString *alert = [aps objectForKey:NOTIFICATION_ALERT_KEY];
     NSLog(@"alert: %@", alert);
     NSString *category = [aps objectForKey:NOTIFICATION_CATEGORY_KEY];
+    NSLog(@"category: %@", category);
     
     if ([category isEqualToString:@"OPEN_MESSAGE_LIST_ACTIVITY"]) {
         NSString *senderid = [userInfo objectForKey:@"sender"];
         NSString *sender_fullname = [userInfo objectForKey:@"sender_fullname"];
         NSString *groupid = [userInfo objectForKey:@"group_id"];
-        NSString *conversationid = [userInfo objectForKey:@"conversationId"];
+//        NSString *conversationid = [userInfo objectForKey:@"conversationId"];
         NSString *badge = [[userInfo objectForKey:NOTIFICATION_APS_KEY] objectForKey:NOTIFICATION_BADGE_KEY];
         NSLog(@"==>Sender: %@", senderid);
-        NSLog(@"==>ConversationId: %@", conversationid);
+//        NSLog(@"==>ConversationId: %@", conversationid);
         NSLog(@"==>Badge: %@", badge);
         NSLog(@"==>group_id: %@", groupid);
         
@@ -345,10 +348,10 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
                                        [NSCharacterSet whitespaceCharacterSet]];
             if (trimmedSender.length > 0) {
                 // DIRECT
-                ChatUser *recipient = [[ChatUser alloc] init];
-                recipient.userId = senderid;
-                recipient.fullname = sender_fullname;
-                [ChatUtil moveToConversationViewWithRecipient:recipient];
+                ChatUser *user = [[ChatUser alloc] init];
+                user.userId = senderid;
+                user.fullname = sender_fullname;
+                [ChatUtil moveToConversationViewWithUser:user];
             }
         }
     }
@@ -608,10 +611,6 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     SHPUser *user = [SHPAuth restoreSavedUser];
     if (user) {
         self.applicationContext.loggedUser = user;
-        //        NSString *userKey = [[NSString alloc] initWithFormat:@"usrKey-%@", self.applicationContext.loggedUser.username];
-        //        NSDictionary *userData = [[NSUserDefaults standardUserDefaults] objectForKey:userKey];
-        //        user.email = [userData objectForKey:@"email"];
-        //        user.fullName = [userData objectForKey:@"fullName"];
     } else {
         self.applicationContext.loggedUser = nil;
     }

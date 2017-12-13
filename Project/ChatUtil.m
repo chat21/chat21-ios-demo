@@ -43,25 +43,24 @@ static NotificationAlertView *notificationAlertInstance = nil;
     [alert animateShow];
 }
 
-+(NSString *)conversationIdWithSender:(NSString *)sender receiver:(NSString *)receiver {// tenant:(NSString *)tenant {
-//    NSString *tenant = [ChatManager getSharedInstance].tenant;
-    NSLog(@"conversationIdWithSender> sender is: %@ receiver is: %@", sender, receiver);
-    NSString *sanitized_sender = [ChatUtil sanitizedNode:sender];
-    NSString *sanitized_receiver = [ChatUtil sanitizedNode:receiver];
-    NSMutableArray *users = [[NSMutableArray alloc] init];
-    [users addObject:sanitized_sender];
-    [users addObject:sanitized_receiver];
-    NSLog(@"users 0 %@", [users objectAtIndex:0]);
-    NSLog(@"users 1 %@", [users objectAtIndex:1]);
-    NSArray *sortedUsers = [users sortedArrayUsingSelector:
-                            @selector(localizedCaseInsensitiveCompare:)];
-    //    // verify users order
-    //    for (NSString *username in sortedUsers) {
-    //        NSLog(@"username: %@", username);
-    //    }
-    NSString *conversation_id = [@"" stringByAppendingFormat:@"%@-%@", sortedUsers[0], sortedUsers[1]]; // [tenant stringByAppendingFormat:@"-%@-%@", sortedUsers[0], sortedUsers[1]];
-    return  conversation_id;
-}
+//+(NSString *)conversationIdWithSender:(NSString *)sender receiver:(NSString *)receiver {// tenant:(NSString *)tenant {
+//    NSLog(@"conversationIdWithSender> sender is: %@ receiver is: %@", sender, receiver);
+//    NSString *sanitized_sender = [ChatUtil sanitizedNode:sender];
+//    NSString *sanitized_receiver = [ChatUtil sanitizedNode:receiver];
+//    NSMutableArray *users = [[NSMutableArray alloc] init];
+//    [users addObject:sanitized_sender];
+//    [users addObject:sanitized_receiver];
+//    NSLog(@"users 0 %@", [users objectAtIndex:0]);
+//    NSLog(@"users 1 %@", [users objectAtIndex:1]);
+//    NSArray *sortedUsers = [users sortedArrayUsingSelector:
+//                            @selector(localizedCaseInsensitiveCompare:)];
+//    //    // verify users order
+//    //    for (NSString *username in sortedUsers) {
+//    //        NSLog(@"username: %@", username);
+//    //    }
+//    NSString *conversation_id = [@"" stringByAppendingFormat:@"%@-%@", sortedUsers[0], sortedUsers[1]]; // [tenant stringByAppendingFormat:@"-%@-%@", sortedUsers[0], sortedUsers[1]];
+//    return  conversation_id;
+//}
 
 // DEPRECATED
 //+(NSString *)conversationIdForGroup:(NSString *)groupId {
@@ -175,23 +174,23 @@ static NotificationAlertView *notificationAlertInstance = nil;
     return contact_path;
 }
 
-+(void)moveToConversationViewWithRecipient:(ChatUser *)recipient {
-    [ChatUtil moveToConversationViewWithRecipient:recipient orGroup:nil sendMessage:nil attributes:nil];
++(void)moveToConversationViewWithUser:(ChatUser *)user {
+    [ChatUtil moveToConversationViewWithUser:user orGroup:nil sendMessage:nil attributes:nil];
 }
 
-+(void)moveToConversationViewWithRecipient:(ChatUser *)recipient sendMessage:(NSString *)message {
-    [ChatUtil moveToConversationViewWithRecipient:recipient orGroup:nil sendMessage:message attributes:nil];
++(void)moveToConversationViewWithUser:(ChatUser *)user sendMessage:(NSString *)message {
+    [ChatUtil moveToConversationViewWithUser:user orGroup:nil sendMessage:message attributes:nil];
 }
 
 +(void)moveToConversationViewWithGroup:(NSString *)groupid {
-    [ChatUtil moveToConversationViewWithRecipient:nil orGroup:groupid sendMessage:nil attributes:nil];
+    [ChatUtil moveToConversationViewWithUser:nil orGroup:groupid sendMessage:nil attributes:nil];
 }
 
 +(void)moveToConversationViewWithGroup:(NSString *)groupid sendMessage:(NSString *)message {
-    [ChatUtil moveToConversationViewWithRecipient:nil orGroup:groupid sendMessage:message attributes:nil];
+    [ChatUtil moveToConversationViewWithUser:nil orGroup:groupid sendMessage:message attributes:nil];
 }
 
-+(void)moveToConversationViewWithRecipient:(ChatUser *)recipient orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes {
++(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes {
     int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
     NSLog(@"processRemoteNotification: messages_tab_index %d", chat_tab_index);
     // move to the converstations tab
@@ -203,9 +202,9 @@ static NotificationAlertView *notificationAlertInstance = nil;
         UIViewController *currentVc = [controllers objectAtIndex:tabController.selectedIndex];
         [currentVc dismissViewControllerAnimated:NO completion:nil];
         ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-        NSLog(@"openConversationWithRecipient:%@ orGroup: %@ sendText:%@", recipient.userId, groupid, message);
+        NSLog(@"openConversationWithRecipient:%@ orGroup: %@ sendText:%@", user.userId, groupid, message);
         tabController.selectedIndex = chat_tab_index;
-        [nc openConversationWithRecipient:recipient orGroup:groupid sendMessage:message attributes:attributes];
+        [nc openConversationWithUser:user orGroup:groupid sendMessage:message attributes:attributes];
     } else {
         NSLog(@"No Chat Tab configured");
     }

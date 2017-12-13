@@ -123,7 +123,7 @@
                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                 ChatUser *member = [[ChatUser alloc] init];
                 member.userId = memberId;
-                [ChatUtil moveToConversationViewWithRecipient:member sendMessage:nil];
+                [ChatUtil moveToConversationViewWithUser:member sendMessage:nil];
             }];
     
     

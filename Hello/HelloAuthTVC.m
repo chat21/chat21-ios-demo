@@ -158,6 +158,15 @@
             [userPreferences synchronize];
             
             [HelloChatUtil initChat];
+            ChatManager *chat = [ChatManager getInstance];
+            [chat createContactFor:chat.loggedUser withCompletionBlock:^(NSError *error) {
+                if (error) {
+                    NSLog(@"Error in contact creation after login. User: %@, Error: %@", chat.loggedUser.fullname, error);
+                }
+                else {
+                    NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
+                }
+            }];
             
             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
                 SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];

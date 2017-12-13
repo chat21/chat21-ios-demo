@@ -98,7 +98,7 @@ static HelpFacade *sharedInstance = nil;
     int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
     // move to the converstations tab
     if (chat_tab_index >= 0) {
-        [ChatUtil moveToConversationViewWithRecipient:recipient orGroup:nil sendMessage:text attributes:attributes];
+        [ChatUtil moveToConversationViewWithUser:recipient orGroup:nil sendMessage:text attributes:attributes];
     }
 }
 

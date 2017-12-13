@@ -30,14 +30,6 @@
     loggedUser.email = app.applicationContext.loggedUser.email;
     ChatManager *chat = [ChatManager getInstance];
     [chat startWithUser:loggedUser];
-    [chat createContactFor:loggedUser withCompletionBlock:^(NSError *error) {
-        if (error) {
-            NSLog(@"Error in contact creation after login. User: %@, Error: %@", loggedUser.fullname, error);
-        }
-        else {
-            NSLog(@"Successfully created contact: %@", loggedUser.fullname);
-        }
-    }];
     [chat getContactLocalDB:loggedUser.userId withCompletion:^(ChatUser *user) {
         loggedUser.firstname = user.firstname;
         loggedUser.lastname = user.lastname;
