@@ -16,6 +16,7 @@
 		B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */; };
 		B22048101C387F3D00AF84CE /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */; };
 		B2348E8B1FE059B100406D81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */; };
+		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B235393D1F4D7BA0000BA684 /* ChatMiniBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B235393C1F4D7BA0000BA684 /* ChatMiniBrowserVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
@@ -302,6 +303,8 @@
 		B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
 		B22048111C399F3400AF84CE /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
 		B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
+		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B235393B1F4D7BA0000BA684 /* ChatMiniBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMiniBrowserVC.h; sourceTree = "<group>"; };
 		B235393C1F4D7BA0000BA684 /* ChatMiniBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMiniBrowserVC.m; sourceTree = "<group>"; };
 		B23A81291F95D31E001344C0 /* HelloChatUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloChatUtil.h; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				B2C7CB9B1FDAFD1300F2EFFE /* HelloVC.m */,
 				B2BC945D1F1F68EF000DDF52 /* HelloAuthTVC.h */,
 				B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */,
+				B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */,
+				B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */,
 				B2BC94601F1FCE04000DDF52 /* HelloProfileTVC.h */,
 				B2BC94611F1FCE04000DDF52 /* HelloProfileTVC.m */,
 				B23A81291F95D31E001344C0 /* HelloChatUtil.h */,
@@ -1675,6 +1680,7 @@
 				DC4A1B991BE0B8C700464D0A /* QBPlasticPopupMenu.m in Sources */,
 				B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */,
 				B297D7A31F683B550006944F /* ChatConversationsVC.m in Sources */,
+				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
 				DCF65D3F1BE3D07D003B471D /* ChatParsePushService.m in Sources */,
 				DC4A1B9E1BE0B8C700464D0A /* QBPopupMenuPagenatorView.m in Sources */,
 				BFBFD5751AEA834900657874 /* SHPDataController.m in Sources */,

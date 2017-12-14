@@ -81,7 +81,9 @@
 
 -(void)dispose {
     [self.messagesRef removeObserverWithHandle:self.messages_ref_handle];
+    [self.messagesRef removeObserverWithHandle:self.updated_messages_ref_handle];
     self.messages_ref_handle = 0;
+    self.updated_messages_ref_handle = 0;
 }
 
 -(void)restoreMessagesFromDB {
@@ -170,7 +172,7 @@
         // updates status only of messages not sent by me
         // HO RICEVUTO UN MESSAGGIO NUOVO
         NSLog(@"self.senderId: %@", self.senderId);
-        if (![message.sender isEqualToString:self.senderId]) { // message.status < MSG_STATUS_RECEIVED &&
+        if (message.status < MSG_STATUS_RECEIVED && ![message.sender isEqualToString:self.senderId]) { // CONTROLLO "message.status < MSG_STATUS_RECEIVED &&" IN MODO DA EVITARE IL COSTO DI RI-AGGIORNARE CONTINUAMENTE LO STATO DI MESSAGGI CHE HANNO GIA LO STATO RECEIVED (MAGARI E' LA SINCRONIZZAZIONE DI UN NUOVO DISPOSITIVO CHE NON DEVE PIU' COMUNICARE NULLA AL MITTENTE MA SOLO SCARICARE I MESSAGGI NELLO STATO IN CUI SI TROVANO).
             // NOT RECEIVED = NEW!
             NSLog(@"NEW MESSAGE!!!!! %@ group %@", message.text, message.recipientGroupId);
             if (!message.recipientGroupId) {

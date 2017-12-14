@@ -42,8 +42,9 @@
         }
     }
     
-    if (!displayName && self.firstName && self.lastName) {
-        displayName = [[NSString alloc] initWithFormat:@"%@ %@", self.firstName, self.lastName];
+    if (!displayName && (self.firstName || self.lastName)) {
+        displayName = [[NSString alloc] initWithFormat:@"%@ %@", (self.firstName ? self.firstName : @""), (self.lastName ? self.lastName : @"")];
+        displayName = [displayName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
     else {
         displayName = self.username;

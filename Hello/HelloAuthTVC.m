@@ -12,7 +12,6 @@
 #import "SHPUser.h"
 //#import "FirebaseAuth.h"
 #import "MBProgressHUD.h"
-#import "SHPApplicationContext.h"
 //#import "AlfrescoUsersDC.h"
 #import "SHPAppDelegate.h"
 #import "ChatUser.h"
@@ -128,6 +127,10 @@
     [self firebaseLogin:email password:password];
 }
 
+- (IBAction)registerAction:(id)sender {
+    NSLog(@"Register");
+}
+
 -(void)firebaseLogin:(NSString *)email password:(NSString *)password {
     
     SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
@@ -174,192 +177,7 @@
             }];
         }
     }];
-    
-//    [AlfrescoRepositorySession connectWithUrl:url username:username password:password
-//                              completionBlock:^(id<AlfrescoSession> session, NSError *error) {
-//                                  if (nil == session || error)
-//                                  {
-//                                      NSLog(@"Error connecting to repository: %@", error);
-//                                      [weakSelf showAlert:@"Accesso non autorizzato"];
-//                                      //                                      [weakSelf.refreshControl endRefreshing];
-//                                      weakSelf.loginButton.enabled = true;
-//                                      [weakSelf hideWaiting];
-//                                  }
-//                                  else
-//                                  {
-//                                      context.docSession = session;
-//                                      NSLog(@"Authenticated successfully.");
-//
-//                                      // get repository info
-//                                      context.docInfo = context.docSession.repositoryInfo;
-//
-//                                      NSLog(@"RepositoryInfo:");
-//                                      NSLog(@"%@",context.docInfo.name);
-//                                      NSLog(@"%@",context.docInfo.edition);
-//                                      NSLog(@"%@",context.docInfo.buildNumber);
-//                                      NSLog(@"%@",context.docInfo.version);
-//                                      context.docStartFolder = context.docSession.rootFolder;
-    
-//                                      SHPUser *signedUser = [[SHPUser alloc] init];
-//                                      signedUser.username = username;
-//                                      signedUser.password = password;
-//                                      // store user info for next login
-//                                      NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
-//                                      NSLog(@"*************** SAVE USER: %@ ***************",password);
-//                                      [userPreferences setObject:password forKey:@"stored_password"];
-//                                      [userPreferences setObject:username forKey:@"stored_username"];
-//                                      [userPreferences synchronize];
-    
-//                                      // recupero le info addizionali dell'utente
-//                                      AlfrescoUsersDC *service = [[AlfrescoUsersDC alloc] init];
-//                                      [service userById:username completion:^(SHPUser *complete_alfresco_user) {
-//                                          NSLog(@"ALFRESCO USER INFO LOADED! %@/%@", complete_alfresco_user, complete_alfresco_user.fullName);
-//
-//                                          if (complete_alfresco_user) {
-//                                              signedUser.fullName = complete_alfresco_user.fullName ? complete_alfresco_user.fullName : @"";
-//                                              signedUser.firstName = complete_alfresco_user.firstName ? complete_alfresco_user.firstName : @"";
-//                                              signedUser.lastName = complete_alfresco_user.lastName ? complete_alfresco_user.lastName : @"";
-//                                              signedUser.email = complete_alfresco_user.email ? complete_alfresco_user.email : @"";
-//                                          }
-    
-//                                          [context signin:signedUser];
-//                                          [DocChatUtil firebaseAuth:email password:password completion:^(NSError *error) {
-//                                              [weakSelf hideWaiting];
-//                                              if (error) {
-//                                                  NSLog(@"Firebase auth error: %@", error);
-//                                                  weakSelf.loginButton.enabled = true;
-//                                                  [weakSelf hideWaiting];
-//                                              }
-//                                              else {
-//                                                  NSLog(@"Firebase auth ok.");
-//
-//                                                  SHPUser *signedUser = [[SHPUser alloc] init];
-//                                                  signedUser.username = email;
-//                                                  signedUser.password = password;
-//                                                  // store user info for next login
-//                                                  NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
-//                                                  [userPreferences setObject:password forKey:@"stored_password"];
-//                                                  [userPreferences setObject:email forKey:@"stored_username"];
-//                                                  [userPreferences synchronize];
-//                                                  [context signin:signedUser];
-//
-//                                                  [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
-//                                              }
-//                                          }];
-//                                      }];
-//                                  }
-//                              }];
 }
-
-//+(NSString *)firebaseUserID:(NSString *)username {
-//    NSString *normalizedUsername = [username stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-//    NSString *firebase_UID = normalizedUsername; //[[NSString alloc] initWithFormat:@"%@-%@", app.tenant, normalizedUsername];
-//    return firebase_UID;
-//}
-//
-//+(void)firebaseAuth:(NSString *)username completion:(void (^)(NSError *))callback {
-//    FirebaseAuth *auth = [[FirebaseAuth alloc] init];
-//    NSString *firebase_UserID = [DocAuthTVC firebaseUserID:username];
-//    NSLog(@"Creating Custom Token for username: %@", firebase_UserID);
-//    [auth generateToken:firebase_UserID completion:^(NSString *token) {
-//        NSLog(@"Token received: %@", token);
-//        if (!token) {
-//            NSLog(@"Token is nil. Firebase Authentication failed.");
-//            return;
-//        }
-//        [[FIRAuth auth] signInWithCustomToken:token completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-//                                       if (error) {
-//                                           NSLog(@"Firebase signin error: %@", error);
-//                                           callback(error);
-//                                       }
-//                                       else {
-//                                           NSLog(@"Firebase successufully logged in.");
-//                                           SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
-//                                           [app startPushNotifications];
-//                                           [DocAuthTVC initChat];
-//                                           callback(nil);
-//                                       }
-//                                   }];
-//    }];
-//}
-
-//+(void)repositoryReSignin:(NSString *)username password:(NSString *)password completion:(void (^)(NSError *))callback {
-//    SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
-//    NSString *host = context.plistDictionary[@"repoURL"];
-//    NSURL *url = [NSURL URLWithString:host];
-//    //    [DocAuthTVC initChat];
-//    [AlfrescoRepositorySession connectWithUrl:url username:username password:password
-//                              completionBlock:^(id<AlfrescoSession> session, NSError *error) {
-//                                  if (nil == session || error)
-//                                  {
-//                                      callback(error);
-//                                  }
-//                                  else
-//                                  {
-//                                      context.docSession = session;
-//                                      NSLog(@"Authenticated successfully.");
-//                                      // get repository info
-//                                      context.docInfo = context.docSession.repositoryInfo;
-//                                      NSLog(@"RepositoryInfo:");
-//                                      NSLog(@"%@",context.docInfo.name);
-//                                      NSLog(@"%@",context.docInfo.edition);
-//                                      NSLog(@"%@",context.docInfo.buildNumber);
-//                                      NSLog(@"%@",context.docInfo.version);
-//                                      context.docStartFolder = context.docSession.rootFolder;
-//
-//                                      AlfrescoUsersDC *service = [[AlfrescoUsersDC alloc] init];
-//                                      [service userById:username completion:^(SHPUser *user) {
-//                                          NSLog(@"ALFRESCO USER DATA (FULL NAME) LOADED!");
-//                                          if (user && user.fullName) {
-//                                              context.loggedUser.fullName = user.fullName;
-//                                          }
-//                                          else {
-//                                              context.loggedUser.fullName = @"";
-//                                          }
-//                                          callback(nil);
-//                                      }];
-//
-//                                      //                                      FirebaseAuth *auth = [[FirebaseAuth alloc] init];
-//                                      //                                      NSString *firebase_UID = [DocAuthTVC firebaseUID:username];
-//                                      //                                      NSLog(@"Creating Custom Token for username: %@", firebase_UID);
-//                                      //                                      [auth generateToken:firebase_UID completion:^(NSString *token) {
-//                                      //                                          NSLog(@"Received Token: %@", token);
-//                                      //                                          [[FIRAuth auth] signInWithCustomToken:token completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-//                                      //                                             if (error) {
-//                                      //                                                 NSLog(@"Error signin with Firebase: %@", error);
-//                                      //                                                 callback(error);
-//                                      //                                             }
-//                                      //                                             else {
-//                                      //                                                 NSLog(@"Firebase successufully logged in.");
-//                                      //                                                 NSLog(@"Registro per notifiche push. Auth.currentUser: %@ User: %@", [FIRAuth auth].currentUser, user);
-//                                      //                                                 SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
-//                                      //                                                 [app startPushNotifications];
-//                                      //                                                 callback(nil);
-//                                      //                                             }
-//                                      //                                          }];
-//                                      //                                      }];
-//
-//
-//                                  }
-//                              }];
-//}
-
-//+(void)initChat {
-//    SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
-//    ChatUser *loggedUser = [[ChatUser alloc] init];
-//    loggedUser.userId = [DocAuthTVC firebaseUserID:app.applicationContext.loggedUser.username];//[app.applicationContext.loggedUser.username stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-//    loggedUser.firstname = app.applicationContext.loggedUser.firstName;
-//    loggedUser.lastname = app.applicationContext.loggedUser.lastName;
-//    [[ChatManager getSharedInstance] login:loggedUser];
-//    [[ChatManager getSharedInstance] createContactFor:loggedUser withCompletionBlock:^(NSError *error) {
-//        if (error) {
-//            NSLog(@"Error in contact creation after login. User: %@, Error: %@", loggedUser.fullname, error);
-//        }
-//        else {
-//            NSLog(@"Successfully created contact: %@", loggedUser.fullname);
-//        }
-//    }];
-//}
 
 -(void)showAlert:(NSString *)msg {
     UIAlertController * view =   [UIAlertController

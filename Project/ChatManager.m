@@ -47,7 +47,7 @@ static ChatManager *sharedInstance = nil;
     [FIRDatabase database].persistenceEnabled = NO;
     sharedInstance.tenant = app_id;
     sharedInstance.loggedUser = nil;
-    sharedInstance.groupsMode = YES;
+    sharedInstance.groupsMode = NO;
 }
 
 +(ChatManager *)getInstance {
@@ -290,7 +290,7 @@ static ChatManager *sharedInstance = nil;
     }
     NSString *url = @"/.info/connected";
     FIRDatabaseReference *connectedRef = [[[FIRDatabase database] reference] child:url];
-    if (!self.connectedRefHandle) {
+    if (self.connectedRefHandle) {
         [connectedRef removeObserverWithHandle:self.connectedRefHandle];
     }
     if (self.presenceHandler) {

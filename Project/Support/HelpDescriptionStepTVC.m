@@ -233,7 +233,7 @@ static NSInteger MIN_CHARACTERS_DESCRIPTION = 4;
     
     UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"Non ancora"
-                             style:UIAlertActionStyleDefault
+                             style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction * action)
                              {
                                  NSLog(@"action canceled");

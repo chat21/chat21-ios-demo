@@ -72,15 +72,10 @@
     
     [self initImageCache];
     
-//    // init user info dc
-//    self.userLoader = [[SHPUserDC alloc]init];
-//    self.userLoader.delegate = self;
-    
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    self.groupsMode =  YES;
-//    UIButton *groupsButton;
-//    [self.groupsButton setTitle:NSLocalizedString(@"Groups", nil) forState:UIControlStateNormal];
+    self.groupsMode =  [ChatManager getInstance].groupsMode;
+
     [self backButtonSetup];
     [self customizeTitleView];
     [self setupTitle:@"Chat"];
