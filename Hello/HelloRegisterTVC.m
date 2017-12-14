@@ -140,11 +140,11 @@
     if ([firstname isEqualToString:@""]) {
         return @"First name can't be empty";
     }
-    if (![self isValidEmail:email]) {
+    else if (![self isValidEmail:email]) {
         return @"Invalid email address.";
     }
-    else if ([password1 isEqualToString:@""] || [email isEqualToString:@""]) {
-        return @"The password can't be empty.";
+    else if ([password1 length] < 6) {
+        return @"Password must be at least six characters long.";
     }
     else if (![password1 isEqualToString:password2]) {
         return @"Repeat the same password.";
