@@ -80,10 +80,11 @@
 //}
 
 -(void)dispose {
-    [self.messagesRef removeObserverWithHandle:self.messages_ref_handle];
-    [self.messagesRef removeObserverWithHandle:self.updated_messages_ref_handle];
-    self.messages_ref_handle = 0;
-    self.updated_messages_ref_handle = 0;
+//    [self.messagesRef removeObserverWithHandle:self.messages_ref_handle];
+//    [self.messagesRef removeObserverWithHandle:self.updated_messages_ref_handle];
+//    self.messages_ref_handle = 0;
+//    self.updated_messages_ref_handle = 0;
+    [self.messagesRef removeAllObservers];
 }
 
 -(void)restoreMessagesFromDB {
