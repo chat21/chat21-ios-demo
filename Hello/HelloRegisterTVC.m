@@ -93,6 +93,7 @@
              signedUser.firstName = firstname;
              signedUser.lastName = lastname;
              [context signin:signedUser];
+             NSLog(@"first name: %@", context.loggedUser.firstName);
              
              // store user info for next login (DANGEROUS! JUST FOR TESTING)
              NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
@@ -108,6 +109,7 @@
                  }
                  else {
                      NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
+                     NSLog(@"first name: %@", context.loggedUser.firstName);
                  }
              }];
              
@@ -140,13 +142,13 @@
     if ([firstname isEqualToString:@""]) {
         return @"First name can't be empty";
     }
-    else if (![self isValidEmail:email]) {
+    if (![self isValidEmail:email]) {
         return @"Invalid email address.";
     }
-    else if ([password1 length] < 6) {
+    if ([password1 length] < 6) {
         return @"Password must be at least six characters long.";
     }
-    else if (![password1 isEqualToString:password2]) {
+    if (![password1 isEqualToString:password2]) {
         return @"Repeat the same password.";
     }
     
@@ -166,7 +168,7 @@
 // ALTERNATIVE:
 
 //- (BOOL) isValidEmail:(NSString*) emailString {
-//
+//    NSLog(@"Validating email: %@", emailString);
 //    if([emailString length]==0){
 //        return NO;
 //    }
@@ -176,7 +178,7 @@
 //    NSRegularExpression *regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionCaseInsensitive error:nil];
 //    NSUInteger regExMatches = [regEx numberOfMatchesInString:emailString options:0 range:NSMakeRange(0, [emailString length])];
 //
-//    NSLog(@"%i", regExMatches);
+//    NSLog(@"Mathes: %lu", (unsigned long)regExMatches);
 //    if (regExMatches == 0) {
 //        return NO;
 //    } else {

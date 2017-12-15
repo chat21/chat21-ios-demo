@@ -23,19 +23,23 @@
 
 +(void)initChat {
     SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
-    ChatUser *loggedUser = [[ChatUser alloc] init];
-    loggedUser.userId = app.applicationContext.loggedUser.userid;
-    loggedUser.firstname = app.applicationContext.loggedUser.firstName;
-    loggedUser.lastname = app.applicationContext.loggedUser.lastName;
-    loggedUser.email = app.applicationContext.loggedUser.email;
+    ChatUser *chatUser = [[ChatUser alloc] init];
+    chatUser.userId = app.applicationContext.loggedUser.userid;
+    chatUser.firstname = app.applicationContext.loggedUser.firstName;
+    chatUser.lastname = app.applicationContext.loggedUser.lastName;
+    chatUser.email = app.applicationContext.loggedUser.email;
     ChatManager *chat = [ChatManager getInstance];
-    [chat startWithUser:loggedUser];
-    [chat getContactLocalDB:loggedUser.userId withCompletion:^(ChatUser *user) {
-        loggedUser.firstname = user.firstname;
-        loggedUser.lastname = user.lastname;
-        app.applicationContext.loggedUser.firstName = user.firstname;
-        app.applicationContext.loggedUser.lastName = user.lastname;
-        [app.applicationContext signin:app.applicationContext.loggedUser];
+    [chat startWithUser:chatUser];
+    NSLog(@"Updates user from local contacts synch...");
+    [chat getContactLocalDB:chatUser.userId withCompletion:^(ChatUser *user) {
+        NSLog(@"user found: %@, user_id: %@, user.firstname: %@", user, user.userId, user.firstname);
+        if (user && user.userId && ![user.firstname isEqualToString:@""]) {
+            chatUser.firstname = user.firstname;
+            chatUser.lastname = user.lastname;
+            app.applicationContext.loggedUser.firstName = user.firstname;
+            app.applicationContext.loggedUser.lastName = user.lastname;
+            [app.applicationContext signin:app.applicationContext.loggedUser];
+        }
     }];
     // plug the profile view
     [ChatUIManager getInstance].pushProfileCallback = ^(ChatUser *user, ChatMessagesVC *vc) {

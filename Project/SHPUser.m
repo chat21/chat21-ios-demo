@@ -23,7 +23,7 @@
     NSString *peopleService = [SHPServiceUtil serviceUrl:@"service.people"];
     NSString *username_enc = [username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *url = [[NSString alloc] initWithFormat:@"%@/%@/photo?w=%d&h=%d", peopleService, username_enc, (int)w, (int)h];
-    
+
     return url;
 }
 
