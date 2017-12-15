@@ -1,2 +1,4 @@
 /Pods/*
 tilechat.xcworkspace
+tilechat.xcworkspace/*
+.gitignore
