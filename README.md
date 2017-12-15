@@ -1,29 +1,13 @@
 # README #
 
-Ciao.
+First of all you MUST create a new Firebase project, then install the Firebase backend cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). 
 
-### What is this repository for? ###
+Then run "pod install" in the project folder.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Start the project with the new created file "tilechat.xcworkspace".
 
-### How do I get set up? ###
+More detailed instructions will be available soon.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Meanwhile feel free to contact us at support@frontiere21.it.
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Enjoy.
