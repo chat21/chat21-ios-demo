@@ -2,3 +2,6 @@
 tilechat.xcworkspace
 tilechat.xcworkspace/*
 .gitignore
+tilechat.xcodeproj
+tilechat.xcodeproj/*
+Project/Info.plist

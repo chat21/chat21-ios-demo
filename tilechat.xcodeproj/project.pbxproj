@@ -1369,6 +1369,7 @@
 				TargetAttributes = {
 					BFBFD3671AEA544F00657874 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = T6S5PWWJAJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1858,7 +1859,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T6S5PWWJAJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1876,7 +1877,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = your.bundle;
+				PRODUCT_BUNDLE_IDENTIFIER = it.frontiere21.tilechat;
 				PRODUCT_NAME = "Tile Chat";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
@@ -1894,7 +1895,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T6S5PWWJAJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1912,7 +1913,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = your.bundle;
+				PRODUCT_BUNDLE_IDENTIFIER = it.frontiere21.tilechat;
 				PRODUCT_NAME = "Tile Chat";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
