@@ -1876,7 +1876,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = en.your.bundle;
+				PRODUCT_BUNDLE_IDENTIFIER = your.bundle;
 				PRODUCT_NAME = "Tile Chat";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
@@ -1912,7 +1912,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = en.your.bundle;
+				PRODUCT_BUNDLE_IDENTIFIER = your.bundle;
 				PRODUCT_NAME = "Tile Chat";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "";
