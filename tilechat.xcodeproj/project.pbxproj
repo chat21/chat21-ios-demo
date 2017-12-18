@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		92F6C2F0BF9B790EC16ED3B9 /* libPods-tilechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */; };
-		B20D93211D6C90C800ADC264 /* SHPServiceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B20D93201D6C90C800ADC264 /* SHPServiceUtil.m */; };
-		B20D93241D6C912E00ADC264 /* SHPMiniWebBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B20D93231D6C912E00ADC264 /* SHPMiniWebBrowserVC.m */; };
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B20FC6A11BEA7CC9009D57D3 /* ChatImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A01BEA7CC9009D57D3 /* ChatImageCache.m */; };
 		B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */; };
@@ -154,8 +152,6 @@
 		DCF65D341BE3D07D003B471D /* ChatConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D141BE3D07D003B471D /* ChatConversation.m */; };
 		DCF65D351BE3D07D003B471D /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D161BE3D07D003B471D /* ChatMessage.m */; };
 		DCF65D361BE3D07D003B471D /* FirebaseCustomAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D181BE3D07D003B471D /* FirebaseCustomAuthHelper.m */; };
-		DCF65D3F1BE3D07D003B471D /* ChatParsePushService.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D2D1BE3D07D003B471D /* ChatParsePushService.m */; };
-		DCF65D401BE3D07D003B471D /* ParseChatNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D2F1BE3D07D003B471D /* ParseChatNotification.m */; };
 		DCF65D411BE3D07D003B471D /* ChatGroupsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D311BE3D07D003B471D /* ChatGroupsHandler.m */; };
 		DCF65D551BE3D092003B471D /* GroupInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D4D1BE3D092003B471D /* GroupInfoVC.m */; };
 		DCF65D561BE3D092003B471D /* GroupMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D4F1BE3D092003B471D /* GroupMembersVC.m */; };
@@ -167,10 +163,6 @@
 		A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tilechat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE93058BDB602E5AB534A56 /* Pods-tilechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tilechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tilechat/Pods-tilechat.debug.xcconfig"; sourceTree = "<group>"; };
 		B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHPModalCallerDelegate.h; sourceTree = "<group>"; };
-		B20D931F1D6C90C800ADC264 /* SHPServiceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPServiceUtil.h; sourceTree = "<group>"; };
-		B20D93201D6C90C800ADC264 /* SHPServiceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPServiceUtil.m; sourceTree = "<group>"; };
-		B20D93221D6C912E00ADC264 /* SHPMiniWebBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPMiniWebBrowserVC.h; sourceTree = "<group>"; };
-		B20D93231D6C912E00ADC264 /* SHPMiniWebBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPMiniWebBrowserVC.m; sourceTree = "<group>"; };
 		B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B20FC69F1BEA7CC9009D57D3 /* ChatImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageCache.h; sourceTree = "<group>"; };
 		B20FC6A01BEA7CC9009D57D3 /* ChatImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageCache.m; sourceTree = "<group>"; };
@@ -400,10 +392,6 @@
 		DCF65D1C1BE3D07D003B471D /* SHPChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPChatDelegate.h; sourceTree = "<group>"; };
 		DCF65D1D1BE3D07D003B471D /* SHPConversationsViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPConversationsViewDelegate.h; sourceTree = "<group>"; };
 		DCF65D261BE3D07D003B471D /* ChatConversationsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsHandler.h; sourceTree = "<group>"; };
-		DCF65D2C1BE3D07D003B471D /* ChatParsePushService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatParsePushService.h; sourceTree = "<group>"; };
-		DCF65D2D1BE3D07D003B471D /* ChatParsePushService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatParsePushService.m; sourceTree = "<group>"; };
-		DCF65D2E1BE3D07D003B471D /* ParseChatNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseChatNotification.h; sourceTree = "<group>"; };
-		DCF65D2F1BE3D07D003B471D /* ParseChatNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseChatNotification.m; sourceTree = "<group>"; };
 		DCF65D301BE3D07D003B471D /* ChatGroupsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsHandler.h; sourceTree = "<group>"; };
 		DCF65D311BE3D07D003B471D /* ChatGroupsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsHandler.m; sourceTree = "<group>"; };
 		DCF65D4C1BE3D092003B471D /* GroupInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInfoVC.h; sourceTree = "<group>"; };
@@ -623,10 +611,6 @@
 				BFBFD4B61AEA598000657874 /* HelloUser.h */,
 				BFBFD4B71AEA598000657874 /* HelloUser.m */,
 				B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */,
-				B20D931F1D6C90C800ADC264 /* SHPServiceUtil.h */,
-				B20D93201D6C90C800ADC264 /* SHPServiceUtil.m */,
-				B20D93221D6C912E00ADC264 /* SHPMiniWebBrowserVC.h */,
-				B20D93231D6C912E00ADC264 /* SHPMiniWebBrowserVC.m */,
 				B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */,
 				BFBFD4911AEA591100657874 /* UTIL */,
 				BFBFD36B1AEA544F00657874 /* Supporting Files */,
@@ -732,10 +716,6 @@
 				B22048111C399F3400AF84CE /* ChatPresenceViewDelegate.h */,
 				B220480E1C387F3D00AF84CE /* ChatPresenceHandler.h */,
 				B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */,
-				DCF65D2C1BE3D07D003B471D /* ChatParsePushService.h */,
-				DCF65D2D1BE3D07D003B471D /* ChatParsePushService.m */,
-				DCF65D2E1BE3D07D003B471D /* ParseChatNotification.h */,
-				DCF65D2F1BE3D07D003B471D /* ParseChatNotification.m */,
 				B297D7991F683AE60006944F /* ChatContactsSynchronizer.h */,
 				B297D79A1F683AE60006944F /* ChatContactsSynchronizer.m */,
 				B250D0141F8CB5C700FACFBF /* ChatSynchDelegate.h */,
@@ -1095,7 +1075,6 @@
 			files = (
 				DC7F59C81BCB95AD007523B1 /* UPStackMenuItem.m in Sources */,
 				DCF65D551BE3D092003B471D /* GroupInfoVC.m in Sources */,
-				B20D93211D6C90C800ADC264 /* SHPServiceUtil.m in Sources */,
 				BFBFD5661AEA811D00657874 /* SHPObjectCache.m in Sources */,
 				B2B36F8C1C4FCA5000C21AE7 /* ChatTitleVC.m in Sources */,
 				DCF65D561BE3D092003B471D /* GroupMembersVC.m in Sources */,
@@ -1123,7 +1102,6 @@
 				B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */,
 				B297D7A31F683B550006944F /* ChatConversationsVC.m in Sources */,
 				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
-				DCF65D3F1BE3D07D003B471D /* ChatParsePushService.m in Sources */,
 				DC4A1B9E1BE0B8C700464D0A /* QBPopupMenuPagenatorView.m in Sources */,
 				BFBFD5751AEA834900657874 /* SHPDataController.m in Sources */,
 				B24FD40B1CBEE477000EF70E /* ChatStatusTitle.m in Sources */,
@@ -1134,7 +1112,6 @@
 				B23D1BA91F7A62910009029D /* ChatSelectGroupLocalTVC.m in Sources */,
 				B2EF3D7C1CC7CBE50074836A /* ChatUpload.m in Sources */,
 				BFBFD4901AEA590900657874 /* MBProgressHUD.m in Sources */,
-				DCF65D401BE3D07D003B471D /* ParseChatNotification.m in Sources */,
 				B27C51311C345EC70069F5E7 /* NotConnectedVC.m in Sources */,
 				DCF65D351BE3D07D003B471D /* ChatMessage.m in Sources */,
 				BFBFD5721AEA81A200657874 /* SHPIconDownloader.m in Sources */,
@@ -1173,7 +1150,6 @@
 				DCF65D331BE3D07D003B471D /* ChatGroup.m in Sources */,
 				B297D7A91F683B880006944F /* ChatManager.m in Sources */,
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
-				B20D93241D6C912E00ADC264 /* SHPMiniWebBrowserVC.m in Sources */,
 				BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>app-name</key>
-	<string>Tile Chat</string>
+	<string>Hello Chat</string>
 	<key>chat-app-id</key>
 	<string>tilechat</string>
 	<key>chat-support</key>

@@ -281,105 +281,6 @@
             </objects>
             <point key="canvasLocation" x="-5587" y="2278"/>
         </scene>
-        <!--Mini Web BrowserVC-->
-        <scene sceneID="30P-tX-9c4">
-            <objects>
-                <viewController storyboardIdentifier="MiniWebBrowser" id="QmT-nA-fv8" customClass="SHPMiniWebBrowserVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xQu-gJ-m4n"/>
-                        <viewControllerLayoutGuide type="bottom" id="9Gv-kd-g6v"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iK8-mH-NYu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txZ-iq-5KJ">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="D8a-vX-XoT"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="c5x-2O-X1K"/>
-                                    <barButtonItem image="button_back_.png" id="L97-RM-wfr">
-                                        <connections>
-                                            <action selector="backPage:" destination="QmT-nA-fv8" id="L5N-eU-BTG"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="Yvz-qe-jqL"/>
-                                    <barButtonItem image="button_next_.png" id="aiY-yd-aCp">
-                                        <connections>
-                                            <action selector="nextPage:" destination="QmT-nA-fv8" id="pMG-b8-J0c"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="tPa-XR-UEd"/>
-                                    <barButtonItem systemItem="refresh" id="N6D-LC-BPZ">
-                                        <connections>
-                                            <action selector="reloadPage:" destination="QmT-nA-fv8" id="dfu-pU-byx"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="AEM-Ga-yJn"/>
-                                    <barButtonItem systemItem="action" id="jyu-vb-OXK">
-                                        <connections>
-                                            <action selector="forwardLink:" destination="QmT-nA-fv8" id="Jxe-hG-1Dn"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="J0z-Rb-LO6"/>
-                                </items>
-                                <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </toolbar>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKG-GA-Mbf">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="9Gv-kd-g6v" firstAttribute="bottom" secondItem="txZ-iq-5KJ" secondAttribute="bottom" id="44f-mg-DiE"/>
-                            <constraint firstItem="9Gv-kd-g6v" firstAttribute="top" secondItem="PKG-GA-Mbf" secondAttribute="bottom" id="UdO-Pd-AQL"/>
-                            <constraint firstItem="PKG-GA-Mbf" firstAttribute="leading" secondItem="iK8-mH-NYu" secondAttribute="leadingMargin" constant="-16" id="aFH-Do-0Rg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="txZ-iq-5KJ" secondAttribute="trailing" constant="-16" id="c8z-mE-Z6v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PKG-GA-Mbf" secondAttribute="trailing" constant="-16" id="p8e-5p-L8s"/>
-                            <constraint firstItem="PKG-GA-Mbf" firstAttribute="top" secondItem="xQu-gJ-m4n" secondAttribute="bottom" id="pq9-ba-2os"/>
-                            <constraint firstItem="txZ-iq-5KJ" firstAttribute="leading" secondItem="iK8-mH-NYu" secondAttribute="leadingMargin" constant="-16" id="pxR-Lq-eUD"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Nbr-dg-NQv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="6G2-KP-HdI">
-                            <connections>
-                                <action selector="forwardLink:" destination="QmT-nA-fv8" id="JKb-wp-qXg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="forwardButton" destination="6G2-KP-HdI" id="KFm-QW-ggX"/>
-                        <outlet property="toolBar" destination="txZ-iq-5KJ" id="ljw-ft-gay"/>
-                        <outlet property="webView" destination="PKG-GA-Mbf" id="8V3-Es-GoZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qeM-cX-Wn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-5164" y="-225"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dKl-aF-hQj">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N76-vd-Dz3" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="tEJ-tC-TrU"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NLy-zC-xkZ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="QmT-nA-fv8" kind="relationship" relationship="rootViewController" id="Z6U-vY-WCr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LXR-WW-8Yj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-5831" y="-225"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="KJs-5m-Ya3">
             <objects>
@@ -400,8 +301,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button_back_.png" width="14" height="30"/>
-        <image name="button_next_.png" width="14" height="30"/>
         <image name="image_chat.jpg" width="550" height="550"/>
     </resources>
 </document>
