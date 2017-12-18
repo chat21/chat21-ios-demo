@@ -8,23 +8,6 @@
 	<string>tilechat</string>
 	<key>chat-support</key>
 	<true/>
-	<key>BarNavigation</key>
-	<dict>
-		<key>traslucent</key>
-		<false/>
-		<key>colorBackground</key>
-		<string>ffffff</string>
-		<key>tintColor</key>
-		<string>1f1fad</string>
-		<key>shadowColorText</key>
-		<string>clearColor</string>
-		<key>fontText</key>
-		<string>Heiti TC</string>
-		<key>fontSizeText</key>
-		<string>17</string>
-		<key>buttonItemColor</key>
-		<string>1f1fad</string>
-	</dict>
 	<key>TabBar</key>
 	<dict>
 		<key>Menu</key>
