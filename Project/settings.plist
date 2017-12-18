@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>app-name</key>
+	<string>Tile Chat</string>
+	<key>chat-app-id</key>
+	<string>tilechat</string>
+	<key>chat-support</key>
+	<true/>
+	<key>BarNavigation</key>
+	<dict>
+		<key>traslucent</key>
+		<false/>
+		<key>colorBackground</key>
+		<string>ffffff</string>
+		<key>tintColor</key>
+		<string>1f1fad</string>
+		<key>shadowColorText</key>
+		<string>clearColor</string>
+		<key>fontText</key>
+		<string>Heiti TC</string>
+		<key>fontSizeText</key>
+		<string>17</string>
+		<key>buttonItemColor</key>
+		<string>1f1fad</string>
+	</dict>
+	<key>TabBar</key>
+	<dict>
+		<key>Menu</key>
+		<array>
+			<dict>
+				<key>StoryboardName</key>
+				<string>HelloChat</string>
+				<key>StoryboardControllerID</key>
+				<string>home-vc</string>
+				<key>icon</key>
+				<string>icon_light_home</string>
+				<key>title</key>
+				<string>Home</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Chat</string>
+				<key>icon</key>
+				<string>ic_linear_chat</string>
+				<key>StoryboardControllerID</key>
+				<string>ChatController</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Profile</string>
+				<key>icon</key>
+				<string>ic_linear_profile</string>
+				<key>StoryboardName</key>
+				<string>HelloChat</string>
+				<key>StoryboardControllerID</key>
+				<string>profile-vc</string>
+			</dict>
+		</array>
+		<key>barTintColor</key>
+		<string>ffffff</string>
+		<key>tintColorSelected</key>
+		<string>cccccc</string>
+		<key>tintColor</key>
+		<string>1f1fad</string>
+	</dict>
+</dict>
+</plist>
