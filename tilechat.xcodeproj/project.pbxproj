@@ -61,7 +61,6 @@
 		B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */; };
 		B2A4C0561FE846E000AED2EE /* UIView+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0541FE846DF00AED2EE /* UIView+Property.m */; };
 		B2A4C0591FE85BC400AED2EE /* ChatChangeGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0581FE85BC400AED2EE /* ChatChangeGroupNameVC.m */; };
-		B2A763EA1F13A08F0055A7E2 /* logo_labot_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A763E91F13A08F0055A7E2 /* logo_labot_1024.png */; };
 		B2AA87A01FD87538004FE7E0 /* ChatUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AA879F1FD87538004FE7E0 /* ChatUIManager.m */; };
 		B2AA87A31FD93393004FE7E0 /* ChatStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AA87A21FD93393004FE7E0 /* ChatStringUtil.m */; };
 		B2B36F8C1C4FCA5000C21AE7 /* ChatTitleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B36F8B1C4FCA5000C21AE7 /* ChatTitleVC.m */; };
@@ -87,12 +86,6 @@
 		B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */; };
 		B2F75C091C63C15400EFBCD2 /* icon_light_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C071C63C15400EFBCD2 /* icon_light_profile.png */; };
 		B2F75C0A1C63C15400EFBCD2 /* icon_light_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C081C63C15400EFBCD2 /* icon_light_profile@2x.png */; };
-		B2F75C101C63CA2900EFBCD2 /* chat21_help_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C0C1C63CA2900EFBCD2 /* chat21_help_icon.png */; };
-		B2F75C111C63CA2900EFBCD2 /* chat21_help_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C0D1C63CA2900EFBCD2 /* chat21_help_icon@2x.png */; };
-		B2F75C121C63CA2900EFBCD2 /* chat21_settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C0E1C63CA2900EFBCD2 /* chat21_settings_icon.png */; };
-		B2F75C131C63CA2900EFBCD2 /* chat21_settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C0F1C63CA2900EFBCD2 /* chat21_settings_icon@2x.png */; };
-		B2F75C161C64F54900EFBCD2 /* chat21_chat_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C141C64F54900EFBCD2 /* chat21_chat_icon.png */; };
-		B2F75C171C64F54900EFBCD2 /* chat21_chat_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C151C64F54900EFBCD2 /* chat21_chat_icon@2x.png */; };
 		B2F75C1D1C65158F00EFBCD2 /* inline.caf in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C1B1C64FEE900EFBCD2 /* inline.caf */; };
 		B2F75C1E1C65158F00EFBCD2 /* newnotif.caf in Resources */ = {isa = PBXBuildFile; fileRef = B2F75C1C1C64FEE900EFBCD2 /* newnotif.caf */; };
 		B2FA6FF41C37144200B46213 /* chat_check.png in Resources */ = {isa = PBXBuildFile; fileRef = B2FA6FF31C37144200B46213 /* chat_check.png */; };
@@ -157,11 +150,6 @@
 		DCC254B11BD1105900B2160C /* icon_light_foto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC2549D1BD1105900B2160C /* icon_light_foto@2x.png */; };
 		DCC254B21BD1105900B2160C /* icon_light_home.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC2549E1BD1105900B2160C /* icon_light_home.png */; };
 		DCC254B31BD1105900B2160C /* icon_light_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC2549F1BD1105900B2160C /* icon_light_home@2x.png */; };
-		DCC254E41BD1106D00B2160C /* icon_standard_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC254C41BD1106D00B2160C /* icon_standard_chat.png */; };
-		DCC254E51BD1106D00B2160C /* icon_standard_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC254C51BD1106D00B2160C /* icon_standard_chat@2x.png */; };
-		DCC254E61BD1106D00B2160C /* icon_standard_chat2.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC254C61BD1106D00B2160C /* icon_standard_chat2.png */; };
-		DCC254E71BD1106D00B2160C /* icon_standard_chat2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC254C71BD1106D00B2160C /* icon_standard_chat2@2x.png */; };
-		DCC254EA1BD1106D00B2160C /* icon_standard_home.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC254CA1BD1106D00B2160C /* icon_standard_home.png */; };
 		DCF65D331BE3D07D003B471D /* ChatGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D121BE3D07D003B471D /* ChatGroup.m */; };
 		DCF65D341BE3D07D003B471D /* ChatConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D141BE3D07D003B471D /* ChatConversation.m */; };
 		DCF65D351BE3D07D003B471D /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF65D161BE3D07D003B471D /* ChatMessage.m */; };
@@ -268,7 +256,6 @@
 		B2A4C0551FE846E000AED2EE /* UIView+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Property.h"; sourceTree = "<group>"; };
 		B2A4C0571FE85BC300AED2EE /* ChatChangeGroupNameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatChangeGroupNameVC.h; sourceTree = "<group>"; };
 		B2A4C0581FE85BC400AED2EE /* ChatChangeGroupNameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatChangeGroupNameVC.m; sourceTree = "<group>"; };
-		B2A763E91F13A08F0055A7E2 /* logo_labot_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_labot_1024.png; sourceTree = "<group>"; };
 		B2AA879E1FD87538004FE7E0 /* ChatUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUIManager.h; sourceTree = "<group>"; };
 		B2AA879F1FD87538004FE7E0 /* ChatUIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUIManager.m; sourceTree = "<group>"; };
 		B2AA87A11FD93393004FE7E0 /* ChatStringUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatStringUtil.h; sourceTree = "<group>"; };
@@ -309,12 +296,6 @@
 		B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-mobichat.png"; sourceTree = "<group>"; };
 		B2F75C071C63C15400EFBCD2 /* icon_light_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_profile.png; sourceTree = "<group>"; };
 		B2F75C081C63C15400EFBCD2 /* icon_light_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_profile@2x.png"; sourceTree = "<group>"; };
-		B2F75C0C1C63CA2900EFBCD2 /* chat21_help_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat21_help_icon.png; sourceTree = "<group>"; };
-		B2F75C0D1C63CA2900EFBCD2 /* chat21_help_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat21_help_icon@2x.png"; sourceTree = "<group>"; };
-		B2F75C0E1C63CA2900EFBCD2 /* chat21_settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat21_settings_icon.png; sourceTree = "<group>"; };
-		B2F75C0F1C63CA2900EFBCD2 /* chat21_settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat21_settings_icon@2x.png"; sourceTree = "<group>"; };
-		B2F75C141C64F54900EFBCD2 /* chat21_chat_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat21_chat_icon.png; sourceTree = "<group>"; };
-		B2F75C151C64F54900EFBCD2 /* chat21_chat_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat21_chat_icon@2x.png"; sourceTree = "<group>"; };
 		B2F75C1B1C64FEE900EFBCD2 /* inline.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = inline.caf; sourceTree = "<group>"; };
 		B2F75C1C1C64FEE900EFBCD2 /* newnotif.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newnotif.caf; sourceTree = "<group>"; };
 		B2FA6FF31C37144200B46213 /* chat_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_check.png; sourceTree = "<group>"; };
@@ -408,11 +389,6 @@
 		DCC2549D1BD1105900B2160C /* icon_light_foto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_foto@2x.png"; sourceTree = "<group>"; };
 		DCC2549E1BD1105900B2160C /* icon_light_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_home.png; sourceTree = "<group>"; };
 		DCC2549F1BD1105900B2160C /* icon_light_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_home@2x.png"; sourceTree = "<group>"; };
-		DCC254C41BD1106D00B2160C /* icon_standard_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_standard_chat.png; sourceTree = "<group>"; };
-		DCC254C51BD1106D00B2160C /* icon_standard_chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_standard_chat@2x.png"; sourceTree = "<group>"; };
-		DCC254C61BD1106D00B2160C /* icon_standard_chat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_standard_chat2.png; sourceTree = "<group>"; };
-		DCC254C71BD1106D00B2160C /* icon_standard_chat2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_standard_chat2@2x.png"; sourceTree = "<group>"; };
-		DCC254CA1BD1106D00B2160C /* icon_standard_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_standard_home.png; sourceTree = "<group>"; };
 		DCF65D111BE3D07D003B471D /* ChatGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroup.h; sourceTree = "<group>"; };
 		DCF65D121BE3D07D003B471D /* ChatGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroup.m; sourceTree = "<group>"; };
 		DCF65D131BE3D07D003B471D /* ChatConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversation.h; sourceTree = "<group>"; };
@@ -589,20 +565,6 @@
 			name = ChatModel;
 			sourceTree = "<group>";
 		};
-		B2F75C0B1C63CA1000EFBCD2 /* menu icons */ = {
-			isa = PBXGroup;
-			children = (
-				B2A763E91F13A08F0055A7E2 /* logo_labot_1024.png */,
-				B2F75C0C1C63CA2900EFBCD2 /* chat21_help_icon.png */,
-				B2F75C0D1C63CA2900EFBCD2 /* chat21_help_icon@2x.png */,
-				B2F75C0E1C63CA2900EFBCD2 /* chat21_settings_icon.png */,
-				B2F75C0F1C63CA2900EFBCD2 /* chat21_settings_icon@2x.png */,
-				B2F75C141C64F54900EFBCD2 /* chat21_chat_icon.png */,
-				B2F75C151C64F54900EFBCD2 /* chat21_chat_icon@2x.png */,
-			);
-			name = "menu icons";
-			sourceTree = "<group>";
-		};
 		B2F75C181C64FE9900EFBCD2 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,7 +574,7 @@
 			name = sounds;
 			sourceTree = "<group>";
 		};
-		B2FA6FF51C37144A00B46213 /* images */ = {
+		B2FA6FF51C37144A00B46213 /* icons */ = {
 			isa = PBXGroup;
 			children = (
 				B24AD7A81F83E77600A526E9 /* ic_linear_support_gray_01.png */,
@@ -624,7 +586,7 @@
 				B2FA6FF31C37144200B46213 /* chat_check.png */,
 				B2B36F8F1C5AC09600C21AE7 /* chat_double_check.png */,
 			);
-			name = images;
+			name = icons;
 			sourceTree = "<group>";
 		};
 		BFBFD35F1AEA544F00657874 = {
@@ -655,8 +617,6 @@
 			children = (
 				B2F75C181C64FE9900EFBCD2 /* sounds */,
 				DC4A1B8C1BE0B8C700464D0A /* QBPopupMenu */,
-				BFBFD60D1AEAB40500657874 /* images */,
-				BFBFD4561AEA57A300657874 /* Instance-artwork */,
 				BFBFD39A1AEA556200657874 /* APP-Chat */,
 				BFBFD3911AEA54DA00657874 /* SHPAppDelegate.h */,
 				BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */,
@@ -691,19 +651,21 @@
 		BFBFD39A1AEA556200657874 /* APP-Chat */ = {
 			isa = PBXGroup;
 			children = (
-				B297D7971F683AAB0006944F /* Chat.storyboard */,
-				B2FA6FF51C37144A00B46213 /* images */,
 				B2CEBCEB1C1830F200F3516F /* Utility */,
 				B2EF3D801CCCC0FE0074836A /* ChatModel */,
 				BFBFD40B1AEA566100657874 /* ChatController */,
-				BFBFD40A1AEA565400657874 /* ChatView */,
+				BFBFD40A1AEA565400657874 /* ChatUI */,
 			);
 			name = "APP-Chat";
 			sourceTree = "<group>";
 		};
-		BFBFD40A1AEA565400657874 /* ChatView */ = {
+		BFBFD40A1AEA565400657874 /* ChatUI */ = {
 			isa = PBXGroup;
 			children = (
+				DCC254911BD10C6000B2160C /* tabIcons */,
+				BFBFD60D1AEAB40500657874 /* images */,
+				B2FA6FF51C37144A00B46213 /* icons */,
+				B297D7971F683AAB0006944F /* Chat.storyboard */,
 				B2A4C0551FE846E000AED2EE /* UIView+Property.h */,
 				B2A4C0541FE846DF00AED2EE /* UIView+Property.m */,
 				B250D0151F8CD61A00FACFBF /* status_title_ios11.xib */,
@@ -745,7 +707,7 @@
 				B2AA879E1FD87538004FE7E0 /* ChatUIManager.h */,
 				B2AA879F1FD87538004FE7E0 /* ChatUIManager.m */,
 			);
-			name = ChatView;
+			name = ChatUI;
 			sourceTree = "<group>";
 		};
 		BFBFD40B1AEA566100657874 /* ChatController */ = {
@@ -782,14 +744,6 @@
 				B2ED7F001F8E62E4006E3BDA /* ChatGroupsDelegate.h */,
 			);
 			name = ChatController;
-			sourceTree = "<group>";
-		};
-		BFBFD4561AEA57A300657874 /* Instance-artwork */ = {
-			isa = PBXGroup;
-			children = (
-				B2EF3D8C1CD162A40074836A /* group-conversation-avatar.png */,
-			);
-			name = "Instance-artwork";
 			sourceTree = "<group>";
 		};
 		BFBFD48D1AEA58FD00657874 /* MBProgressHUD */ = {
@@ -869,9 +823,8 @@
 		BFBFD60D1AEAB40500657874 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				B2F75C0B1C63CA1000EFBCD2 /* menu icons */,
 				DCF65D571BE3D0AE003B471D /* avatar.png */,
-				DCC254911BD10C6000B2160C /* tab icon */,
+				B2EF3D8C1CD162A40074836A /* group-conversation-avatar.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -906,16 +859,7 @@
 			name = UPStackMenu;
 			sourceTree = "<group>";
 		};
-		DCC254911BD10C6000B2160C /* tab icon */ = {
-			isa = PBXGroup;
-			children = (
-				DCC254931BD10CE900B2160C /* standard */,
-				DCC254921BD10CE200B2160C /* light */,
-			);
-			name = "tab icon";
-			sourceTree = "<group>";
-		};
-		DCC254921BD10CE200B2160C /* light */ = {
+		DCC254911BD10C6000B2160C /* tabIcons */ = {
 			isa = PBXGroup;
 			children = (
 				B2F75C071C63C15400EFBCD2 /* icon_light_profile.png */,
@@ -933,19 +877,7 @@
 				DCC2549E1BD1105900B2160C /* icon_light_home.png */,
 				DCC2549F1BD1105900B2160C /* icon_light_home@2x.png */,
 			);
-			name = light;
-			sourceTree = "<group>";
-		};
-		DCC254931BD10CE900B2160C /* standard */ = {
-			isa = PBXGroup;
-			children = (
-				DCC254C41BD1106D00B2160C /* icon_standard_chat.png */,
-				DCC254C51BD1106D00B2160C /* icon_standard_chat@2x.png */,
-				DCC254C61BD1106D00B2160C /* icon_standard_chat2.png */,
-				DCC254C71BD1106D00B2160C /* icon_standard_chat2@2x.png */,
-				DCC254CA1BD1106D00B2160C /* icon_standard_home.png */,
-			);
-			name = standard;
+			name = tabIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1051,22 +983,16 @@
 			files = (
 				B2F75C1D1C65158F00EFBCD2 /* inline.caf in Resources */,
 				B2F75C1E1C65158F00EFBCD2 /* newnotif.caf in Resources */,
-				B2F75C131C63CA2900EFBCD2 /* chat21_settings_icon@2x.png in Resources */,
 				B23AE8F81F28F54500BEB4B8 /* user-profile-man.jpg in Resources */,
-				B2F75C161C64F54900EFBCD2 /* chat21_chat_icon.png in Resources */,
 				B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */,
-				DCC254E61BD1106D00B2160C /* icon_standard_chat2.png in Resources */,
 				DCC254B21BD1105900B2160C /* icon_light_home.png in Resources */,
 				B2EF3D8D1CD162A40074836A /* group-conversation-avatar.png in Resources */,
-				B2A763EA1F13A08F0055A7E2 /* logo_labot_1024.png in Resources */,
 				B23AE8ED1F278E8800BEB4B8 /* ic_linear_file@3x.png in Resources */,
 				DCC254A81BD1105900B2160C /* icon_light_altro.png in Resources */,
-				DCC254E41BD1106D00B2160C /* icon_standard_chat.png in Resources */,
 				B2348E8B1FE059B100406D81 /* GoogleService-Info.plist in Resources */,
 				DCC254AE1BD1105900B2160C /* icon_light_chat.png in Resources */,
 				DCC254B31BD1105900B2160C /* icon_light_home@2x.png in Resources */,
 				DCC254AD1BD1105900B2160C /* icon_light_cerca@2x.png in Resources */,
-				B2F75C171C64F54900EFBCD2 /* chat21_chat_icon@2x.png in Resources */,
 				DCC254AC1BD1105900B2160C /* icon_light_cerca.png in Resources */,
 				B24AD7AB1F83E77600A526E9 /* ic_linear_support_gray_01.png in Resources */,
 				B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */,
@@ -1077,10 +1003,8 @@
 				B2CE2F411F1CF60C002E2150 /* HelloChat.storyboard in Resources */,
 				B23AE8EC1F278E8800BEB4B8 /* ic_linear_file@2x.png in Resources */,
 				B2F75C0A1C63C15400EFBCD2 /* icon_light_profile@2x.png in Resources */,
-				B2F75C111C63CA2900EFBCD2 /* chat21_help_icon@2x.png in Resources */,
 				DC2BD6BF1BD9346D00E2C289 /* icon_light_watch@2x.png in Resources */,
 				B23AE8EF1F278E8800BEB4B8 /* ic_linear_home@2x.png in Resources */,
-				DCC254E71BD1106D00B2160C /* icon_standard_chat2@2x.png in Resources */,
 				B2EF3D6F1CC226C10074836A /* notification_view.xib in Resources */,
 				B23AE8F01F278E8800BEB4B8 /* ic_linear_home@3x.png in Resources */,
 				B2DB07A61FD3E3640062E8D0 /* Help_request.storyboard in Resources */,
@@ -1090,14 +1014,11 @@
 				B2FA70011C37C7BC00B46213 /* chat_failed.png in Resources */,
 				DCC254AF1BD1105900B2160C /* icon_light_chat@2x.png in Resources */,
 				B23AE8F31F278E8800BEB4B8 /* ic_linear_profile@3x.png in Resources */,
-				B2F75C101C63CA2900EFBCD2 /* chat21_help_icon.png in Resources */,
 				B297D7981F683AAB0006944F /* Chat.storyboard in Resources */,
 				B2FA6FF41C37144200B46213 /* chat_check.png in Resources */,
-				B2F75C121C63CA2900EFBCD2 /* chat21_settings_icon.png in Resources */,
 				B23AE8F11F278E8800BEB4B8 /* ic_linear_profile.png in Resources */,
 				DCC254A91BD1105900B2160C /* icon_light_altro@2x.png in Resources */,
 				DCF65D581BE3D0AE003B471D /* avatar.png in Resources */,
-				DCC254EA1BD1106D00B2160C /* icon_standard_home.png in Resources */,
 				B23AE8F21F278E8800BEB4B8 /* ic_linear_profile@2x.png in Resources */,
 				B24AD7AC1F83E77600A526E9 /* ic_linear_support_gray_01@2x.png in Resources */,
 				B23AE8EE1F278E8800BEB4B8 /* ic_linear_home.png in Resources */,
@@ -1109,7 +1030,6 @@
 				B23AE8E91F278E8800BEB4B8 /* ic_linear_chat@2x.png in Resources */,
 				B24AD7C11F86392700A526E9 /* help-info.plist in Resources */,
 				B2F75C091C63C15400EFBCD2 /* icon_light_profile.png in Resources */,
-				DCC254E51BD1106D00B2160C /* icon_standard_chat@2x.png in Resources */,
 				B23AE8EB1F278E8800BEB4B8 /* ic_linear_file.png in Resources */,
 				B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */,
 			);
