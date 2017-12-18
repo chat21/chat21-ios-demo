@@ -9,7 +9,7 @@
 #import "HelloRegisterTVC.h"
 #import "MBProgressHUD.h"
 #import "SHPApplicationContext.h"
-#import "SHPUser.h"
+#import "HelloUser.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
 #import "HelloChatUtil.h"
@@ -85,7 +85,7 @@
              NSLog(@"User %@ successfully created.", email);
              // AGGIUNGERE FIRSTNAME E LASTNAME IN CONTACTS
              
-             SHPUser *signedUser = [[SHPUser alloc] init];
+             HelloUser *signedUser = [[HelloUser alloc] init];
              signedUser.userid = fir_user.uid;
              signedUser.username = fir_user.uid;
              signedUser.email = email;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHPFirebaseTokenDelegate.h"
+//#import "SHPFirebaseTokenDelegate.h"
 #import "ChatGroupsDelegate.h"
 
 @import Firebase;

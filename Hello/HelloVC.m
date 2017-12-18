@@ -7,10 +7,12 @@
 //
 
 #import "HelloVC.h"
-#import "SHPUser.h"
+#import "HelloUser.h"
 #import "SHPAppDelegate.h"
 #import "SHPApplicationContext.h"
 #import "HelloAuthTVC.h"
+#import "SHPAppDelegate.h"
+#import "SHPApplicationContext.h"
 
 @interface HelloVC ()
 
@@ -20,7 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+    self.appName.text = [app.applicationContext.plistDictionary objectForKey:@"app-name"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,7 +34,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     // here just to reduce the time that home controller is visible during signin out.
     SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-    SHPUser *loggedUser = appDelegate.applicationContext.loggedUser;
+    HelloUser *loggedUser = appDelegate.applicationContext.loggedUser;
     if (!loggedUser) {
         [self showLoginView];
         return;

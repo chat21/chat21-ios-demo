@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChatUsersDC.h"
+//#import "ChatUsersDC.h"
 #import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
 #import "ChatSynchDelegate.h"

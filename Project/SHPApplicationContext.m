@@ -9,11 +9,10 @@
 #import "SHPApplicationContext.h"
 #import "SHPCaching.h"
 #import "SHPAuth.h"
-#import "SHPUser.h"
-#import "SHPConstants.h"
-#import "SHPSendTokenDC.h"
+#import "HelloUser.h"
+//#import "SHPConstants.h"
 #import "SHPAppDelegate.h"
-#import "Firebase/Firebase.h"
+//#import "Firebase/Firebase.h"
 #import "ChatConversationHandler.h"
 #import "ChatConversationsVC.h"
 
@@ -101,9 +100,9 @@ static SHPApplicationContext *sharedInstance = nil;
     return !first_launch;
 }
 
--(void)saveOnDiskData {
-    [SHPCaching saveDictionary:self.onDiskData inFile:SHPCONST_LAST_DATA_FILE_NAME];
-}
+//-(void)saveOnDiskData {
+//    [SHPCaching saveDictionary:self.onDiskData inFile:SHPCONST_LAST_DATA_FILE_NAME];
+//}
 
 +(int)tabIndexByName:(NSString *)tab_name {
     SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];

@@ -10,7 +10,7 @@
 
 //#import "MessagesViewController.h"
 #import "ChatMessage.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "ChatUtil.h"
 #import "ChatDB.h"
 #import "ChatConversation.h"
@@ -24,15 +24,14 @@
 #import "GroupInfoVC.h"
 #import "QBPopupMenu.h"
 #import "QBPopupMenuItem.h"
-#import "SHPHomeProfileTVC.h"
 #import "ChatTitleVC.h"
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
 #import "ChatMessagesTVC.h"
 #import "ChatGroup.h"
 #import "ChatStatusTitle.h"
-#import <DropboxSDK/DropboxSDK.h>
-#import <DBChooser/DBChooser.h>
+//#import <DropboxSDK/DropboxSDK.h>
+//#import <DBChooser/DBChooser.h>
 #import "SHPAppDelegate.h"
 #import "ChatGroupsHandler.h"
 #import "HelloChatUtil.h"
@@ -560,7 +559,6 @@
     } else if (self.tapToDismissKB) {
         [self.view removeGestureRecognizer:self.tapToDismissKB];
     }
-    
 }
 
 - (IBAction)addContentAction:(id)sender {
@@ -603,36 +601,36 @@
 //    [self presentViewController:view animated:YES completion:nil];
 }
 
--(void)openDropbox {
-    [[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypePreview
-                                    fromViewController:self completion:^(NSArray *results)
-     {
-         if ([results count]) {
-             // Process results from Chooser
-             DBChooserResult *r = results[0];
-             //             NSLog(@"r.name %@", r.name);
-             //             NSLog(@"r.link %@", r.link);
-             //             NSLog(@"r.size %lld", r.size);
-             //             NSLog(@"r.iconURL %@", r.iconURL);
-             NSDictionary *thumbs = r.thumbnails;
-             //             if (thumbs) {
-             //                 NSArray*keys=[thumbs allKeys];
-             //                 for (NSObject *k in keys) {
-             //                     NSLog(@"r.thumb[%@]: %@", k, thumbs[k]);
-             //                 }
-             //                 NSLog(@"r.thumbs.64x64px %@", thumbs[@"64x64"]);
-             //                 NSLog(@"r.thumbs.200x200px %@", thumbs[@"200x200"]);
-             //                 NSLog(@"r.thumbs.640x480px %@", thumbs[@"640x480"]);
-             //             } else {
-             //                 NSLog(@"No r.thumbs");
-             //             }
-             [self sendDropboxMessage:r.name link:[r.link absoluteString] size:[NSNumber numberWithLongLong:r.size] iconURL:[r.iconURL absoluteString] thumbs:thumbs];
-         } else {
-             // User canceled the action
-             NSLog(@"Action canceled");
-         }
-     }];
-}
+//-(void)openDropbox {
+//    [[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypePreview
+//                                    fromViewController:self completion:^(NSArray *results)
+//     {
+//         if ([results count]) {
+//             // Process results from Chooser
+//             DBChooserResult *r = results[0];
+//             //             NSLog(@"r.name %@", r.name);
+//             //             NSLog(@"r.link %@", r.link);
+//             //             NSLog(@"r.size %lld", r.size);
+//             //             NSLog(@"r.iconURL %@", r.iconURL);
+//             NSDictionary *thumbs = r.thumbnails;
+//             //             if (thumbs) {
+//             //                 NSArray*keys=[thumbs allKeys];
+//             //                 for (NSObject *k in keys) {
+//             //                     NSLog(@"r.thumb[%@]: %@", k, thumbs[k]);
+//             //                 }
+//             //                 NSLog(@"r.thumbs.64x64px %@", thumbs[@"64x64"]);
+//             //                 NSLog(@"r.thumbs.200x200px %@", thumbs[@"200x200"]);
+//             //                 NSLog(@"r.thumbs.640x480px %@", thumbs[@"640x480"]);
+//             //             } else {
+//             //                 NSLog(@"No r.thumbs");
+//             //             }
+//             [self sendDropboxMessage:r.name link:[r.link absoluteString] size:[NSNumber numberWithLongLong:r.size] iconURL:[r.iconURL absoluteString] thumbs:thumbs];
+//         } else {
+//             // User canceled the action
+//             NSLog(@"Action canceled");
+//         }
+//     }];
+//}
 
 //-(void)selectedDocument:(AlfrescoNode *)document {
 //    NSLog(@"Document selected %@ url: %@", document.name, [DocNavigatorTVC documentURLByNode:document]);

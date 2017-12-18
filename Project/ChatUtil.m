@@ -85,7 +85,7 @@ static NotificationAlertView *notificationAlertInstance = nil;
 
 +(NSString *)conversationPathForUser:(NSString *)user_id conversationId:(NSString *)conversationId {
     // path: apps/{tenant}/users/{userdId}/conversations/{conversationId}
-    NSString *tenant = [ChatManager getInstance].tenant; //[settings_config objectForKey:@"tenantName"];
+    NSString *tenant = [ChatManager getInstance].tenant;
     NSString *conversation_path = [[NSString alloc] initWithFormat:@"apps/%@/users/%@/conversations/%@",tenant, user_id, conversationId];
     return conversation_path;
 }

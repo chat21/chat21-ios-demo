@@ -7,11 +7,11 @@
 //
 
 #import "ChatConversationsHandler.h"
-#import "SHPFirebaseTokenDC.h"
+//#import "SHPFirebaseTokenDC.h"
 #import "SHPApplicationContext.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "ChatUtil.h"
-#import <Firebase/Firebase.h>
+//#import <Firebase/Firebase.h>
 #import "ChatConversation.h"
 #import "SHPConversationsViewDelegate.h"
 #import "ChatDB.h"

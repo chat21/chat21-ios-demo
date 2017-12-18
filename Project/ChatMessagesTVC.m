@@ -18,7 +18,7 @@
 #import "ChatUtil.h"
 #import "ChatMiniBrowserVC.h"
 #import "SHPApplicationContext.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "ChatUser.h"
 
 @interface ChatMessagesTVC ()
@@ -776,15 +776,15 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepareForSegue: %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"webView"]) {
         ChatMiniBrowserVC *vc = (ChatMiniBrowserVC *)[segue destinationViewController];
         vc.hiddenToolBar = YES;
         vc.titlePage = @"";
-        SHPApplicationContext *app = [SHPApplicationContext getSharedInstance];
-        vc.username = app.loggedUser.username;
-        vc.password = app.loggedUser.password;
+//        SHPApplicationContext *app = [SHPApplicationContext getSharedInstance];
+//        vc.username = app.loggedUser.username;
+//        vc.password = app.loggedUser.password;
         vc.urlPage = self.selectedHighlightLink;
     }
 }

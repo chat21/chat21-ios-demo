@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <Firebase/Firebase.h>
-#import "SHPFirebaseTokenDelegate.h"
+////#import <Firebase/Firebase.h>
+//#import "SHPFirebaseTokenDelegate.h"
 #import "SHPChatDelegate.h"
 #import "SHPImageDownloader.h"
 #import "QBPopupMenu.h"
@@ -16,15 +16,10 @@
 
 @import Firebase;
 
-//@class SHPApplicationContext;
 @class FAuthData;
 @class FirebaseCustomAuthHelper;
-//@class Firebase;
-//@class SHPUser;
 @class ChatConversationHandler;
-//@class ChatConversationsVC;
 @class  QBPopupMenu;
-//@class SHPHomeProfileTVC;
 @class ChatImageCache;
 @class ChatMessagesTVC;
 @class ChatTitleVC;

@@ -7,8 +7,8 @@
 //
 
 #import "ChatGroupsHandler.h"
-#import "SHPFirebaseTokenDC.h"
-#import "SHPUser.h"
+//#import "SHPFirebaseTokenDC.h"
+//#import "SHPUser.h"
 #import "ChatUtil.h"
 #import <Firebase/Firebase.h>
 #import "ChatGroup.h"

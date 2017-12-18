@@ -10,12 +10,11 @@
 #import "ChatUser.h"
 #import "SHPAppDelegate.h"
 #import "SHPApplicationContext.h"
-#import "SHPUser.h"
+#import "HelloUser.h"
 #import "ChatManager.h"
-//#import "FirebaseAuth.h"
 #import "ChatUIManager.h"
-#import "SHPHomeProfileTVC.h"
 #import "ChatMessagesVC.h"
+#import "HelloUserProfileTVC.h"
 
 @import Firebase;
 
@@ -27,7 +26,7 @@
     chatUser.userId = app.applicationContext.loggedUser.userid;
     chatUser.firstname = app.applicationContext.loggedUser.firstName;
     chatUser.lastname = app.applicationContext.loggedUser.lastName;
-    chatUser.email = app.applicationContext.loggedUser.email;
+    
     ChatManager *chat = [ChatManager getInstance];
     [chat startWithUser:chatUser];
     NSLog(@"Updates user from local contacts synch...");
@@ -43,11 +42,15 @@
     }];
     // plug the profile view
     [ChatUIManager getInstance].pushProfileCallback = ^(ChatUser *user, ChatMessagesVC *vc) {
-        UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-        UINavigationController *profileNC = [profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
-        SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[profileNC viewControllers] objectAtIndex:0];
-        profileVC.otherUser = user;
-        NSLog(@"self.profileVC.otherUser %@ fullname: %@", profileVC.otherUser.userId, profileVC.otherUser.fullname);
+        UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"HelloChat" bundle:nil];
+        UINavigationController *profileNC = [profileSB instantiateViewControllerWithIdentifier:@"user-profile-vc"];
+        HelloUserProfileTVC *profileVC = (HelloUserProfileTVC *)[[profileNC viewControllers] objectAtIndex:0];
+        HelloUser *hello_user = [[HelloUser alloc] init];
+        hello_user.userid = user.userId;
+        hello_user.username = user.userId;
+        hello_user.fullName = user.fullname;
+        NSLog(@"fullname: %@", user.fullname);
+        profileVC.user = hello_user;
         [vc.navigationController pushViewController:profileVC animated:YES];
     };
     // plug the contact selection view

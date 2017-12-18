@@ -9,7 +9,7 @@
 #import "ChatMiniBrowserVC.h"
 #import "SHPApplicationContext.h"
 //#import "SHPSelectUserVC.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
 

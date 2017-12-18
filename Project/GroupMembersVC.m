@@ -10,9 +10,9 @@
 #import "SHPApplicationContext.h"
 #import "ChatManager.h"
 #import "ChatGroup.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "ChatUtil.h"
-#import "SHPHomeProfileTVC.h"
+//#import "SHPHomeProfileTVC.h"
 //#import "SHPSelectUserVC.h"
 #import "ChatImageCache.h"
 #import "SHPAppDelegate.h"
@@ -50,15 +50,15 @@
 
 -(void)initImageCache {
     // cache setup
-    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
-    if (!self.imageCache) {
-        self.imageCache = [[ChatImageCache alloc] init];
-        self.imageCache.cacheName = @"chatUserIcons";
-        // test
-        // [self.imageCache listAllImagesFromDisk];
-        // [self.imageCache empty];
-        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
-    }
+//    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
+//    if (!self.imageCache) {
+//        self.imageCache = [[ChatImageCache alloc] init];
+//        self.imageCache.cacheName = @"chatUserIcons";
+//        // test
+//        // [self.imageCache listAllImagesFromDisk];
+//        // [self.imageCache empty];
+//        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
+//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -73,10 +73,7 @@
 }
 
 -(void)showMemberMenu:(NSIndexPath *)indexPath {
-    
-    NSLog(@"owner %@ logged %@",self.group.owner, self.applicationContext.loggedUser.username);
     NSString *memberId = [self.members_array objectAtIndex:indexPath.row];
-    
     UIAlertController *view = [UIAlertController
                                  alertControllerWithTitle:nil
                                  message:memberId
@@ -162,15 +159,15 @@
 }
 
 -(void)goToProfileOf:(NSString *)userId {
-    UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-    UINavigationController *profileNC = [profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
-    SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[profileNC viewControllers] objectAtIndex:0];
-    profileVC.applicationContext = self.applicationContext;
-    ChatUser *user = [[ChatUser alloc] init];
-    user.userId = userId;
-    profileVC.otherUser = user;
-    NSLog(@"self.profileVC.otherUser %@", profileVC.otherUser.userId);
-    [self.navigationController pushViewController:profileVC animated:YES];
+//    UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+//    UINavigationController *profileNC = [profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
+//    SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[profileNC viewControllers] objectAtIndex:0];
+//    profileVC.applicationContext = self.applicationContext;
+//    ChatUser *user = [[ChatUser alloc] init];
+//    user.userId = userId;
+//    profileVC.otherUser = user;
+//    NSLog(@"self.profileVC.otherUser %@", profileVC.otherUser.userId);
+//    [self.navigationController pushViewController:profileVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

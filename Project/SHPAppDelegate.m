@@ -10,22 +10,20 @@
 #import "SHPApplicationContext.h"
 #import "SHPApplicationSettings.h"
 #import "SHPCaching.h"
-#import "SHPConstants.h"
-#import "SHPUser.h"
+//#import "SHPConstants.h"
+#import "HelloUser.h"
 #import "SHPAuth.h"
 #import "SHPConnectionsController.h"
 #import "SHPObjectCache.h"
 #import "SHPStringUtil.h"
-#import "SHPSendTokenDC.h"
-#import "MBProgressHUD.h"
 #import "SHPImageUtil.h"
 #import "ChatManager.h"
 #import "ChatUtil.h"
 #import "ChatConversationsVC.h"
 #import "ChatRootNC.h"
 #import "ChatUtil.h"
-#import <DropboxSDK/DropboxSDK.h>
-#import <DBChooser/DBChooser.h>
+//#import <DropboxSDK/DropboxSDK.h>
+//#import <DBChooser/DBChooser.h>
 #import <UserNotifications/UserNotifications.h>
 #import "HelloAuthTVC.h"
 #import "ChatContactsSynchronizer.h"
@@ -61,18 +59,11 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
     NSDictionary *plistDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
     self.applicationContext.plistDictionary=plistDictionary;
-    
-    // Dropbox config
-    DBSession *dbSession = [[DBSession alloc]
-                            initWithAppKey:@"shde1onequju17t"
-                            appSecret:@"088r90aufcja66q"
-                            root:kDBRootDropbox]; // either kDBRootAppFolder or kDBRootDropbox
-    [DBSession setSharedSession:dbSession];
-    
+        
     // chat config
-    NSDictionary *settings_config = [plistDictionary objectForKey:@"Config"];
-    NSString *tenant = [settings_config objectForKey:@"tenantName"];
-    self.applicationContext.tenant = tenant;
+    NSString *tenant = [plistDictionary objectForKey:@"chat-app-id"];
+//    NSString *tenant = [settings_config objectForKey:@"tenantName"];
+//    self.applicationContext.tenant = tenant;
     [self initUser];
     NSLog(@"SAVED LOGGED USER: %@", self.applicationContext.loggedUser);
     
@@ -215,41 +206,17 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 //}
 
 
--(ChatUser *)chatUserBy:(SHPUser *)shp_user {
-    if (!shp_user) {
+-(ChatUser *)chatUserBy:(HelloUser *)hello_user {
+    if (!hello_user) {
         return nil;
     }
     ChatUser *user = [[ChatUser alloc] init];
-    user.userId = shp_user.username;
-    user.fullname = shp_user.fullName;
-    user.email = shp_user.email;
-    user.password = shp_user.password;
+    user.userId = hello_user.username;
+    user.fullname = hello_user.fullName;
+    user.email = hello_user.email;
+    user.password = hello_user.password;
     return user;
 }
-
-//-(BOOL) checkPushNotificationsActive {
-
-
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert
-//                                                                                         | UIUserNotificationTypeBadge
-//                                                                                         | UIUserNotificationTypeSound) categories:nil];
-//    if (settings.types & UIUserNotificationTypeAlert) {
-//        return YES;
-//    }
-//    return NO;
-
-
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-//    {
-//        return ([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]);
-//    }
-//    else
-//    {
-//        UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-//        return (types & UIRemoteNotificationTypeAlert);
-//    }
-
-//}
 
 
 -(void)startPushNotifications {
@@ -357,65 +324,6 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     }
 }
 
-//-(void)TESTloadGroupTEST:(NSString *)group_id try:(NSInteger)tryCount {
-//    [DocChatUtil firebaseAuth:self.applicationContext.loggedUser.username password:self.applicationContext.loggedUser.password completion:^(NSError *error) {
-//        NSLog(@"Successfully Firebase signedin on didiFinishWithOptions.");
-//        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-//        NSString *groups_path = [ChatUtil groupsPath];
-//        NSString *path = [[NSString alloc] initWithFormat:@"%@/%@", groups_path, group_id];
-//        NSLog(@"Load Group on path: %@", path);
-//        FIRDatabaseReference *groupRef = [rootRef child:path];
-//        NSLog(@"groupRef = %@", groupRef);
-//        //        [[groupRef child:@"ATTONICOTTO-PRIMO-SCRITTO"] setValue:@"PAPERO" withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//        //            NSLog(@"DATA OK! error: %@, ref: %@", error, ref);
-//
-//        [groupRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//            NSLog(@"NEW GROUP SNAPSHOT::: %@ refStatic: %@", snapshot, groupRef);
-//            if (snapshot.value == [NSNull null]) {
-//                NSLog(@"group snapshot null.");
-//                if (tryCount == 1) {
-//                    NSLog(@"Trying second time.");
-//                    [self TESTloadGroupTEST:group_id try:2];
-//                }
-//                else {
-//                    NSLog(@"Second load also failed. Error loading group.");
-//                }
-//            }
-//            else {
-//                NSLog(@"group successfully loaded. %@", snapshot);
-//            }
-//        } withCancelBlock:^(NSError *error) {
-//            NSLog(@"%@", error.description);
-//        }];
-//        //        }];
-//    }];
-//}
-
-//-(void)TESTloadGroupTEST2:(NSString *)group_id {
-//    [DocChatUtil firebaseAuth:self.applicationContext.loggedUser.username password:self.applicationContext.loggedUser.password completion:^(NSError *error) {
-//        NSLog(@"Successfully Firebase signedin on didiFinishWithOptions.");
-//        FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-//        NSString *groups_path = [ChatUtil groupsPath];
-//        NSString *path = [[NSString alloc] initWithFormat:@"%@/%@", groups_path, group_id];
-//        NSLog(@"Load Group on path: %@", path);
-//        path = @"/apps/bppintranet/users/andrea_sponziello/groups/-KygHDFpdmWY-pUU9RWW";
-//        FIRDatabaseReference *groupRef = [rootRef child:path];
-//        NSLog(@"groupRef = %@", groupRef);
-////        [[groupRef child:@"ATTONICOTTO-PRIMO-SCRITTO"] setValue:@"PAPERO" withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-////            NSLog(@"DATA OK! error: %@, ref: %@", error, ref);
-//            [groupRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//                NSLog(@"NEW GROUP SNAPSHOT: -Kyg9MjuhYVn_qszgVrA >>> %@ refStatic: %@", snapshot, groupRef);
-//                if (snapshot.value == [NSNull null]) {
-//                    NSLog(@"snapshot2 is null!");
-//                }
-//                [self TESTloadGroupTEST:group_id];
-//            } withCancelBlock:^(NSError *error) {
-//                NSLog(@"%@", error.description);
-//            }];
-////        }];
-//    }];
-//}
-
 // #notificationsworkflow
 // Delegation methods
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
@@ -466,24 +374,6 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     // TODO: If necessary send token to appliation server.
 }
 // [END refresh_token]
-
-// [START connect_to_fcm]
-//- (void)connectToFcm {
-//    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-//        if (error != nil) {
-//            NSLog(@"Unable to connect to FCM. %@", error);
-//        } else {
-//            NSLog(@"Connected to FCM.");
-//        }
-//    }];
-//}
-// [END connect_to_fcm]
-
-//// REMOVE
-//-(void)downloadLoggedUserData {
-//    // REMOVE
-//    NSLog(@"Loading Logged User Data...");
-//}
 
 -(void)buildTabBar {
     NSLog(@"Building tabbar...");
@@ -651,15 +541,6 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
         NSLog(@"Registering for remote notifications...");
         [application registerForRemoteNotifications];
     }
-    
-    // http://stackoverflow.com/questions/4443817/how-to-know-when-a-uiviewcontroller-view-is-shown-after-being-in-the-background
-    
-    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-    UINavigationController *navc = (UINavigationController *)[tabController selectedViewController];
-    UIViewController *topvc = [navc topViewController];
-    if ([topvc respondsToSelector:@selector(viewControllerDidBecomeActive)]) {
-        [topvc performSelector:@selector(viewControllerDidBecomeActive)];
-    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -670,10 +551,6 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
     NSLog(@"App >> applicationDidReceiveMemoryWarning. Caches empting...");
-    [self.applicationContext.productDetailImageCache empty];
-    [self.applicationContext.mainListImageCache empty];
-    [self.applicationContext.smallImagesCache empty];
-    [self.applicationContext.categoryIconsCache empty];
 }
 
 //-(BOOL)application:(UIApplication *)application

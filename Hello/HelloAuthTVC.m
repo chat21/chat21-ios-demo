@@ -9,7 +9,7 @@
 #import "HelloAuthTVC.h"
 //#import "AlfrescoRepositorySession.h"
 #import "SHPApplicationContext.h"
-#import "SHPUser.h"
+#import "HelloUser.h"
 //#import "FirebaseAuth.h"
 #import "MBProgressHUD.h"
 //#import "AlfrescoUsersDC.h"
@@ -147,7 +147,7 @@
         else {
             NSLog(@"Firebase auth ok.");
             
-            SHPUser *signedUser = [[SHPUser alloc] init];
+            HelloUser *signedUser = [[HelloUser alloc] init];
             signedUser.userid = fir_user.uid;
             signedUser.username = fir_user.uid;
             signedUser.email = email;

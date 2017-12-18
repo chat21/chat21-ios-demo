@@ -20,7 +20,7 @@
 #import "ChatImageWrapper.h"
 #import "SHPImageRequest.h"
 #import "ChatChangeGroupNameVC.h"
-#import "SHPUser.h"
+#import "ChatUser.h"
 
 @interface GroupInfoVC ()
 
@@ -58,16 +58,16 @@
 }
 
 -(void)initImageCache {
-    // cache setup
-    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
-    if (!self.imageCache) {
-        self.imageCache = [[ChatImageCache alloc] init];
-        self.imageCache.cacheName = @"chatUserIcons";
-        // test
-        // [self.imageCache listAllImagesFromDisk];
-        // [self.imageCache empty];
-        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
-    }
+//    // cache setup
+//    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
+//    if (!self.imageCache) {
+//        self.imageCache = [[ChatImageCache alloc] init];
+//        self.imageCache.cacheName = @"chatUserIcons";
+//        // test
+//        // [self.imageCache listAllImagesFromDisk];
+//        // [self.imageCache empty];
+//        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
+//    }
 }
 
 -(void)setupImage {
@@ -137,8 +137,8 @@
 - (void)tapImage:(UITapGestureRecognizer *)gesture {
     //    UIImageView* imageView = (UIImageView*)gesture.view;
     NSLog(@"tapped");
-    
-    if (![self.applicationContext.loggedUser.username isEqualToString:self.group.owner]) {
+    ChatManager *chat = [ChatManager getInstance];
+    if (![chat.loggedUser.userId isEqualToString:self.group.owner]) {
         return;
     }
     
@@ -244,7 +244,8 @@
     NSInteger index = indexPath.row;
     if (index == 0) {
         NSLog(@"cambio nome");
-        if ([self.applicationContext.loggedUser.username isEqualToString:self.group.owner]) {
+        ChatManager *chat = [ChatManager getInstance];
+        if ([chat.loggedUser.userId isEqualToString:self.group.owner]) {
             [self performSegueWithIdentifier:@"ChangeGroupName" sender:self];
         }
     }

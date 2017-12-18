@@ -8,7 +8,6 @@
 
 #import "CellConfigurator.h"
 #import "ChatConversation.h"
-#import "SHPUser.h"
 #import "ChatImageCache.h"
 #import "ChatConversationsVC.h"
 #import "ChatImageWrapper.h"
@@ -147,7 +146,7 @@
     
     // CONVERSATION IMAGE
     UIImageView *image_view = (UIImageView *)[cell viewWithTag:1];
-    NSString *imageURL = [SHPUser photoUrlByUsername:conversation.conversWith];
+    NSString *imageURL = @""; //[SHPUser photoUrlByUsername:conversation.conversWith];
     ChatImageWrapper *cached_image_wrap = (ChatImageWrapper *)[vc.imageCache getImage:imageURL];
     UIImage *user_image = cached_image_wrap.image;
     if(!cached_image_wrap) { // user_image == nil if image saving gone wrong!

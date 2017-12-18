@@ -8,10 +8,10 @@
 
 #import "ChatSelectUserLocalVC.h"
 
-#import "SHPSearchUsersLoader.h"
+//#import "SHPSearchUsersLoader.h"
 #import "SHPApplicationContext.h"
 //#import "SHPUserDC.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
 #import "SHPImageUtil.h"
@@ -115,16 +115,16 @@
 }
 
 -(void)initImageCache {
-    // cache setup
-    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
-    if (!self.imageCache) {
-        self.imageCache = [[ChatImageCache alloc] init];
-        self.imageCache.cacheName = @"chatUserIcons";
-        // test
-        // [self.imageCache listAllImagesFromDisk];
-        // [self.imageCache empty];
-        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
-    }
+//    // cache setup
+//    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
+//    if (!self.imageCache) {
+//        self.imageCache = [[ChatImageCache alloc] init];
+//        self.imageCache.cacheName = @"chatUserIcons";
+//        // test
+//        // [self.imageCache listAllImagesFromDisk];
+//        // [self.imageCache empty];
+//        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
+//    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {

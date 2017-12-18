@@ -7,9 +7,9 @@
 //
 
 #import "ChatPresenceHandler.h"
-#import "SHPFirebaseTokenDC.h"
+//#import "SHPFirebaseTokenDC.h"
 #import "SHPApplicationContext.h"
-#import "SHPUser.h"
+//#import "SHPUser.h"
 #import "ChatUtil.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
