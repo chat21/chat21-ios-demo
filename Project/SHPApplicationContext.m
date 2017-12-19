@@ -7,7 +7,7 @@
 //
 
 #import "SHPApplicationContext.h"
-#import "SHPAuth.h"
+#import "HelloAuth.h"
 #import "HelloUser.h"
 #import "SHPAppDelegate.h"
 #import "ChatConversationHandler.h"
@@ -51,7 +51,7 @@ static SHPApplicationContext *sharedInstance = nil;
 }
 
 - (void)signout {
-    [SHPAuth deleteLoggedUser];
+    [HelloAuth deleteLoggedUser];
     self.loggedUser = nil;
 }
 
@@ -72,13 +72,13 @@ static SHPApplicationContext *sharedInstance = nil;
 //    }
 //}
 
--(void)signin:(SHPUser *)user {
+-(void)signin:(HelloUser *)user {
     // save the user
     //KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"YourAppLogin" accessGroup:nil];
     //pod 'KeychainItemWrapper'
     
-    [SHPAuth deleteLoggedUser];
-    [SHPAuth saveLoggedUser:user];
+    [HelloAuth deleteLoggedUser];
+    [HelloAuth saveLoggedUser:user];
     // update context
     self.loggedUser = user;
     NSLog(@"%@ signed in.", self.loggedUser.username);

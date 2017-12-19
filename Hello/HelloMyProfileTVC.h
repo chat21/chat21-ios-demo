@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 - (IBAction)logoutAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *useridLabel;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 - (IBAction)helpAction:(id)sender;

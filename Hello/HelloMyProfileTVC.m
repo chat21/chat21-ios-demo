@@ -87,6 +87,8 @@
     [super viewWillAppear:animated];
     HelloUser *loggedUser = [SHPApplicationContext getSharedInstance].loggedUser;
     self.usernameLabel.text = loggedUser.username;
+    self.useridLabel.text = loggedUser.userid;
+    self.emailLabel.text = loggedUser.email;
     self.fullNameLabel.text = loggedUser.displayName;
 }
 

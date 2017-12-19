@@ -12,7 +12,7 @@
 #import "SHPCaching.h"
 //#import "SHPConstants.h"
 #import "HelloUser.h"
-#import "SHPAuth.h"
+#import "HelloAuth.h"
 #import "SHPConnectionsController.h"
 #import "SHPObjectCache.h"
 #import "SHPStringUtil.h"
@@ -498,7 +498,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 //}
 
 -(void)initUser {
-    SHPUser *user = [SHPAuth restoreSavedUser];
+    HelloUser *user = [HelloAuth restoreSavedUser];
     if (user) {
         self.applicationContext.loggedUser = user;
     } else {

@@ -132,7 +132,7 @@
 		BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */; };
 		BFBFD5561AEA7F6700657874 /* SHPUserInterfaceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5551AEA7F6700657874 /* SHPUserInterfaceUtil.m */; };
 		BFBFD55D1AEA80A400657874 /* SHPStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */; };
-		BFBFD5601AEA80CC00657874 /* SHPAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55F1AEA80CC00657874 /* SHPAuth.m */; };
+		BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55F1AEA80CC00657874 /* HelloAuth.m */; };
 		BFBFD5631AEA810F00657874 /* SHPConnectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5621AEA810F00657874 /* SHPConnectionsController.m */; };
 		BFBFD5661AEA811D00657874 /* SHPObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5651AEA811D00657874 /* SHPObjectCache.m */; };
 		BFBFD5721AEA81A200657874 /* SHPIconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5711AEA81A200657874 /* SHPIconDownloader.m */; };
@@ -348,8 +348,8 @@
 		BFBFD5551AEA7F6700657874 /* SHPUserInterfaceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPUserInterfaceUtil.m; sourceTree = "<group>"; };
 		BFBFD55B1AEA80A400657874 /* SHPStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPStringUtil.h; sourceTree = "<group>"; };
 		BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPStringUtil.m; sourceTree = "<group>"; };
-		BFBFD55E1AEA80CC00657874 /* SHPAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPAuth.h; sourceTree = "<group>"; };
-		BFBFD55F1AEA80CC00657874 /* SHPAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPAuth.m; sourceTree = "<group>"; };
+		BFBFD55E1AEA80CC00657874 /* HelloAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloAuth.h; sourceTree = "<group>"; };
+		BFBFD55F1AEA80CC00657874 /* HelloAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloAuth.m; sourceTree = "<group>"; };
 		BFBFD5611AEA810F00657874 /* SHPConnectionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPConnectionsController.h; sourceTree = "<group>"; };
 		BFBFD5621AEA810F00657874 /* SHPConnectionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPConnectionsController.m; sourceTree = "<group>"; };
 		BFBFD5641AEA811D00657874 /* SHPObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPObjectCache.h; sourceTree = "<group>"; };
@@ -545,6 +545,8 @@
 				B2CE2F401F1CF60C002E2150 /* HelloChat.storyboard */,
 				B2C7CB9C1FDAFD1300F2EFFE /* HelloVC.h */,
 				B2C7CB9B1FDAFD1300F2EFFE /* HelloVC.m */,
+				BFBFD4B61AEA598000657874 /* HelloUser.h */,
+				BFBFD4B71AEA598000657874 /* HelloUser.m */,
 				B2BC945D1F1F68EF000DDF52 /* HelloAuthTVC.h */,
 				B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */,
 				B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */,
@@ -555,6 +557,8 @@
 				B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */,
 				B23A81291F95D31E001344C0 /* HelloChatUtil.h */,
 				B23A812A1F95D31E001344C0 /* HelloChatUtil.m */,
+				BFBFD55E1AEA80CC00657874 /* HelloAuth.h */,
+				BFBFD55F1AEA80CC00657874 /* HelloAuth.m */,
 			);
 			path = Hello;
 			sourceTree = "<group>";
@@ -639,8 +643,6 @@
 				BFBFD39A1AEA556200657874 /* APP-Chat */,
 				BFBFD3911AEA54DA00657874 /* SHPAppDelegate.h */,
 				BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */,
-				BFBFD4B61AEA598000657874 /* HelloUser.h */,
-				BFBFD4B71AEA598000657874 /* HelloUser.m */,
 				B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */,
 				B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */,
 				BFBFD4911AEA591100657874 /* Util */,
@@ -788,8 +790,6 @@
 				BFBFD5551AEA7F6700657874 /* SHPUserInterfaceUtil.m */,
 				BFBFD55B1AEA80A400657874 /* SHPStringUtil.h */,
 				BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */,
-				BFBFD55E1AEA80CC00657874 /* SHPAuth.h */,
-				BFBFD55F1AEA80CC00657874 /* SHPAuth.m */,
 				BFBFD5611AEA810F00657874 /* SHPConnectionsController.h */,
 				BFBFD5621AEA810F00657874 /* SHPConnectionsController.m */,
 				BFBFD5641AEA811D00657874 /* SHPObjectCache.h */,
@@ -1120,7 +1120,7 @@
 				B2A4C0591FE85BC400AED2EE /* ChatChangeGroupNameVC.m in Sources */,
 				BFBFD5561AEA7F6700657874 /* SHPUserInterfaceUtil.m in Sources */,
 				B290C3801C29C06700EF8616 /* NotificationAlertVC.m in Sources */,
-				BFBFD5601AEA80CC00657874 /* SHPAuth.m in Sources */,
+				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
 				B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */,
 				B297D79B1F683AE60006944F /* ChatContactsSynchronizer.m in Sources */,
 				BFBFD5391AEA7C3700657874 /* SHPImageCache.m in Sources */,

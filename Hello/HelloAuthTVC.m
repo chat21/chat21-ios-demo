@@ -149,12 +149,13 @@
             
             HelloUser *signedUser = [[HelloUser alloc] init];
             signedUser.userid = fir_user.uid;
-            signedUser.username = fir_user.uid;
+            signedUser.username = fir_user.email;
             signedUser.email = email;
             signedUser.password = password;
             [context signin:signedUser];
             
-            // store user info for next login
+            // store user info for next login.
+            // REMOVE ON PRODUCTION. HERE UST TO ACCELERATE DEVELOPMENT
             NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
             [userPreferences setObject:password forKey:@"stored_password"];
             [userPreferences setObject:email forKey:@"stored_username"];

@@ -29,7 +29,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.usernameLabel.text = self.user.userid;
+    self.usernameLabel.text = self.user.username;
+    self.useridLabel.text = self.user.userid;
+    self.emailLabel.text = self.user.email;
     self.fullNameLabel.text = self.user.displayName;
 }
 
@@ -38,7 +40,7 @@
     // Cell will be deselected by following line.
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 1)
+    if (indexPath.row == 3)
     {
         NSLog(@"Chat with %@", self.user.userid);
         [self sendMessage];
