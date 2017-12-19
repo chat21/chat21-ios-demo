@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHPApplicationSettings.h"
+//#import "SHPApplicationSettings.h"
 
 @class HelloUser;
 @class SHPConnectionsController;
@@ -22,7 +22,7 @@
 @property (strong, nonatomic) HelloUser *loggedUser;
 @property (nonatomic, strong) UITabBarController *tabBarController;
 
-@property (nonatomic, strong) SHPApplicationSettings *settings;
+//@property (nonatomic, strong) SHPApplicationSettings *settings;
 @property (strong, nonatomic) NSString *tenant;
 @property (nonatomic, strong) NSDictionary *plistDictionary;
 

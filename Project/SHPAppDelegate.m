@@ -8,13 +8,9 @@
 
 #import "SHPAppDelegate.h"
 #import "SHPApplicationContext.h"
-#import "SHPApplicationSettings.h"
 #import "SHPCaching.h"
-//#import "SHPConstants.h"
 #import "HelloUser.h"
 #import "HelloAuth.h"
-#import "SHPConnectionsController.h"
-#import "SHPObjectCache.h"
 #import "SHPStringUtil.h"
 #import "SHPImageUtil.h"
 #import "ChatManager.h"
@@ -22,9 +18,6 @@
 #import "ChatConversationsVC.h"
 #import "ChatRootNC.h"
 #import "ChatUtil.h"
-//#import <DropboxSDK/DropboxSDK.h>
-//#import <DBChooser/DBChooser.h>
-#import <UserNotifications/UserNotifications.h>
 #import "HelloAuthTVC.h"
 #import "ChatContactsSynchronizer.h"
 #import "ChatUser.h"

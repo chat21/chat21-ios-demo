@@ -18,7 +18,7 @@
 #import "ChatUploadsController.h"
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
-#import "SHPImageRequest.h"
+//#import "SHPImageRequest.h"
 #import "ChatChangeGroupNameVC.h"
 #import "ChatUser.h"
 
@@ -79,7 +79,7 @@
     UIImage *image = cached_image_wrap.image;
     if(!image) {
         NSLog(@"IMAGE %@ NOT CACHED. DOWNLOADING...", imageURL);
-        [self downloadImage:imageURL];
+//        [self downloadImage:imageURL];
         UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"group-conversation-avatar"]];
         self.groupImageView.image = circled;
     } else {
@@ -90,24 +90,24 @@
         double now = [[NSDate alloc] init].timeIntervalSince1970;
         double reload_timer_secs = 86400; // one day
         if (now - cached_image_wrap.createdTime.timeIntervalSince1970 > reload_timer_secs) {
-            [self downloadImage:imageURL];
+//            [self downloadImage:imageURL];
         }
     }
 }
 
--(void)downloadImage:(NSString *)imageURL {
-    SHPImageRequest *imageRquest = [[SHPImageRequest alloc] init];
-    __weak GroupInfoVC *weakSelf = self;
-    [imageRquest downloadImage:imageURL
-             completionHandler:
-     ^(UIImage *image, NSString *imageURL, NSError *error) {
-         if (image) {
-             [weakSelf updateImage:image];
-         } else {
-             // optionally put an image that indicates an error
-         }
-     }];
-}
+//-(void)downloadImage:(NSString *)imageURL {
+//    SHPImageRequest *imageRquest = [[SHPImageRequest alloc] init];
+//    __weak GroupInfoVC *weakSelf = self;
+//    [imageRquest downloadImage:imageURL
+//             completionHandler:
+//     ^(UIImage *image, NSString *imageURL, NSError *error) {
+//         if (image) {
+//             [weakSelf updateImage:image];
+//         } else {
+//             // optionally put an image that indicates an error
+//         }
+//     }];
+//}
 
 -(void)updateImage:(UIImage *)image {
     [self.imageCache addImage:image withKey:self.group.iconUrl];
