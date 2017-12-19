@@ -11,6 +11,7 @@
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B20FC6A11BEA7CC9009D57D3 /* ChatImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A01BEA7CC9009D57D3 /* ChatImageCache.m */; };
 		B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */; };
+		B21760C31FE9C88900C83215 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B21760C21FE9C88900C83215 /* MBProgressHUD.m */; };
 		B22048101C387F3D00AF84CE /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */; };
 		B2348E8B1FE059B100406D81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
@@ -105,7 +106,6 @@
 		BFBBC2C01B1ED7E30028EA4F /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2BF1B1ED7E30028EA4F /* settings.plist */; };
 		BFBBC2E71B1EDCC90028EA4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2E91B1EDCC90028EA4F /* Localizable.strings */; };
 		BFBFD3951AEA54DA00657874 /* SHPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */; };
-		BFBFD4901AEA590900657874 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD48E1AEA590900657874 /* MBProgressHUD.m */; };
 		BFBFD4D71AEA598000657874 /* HelloUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD4B71AEA598000657874 /* HelloUser.m */; };
 		BFBFD4E31AEA59D100657874 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD4E21AEA59D100657874 /* main.m */; };
 		BFBFD4F21AEA5C9C00657874 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFD4F11AEA5C9C00657874 /* SystemConfiguration.framework */; };
@@ -124,19 +124,12 @@
 		BFBFD5121AEA5D8500657874 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFD5111AEA5D8500657874 /* CoreGraphics.framework */; };
 		BFBFD5161AEA5DA000657874 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFD5151AEA5DA000657874 /* Social.framework */; };
 		BFBFD5291AEA5F4E00657874 /* SHPApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5281AEA5F4E00657874 /* SHPApplicationContext.m */; };
-		BFBFD52C1AEA5FA900657874 /* SHPApplicationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD52B1AEA5FA900657874 /* SHPApplicationSettings.m */; };
 		BFBFD5391AEA7C3700657874 /* SHPImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5381AEA7C3700657874 /* SHPImageCache.m */; };
 		BFBFD53C1AEA7C4800657874 /* SHPCaching.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD53B1AEA7C4800657874 /* SHPCaching.m */; };
-		BFBFD53F1AEA7C5C00657874 /* SHPImageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD53E1AEA7C5C00657874 /* SHPImageRequest.m */; };
 		BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5411AEA7C6C00657874 /* SHPImageUtil.m */; };
 		BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */; };
-		BFBFD5561AEA7F6700657874 /* SHPUserInterfaceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5551AEA7F6700657874 /* SHPUserInterfaceUtil.m */; };
 		BFBFD55D1AEA80A400657874 /* SHPStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */; };
 		BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55F1AEA80CC00657874 /* HelloAuth.m */; };
-		BFBFD5631AEA810F00657874 /* SHPConnectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5621AEA810F00657874 /* SHPConnectionsController.m */; };
-		BFBFD5661AEA811D00657874 /* SHPObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5651AEA811D00657874 /* SHPObjectCache.m */; };
-		BFBFD5721AEA81A200657874 /* SHPIconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5711AEA81A200657874 /* SHPIconDownloader.m */; };
-		BFBFD5751AEA834900657874 /* SHPDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5741AEA834900657874 /* SHPDataController.m */; };
 		BFF3C62E1B283219001EC667 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF3C62D1B283219001EC667 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC03C60B1BBBDE96003C2BA9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03C60A1BBBDE96003C2BA9 /* libc++.tbd */; };
 		DC03C60D1BBBDEAD003C2BA9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03C60C1BBBDEAD003C2BA9 /* libicucore.tbd */; };
@@ -166,6 +159,8 @@
 		B20FC6A21BEB39F5009D57D3 /* ChatImageWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageWrapper.h; sourceTree = "<group>"; };
 		B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageWrapper.m; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B21760C11FE9C88900C83215 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Project/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		B21760C21FE9C88900C83215 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Project/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		B220480E1C387F3D00AF84CE /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
 		B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
 		B22048111C399F3400AF84CE /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
@@ -309,8 +304,6 @@
 		BFBFD3681AEA544F00657874 /* Tile Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tile Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBFD3911AEA54DA00657874 /* SHPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPAppDelegate.h; sourceTree = "<group>"; };
 		BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPAppDelegate.m; sourceTree = "<group>"; };
-		BFBFD48E1AEA590900657874 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		BFBFD48F1AEA590900657874 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		BFBFD4B61AEA598000657874 /* HelloUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloUser.h; sourceTree = "<group>"; };
 		BFBFD4B71AEA598000657874 /* HelloUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloUser.m; sourceTree = "<group>"; };
 		BFBFD4E21AEA59D100657874 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -332,32 +325,18 @@
 		BFBFD5251AEA5EC200657874 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFBFD5271AEA5F4E00657874 /* SHPApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPApplicationContext.h; sourceTree = "<group>"; };
 		BFBFD5281AEA5F4E00657874 /* SHPApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPApplicationContext.m; sourceTree = "<group>"; };
-		BFBFD52A1AEA5FA900657874 /* SHPApplicationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPApplicationSettings.h; sourceTree = "<group>"; };
-		BFBFD52B1AEA5FA900657874 /* SHPApplicationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPApplicationSettings.m; sourceTree = "<group>"; };
 		BFBFD5371AEA7C3700657874 /* SHPImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageCache.h; sourceTree = "<group>"; };
 		BFBFD5381AEA7C3700657874 /* SHPImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageCache.m; sourceTree = "<group>"; };
 		BFBFD53A1AEA7C4800657874 /* SHPCaching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPCaching.h; sourceTree = "<group>"; };
 		BFBFD53B1AEA7C4800657874 /* SHPCaching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPCaching.m; sourceTree = "<group>"; };
-		BFBFD53D1AEA7C5C00657874 /* SHPImageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageRequest.h; sourceTree = "<group>"; };
-		BFBFD53E1AEA7C5C00657874 /* SHPImageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageRequest.m; sourceTree = "<group>"; };
 		BFBFD5401AEA7C6C00657874 /* SHPImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageUtil.h; sourceTree = "<group>"; };
 		BFBFD5411AEA7C6C00657874 /* SHPImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageUtil.m; sourceTree = "<group>"; };
 		BFBFD5461AEA7D2800657874 /* SHPImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageDownloader.h; sourceTree = "<group>"; };
 		BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageDownloader.m; sourceTree = "<group>"; };
-		BFBFD5541AEA7F6700657874 /* SHPUserInterfaceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPUserInterfaceUtil.h; sourceTree = "<group>"; };
-		BFBFD5551AEA7F6700657874 /* SHPUserInterfaceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPUserInterfaceUtil.m; sourceTree = "<group>"; };
 		BFBFD55B1AEA80A400657874 /* SHPStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPStringUtil.h; sourceTree = "<group>"; };
 		BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPStringUtil.m; sourceTree = "<group>"; };
 		BFBFD55E1AEA80CC00657874 /* HelloAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloAuth.h; sourceTree = "<group>"; };
 		BFBFD55F1AEA80CC00657874 /* HelloAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloAuth.m; sourceTree = "<group>"; };
-		BFBFD5611AEA810F00657874 /* SHPConnectionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPConnectionsController.h; sourceTree = "<group>"; };
-		BFBFD5621AEA810F00657874 /* SHPConnectionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPConnectionsController.m; sourceTree = "<group>"; };
-		BFBFD5641AEA811D00657874 /* SHPObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPObjectCache.h; sourceTree = "<group>"; };
-		BFBFD5651AEA811D00657874 /* SHPObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPObjectCache.m; sourceTree = "<group>"; };
-		BFBFD5701AEA81A200657874 /* SHPIconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPIconDownloader.h; sourceTree = "<group>"; };
-		BFBFD5711AEA81A200657874 /* SHPIconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPIconDownloader.m; sourceTree = "<group>"; };
-		BFBFD5731AEA834900657874 /* SHPDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPDataController.h; sourceTree = "<group>"; };
-		BFBFD5741AEA834900657874 /* SHPDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPDataController.m; sourceTree = "<group>"; };
 		BFBFD5821AEA897900657874 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BFF3C62D1B283219001EC667 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DC03C60A1BBBDE96003C2BA9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -760,10 +739,11 @@
 		BFBFD48D1AEA58FD00657874 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				BFBFD48F1AEA590900657874 /* MBProgressHUD.h */,
-				BFBFD48E1AEA590900657874 /* MBProgressHUD.m */,
+				B21760C11FE9C88900C83215 /* MBProgressHUD.h */,
+				B21760C21FE9C88900C83215 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			path = Project;
 			sourceTree = "<group>";
 		};
 		BFBFD4911AEA591100657874 /* Util */ = {
@@ -772,30 +752,16 @@
 				BFBFD48D1AEA58FD00657874 /* MBProgressHUD */,
 				BFBFD5271AEA5F4E00657874 /* SHPApplicationContext.h */,
 				BFBFD5281AEA5F4E00657874 /* SHPApplicationContext.m */,
-				BFBFD52A1AEA5FA900657874 /* SHPApplicationSettings.h */,
-				BFBFD52B1AEA5FA900657874 /* SHPApplicationSettings.m */,
-				BFBFD5701AEA81A200657874 /* SHPIconDownloader.h */,
-				BFBFD5711AEA81A200657874 /* SHPIconDownloader.m */,
 				BFBFD5371AEA7C3700657874 /* SHPImageCache.h */,
 				BFBFD5381AEA7C3700657874 /* SHPImageCache.m */,
 				BFBFD53A1AEA7C4800657874 /* SHPCaching.h */,
 				BFBFD53B1AEA7C4800657874 /* SHPCaching.m */,
-				BFBFD53D1AEA7C5C00657874 /* SHPImageRequest.h */,
-				BFBFD53E1AEA7C5C00657874 /* SHPImageRequest.m */,
 				BFBFD5401AEA7C6C00657874 /* SHPImageUtil.h */,
 				BFBFD5411AEA7C6C00657874 /* SHPImageUtil.m */,
 				BFBFD5461AEA7D2800657874 /* SHPImageDownloader.h */,
 				BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */,
-				BFBFD5541AEA7F6700657874 /* SHPUserInterfaceUtil.h */,
-				BFBFD5551AEA7F6700657874 /* SHPUserInterfaceUtil.m */,
 				BFBFD55B1AEA80A400657874 /* SHPStringUtil.h */,
 				BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */,
-				BFBFD5611AEA810F00657874 /* SHPConnectionsController.h */,
-				BFBFD5621AEA810F00657874 /* SHPConnectionsController.m */,
-				BFBFD5641AEA811D00657874 /* SHPObjectCache.h */,
-				BFBFD5651AEA811D00657874 /* SHPObjectCache.m */,
-				BFBFD5731AEA834900657874 /* SHPDataController.h */,
-				BFBFD5741AEA834900657874 /* SHPDataController.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -1060,19 +1026,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF65D551BE3D092003B471D /* GroupInfoVC.m in Sources */,
-				BFBFD5661AEA811D00657874 /* SHPObjectCache.m in Sources */,
 				B2B36F8C1C4FCA5000C21AE7 /* ChatTitleVC.m in Sources */,
 				DCF65D561BE3D092003B471D /* GroupMembersVC.m in Sources */,
 				B297D79F1F683B1D0006944F /* ChatConversationHandler.m in Sources */,
 				DC4A1B9B1BE0B8C700464D0A /* QBPopupMenuItem.m in Sources */,
 				B297D7AC1F683BA70006944F /* ChatUser.m in Sources */,
 				B297D7B21F6934100006944F /* ChatSelectUserLocalVC.m in Sources */,
-				BFBFD52C1AEA5FA900657874 /* SHPApplicationSettings.m in Sources */,
 				BFBFD3951AEA54DA00657874 /* SHPAppDelegate.m in Sources */,
 				BFBFD55D1AEA80A400657874 /* SHPStringUtil.m in Sources */,
 				B297D7A01F683B1D0006944F /* ChatConversationsHandler.m in Sources */,
 				B2A4C0561FE846E000AED2EE /* UIView+Property.m in Sources */,
-				BFBFD53F1AEA7C5C00657874 /* SHPImageRequest.m in Sources */,
 				B297D7A81F683B880006944F /* ChatDB.m in Sources */,
 				B2F066C01CAAD7E500C0112E /* ChatMessageComponents.m in Sources */,
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
@@ -1088,18 +1051,16 @@
 				B297D7A31F683B550006944F /* ChatConversationsVC.m in Sources */,
 				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
 				DC4A1B9E1BE0B8C700464D0A /* QBPopupMenuPagenatorView.m in Sources */,
-				BFBFD5751AEA834900657874 /* SHPDataController.m in Sources */,
 				B24FD40B1CBEE477000EF70E /* ChatStatusTitle.m in Sources */,
 				B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */,
 				BFBFD5291AEA5F4E00657874 /* SHPApplicationContext.m in Sources */,
 				BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */,
+				B21760C31FE9C88900C83215 /* MBProgressHUD.m in Sources */,
 				B2AA87A01FD87538004FE7E0 /* ChatUIManager.m in Sources */,
 				B23D1BA91F7A62910009029D /* ChatSelectGroupLocalTVC.m in Sources */,
 				B2EF3D7C1CC7CBE50074836A /* ChatUpload.m in Sources */,
-				BFBFD4901AEA590900657874 /* MBProgressHUD.m in Sources */,
 				B27C51311C345EC70069F5E7 /* NotConnectedVC.m in Sources */,
 				DCF65D351BE3D07D003B471D /* ChatMessage.m in Sources */,
-				BFBFD5721AEA81A200657874 /* SHPIconDownloader.m in Sources */,
 				B20FC6A11BEA7CC9009D57D3 /* ChatImageCache.m in Sources */,
 				B23D1BAF1F7A75FA0009029D /* ChatGroupsDB.m in Sources */,
 				B246FCD41F6E5F6A00D22DB2 /* ContactsDB.m in Sources */,
@@ -1118,13 +1079,11 @@
 				B297D7B51F6A912F0006944F /* ChatSelectGroupMembersLocal.m in Sources */,
 				BFBFD53C1AEA7C4800657874 /* SHPCaching.m in Sources */,
 				B2A4C0591FE85BC400AED2EE /* ChatChangeGroupNameVC.m in Sources */,
-				BFBFD5561AEA7F6700657874 /* SHPUserInterfaceUtil.m in Sources */,
 				B290C3801C29C06700EF8616 /* NotificationAlertVC.m in Sources */,
 				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
 				B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */,
 				B297D79B1F683AE60006944F /* ChatContactsSynchronizer.m in Sources */,
 				BFBFD5391AEA7C3700657874 /* SHPImageCache.m in Sources */,
-				BFBFD5631AEA810F00657874 /* SHPConnectionsController.m in Sources */,
 				B2F066B91CA3198300C0112E /* ChatMessagesTVC.m in Sources */,
 				B2C7CB9D1FDAFD1400F2EFFE /* HelloVC.m in Sources */,
 				B290C3861C31615500EF8616 /* ChatRootNC.m in Sources */,
