@@ -25,11 +25,11 @@
 #import "ChatMessagesTVC.h"
 #import "ChatGroup.h"
 #import "ChatStatusTitle.h"
-#import "SHPAppDelegate.h"
+//#import "SHPAppDelegate.h"
 #import "ChatGroupsHandler.h"
 #import "HelloChatUtil.h"
 #import "ChatUIManager.h"
-#import "ChatSpeaker.h"
+//#import "ChatSpeaker.h"
 
 @interface ChatMessagesVC (){
      SystemSoundID soundID;
@@ -491,7 +491,6 @@
         [chatm addConversationHandler:handler];
         [handler addSubcriber:self];
         
-//        handler.delegateView = self;
         self.conversationHandler = handler;
         
         // db
@@ -510,7 +509,6 @@
         NSLog(@"Adding new handler %@ to Conversations Manager.", handler);
     }
     else {
-//        handler.delegateView = self;
         [handler addSubcriber:self];
         self.conversationHandler = handler;
         [self checkImGroupMember];
@@ -529,13 +527,13 @@
     }
 }
 
--(void)didFinishInitConversationHandler:(ChatConversationHandler *)handler error:(NSError *)error {
-    if (!error) {
-        NSLog(@"ChatConversationHandler Initialization finished with success.");
-    } else {
-        NSLog(@"ChatConversationHandler Initialization finished with error: %@", error);
-    }
-}
+//-(void)didFinishInitConversationHandler:(ChatConversationHandler *)handler error:(NSError *)error {
+//    if (!error) {
+//        NSLog(@"ChatConversationHandler Initialization finished with success.");
+//    } else {
+//        NSLog(@"ChatConversationHandler Initialization finished with error: %@", error);
+//    }
+//}
 //---------------------------------------------------//
 //START FUNCTIONS
 //---------------------------------------------------//
@@ -908,8 +906,6 @@
         [self writeBoxEnabled];
         [self setTitle:self.group.name];
         [self setSubTitle:[ChatUtil groupMembersAsStringForUI:self.group.members]];
-//        [self.usernameButton setTitle:self.group.name forState:UIControlStateNormal];
-//        self.statusLabel.text = [ChatUtil groupMembersAsStringForUI:self.group.members];
     });
 }
 
@@ -930,79 +926,9 @@
     self.lastPlayedSoundTime = now;
 }
 
-//static float soundTime = 3.0;
-//
-//-(void)startSoundTimer {
-//    self.playingSound = YES;
-//    self.soundTimer = [NSTimer scheduledTimerWithTimeInterval:soundTime target:self selector:@selector(endSoundTimer) userInfo:nil repeats:NO];
-//}
-//
-//-(void)endSoundTimer {
-//    [self.soundTimer invalidate];
-//    self.soundTimer = nil;
-//    self.playingSound = NO;
-//}
-
-//DEPRECATO da eliminare dal protocollo
-//-(void)reloadView {
-    //[self.tableView reloadData];
-//}
-
-
-
-//# user images
-//- (void)startIconDownload:(NSString *)username forIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSString *imageURL = [SHPUser photoUrlByUsername:username];
-//    SHPImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:imageURL];
-//    //    NSLog(@"IconDownloader..%@", iconDownloader);
-//    if (iconDownloader == nil)
-//    {
-//        iconDownloader = [[SHPImageDownloader alloc] init];
-//        //        NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-//        //        [options setObject:indexPath forKey:@"indexPath"];
-//        //        iconDownloader.options = options;
-//        iconDownloader.imageURL = imageURL;
-//        iconDownloader.delegate = self;
-//        [self.imageDownloadsInProgress setObject:iconDownloader forKey:imageURL];
-//        [iconDownloader startDownload];
-//    }
-//}
-//
-//// called by our ImageDownloader when an icon is ready to be displayed
-//- (void)appImageDidLoad:(UIImage *)image withURL:(NSString *)imageURL downloader:(SHPImageDownloader *)downloader
-//{
-////    SHPImageDownloader *downloader = (SHPImageDownloader *) [self.imageDownloadsInProgress objectForKey:imageURL];
-//    downloader.delegate = nil;
-//    UIImage *circled = [SHPImageUtil circleImage:image];
-//    [self.applicationContext.smallImagesCache addImage:circled withKey:imageURL];
-//    [self.imageDownloadsInProgress removeObjectForKey:imageURL];
-//    [self.tableView reloadData];
-//}
-
-//-(void)terminatePendingImageConnections {
-//    NSLog(@"''''''''''''''''''''''   Terminate all pending IMAGE connections...");
-//    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-//    NSLog(@"total downloads: %d", (int)allDownloads.count);
-//    for(SHPImageDownloader *obj in allDownloads) {
-//        obj.delegate = nil;
-//    }
-//    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
-//}
-
-// end user images
-
-//-(void)disposeResources {
-//    NSLog(@"Disposing resources...");
-//    [self terminatePendingImageConnections];
-//    [self.connectedRef removeObserverWithHandle:self.connectedRefHandle];
-//}
-
 -(void)dealloc {
     NSLog(@"Deallocating MessagesViewController.");
 }
-
-
 
 //EXTRA
 -(void)customRoundImage:(UIView *)customImageView

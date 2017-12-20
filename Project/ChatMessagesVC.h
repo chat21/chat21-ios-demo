@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHPChatDelegate.h"
+//#import "SHPChatDelegate.h"
 #import "SHPImageDownloader.h"
 #import "QBPopupMenu.h"
 #import <AudioToolbox/AudioToolbox.h>
@@ -26,7 +26,7 @@
 @class ChatGroup;
 @class ChatUser;
 
-@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, SHPChatDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChatGroupsSubscriber, ChatConversationSubscriber> {
+@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChatGroupsSubscriber, ChatConversationSubscriber> {
     BOOL keyboardShow;
     CGFloat heightTable;
     CGFloat originalViewHeight;

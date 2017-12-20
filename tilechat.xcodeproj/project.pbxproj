@@ -12,7 +12,6 @@
 		B20FC6A11BEA7CC9009D57D3 /* ChatImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A01BEA7CC9009D57D3 /* ChatImageCache.m */; };
 		B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */; };
 		B21760C31FE9C88900C83215 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B21760C21FE9C88900C83215 /* MBProgressHUD.m */; };
-		B21760CC1FEABD2300C83215 /* ChatSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = B21760CB1FEABD2300C83215 /* ChatSpeaker.m */; };
 		B22048101C387F3D00AF84CE /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */; };
 		B2348E8B1FE059B100406D81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
@@ -162,8 +161,6 @@
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21760C11FE9C88900C83215 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Project/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		B21760C21FE9C88900C83215 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Project/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
-		B21760CA1FEABD2300C83215 /* ChatSpeaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSpeaker.h; sourceTree = "<group>"; };
-		B21760CB1FEABD2300C83215 /* ChatSpeaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatSpeaker.m; sourceTree = "<group>"; };
 		B21760CD1FEAD48800C83215 /* ChatConversationSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConversationSubscriber.h; sourceTree = "<group>"; };
 		B220480E1C387F3D00AF84CE /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
 		B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
@@ -365,7 +362,7 @@
 		DCF65D161BE3D07D003B471D /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		DCF65D171BE3D07D003B471D /* FirebaseCustomAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCustomAuthHelper.h; sourceTree = "<group>"; };
 		DCF65D181BE3D07D003B471D /* FirebaseCustomAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCustomAuthHelper.m; sourceTree = "<group>"; };
-		DCF65D1C1BE3D07D003B471D /* SHPChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPChatDelegate.h; sourceTree = "<group>"; };
+		DCF65D1C1BE3D07D003B471D /* DEPRECATED_SHPChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_SHPChatDelegate.h; sourceTree = "<group>"; };
 		DCF65D1D1BE3D07D003B471D /* SHPConversationsViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPConversationsViewDelegate.h; sourceTree = "<group>"; };
 		DCF65D261BE3D07D003B471D /* ChatConversationsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsHandler.h; sourceTree = "<group>"; };
 		DCF65D301BE3D07D003B471D /* ChatGroupsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsHandler.h; sourceTree = "<group>"; };
@@ -582,8 +579,6 @@
 				DCF65D161BE3D07D003B471D /* ChatMessage.m */,
 				B297D7AA1F683BA70006944F /* ChatUser.h */,
 				B297D7AB1F683BA70006944F /* ChatUser.m */,
-				B21760CA1FEABD2300C83215 /* ChatSpeaker.h */,
-				B21760CB1FEABD2300C83215 /* ChatSpeaker.m */,
 			);
 			name = ChatModel;
 			sourceTree = "<group>";
@@ -715,7 +710,7 @@
 			children = (
 				DCF65D171BE3D07D003B471D /* FirebaseCustomAuthHelper.h */,
 				DCF65D181BE3D07D003B471D /* FirebaseCustomAuthHelper.m */,
-				DCF65D1C1BE3D07D003B471D /* SHPChatDelegate.h */,
+				DCF65D1C1BE3D07D003B471D /* DEPRECATED_SHPChatDelegate.h */,
 				DCF65D1D1BE3D07D003B471D /* SHPConversationsViewDelegate.h */,
 				B297D79C1F683B1D0006944F /* ChatConversationHandler.h */,
 				B297D79D1F683B1D0006944F /* ChatConversationHandler.m */,
@@ -1059,7 +1054,6 @@
 				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
 				DC4A1B9E1BE0B8C700464D0A /* QBPopupMenuPagenatorView.m in Sources */,
 				B24FD40B1CBEE477000EF70E /* ChatStatusTitle.m in Sources */,
-				B21760CC1FEABD2300C83215 /* ChatSpeaker.m in Sources */,
 				B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */,
 				BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */,
 				BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */,

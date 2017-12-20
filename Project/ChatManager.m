@@ -22,7 +22,6 @@
 #import "ChatConversationsVC.h"
 #import "ChatUser.h"
 #import "ChatContactsSynchronizer.h"
-#import "ChatSpeaker.h"
 
 @import Firebase;
 

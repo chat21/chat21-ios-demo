@@ -15,7 +15,7 @@
 #import "ChatUtil.h"
 #import "ChatDB.h"
 #import "ChatConversation.h"
-#import "SHPChatDelegate.h"
+//#import "SHPChatDelegate.h"
 //#import "SHPPushNotificationService.h"
 //#import "SHPPushNotification.h"
 #import "ChatManager.h"

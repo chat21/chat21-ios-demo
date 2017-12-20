@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHPChatDelegate.h"
+//#import "SHPChatDelegate.h"
 //#import "ChatGroupsSubscriber.h"
 #import "ChatConversationSubscriber.h"
 
