@@ -8,7 +8,7 @@
 
 #import "HelloRegisterTVC.h"
 #import "MBProgressHUD.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "HelloUser.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
@@ -66,7 +66,7 @@
     
     NSString *password = password1;
     
-    SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
+    HelloApplicationContext *context = [HelloApplicationContext getSharedInstance];
     
     __weak HelloRegisterTVC *weakSelf = self;
     

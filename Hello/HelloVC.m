@@ -9,10 +9,9 @@
 #import "HelloVC.h"
 #import "HelloUser.h"
 #import "SHPAppDelegate.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "HelloAuthTVC.h"
 #import "SHPAppDelegate.h"
-#import "SHPApplicationContext.h"
 
 @interface HelloVC ()
 

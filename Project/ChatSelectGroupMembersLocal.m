@@ -8,7 +8,7 @@
 
 #import "ChatSelectGroupMembersLocal.h"
 //#import "SHPSearchUsersLoader.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 //#import "SHPUserDC.h"
 //#import "SHPUser.h"
 #import "SHPImageDownloader.h"

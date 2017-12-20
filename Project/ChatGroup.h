@@ -17,9 +17,8 @@ static NSString* const GROUP_ICON_ID = @"iconID";
 
 @import Firebase;
 
-//@class Firebase;
 @class FDataSnapshot;
-@class SHPApplicationContext;
+@class HelloApplicationContext;
 
 @interface ChatGroup : NSObject
 
@@ -44,15 +43,7 @@ static NSString* const GROUP_ICON_ID = @"iconID";
 +(NSMutableDictionary *)membersArray2Dictionary:(NSArray *)membersIds;
 +(NSMutableArray *)membersDictionary2Array:(NSDictionary *)membersDict;
 +(NSString *)membersDictionary2String:(NSDictionary *)membersDictionary;
-//+(NSString *)membersArray2String:(NSArray *)membersArray;
-//+(NSMutableArray *)membersString2Array:(NSString *)membersString;
 +(NSMutableDictionary *)membersString2Dictionary:(NSString *)membersString;
-
-// dc
-//+(void)createGroup:(ChatGroup*)group reference:(Firebase *)groupsBaseRef withContext:(SHPApplicationContext *)context;
-//+(void)addMember:(NSString *)groupId member:(NSString *)user_id; // TODO
-//+(void)removeMember:(NSString *)groupId member:(NSString *)user_id; // TODO
-//+(void)removeGroup:(NSString *)groupId; // TODO
 
 
 @end

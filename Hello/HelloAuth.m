@@ -6,7 +6,7 @@
 
 #import "HelloAuth.h"
 #import "HelloUser.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "KeychainItemWrapper.h"
 
 @implementation HelloAuth

@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "SHPFirebaseTokenDelegate.h"
-#import "ChatGroupsDelegate.h"
+#import "ChatGroupsSubscriber.h"
 
 @import Firebase;
 
@@ -34,7 +33,7 @@
 //@property (strong, nonatomic) NSString *firebaseRef;
 @property (nonatomic, strong) FIRDatabaseReference *rootRef;
 @property (strong, nonatomic) NSString *tenant;
-@property (strong, nonnull) NSMutableArray<id<ChatGroupsDelegate>> *subcribers;
+@property (strong, nonnull) NSMutableArray<id<ChatGroupsSubscriber>> *subcribers;
 
 //-(id)initWithFirebaseRef:(NSString *)firebaseRef tenant:(NSString *)tenant user:(SHPUser *)user;
 -(id)initWithTenant:(NSString *)tenant user:(ChatUser *)user;
@@ -45,6 +44,6 @@
 //-(void)insertOrUpdateGroup:(ChatGroup *)group;
 -(void)insertOrUpdateGroup:(ChatGroup *)group completion:(void(^)()) callback;
 -(void)insertInMemory:(ChatGroup *)group;
--(void)addSubcriber:(id<ChatGroupsDelegate>)subscriber;
--(void)removeSubcriber:(id<ChatGroupsDelegate>)subscriber;
+-(void)addSubcriber:(id<ChatGroupsSubscriber>)subscriber;
+-(void)removeSubcriber:(id<ChatGroupsSubscriber>)subscriber;
 @end

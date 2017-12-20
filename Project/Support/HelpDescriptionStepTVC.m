@@ -246,40 +246,6 @@ static NSInteger MIN_CHARACTERS_DESCRIPTION = 4;
     [self presentViewController:menu animated:YES completion:nil];
 }
 
-//-(void)sendStepAskPush {
-//    
-//    NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
-//    NSString *advice = [userPreferences objectForKey:@"PUSH_ADVICE_SHOWN"];
-//    if (advice != nil) {
-//        [self send];
-//        return;
-//    }
-//    
-//    UIAlertController * view =   [UIAlertController
-//                                  alertControllerWithTitle:nil
-//                                  message:@"Attiva le notifiche push quando ti verrà richiesto in modo da ricevere i messaggi degli utenti che vogliono contattarti"
-//                                  preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction* send = [UIAlertAction
-//                           actionWithTitle:@"Ok"
-//                           style:UIAlertActionStyleDefault
-//                           handler:^(UIAlertAction * action)
-//                           {
-//                               NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
-//                               [userPreferences setBool:YES forKey:@"PUSH_ADVICE_SHOWN"];
-//                               [userPreferences synchronize];
-//                               SHPAppDelegate *app = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//                               [app startPushNotifications];
-//                               [self send];
-//                           }];
-//    
-//    [view addAction:send];
-//    // for ipad
-//    view.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
-//    
-//    [self presentViewController:view animated:YES completion:nil];
-//}
-
 -(void)send {
     NSLog(@"sending: %@", self.context);
     self.descriptionTextView.delegate = nil;

@@ -8,10 +8,6 @@
 
 #import "ChatSelectUserLocalVC.h"
 
-//#import "SHPSearchUsersLoader.h"
-#import "SHPApplicationContext.h"
-//#import "SHPUserDC.h"
-//#import "SHPUser.h"
 #import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
 #import "SHPImageUtil.h"
@@ -19,8 +15,6 @@
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
 #import "ChatGroup.h"
-//#import "AlfrescoUsersDC.h"
-//#import "AlfrescoRequest.h"
 #import "ChatDB.h"
 #import "ChatUser.h"
 #import "ContactsDB.h"
@@ -55,40 +49,12 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    //    [self restoreRecents];
-    //    [self restoreAllUsers];
-    //    [self loadAllUsers];
-    
-    //    NSLog(@"Current RECENTS...");
-    //    for (SHPUser *u in self.recentUsers) {
-    //        NSLog(@"recent-user %@", u.username);
-    //    }
-    
     [self initImageCache];
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatContactsSynchronizer *contacts = chat.contactsSynchronizer;
-//    self.synchronizing = contacts.synchronizing;
-//    if (!self.synchronizing) {
-//        [self.searchBar becomeFirstResponder];
-//        [self search];
-//    } else {
-//        self.searchBar.userInteractionEnabled = NO;
-//    }
     ChatManager *chatm = [ChatManager getInstance];
     contacts = chatm.contactsSynchronizer;
     [self setupSynchronizing];
     [contacts addSynchSubcriber:self];
-//    [self activityIndicatorOnNavigationBar];
 }
-
-//-(void)activityIndicatorOnNavigationBar {
-//    self.activityIndicator = [[UIActivityIndicatorView alloc]
-//                              initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhite];
-//    self.activityIndicator.hidden = NO;
-//    UIBarButtonItem* spinner = [[UIBarButtonItem alloc] initWithCustomView: self.activityIndicator];
-//    self.navigationItem.rightBarButtonItem = spinner;
-//}
 
 // SYNCH PROTOCOL
 

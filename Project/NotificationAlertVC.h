@@ -10,8 +10,6 @@
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@class SHPApplicationContext;
-
 @interface NotificationAlertVC : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -24,7 +22,6 @@
 @property (assign, nonatomic) BOOL animating;
 @property (assign, nonatomic) SystemSoundID sound;
 
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (strong, nonatomic) NSString *sender;
 
 -(void)animateShow;

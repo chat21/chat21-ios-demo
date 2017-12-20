@@ -10,7 +10,6 @@
 #import "ChatGroupsDB.h"
 #import "SHPModalCallerDelegate.h"
 
-@class SHPApplicationContext;
 @class ChatImageCache;
 @class ChatGroup;
 @class ChatUser;
@@ -18,7 +17,6 @@
 @interface ChatSelectGroupLocalTVC : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @property (strong, nonatomic) NSMutableArray<ChatGroup *> *groups;

@@ -7,7 +7,6 @@
 //
 
 #import "ChatMessagesTVC.h"
-//#import <Firebase/Firebase.h>
 #import "ChatMessagesVC.h"
 #import "ChatConversationHandler.h"
 #import "SHPImageUtil.h"
@@ -17,8 +16,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ChatUtil.h"
 #import "ChatMiniBrowserVC.h"
-#import "SHPApplicationContext.h"
-//#import "SHPUser.h"
 #import "ChatUser.h"
 
 @interface ChatMessagesTVC ()
@@ -782,9 +779,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         ChatMiniBrowserVC *vc = (ChatMiniBrowserVC *)[segue destinationViewController];
         vc.hiddenToolBar = YES;
         vc.titlePage = @"";
-//        SHPApplicationContext *app = [SHPApplicationContext getSharedInstance];
-//        vc.username = app.loggedUser.username;
-//        vc.password = app.loggedUser.password;
         vc.urlPage = self.selectedHighlightLink;
     }
 }

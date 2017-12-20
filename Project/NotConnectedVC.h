@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SHPApplicationContext;
-
 @interface NotConnectedVC : UIViewController
-
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonLogin;
 

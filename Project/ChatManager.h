@@ -24,21 +24,17 @@
 @class ChatGroupsHandler;
 @class SHPUser;
 @class ChatGroup;
-@class SHPApplicationContext;
 @class FDataSnapshot;
 @class ChatConversation;
-//@class Firebase;
 @class ChatPresenceHandler;
 @class ChatConversationsVC;
 @class ChatUser;
 @class ChatContactsSynchronizer;
+@class ChatSpeaker;
 
 @interface ChatManager : NSObject
 
-//@property (nonatomic, strong) NSString *firebaseRef;
-//@property (nonatomic, strong) FIRDatabaseReference *rootRef;
 @property (nonatomic, strong) NSString *tenant;
-//@property (nonatomic, strong) SHPApplicationContext *context;
 @property (nonatomic, strong) ChatUser *loggedUser;
 @property (nonatomic, strong) NSMutableDictionary *handlers;
 @property (nonatomic, strong) ChatConversationsHandler *conversationsHandler;

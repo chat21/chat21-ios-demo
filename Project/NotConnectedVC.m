@@ -7,7 +7,6 @@
 //
 
 #import "NotConnectedVC.h"
-//#import "CZAuthenticationVC.h"
 
 @interface NotConnectedVC ()
 

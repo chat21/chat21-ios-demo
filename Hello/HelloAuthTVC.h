@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SHPApplicationContext;
 
 @interface HelloAuthTVC : UITableViewController
 
-
-//@property (strong, nonatomic) SHPApplicationContext *app;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;

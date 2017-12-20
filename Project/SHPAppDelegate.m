@@ -2,12 +2,12 @@
 //  SHPAppDelegate.m
 //  Shopper
 //
-//  Created by andrea sponziello on 24/05/12.
+//  Created by andrea sponziello on 24/05/17.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "SHPAppDelegate.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "SHPCaching.h"
 #import "HelloUser.h"
 #import "HelloAuth.h"
@@ -47,7 +47,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 {
     NSLog(@"didFinishLaunchingWithOptions...");
     
-    SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
+    HelloApplicationContext *context = [HelloApplicationContext getSharedInstance];
     self.applicationContext = context;
     NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
     NSDictionary *plistDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
@@ -99,7 +99,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     
     // preloading chat controllers
     NSLog(@"Preloading ChatRootNC");
-    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
+    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
     if (chat_tab_index >= 0) {
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         UITabBarController *tabController = (UITabBarController *)window.rootViewController;

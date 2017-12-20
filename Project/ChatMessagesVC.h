@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-////#import <Firebase/Firebase.h>
-//#import "SHPFirebaseTokenDelegate.h"
 #import "SHPChatDelegate.h"
 #import "SHPImageDownloader.h"
 #import "QBPopupMenu.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "ChatGroupsSubscriber.h"
+#import "ChatConversationSubscriber.h"
 
 @import Firebase;
 
@@ -26,7 +26,7 @@
 @class ChatGroup;
 @class ChatUser;
 
-@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, SHPChatDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, SHPChatDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChatGroupsSubscriber, ChatConversationSubscriber> {
     BOOL keyboardShow;
     CGFloat heightTable;
     CGFloat originalViewHeight;
@@ -34,15 +34,11 @@
     
 }
 
-//@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (strong, nonatomic) ChatImageCache *imageCache;
 @property (strong, nonatomic) QBPopupMenu *popupMenu;
 @property (strong, nonatomic) ChatConversationHandler *conversationHandler;
-//@property (strong, nonatomic) ChatConversationsVC *conversationsVC;
 @property (strong, nonatomic) ChatUser *me;
 
-//@property (strong, nonatomic) NSString *recipient;
-//@property (strong, nonatomic) NSString *recipientFullname;
 @property (strong, nonatomic) ChatUser *recipient;
 @property (strong, nonatomic) NSString *senderId;
 @property (strong, nonatomic) NSString *senderFullname;
@@ -56,8 +52,6 @@
 @property (strong, nonatomic) UINavigationController *profileNC;
 @property (strong, nonatomic) NSString *selectedText;
 @property (strong, nonatomic) UITapGestureRecognizer *tapToDismissKB;
-
-//@property (nonatomic, copy) void (^pushProfileCallback)(ChatUser *user);
 
 // user thumbs
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;

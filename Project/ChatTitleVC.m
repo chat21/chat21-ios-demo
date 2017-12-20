@@ -7,7 +7,6 @@
 //
 
 #import "ChatTitleVC.h"
-#import "SHPApplicationContext.h"
 #import "SHPAppDelegate.h"
 
 @implementation ChatTitleVC
@@ -15,14 +14,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"ChatTitleVC loaded.");
-//    if(!self.applicationContext){
-//        SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//        self.applicationContext = appDelegate.applicationContext;
-//    }
-//    UITapGestureRecognizer *singleFingerTap =
-//    [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                            action:@selector(handleSingleTap:)];
-//    [self.view addGestureRecognizer:singleFingerTap];
 }
 
 - (void)didReceiveMemoryWarning {

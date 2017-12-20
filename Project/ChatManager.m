@@ -12,7 +12,6 @@
 #import "ChatPresenceHandler.h"
 #import "ChatGroupsHandler.h"
 #import "ChatGroup.h"
-#import "SHPApplicationContext.h"
 #import "ChatConversation.h"
 #import "ChatDB.h"
 #import "ContactsDB.h"
@@ -23,6 +22,7 @@
 #import "ChatConversationsVC.h"
 #import "ChatUser.h"
 #import "ChatContactsSynchronizer.h"
+#import "ChatSpeaker.h"
 
 @import Firebase;
 
@@ -60,7 +60,6 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(ChatConversationHandler *)getConversationHandlerByConversationId:(NSString *)conversationId {
-    NSLog(@"Returning firebase ref with key: %@", conversationId);
     return (ChatConversationHandler *)[self.handlers objectForKey:conversationId];
 }
 

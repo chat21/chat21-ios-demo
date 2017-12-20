@@ -8,7 +8,7 @@
 
 #import "HelpFacade.h"
 #import "SHPAppDelegate.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "HelpCategoryStepTVC.h"
 #import "ChatUser.h"
 #import "ChatUtil.h"
@@ -31,7 +31,7 @@ static HelpFacade *sharedInstance = nil;
     if (!sharedInstance) {
         sharedInstance = [[super alloc] init];
         SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-        SHPApplicationContext *applicationContext = appDelegate.applicationContext;
+        HelloApplicationContext *applicationContext = appDelegate.applicationContext;
         BOOL support_enabled = [[applicationContext.plistDictionary valueForKey:@"chat-support"] boolValue];
         sharedInstance.supportEnabled = support_enabled;
     }
@@ -95,7 +95,7 @@ static HelpFacade *sharedInstance = nil;
 }
 
 -(void)sendMessage:(NSString *)text toRecipient:(ChatUser *)recipient attributes:(NSDictionary *)attributes {
-    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
+    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
     // move to the converstations tab
     if (chat_tab_index >= 0) {
         [ChatUtil moveToConversationViewWithUser:recipient orGroup:nil sendMessage:text attributes:attributes];

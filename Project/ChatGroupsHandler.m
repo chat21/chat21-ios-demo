@@ -15,7 +15,7 @@
 #import "ChatGroupsDB.h"
 #import "ChatManager.h"
 #import "ChatUser.h"
-#import "ChatGroupsDelegate.h"
+#import "ChatGroupsSubscriber.h"
 
 @implementation ChatGroupsHandler
 
@@ -31,14 +31,14 @@
     return self;
 }
 
--(void)addSubcriber:(id<ChatGroupsDelegate>)subscriber {
+-(void)addSubcriber:(id<ChatGroupsSubscriber>)subscriber {
     if (!self.subcribers) {
         self.subcribers = [[NSMutableArray alloc] init];
     }
     [self.subcribers addObject:subscriber];
 }
 
--(void)removeSubcriber:(id<ChatGroupsDelegate>)subscriber {
+-(void)removeSubcriber:(id<ChatGroupsSubscriber>)subscriber {
     if (!self.subcribers) {
         return;
     }
@@ -47,7 +47,7 @@
 
 -(void)notifySubscribers:(ChatGroup *)group {
     NSLog(@"ChatConversationHandler: This group was added or changed: %@. Notifying to subscribers...", group.name);
-    for (id<ChatGroupsDelegate> subscriber in self.subcribers) {
+    for (id<ChatGroupsSubscriber> subscriber in self.subcribers) {
         [subscriber groupAddedOrChanged:group];
     }
 }

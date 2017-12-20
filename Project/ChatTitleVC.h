@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SHPApplicationContext;
-
 @interface ChatTitleVC : UIViewController
-
-//@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 
 @property (weak, nonatomic) IBOutlet UIButton *usernameButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;

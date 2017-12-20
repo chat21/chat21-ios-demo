@@ -7,9 +7,8 @@
 //
 
 #import "HelloMyProfileTVC.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "ChatManager.h"
-//#import "HomeMenuTableViewController.h"
 #import "ChatRootNC.h"
 #import "HelloUser.h"
 #import "SHPAppDelegate.h"
@@ -85,7 +84,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    HelloUser *loggedUser = [SHPApplicationContext getSharedInstance].loggedUser;
+    HelloUser *loggedUser = [HelloApplicationContext getSharedInstance].loggedUser;
     self.usernameLabel.text = loggedUser.username;
     self.useridLabel.text = loggedUser.userid;
     self.emailLabel.text = loggedUser.email;
@@ -97,7 +96,7 @@
     
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
-    SHPApplicationContext *context = app.applicationContext;
+    HelloApplicationContext *context = app.applicationContext;
     [context signout];
     [self resetTab];
     
@@ -118,16 +117,9 @@
 }
 
 -(void)resetTab {
-    //    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
-    //    // move to the converstations tab
-    //    if (chat_tab_index >= 0) {
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     UITabBarController *tabController = (UITabBarController *)window.rootViewController;
-    //        NSArray *controllers = [tabController viewControllers];
-    //        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-    //        [nc popToRootViewControllerAnimated:NO];
     tabController.selectedIndex = 0;
-    //    }
 }
 
 - (IBAction)helpAction:(id)sender {

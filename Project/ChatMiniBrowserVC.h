@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SHPModalCallerDelegate.h"
-@class SHPApplicationContext;
 
 @interface ChatMiniBrowserVC : UIViewController<UIWebViewDelegate, UIActionSheetDelegate, SHPModalCallerDelegate>
 {
@@ -26,7 +25,6 @@
     };
 }
 
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (nonatomic, strong) NSString *urlPage;
 @property (nonatomic, strong) NSString *titlePage;
 

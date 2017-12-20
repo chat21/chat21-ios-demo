@@ -12,13 +12,11 @@
 #import "ChatManager.h"
 //#import "NotificationAlertVC.h"
 #import "NotificationAlertView.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
 #import "SHPAppDelegate.h"
 
-
-//static NotificationAlertVC *notificationAlertInstance = nil;
 static NotificationAlertView *notificationAlertInstance = nil;
 
 @implementation ChatUtil
@@ -191,7 +189,7 @@ static NotificationAlertView *notificationAlertInstance = nil;
 }
 
 +(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes {
-    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
+    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
     NSLog(@"processRemoteNotification: messages_tab_index %d", chat_tab_index);
     // move to the converstations tab
     if (chat_tab_index >= 0) {
@@ -209,18 +207,6 @@ static NotificationAlertView *notificationAlertInstance = nil;
         NSLog(@"No Chat Tab configured");
     }
 }
-
-//    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController" context:self.applicationContext];
-//    // move to the converstations tab
-//    if (chat_tab_index >= 0) {
-//        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-//        UITabBarController *tabController = (UITabBarController *)window.rootViewController;
-//        NSArray *controllers = [tabController viewControllers];
-//        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-//        [nc popToRootViewControllerAnimated:NO];
-//        [nc openConversationWithRecipient:user sendText:message];
-//        tabController.selectedIndex = chat_tab_index;
-//    }
 
 // at creation time from array (memory, UI) to dictionary (firebase)
 +(NSMutableDictionary *)groupMembersAsDictionary:(NSArray *)membersArray {
@@ -282,17 +268,6 @@ static NotificationAlertView *notificationAlertInstance = nil;
     NSString *imagesPath = [settingsDictionary objectForKey:@"groupImagesPath"];
     return imagesPath;
 }
-
-// cloudinary
-//+(NSString *)groupBaseImagesUrl {
-//    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
-//    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
-//    NSString *serviceURL = [settingsDictionary objectForKey:@"service"];
-//    NSString *imagesPath = [settingsDictionary objectForKey:@"groupImagesPath"];
-//    NSString *url = [[NSString alloc] initWithFormat:@"%@%@", serviceURL, imagesPath];
-//    return url;
-//}
 
 // smart21
 +(NSString *)groupImageDownloadUrl {

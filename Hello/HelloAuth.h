@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SHPApplicationContext;
+@class HelloApplicationContext;
 @class HelloUser;
 
 @interface HelloAuth : NSObject

@@ -7,7 +7,6 @@
 //
 
 #import "ChatSelectGroupLocalTVC.h"
-#import "SHPApplicationContext.h"
 #import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
 #import "SHPImageUtil.h"
@@ -39,19 +38,6 @@
     [self loadGroups];
 //    [self initImageCache];
 }
-
-//-(void)initImageCache {
-//    // cache setup
-//    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
-//    if (!self.imageCache) {
-//        self.imageCache = [[ChatImageCache alloc] init];
-//        self.imageCache.cacheName = @"chatUserIcons";
-//        // test
-//        // [self.imageCache listAllImagesFromDisk];
-//        // [self.imageCache empty];
-//        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
-//    }
-//}
 
 -(void)disposeResources {
     NSLog(@"Disposing pending image connections...");

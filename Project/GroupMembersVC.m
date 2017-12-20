@@ -7,7 +7,6 @@
 //
 
 #import "GroupMembersVC.h"
-#import "SHPApplicationContext.h"
 #import "ChatManager.h"
 #import "ChatGroup.h"
 //#import "SHPUser.h"
@@ -36,29 +35,11 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.applicationContext = appDelegate.applicationContext;
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.members_array = [ChatGroup membersDictionary2Array:self.group.members];
     NSLog(@"members array.count: %d", (int) self.members_array.count);
     self.navigationItem.title = NSLocalizedString(@"Members", nil);
-    
-    [self initImageCache];
-}
-
--(void)initImageCache {
-    // cache setup
-//    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
-//    if (!self.imageCache) {
-//        self.imageCache = [[ChatImageCache alloc] init];
-//        self.imageCache.cacheName = @"chatUserIcons";
-//        // test
-//        // [self.imageCache listAllImagesFromDisk];
-//        // [self.imageCache empty];
-//        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
-//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -239,7 +220,6 @@
         NSLog(@"CLASS %@", [[[navigationController viewControllers] objectAtIndex:0] class]);
         ChatSelectUserLocalVC *vc = (ChatSelectUserLocalVC *)[[navigationController viewControllers] objectAtIndex:0];
         vc.group = self.group;
-        vc.applicationContext = self.applicationContext;
         vc.modalCallerDelegate = self;
     }
 }

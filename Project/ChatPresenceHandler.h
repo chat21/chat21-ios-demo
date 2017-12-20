@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "ChatPresenceViewDelegate.h"
-//#import <Firebase/Firebase.h>
 
 @import Firebase;
 
-@class SHPApplicationContext;
 @class FirebaseCustomAuthHelper;
 @class Firebase;
 @class ChatUser;

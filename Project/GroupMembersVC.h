@@ -10,13 +10,11 @@
 #import "SHPModalCallerDelegate.h"
 #import "SHPImageDownloader.h"
 
-@class SHPApplicationContext;
 @class ChatGroup;
 @class ChatImageCache;
 
 @interface GroupMembersVC : UITableViewController <SHPModalCallerDelegate, SHPImageDownloaderDelegate>
 
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (strong, nonatomic) ChatGroup *group;
 @property (strong, nonatomic) NSMutableArray *members_array;
 - (IBAction)addMember:(id)sender;

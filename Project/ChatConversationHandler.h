@@ -8,21 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "SHPChatDelegate.h"
-#import "ChatGroupsDelegate.h"
+//#import "ChatGroupsSubscriber.h"
+#import "ChatConversationSubscriber.h"
 
 @import Firebase;
 
-@class SHPApplicationContext;
 @class FAuthData;
 @class FirebaseCustomAuthHelper;
 @class Firebase;
-//@class SHPUser;
 @class ChatUser;
 @class ChatGroup;
 
-@interface ChatConversationHandler : NSObject <ChatGroupsDelegate>
+@interface ChatConversationHandler : NSObject //<ChatGroupsDelegate>
 
-//@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (strong, nonatomic) ChatUser *user;
 @property (strong, nonatomic) NSString *recipientId;
 @property (strong, nonatomic) NSString *recipientFullname;
@@ -40,20 +38,22 @@
 @property (assign, nonatomic) FIRDatabaseHandle messages_ref_handle;
 @property (assign, nonatomic) FIRDatabaseHandle updated_messages_ref_handle;
 @property (strong, nonatomic) FirebaseCustomAuthHelper *authHelper;
-@property (assign, nonatomic) id <SHPChatDelegate> delegateView;
+//@property (assign, nonatomic) id <SHPChatDelegate> delegateView;
+
+// subscribers
+@property (strong, nonatomic) NSMutableArray<id<ChatConversationSubscriber>> *subcribers;
+-(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber;
+-(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber;
 
 @property (assign, nonatomic) double lastSentReadNotificationTime;
 
-//-(id)initWithRecipient:(NSString *)recipient recipientFullName:(NSString *)recipientFullName conversationId:(NSString *)conversationId user:(ChatUser *)user;
--(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName user:(ChatUser *)user;
-//-(id)initWithGroupId:(NSString *)groupId conversationId:(NSString *)conversationId user:(ChatUser *)user;
--(id)initWithGroupId:(NSString *)groupId user:(ChatUser *)user;
+-(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName;
+-(id)initWithGroupId:(NSString *)groupId;
 -(void)connect;
 -(void)dispose;
 - (void)sendMessage:(NSString *)text;
 -(void)sendMessageWithText:(NSString *)text type:(NSString *)type attributes:(NSDictionary *)attributes;
 -(void)restoreMessagesFromDB;
-//+(void)sendSpecialMessageFromTeamlabotButMustBeServerSide:(NSString *)recipient attributes:(NSDictionary *)attributes;
 +(NSMutableDictionary *)firebaseMessageFor:(ChatMessage *)message;
 
 @end

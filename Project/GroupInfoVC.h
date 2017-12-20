@@ -9,13 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class ChatGroup;
-@class SHPApplicationContext;
-@class ChatImageUploadSmart21DC;
 @class ChatImageCache;
 
 @interface GroupInfoVC : UITableViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 
 @property(strong, nonatomic) NSString *groupId;
 @property(strong, nonatomic) ChatGroup *group;
@@ -28,8 +24,6 @@
 @property (nonatomic, strong) UIImagePickerController *photoLibraryController;
 @property (nonatomic, strong) UIImage *scaledImage;
 @property (strong, nonatomic) UIImage *bigImage;
-//@property (nonatomic, strong) ChatImageUploadDC *uploader;
-@property (nonatomic, strong) ChatImageUploadSmart21DC *uploader;
 
 @property (strong, nonatomic) ChatImageCache *imageCache;
 

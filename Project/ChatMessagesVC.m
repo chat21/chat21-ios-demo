@@ -8,18 +8,13 @@
 
 #import "ChatMessagesVC.h"
 
-//#import "MessagesViewController.h"
 #import "ChatMessage.h"
-//#import "SHPUser.h"
 #import "ChatUtil.h"
 #import "ChatDB.h"
 #import "ChatConversation.h"
-//#import "SHPApplicationContext.h"
 #import "ChatManager.h"
 #import "ChatConversationHandler.h"
 #import "ChatConversationsVC.h"
-//#import "SHPImageDownloader.h"
-//#import "SHPImageUtil.h"
 #import "ChatStringUtil.h"
 #import "GroupInfoVC.h"
 #import "QBPopupMenu.h"
@@ -30,12 +25,11 @@
 #import "ChatMessagesTVC.h"
 #import "ChatGroup.h"
 #import "ChatStatusTitle.h"
-//#import <DropboxSDK/DropboxSDK.h>
-//#import <DBChooser/DBChooser.h>
 #import "SHPAppDelegate.h"
 #import "ChatGroupsHandler.h"
 #import "HelloChatUtil.h"
 #import "ChatUIManager.h"
+#import "ChatSpeaker.h"
 
 @interface ChatMessagesVC (){
      SystemSoundID soundID;
@@ -200,6 +194,7 @@
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
     [self updateUnreadMessagesCount];
+    [[ChatManager getInstance].groupsHandler addSubcriber:self];
 }
 
 -(void)sendTextAsChatOpens {
@@ -224,8 +219,10 @@
         NSLog(@"isMovingFromParentViewController: OK");
         [self resetTitleView];
         self.tabBarController.tabBar.hidden=NO;
-        self.conversationHandler.delegateView = nil;
-//        self.conversationsVC = nil;
+//        self.conversationHandler.delegateView = nil;
+        [self.conversationHandler removeSubcriber:self];
+        [[ChatManager getInstance].groupsHandler removeSubcriber:self];
+
         for (NSString *k in self.imageDownloadsInProgress) {
             NSLog(@"Removing downloader: %@", k);
             SHPImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:k];
@@ -481,21 +478,20 @@
 
 -(void)initConversationHandler {
     ChatManager *chatm = [ChatManager getInstance];
-    ChatConversationHandler *handler = [chatm getConversationHandlerByConversationId:self.conversationId];
+    ChatConversationHandler *handler = [chatm getConversationHandlerByConversationId:self.recipient.userId];
     if (!handler) {
         NSLog(@"Conversation Handler not found. Creating & initializing a new one with conv-id %@", self.conversationId);
         // GROUP_MOD
         if (self.recipient) {
-//            handler = [[ChatConversationHandler alloc] initWithRecipient:self.recipient.userId recipientFullName:self.recipient.fullname conversationId:self.conversationId user:self.me];
-            handler = [[ChatConversationHandler alloc] initWithRecipient:self.recipient.userId recipientFullName:self.recipient.fullname user:self.me];
+            handler = [[ChatConversationHandler alloc] initWithRecipient:self.recipient.userId recipientFullName:self.recipient.fullname];
         } else {
             NSLog(@"*** CONVERSATION HANDLER IN GROUP MOD!!!!!!!");
-//            handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId conversationId:self.conversationId user:self.me];
-            handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId user:self.me];
+            handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId];
         }
-        [chatm.groupsHandler addSubcriber:handler];
         [chatm addConversationHandler:handler];
-        handler.delegateView = self;
+        [handler addSubcriber:self];
+        
+//        handler.delegateView = self;
         self.conversationHandler = handler;
         
         // db
@@ -514,7 +510,8 @@
         NSLog(@"Adding new handler %@ to Conversations Manager.", handler);
     }
     else {
-        handler.delegateView = self;
+//        handler.delegateView = self;
+        [handler addSubcriber:self];
         self.conversationHandler = handler;
         [self checkImGroupMember];
     }
@@ -873,11 +870,25 @@
     
 }
 
+// conversation subscriber
+-(void)messageAdded:(ChatMessage *)message {
+    NSLog(@"messageAdded: %@", message.messageId);
+    [self finishedReceivingMessage:message];
+}
+
+-(void)messageChanged:(ChatMessage *)message {
+    NSLog(@"messageChanged: %@", message.messageId);
+    [self finishedReceivingMessage:message];
+}
+
+-(void)messageDeleted:(ChatMessage *)message {
+    NSLog(@"messageDeleted: %@", message.messageId);
+    [self finishedReceivingMessage:message];
+}
+// end subscriber
+
 -(void)finishedReceivingMessage:(ChatMessage *)message {
-    NSLog(@"MessagesVC. NEW MESSAGE: %@", message.text);
-    //    for (ChatMessage *m in self.conversationHandler.messages) {
-    //        NSLog(@"text: %@", m.text);
-    //    }
+//    NSLog(@"MessagesVC. NEW MESSAGE: %@", message.text);
     
     // SE MESSAGGIO.TIMESTAMP < "1 SEC FA" MOSTRA SUBITO. SE MESSAGGIO >= 1 SEC FA IMPOSTA UN TIMER. SE ARRIVA UN ALTRO MESSAGGIO DURANTE IL TIMER FAI RIPARTIRE IL TIMER. AFTER THE TIMER ENDS, RELOAD TABLE.
     
@@ -1038,6 +1049,23 @@
 //            }
 //        }
 //    }
+}
+
+// ChatGroupsSubscriber protocol
+
+-(void)groupAddedOrChanged:(ChatGroup *)group {
+    NSLog(@"Group added or changed delegate. Group name: %@", group.name);
+    if (![group.groupId isEqualToString:self.group.groupId]) {
+        return;
+    }
+    if ([group isMember:self.me.userId]) {
+        [self.conversationHandler connect];
+        [self groupConfigurationChanged:group];
+    }
+    else {
+        [self.conversationHandler dispose];
+        [self groupConfigurationChanged:group];
+    }
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

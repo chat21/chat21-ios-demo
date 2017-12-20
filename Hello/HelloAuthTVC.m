@@ -7,12 +7,9 @@
 //
 
 #import "HelloAuthTVC.h"
-//#import "AlfrescoRepositorySession.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "HelloUser.h"
-//#import "FirebaseAuth.h"
 #import "MBProgressHUD.h"
-//#import "AlfrescoUsersDC.h"
 #import "SHPAppDelegate.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
@@ -28,8 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    self.app = [SHPApplicationContext getSharedInstance];
-    //    [self.app signout];
     [self.usernameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.passwordTextLabel addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
@@ -133,7 +128,7 @@
 
 -(void)firebaseLogin:(NSString *)email password:(NSString *)password {
     
-    SHPApplicationContext *context = [SHPApplicationContext getSharedInstance];
+    HelloApplicationContext *context = [HelloApplicationContext getSharedInstance];
     
     __weak HelloAuthTVC *weakSelf = self;
     

@@ -1,23 +1,22 @@
 //
-//  SHPApplicationContext.m
-//  Shopper
+//  HelloApplicationContext.m
 //
-//  Created by andrea sponziello on 08/08/12.
+//  Created by andrea sponziello on 08/08/17.
 //
 //
 
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "HelloAuth.h"
 #import "HelloUser.h"
 #import "SHPAppDelegate.h"
 #import "ChatConversationHandler.h"
 #import "ChatConversationsVC.h"
 
-@implementation SHPApplicationContext
+@implementation HelloApplicationContext
 
-static SHPApplicationContext *sharedInstance = nil;
+static HelloApplicationContext *sharedInstance = nil;
 
-+(SHPApplicationContext *)getSharedInstance {
++(HelloApplicationContext *)getSharedInstance {
     if (!sharedInstance) {
         sharedInstance = [[super alloc] init];
     }
@@ -55,23 +54,6 @@ static SHPApplicationContext *sharedInstance = nil;
     self.loggedUser = nil;
 }
 
-//-(void)unregisterDeviceAndUserFromProvider {
-//    SHPSendTokenDC *tokenDC = [[SHPSendTokenDC alloc] init];
-//    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSString *devToken = appDelegate.deviceToken;
-//    if (devToken) {
-//        [tokenDC removeToken:devToken withUser:self.loggedUser completionHandler:^(NSError *error) {
-//            if (!error) {
-//                NSLog(@"Successfully UN-Registered DEVICE to Provider FOR USER %@", self.loggedUser);
-//                //                appDelegate.registeredToProvider = YES;
-//            }
-//            else {
-//                NSLog(@"Error while registering devToken to Provider!");
-//            }
-//        }];
-//    }
-//}
-
 -(void)signin:(HelloUser *)user {
     // save the user
     //KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"YourAppLogin" accessGroup:nil];
@@ -103,7 +85,7 @@ static SHPApplicationContext *sharedInstance = nil;
 
 +(int)tabIndexByName:(NSString *)tab_name {
     SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-    SHPApplicationContext *context = appDelegate.applicationContext;
+    HelloApplicationContext *context = appDelegate.applicationContext;
     NSDictionary *tabBarDictionary = [context.plistDictionary objectForKey:@"TabBar"];
     NSArray *tabBarMenuItems = [tabBarDictionary objectForKey:@"Menu"];
     

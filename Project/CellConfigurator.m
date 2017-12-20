@@ -12,7 +12,7 @@
 #import "ChatConversationsVC.h"
 #import "ChatImageWrapper.h"
 #import "SHPImageUtil.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "ChatManager.h"
 #import "ChatGroupsHandler.h"
 #import "ChatGroup.h"

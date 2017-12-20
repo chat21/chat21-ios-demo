@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "ChatUsersDC.h"
 #import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
 #import "ChatSynchDelegate.h"
 
-@class SHPApplicationContext;
 @class ChatImageCache;
 @class ChatGroup;
 @class ChatUser;
 
 @interface ChatSelectUserLocalVC : UIViewController <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SHPImageDownloaderDelegate, ChatSynchDelegate>
 
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
 @property (strong, nonatomic) ChatUser *userSelected;
 @property (strong, nonatomic) NSArray<ChatUser *> *users;
 @property (strong, nonatomic) NSMutableArray<ChatUser *> *recentUsers;

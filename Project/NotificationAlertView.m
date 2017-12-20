@@ -7,9 +7,9 @@
 //
 
 #import "NotificationAlertView.h"
-#import "SHPApplicationContext.h"
 #import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
+#import "HelloApplicationContext.h"
 
 @interface NotificationAlertView () {
     SystemSoundID soundID;
@@ -28,10 +28,6 @@
 
 - (void)initViewWithHeight:(float)height {
     NSLog(@"NotificationAlertVC loaded.");
-//    if(!self.applicationContext){
-//        SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//        self.applicationContext = appDelegate.applicationContext;
-//    }
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
@@ -62,7 +58,7 @@
     //    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     NSLog(@"View tapped!! Moving to conversation tab.");
     [self animateClose];
-    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
+    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
     // move to the converstations tab
     if (chat_tab_index >= 0) {
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];

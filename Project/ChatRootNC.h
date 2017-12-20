@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class SHPApplicationContext;
+@class HelloApplicationContext;
 @class ChatUser;
 
 @interface ChatRootNC : UINavigationController
 
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
+@property (strong, nonatomic) HelloApplicationContext *applicationContext;
 @property (assign, nonatomic) int loggedInConfiguration; // -1 = unset, 1 = chat, 2 = not logged
 @property (strong, nonatomic) NSDictionary *chatConfig;
 @property (assign, nonatomic) BOOL startupLogin;

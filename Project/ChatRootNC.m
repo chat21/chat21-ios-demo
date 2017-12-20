@@ -7,11 +7,10 @@
 //
 
 #import "ChatRootNC.h"
-#import "SHPApplicationContext.h"
 #import "SHPAppDelegate.h"
 #import "ChatConversationsVC.h"
 #import "NotConnectedVC.h"
-//#import "CZAuthenticationVC.h"
+#import "HelloApplicationContext.h"
 
 @interface ChatRootNC ()
 

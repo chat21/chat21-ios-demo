@@ -7,9 +7,6 @@
 //
 
 #import "ChatMiniBrowserVC.h"
-#import "SHPApplicationContext.h"
-//#import "SHPSelectUserVC.h"
-//#import "SHPUser.h"
 #import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
 
@@ -22,9 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"URL::: %@", self.urlPage);
-    
-    self.applicationContext = [SHPApplicationContext getSharedInstance];
+    NSLog(@"URL: %@", self.urlPage);
     
 //    [self.tabBarController.tabBar setHidden:YES];
     self.webView.delegate=self;
@@ -210,50 +205,10 @@ static NSString * AFBase64EncodedStringFromString(NSString *string) {
 
 - (void)setupViewController:(UIViewController *)controller didFinishSetupWithInfo:(NSDictionary *)setupInfo {
     NSLog(@"setupViewController...");
-//    if([controller isKindOfClass:[SHPSelectUserVC class]])
-//    {
-//        SHPUser *user = nil;
-//        if ([setupInfo objectForKey:@"user"]) {
-//            user = [setupInfo objectForKey:@"user"];
-//            NSLog(@">>>>>> SELECTED: user %@", user.username);
-//        }
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            if (user) {
-//                NSLog(@"Dismissed");
-//                NSString *urlString = @"";
-//                NSURL* url = [self.webView.request URL];
-//                urlString = [url absoluteString];
-//                [self sendMessage:urlString toUser:user.username];
-////                self.selectedRecipientFullname = user.fullName;
-////                [self openConversationWithRecipient:user.username];
-//            }
-//        }];
-//    }
 }
 
 - (void)setupViewController:(UIViewController *)controller didCancelSetupWithInfo:(NSDictionary *)setupInfo {
-//    if([controller isKindOfClass:[SHPSelectUserVC class]])
-//    {
-//        NSLog(@"User selection Canceled.");
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
-}
-
--(void)sendMessage:(NSString *)text toUser:(NSString *)userid {
-    int chat_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
-    // move to the converstations tab
-    if (chat_tab_index >= 0) {
-        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        UITabBarController *tabController = (UITabBarController *)window.rootViewController;
-        NSArray *controllers = [tabController viewControllers];
-        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-//        SHPConversationsVC *vc = nc.viewControllers[0];
-//        NSLog(@"SWITCHING TO CONVERSATION VIEW. DISABLED.");
-        // IF YOU ENABLE THIS IS MANDATORY TO FIND A WAY TO DISMISS OR HANDLE THE CURRENT MODAL VIEW
-//        [nc popToRootViewControllerAnimated:NO];
-        [nc openConversationWithUser:userid sendMessage:text];
-        tabController.selectedIndex = chat_tab_index;
-    }
+    NSLog(@"didCancelSetupWithInfo...");
 }
 
 - (void)didReceiveMemoryWarning

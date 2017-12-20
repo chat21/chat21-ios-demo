@@ -9,7 +9,7 @@
 #import "ChatGroup.h"
 #import "Firebase/Firebase.h"
 //#import "SHPPushNotification.h"
-#import "SHPApplicationContext.h"
+#import "HelloApplicationContext.h"
 #import "ChatUtil.h"
 #import "SHPAppDelegate.h"
 

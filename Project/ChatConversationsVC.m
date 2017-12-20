@@ -7,42 +7,22 @@
 //
 
 #import "ChatConversationsVC.h"
-//#import "SHPAppDelegate.h"
-//#import "SHPApplicationContext.h"
-//#import "SHPUser.h"
 #import "ChatConversation.h"
-//#import "MessagesViewController.h"
 #import "ChatUtil.h"
 #import "ChatConversationsHandler.h"
 #import "ChatManager.h"
 #import "ChatDB.h"
 #import "ChatGroupsDB.h"
-//#import "SHPImageDownloader.h"
-//#import "SHPImageUtil.h"
 #import "ChatConversationHandler.h"
 #import "ChatGroupsHandler.h"
-//#import "SHPSelectUserVC.h"
-//#import "SHPChatCreateGroupVC.h"
-//#import "SHPChatSelectGroupMembers.h"
 #import "ChatGroup.h"
-//#import <Parse/Parse.h>
 #import "ChatImageCache.h"
-//#import "ParseChatNotification.h"
-//#import "ChatParsePushService.h"
 #import "ChatPresenceHandler.h"
 #import "ChatImageWrapper.h"
 #import "ChatTitleVC.h"
 #import "ChatMessagesVC.h"
 #import "CellConfigurator.h"
 #import "ChatStatusTitle.h"
-//#import <DropboxSDK/DropboxSDK.h>
-//#import "MRCategoryStepTVC.h"
-//#import "MRPreviewStepTVC.h"
-//#import "MRJobSkillStepTVC.h"
-//#import "MRJobSkillPreviewStepTVC.h"
-//#import "MRJobCategory.h"
-//#import "MRService.h"
-//#import "ChatContactsSynchronizer.h"
 #import "ChatSelectUserLocalVC.h"
 #import "ChatSelectGroupMembersLocal.h"
 #import "ChatSelectGroupLocalTVC.h"
@@ -63,10 +43,6 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     NSLog(@"Conversations viewDidLoad start");
-//    if(!self.applicationContext) {
-//        SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//        self.applicationContext = appDelegate.applicationContext;
-//    }
     
     self.settings = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"]];
     
@@ -603,21 +579,6 @@
     }
 }
 
-// TODO: MOVE THIS ELSEWHERE
-//-(void)update_unread_ui {
-//    [self update_unread_badge];
-//}
-//-(void)update_unread_badge {
-//    NSString *_count;
-//    if (self.unread_count > 0) {
-//        _count = [NSString stringWithFormat:@"%d", self.unread_count];
-//    } else {
-//        _count = nil;
-//    }
-//    int messages_tab_index = [SHPApplicationContext tabIndexByName:@"ChatController"];
-//    [[self.tabBarController.tabBar.items objectAtIndex:messages_tab_index] setBadgeValue:_count];
-//}
-
 -(void)update_unread {
     int count = 0;
     for (ChatConversation *c in self.conversationsHandler.conversations) {
@@ -626,16 +587,6 @@
         }
     }
     self.unread_count = count;
-    
-//    // back button
-//    if (count == 0) {
-//        self.backButton.title = @"Chat";
-//    } else {
-//        self.backButton.title = [[NSString alloc] initWithFormat:@"Chat (%d)", count];
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-//        [label setBackgroundColor:[UIColor redColor]];
-//        label.text = _count;
-//    }
     
     // notify next VC
     if (self.navigationController.viewControllers.count > 1) {

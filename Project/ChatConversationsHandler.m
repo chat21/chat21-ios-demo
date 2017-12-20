@@ -7,31 +7,14 @@
 //
 
 #import "ChatConversationsHandler.h"
-//#import "SHPFirebaseTokenDC.h"
-#import "SHPApplicationContext.h"
-//#import "SHPUser.h"
 #import "ChatUtil.h"
-//#import <Firebase/Firebase.h>
 #import "ChatConversation.h"
 #import "SHPConversationsViewDelegate.h"
 #import "ChatDB.h"
 #import "ChatManager.h"
 #import "ChatUser.h"
 
-//#import "FirebaseCustomAuthHelper.h"
-
 @implementation ChatConversationsHandler
-
-//-(id)initWith:(SHPApplicationContext *)applicationContext delegateView:(id<SHPConversationsViewDelegate>)delegateView {
-//    if (self = [super init]) {
-//        self.applicationContext = applicationContext;
-//        self.me = self.applicationContext.loggedUser.username;
-//        self.delegateView = delegateView;
-//        
-//        self.conversations = [[NSMutableArray alloc] init];
-//    }
-//    return self;
-//}
 
 -(id)initWithTenant:(NSString *)tenant user:(ChatUser *)user {
     if (self = [super init]) {
@@ -43,39 +26,6 @@
         self.conversations = [[NSMutableArray alloc] init];
     }
     return self;
-}
-
-//-(id)initWithTenant:(NSString *)tenant user:(SHPUser *)user {
-//    if (self = [super init]) {
-////        self.firebaseRef = firebaseRef;
-//        self.rootRef = [[FIRDatabase database] reference];
-//        self.tenant = tenant;
-//        self.loggeduser = user;
-//        self.me = [ChatUtil sanitizedUserId:user.username];
-//        self.conversations = [[NSMutableArray alloc] init];
-//    }
-//    return self;
-//}
-
-//-(id)initWithFirebaseRef:(NSString *)firebaseRef tenant:(NSString *)tenant user:(SHPUser *)user {
-//    if (self = [super init]) {
-//        self.firebaseRef = firebaseRef;
-//        self.tenant = tenant;
-//        self.loggeduser = user;
-//        self.me = user.username;
-//        self.conversations = [[NSMutableArray alloc] init];
-//    }
-//    return self;
-//}
-
-- (void)connect {
-//    NSLog(@"Firebase login with username %@...", self.me);
-//    if (!self.me) {
-//        NSLog(@"ERROR: First set .me property with a valid username.");
-//    }
-//    [self firebaseLogin];
-//    NSLog(@"connecting handler %@ to firebase: %@", self, self.firebaseRef);
-    [self setupConversations];
 }
 
 -(void)printAllConversations {
@@ -103,27 +53,7 @@
     return self.conversations;
 }
 
-// ATTENZIONE: UTILIZZATO?????
-//-(void)firebaseLogin {
-//    //NSString *asdas;
-//    SHPFirebaseTokenDC *dc = [[SHPFirebaseTokenDC alloc] init];
-//    dc.delegate = self;
-//    [dc getTokenWithParameters:nil withUser:self.loggeduser];
-//}
-
-// ATTENZIONE: UTILIZZATO?????
-//-(void)didFinishFirebaseAuthWithToken:(NSString *)token error:(NSError *)error {
-//    if (token) {
-//        NSLog(@"Chat Conversations Firebase Auth ok. Token: %@", token);
-//        self.firebaseToken = token;
-//        [self setupConversations];
-//    } else {
-//        NSLog(@"Auth Firebase error: %@", error);
-//    }
-//    [self.delegateView didFinishConnect:self error:error];
-//}
-
--(void)setupConversations {
+-(void)connect {
     NSLog(@"Setting up conversations for handler %@ on delegate %@", self, self.delegateView);
     ChatManager *chat = [ChatManager getInstance];
     NSString *conversations_path = [ChatUtil conversationsPathForUserId:self.loggeduser.userId];

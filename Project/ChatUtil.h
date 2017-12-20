@@ -10,18 +10,13 @@
 
 @class Firebase;
 @class ChatNotificationView;
-@class SHPApplicationContext;
 @class ChatUser;
 
 @import Firebase;
 
 @interface ChatUtil : NSObject
 
-//+(NSString *)conversationIdWithSender:(NSString *)sender receiver:(NSString *)receiver;// tenant:(NSString *)tenant;
-//+(NSString *)conversationIdForGroup:(NSString *)groupId;
-//+(NSString *)usernameOnTenant:(NSString *)tenant username:(NSString *)username;
 +(FIRDatabaseReference *)conversationRefForUser:(NSString *)userId conversationId:(NSString *)conversationId;
-//+(FIRDatabaseReference *)conversationMessagesRef:(NSString *)conversationId;
 +(FIRDatabaseReference *)conversationMessagesRef:(NSString *)recipient_id;
 
 // firebase paths
@@ -31,7 +26,6 @@
 +(NSString *)contactPathOfUser:(NSString *)userid;
 +(NSString *)groupsPath;
 +(NSString *)mainGroupsPath;
-// +(FIRDatabaseReference *)groupsRefWithBase:(NSString *)baseRefURL;
 +(void)showNotificationWithMessage:(NSString *)message image:(UIImage *)image sender:(NSString *)sender senderFullname:(NSString *)senderFullname;
 
 +(void)moveToConversationViewWithUser:(ChatUser *)user;

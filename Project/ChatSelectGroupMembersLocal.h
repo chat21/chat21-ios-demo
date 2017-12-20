@@ -11,7 +11,7 @@
 #import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
 
-@class SHPApplicationContext;
+@class HelloApplicationContext;
 @class ChatImageCache;
 @class ChatGroup;
 @class ChatUser;
@@ -19,7 +19,7 @@
 
 @interface ChatSelectGroupMembersLocal : UIViewController <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SHPImageDownloaderDelegate>
 
-@property (strong, nonatomic) SHPApplicationContext *applicationContext;
+@property (strong, nonatomic) HelloApplicationContext *applicationContext;
 @property (strong, nonatomic) ChatUser *userSelected;
 @property (strong, nonatomic) NSArray<ChatUser *> *users;
 @property (strong, nonatomic) NSMutableArray<ChatUser *> *members;
