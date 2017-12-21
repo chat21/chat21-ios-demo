@@ -5,4 +5,4 @@ tilechat.xcworkspace/*
 .gitignore
 tilechat.xcodeproj
 tilechat.xcodeproj/*
-Project/GoogleService-Info.plist
+#Project/GoogleService-Info.plist

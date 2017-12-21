@@ -13,7 +13,6 @@
 		B20FC6A41BEB39F5009D57D3 /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B20FC6A31BEB39F5009D57D3 /* ChatImageWrapper.m */; };
 		B21760C31FE9C88900C83215 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B21760C21FE9C88900C83215 /* MBProgressHUD.m */; };
 		B22048101C387F3D00AF84CE /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */; };
-		B2348E8B1FE059B100406D81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B235393D1F4D7BA0000BA684 /* ChatMiniBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B235393C1F4D7BA0000BA684 /* ChatMiniBrowserVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
@@ -166,7 +165,6 @@
 		B220480E1C387F3D00AF84CE /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
 		B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
 		B22048111C399F3400AF84CE /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
-		B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B235393B1F4D7BA0000BA684 /* ChatMiniBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMiniBrowserVC.h; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 		B24FD40A1CBEE477000EF70E /* ChatStatusTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStatusTitle.m; sourceTree = "<group>"; };
 		B250D0141F8CB5C700FACFBF /* ChatSynchDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSynchDelegate.h; sourceTree = "<group>"; };
 		B250D0151F8CD61A00FACFBF /* status_title_ios11.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = status_title_ios11.xib; sourceTree = "<group>"; };
-		B274DB2C1EF848920055EDD0 /* Labot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Labot.entitlements; sourceTree = "<group>"; };
 		B27C512F1C345EC70069F5E7 /* NotConnectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotConnectedVC.h; sourceTree = "<group>"; };
 		B27C51301C345EC70069F5E7 /* NotConnectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotConnectedVC.m; sourceTree = "<group>"; };
 		B290C37E1C29C06700EF8616 /* NotificationAlertVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationAlertVC.h; sourceTree = "<group>"; };
@@ -598,7 +595,6 @@
 			isa = PBXGroup;
 			children = (
 				B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */,
-				B274DB2C1EF848920055EDD0 /* Labot.entitlements */,
 				B24AD7B11F8612A400A526E9 /* Support */,
 				B2CE2F391F19314E002E2150 /* Hello */,
 				BFBFD36A1AEA544F00657874 /* Project */,
@@ -636,7 +632,6 @@
 		BFBFD36B1AEA544F00657874 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B2348E8A1FE059B100406D81 /* GoogleService-Info.plist */,
 				BFBFD5251AEA5EC200657874 /* Info.plist */,
 				BFBBC2BF1B1ED7E30028EA4F /* settings.plist */,
 				BFBFD4E21AEA59D100657874 /* main.m */,
@@ -924,7 +919,6 @@
 				B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */,
 				B2A4C08E1FE8714300AED2EE /* chat_double_check.png in Resources */,
 				B23AE8ED1F278E8800BEB4B8 /* ic_linear_file@3x.png in Resources */,
-				B2348E8B1FE059B100406D81 /* GoogleService-Info.plist in Resources */,
 				B2A4C0881FE8714300AED2EE /* chat_check.png in Resources */,
 				B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */,
 				B2A4C08A1FE8714300AED2EE /* chat_watch.png in Resources */,
