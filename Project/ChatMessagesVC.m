@@ -196,25 +196,22 @@
 }
 
 -(void)subscribe:(ChatConversationHandler  *)handler {
-    self.added_handler = [handler observeEventType:ChatEventMessageAdded withCallback:^(ChatMessage *message) {
-        NSLog(@"messaggio aggiunto!, %@", message.messageId);
-        [self finishedReceivingMessage:message];
+    self.added_handle = [handler observeEvent:ChatEventMessageAdded withCallback:^(ChatMessage *message) {
+        [self messageReceived:message];
     }];
-    self.changed_handler = [handler observeEventType:ChatEventMessageChanged withCallback:^(ChatMessage *message) {
-        NSLog(@"messaggio changed!, %@", message.messageId);
-        [self finishedReceivingMessage:message];
+    self.changed_handle = [handler observeEvent:ChatEventMessageChanged withCallback:^(ChatMessage *message) {
+        [self messageReceived:message];
     }];
-    self.deleted_handler = [handler observeEventType:ChatEventMessageDeleted withCallback:^(ChatMessage *message) {
-        NSLog(@"messaggio deleted!, %@", message.messageId);
-        [self finishedReceivingMessage:message];
+    self.deleted_handle = [handler observeEvent:ChatEventMessageDeleted withCallback:^(ChatMessage *message) {
+        [self messageReceived:message];
     }];
-    NSLog(@"added_handler: %lu, changed_handler: %lu, deleted_handler: %lu", self.added_handler, self.changed_handler, self.deleted_handler);
+    NSLog(@"added_handle: %lu, changed_handle: %lu, deleted_handle: %lu", (unsigned long)self.added_handle, (unsigned long)self.changed_handle, (unsigned long)self.deleted_handle);
 }
 
 -(void)removeSubscribers {
-    [self.conversationHandler removeObserverWithHandler:self.added_handler];
-    [self.conversationHandler removeObserverWithHandler:self.changed_handler];
-    [self.conversationHandler removeObserverWithHandler:self.deleted_handler];
+    [self.conversationHandler removeObserverWithHandle:self.added_handle];
+    [self.conversationHandler removeObserverWithHandle:self.changed_handle];
+    [self.conversationHandler removeObserverWithHandle:self.deleted_handle];
 }
 
 -(void)sendTextAsChatOpens {
@@ -505,7 +502,6 @@
             handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId];
         }
         [chatm addConversationHandler:handler];
-//        [handler addSubcriber:self];
         [self subscribe:handler];
         self.conversationHandler = handler;
         
@@ -516,7 +512,7 @@
         
         if (self.recipient) {
             NSLog(@"Connecting handler to firebase.");
-            [self.conversationHandler connect];
+            [handler connect];
         }
         else {
             [self checkImGroupMember];
@@ -526,6 +522,7 @@
     }
     else {
 //        [handler addSubcriber:self];
+        [handler connect];
         [self subscribe:handler];
         self.conversationHandler = handler;
         [self checkImGroupMember];
@@ -885,24 +882,24 @@
     
 }
 
-// conversation subscriber
--(void)messageAdded:(ChatMessage *)message {
-    NSLog(@"messageAdded: %@", message.messageId);
-    [self finishedReceivingMessage:message];
-}
+//// conversation subscriber
+//-(void)messageAdded:(ChatMessage *)message {
+//    NSLog(@"messageAdded: %@", message.messageId);
+//    [self finishedReceivingMessage:message];
+//}
+//
+//-(void)messageChanged:(ChatMessage *)message {
+//    NSLog(@"messageChanged: %@", message.messageId);
+//    [self finishedReceivingMessage:message];
+//}
+//
+//-(void)messageDeleted:(ChatMessage *)message {
+//    NSLog(@"messageDeleted: %@", message.messageId);
+//    [self finishedReceivingMessage:message];
+//}
+//// end subscriber
 
--(void)messageChanged:(ChatMessage *)message {
-    NSLog(@"messageChanged: %@", message.messageId);
-    [self finishedReceivingMessage:message];
-}
-
--(void)messageDeleted:(ChatMessage *)message {
-    NSLog(@"messageDeleted: %@", message.messageId);
-    [self finishedReceivingMessage:message];
-}
-// end subscriber
-
--(void)finishedReceivingMessage:(ChatMessage *)message {
+-(void)messageReceived:(ChatMessage *)message {
 //    NSLog(@"MessagesVC. NEW MESSAGE: %@", message.text);
     
     // SE MESSAGGIO.TIMESTAMP < "1 SEC FA" MOSTRA SUBITO. SE MESSAGGIO >= 1 SEC FA IMPOSTA UN TIMER. SE ARRIVA UN ALTRO MESSAGGIO DURANTE IL TIMER FAI RIPARTIRE IL TIMER. AFTER THE TIMER ENDS, RELOAD TABLE.

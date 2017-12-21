@@ -207,7 +207,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     user.userId = hello_user.username;
     user.fullname = hello_user.fullName;
     user.email = hello_user.email;
-    user.password = hello_user.password;
+//    user.password = hello_user.password;
     return user;
 }
 

@@ -32,7 +32,7 @@
 @property (strong, nonatomic) NSString *senderId;
 
 @property (strong, nonatomic) NSString *conversationId; // Intelocutor-id
-@property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) NSMutableArray<ChatMessage *> *messages;
 @property (strong, nonatomic) NSString *firebaseToken;
 @property (strong, nonatomic) FIRDatabaseReference *messagesRef;
 @property (strong, nonatomic) FIRDatabaseReference *conversationOnSenderRef;
@@ -49,8 +49,8 @@
 // subscribers v2
 @property (strong, nonatomic) NSMutableDictionary *eventObservers;
 @property (assign, atomic) volatile int64_t lastEventHandler;
--(NSUInteger)observeEventType:(ChatEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
--(void)removeObserverWithHandler:(NSUInteger)event_handler;
+-(NSUInteger)observeEvent:(ChatEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
+-(void)removeObserverWithHandle:(NSUInteger)event_handler;
 
 @property (assign, nonatomic) double lastSentReadNotificationTime;
 

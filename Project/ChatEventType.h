@@ -22,6 +22,6 @@ typedef NS_ENUM(NSInteger, ChatEventType) {
     ChatEventMessageDeleted,
     /// A child node at a location changes.
     ChatEventMessageChanged,
-};// FIR_SWIFT_NAME(DataEventType);
+};// CHAT_SWIFT_NAME(DataEventType);
 
 #endif /* ChatEventType_h */

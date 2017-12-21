@@ -53,9 +53,9 @@
 @property (strong, nonatomic) UITapGestureRecognizer *tapToDismissKB;
 
 // subscribers
-@property (assign, nonatomic) NSUInteger added_handler;
-@property (assign, nonatomic) NSUInteger changed_handler;
-@property (assign, nonatomic) NSUInteger deleted_handler;
+@property (assign, nonatomic) NSUInteger added_handle;
+@property (assign, nonatomic) NSUInteger changed_handle;
+@property (assign, nonatomic) NSUInteger deleted_handle;
 
 
 // user thumbs

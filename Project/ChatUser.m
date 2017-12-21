@@ -87,8 +87,8 @@
         return NO;
     if (![[self email] isEqual:[user email]])
         return NO;
-    if (![[self imageurl] isEqual:[user imageurl]])
-        return NO;
+//    if (![[self imageurl] isEqual:[user imageurl]])
+//        return NO;
     if (![[self userId] isEqual:[user userId]])
         return NO;
     return YES;
