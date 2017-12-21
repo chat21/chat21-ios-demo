@@ -24,11 +24,20 @@
 //#import "ChatParsePushService.h"
 #import "HelloApplicationContext.h"
 #import "ChatUser.h"
+#import <libkern/OSAtomic.h>
 
 @implementation ChatConversationHandler
 
+-(id)init {
+    if (self = [super init]) {
+        self.lastEventHandler = 1;
+    }
+    return self;
+}
+
 -(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName {
     if (self = [super init]) {
+        self.lastEventHandler = 1;
         self.recipientId = recipientId;
         self.recipientFullname = recipientFullName;
         self.user = [ChatManager getInstance].loggedUser;
@@ -41,6 +50,7 @@
 
 -(id)initWithGroupId:(NSString *)groupId {
     if (self = [super init]) {
+        self.lastEventHandler = 1;
         self.groupId = groupId;
         self.user = [ChatManager getInstance].loggedUser;
         self.senderId = self.user.userId;
@@ -172,13 +182,10 @@
         // updates or insert new messages
         // Note: a last message is always resent. So this check to avoid this notified as new (...playing sound etc.)
         ChatMessage *message_archived = [[ChatDB getSharedInstance] getMessageById:message.messageId];
-        NSLog(@"messa.attr 5 %@", message.attributes);
         if (!message_archived) {
-            NSLog(@"*** message not archived");
-            NSLog(@"messa.attr 6 %@", message.attributes);
             [self insertMessageInMemory:message]; // memory
 //            [self finishedReceivingMessage:message];
-            [self notifySubscribersMessageAdded:message];
+            [self notifyEvent:ChatEventMessageAdded message:message];
             [self insertMessageOnDBIfNotExists:message];
         }
     } withCancelBlock:^(NSError *error) {
@@ -200,12 +207,12 @@
             [self updateMessageStatusInMemory:message.messageId withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
 //            [self finishedReceivingMessage:message];
-            [self notifySubscribersMessageChanged:message];
+            [self notifyEvent:ChatEventMessageChanged message:message];
         } else if (message.status == MSG_STATUS_RETURN_RECEIPT) {
             NSLog(@"Message update: return receipt.");
             [self updateMessageStatusInMemory:message.messageId withStatus:message.status];
             [self updateMessageStatusOnDB:message.messageId withStatus:message.status];
-            [self notifySubscribersMessageChanged:message];
+            [self notifyEvent:ChatEventMessageChanged message:message];
 //            [self finishedReceivingMessage:message];
 //            [self sendReadNotificationForMessage:message];
         }
@@ -293,7 +300,7 @@
     [self insertMessageInMemory:message];
     [self insertMessageOnDBIfNotExists:message];
 //    [self finishedReceivingMessage:message];
-    [self notifySubscribersMessageAdded:message];// TODO messageArrived
+    [self notifyEvent:ChatEventMessageAdded message:message];
     
     // save message to firebase
     NSMutableDictionary *message_dict = [ChatConversationHandler firebaseMessageFor:message];
@@ -306,7 +313,7 @@
             [self updateMessageStatusInMemory:ref.key withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
 //            [self finishedReceivingMessage:message];
-            [self notifySubscribersMessageChanged:message];
+            [self notifyEvent:ChatEventMessageChanged message:message];
         } else {
             NSLog(@"Data saved successfully. Updating status & reloading tableView.");
             int status = MSG_STATUS_SENT;
@@ -314,7 +321,7 @@
             [self updateMessageStatusInMemory:message.messageId withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
 //            [self finishedReceivingMessage:message];
-            [self notifySubscribersMessageChanged:message];
+            [self notifyEvent:ChatEventMessageChanged message:message];
             
 //            NSLog(@"Updating conversations sender %@ recipient %@", self.senderId, self.recipient);
             // updates conversations
@@ -361,7 +368,7 @@
     [self insertMessageInMemory:message];
     [self insertMessageOnDBIfNotExists:message];
 //    [self finishedReceivingMessage:message];
-    [self notifySubscribersMessageAdded:message];
+    [self notifyEvent:ChatEventMessageAdded message:message];
     // save message to firebase
     NSMutableDictionary *message_dict = [ChatConversationHandler firebaseMessageFor:message];
     NSLog(@"(Group) Sending message to Firebase:(%@) %@ %@ %d dict: %@",messageRef, message.text, message.messageId, message.status, message_dict);
@@ -373,14 +380,14 @@
             [self updateMessageStatusInMemory:ref.key withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
 //            [self finishedReceivingMessage:message];
-            [self notifySubscribersMessageChanged:message];
+            [self notifyEvent:ChatEventMessageChanged message:message];
         } else {
             NSLog(@"Data saved successfully. Updating status & reloading tableView.");
             int status = MSG_STATUS_SENT;
             [self updateMessageStatusInMemory:ref.key withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
 //            [self finishedReceivingMessage:message];
-            [self notifySubscribersMessageChanged:message];
+            [self notifyEvent:ChatEventMessageChanged message:message];
             
             ChatGroup *group = [[ChatManager getInstance] groupById:self.groupId];
             
@@ -566,35 +573,85 @@
 
 // subscribers
 
--(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber {
-    if (!self.subcribers) {
-        self.subcribers = [[NSMutableArray alloc] init];
-    }
-    [self.subcribers addObject:subscriber];
-}
+//-(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber {
+//    if (!self.subcribers) {
+//        self.subcribers = [[NSMutableArray alloc] init];
+//    }
+//    [self.subcribers addObject:subscriber];
+//}
+//
+//-(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber {
+//    if (!self.subcribers) {
+//        return;
+//    }
+//    [self.subcribers removeObject:subscriber];
+//}
 
--(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber {
-    if (!self.subcribers) {
+-(void)notifyEvent:(ChatEventType)event message:(ChatMessage *)message {
+//    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
+//        [subscriber messageAdded:message];
+//    }
+    if (!self.eventObservers) {
         return;
     }
-    [self.subcribers removeObject:subscriber];
-}
-
--(void)notifySubscribersMessageAdded:(ChatMessage *)message {
-    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
-        [subscriber messageAdded:message];
+    NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:@(event)];
+    if (!eventCallbacks) {
+        return;
+    }
+    for (NSNumber *event_handler_key in eventCallbacks.allKeys) {
+        void (^callback)(ChatMessage *message) = [eventCallbacks objectForKey:event_handler_key];
+        callback(message);
     }
 }
 
--(void)notifySubscribersMessageChanged:(ChatMessage *)message {
-    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
-        [subscriber messageChanged:message];
+//-(void)notifySubscribersMessageChanged:(ChatMessage *)message {
+//    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
+//        [subscriber messageChanged:message];
+//    }
+//}
+
+//-(void)notifySubscribersMessageDeleted:(ChatMessage *)message {
+//    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
+//        [subscriber messageDeleted:message];
+//    }
+//}
+
+// v2
+
+-(NSUInteger)observeEventType:(ChatEventType)eventType withCallback:(void (^)(ChatMessage *message))callback {
+    if (!self.eventObservers) {
+        self.eventObservers = [[NSMutableDictionary alloc] init];
     }
+    NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:@(eventType)];
+    if (!eventCallbacks) {
+        eventCallbacks = [[NSMutableDictionary alloc] init];
+        [self.eventObservers setObject:eventCallbacks forKey:@(eventType)];
+    }
+    NSUInteger callback_handler = (NSUInteger) OSAtomicIncrement64Barrier(&_lastEventHandler);
+    [eventCallbacks setObject:callback forKey:@(callback_handler)];
+    return callback_handler;
 }
 
--(void)notifySubscribersMessageDeleted:(ChatMessage *)message {
-    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
-        [subscriber messageDeleted:message];
+-(void)removeObserverWithHandler:(NSUInteger)event_handler {
+    if (!self.eventObservers) {
+        return;
+    }
+    
+    // test
+    for (NSNumber *event_key in self.eventObservers) {
+        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+        NSLog(@"Removing callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
+    }
+    
+    // iterate all keys (events)
+    for (NSNumber *event_key in self.eventObservers) {
+        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+        [eventCallbacks removeObjectForKey:@(event_handler)];
+    }
+    
+    for (NSNumber *event_key in self.eventObservers) {
+        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+        NSLog(@"After removed callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
     }
 }
 

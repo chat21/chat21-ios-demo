@@ -12,7 +12,6 @@
 #import "QBPopupMenu.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "ChatGroupsSubscriber.h"
-#import "ChatConversationSubscriber.h"
 
 @import Firebase;
 
@@ -26,7 +25,7 @@
 @class ChatGroup;
 @class ChatUser;
 
-@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChatGroupsSubscriber, ChatConversationSubscriber> {
+@interface ChatMessagesVC : UIViewController<QBPopupMenuDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChatGroupsSubscriber> {
     BOOL keyboardShow;
     CGFloat heightTable;
     CGFloat originalViewHeight;
@@ -52,6 +51,12 @@
 @property (strong, nonatomic) UINavigationController *profileNC;
 @property (strong, nonatomic) NSString *selectedText;
 @property (strong, nonatomic) UITapGestureRecognizer *tapToDismissKB;
+
+// subscribers
+@property (assign, nonatomic) NSUInteger added_handler;
+@property (assign, nonatomic) NSUInteger changed_handler;
+@property (assign, nonatomic) NSUInteger deleted_handler;
+
 
 // user thumbs
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;

@@ -161,7 +161,8 @@
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21760C11FE9C88900C83215 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Project/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		B21760C21FE9C88900C83215 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Project/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
-		B21760CD1FEAD48800C83215 /* ChatConversationSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConversationSubscriber.h; sourceTree = "<group>"; };
+		B21760CD1FEAD48800C83215 /* DEPRECATED_ChatConversationSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_ChatConversationSubscriber.h; sourceTree = "<group>"; };
+		B21760CE1FEBB4EF00C83215 /* ChatEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatEventType.h; sourceTree = "<group>"; };
 		B220480E1C387F3D00AF84CE /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
 		B220480F1C387F3D00AF84CE /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
 		B22048111C399F3400AF84CE /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
@@ -579,6 +580,7 @@
 				DCF65D161BE3D07D003B471D /* ChatMessage.m */,
 				B297D7AA1F683BA70006944F /* ChatUser.h */,
 				B297D7AB1F683BA70006944F /* ChatUser.m */,
+				B21760CE1FEBB4EF00C83215 /* ChatEventType.h */,
 			);
 			name = ChatModel;
 			sourceTree = "<group>";
@@ -650,7 +652,7 @@
 			children = (
 				B2CEBCEB1C1830F200F3516F /* Utility */,
 				B2EF3D801CCCC0FE0074836A /* ChatModel */,
-				BFBFD40B1AEA566100657874 /* ChatController */,
+				BFBFD40B1AEA566100657874 /* ChatCore */,
 				BFBFD40A1AEA565400657874 /* ChatUI */,
 			);
 			name = "APP-Chat";
@@ -705,7 +707,7 @@
 			name = ChatUI;
 			sourceTree = "<group>";
 		};
-		BFBFD40B1AEA566100657874 /* ChatController */ = {
+		BFBFD40B1AEA566100657874 /* ChatCore */ = {
 			isa = PBXGroup;
 			children = (
 				DCF65D171BE3D07D003B471D /* FirebaseCustomAuthHelper.h */,
@@ -733,9 +735,9 @@
 				DCF65D301BE3D07D003B471D /* ChatGroupsHandler.h */,
 				DCF65D311BE3D07D003B471D /* ChatGroupsHandler.m */,
 				B2ED7F001F8E62E4006E3BDA /* ChatGroupsSubscriber.h */,
-				B21760CD1FEAD48800C83215 /* ChatConversationSubscriber.h */,
+				B21760CD1FEAD48800C83215 /* DEPRECATED_ChatConversationSubscriber.h */,
 			);
-			name = ChatController;
+			name = ChatCore;
 			sourceTree = "<group>";
 		};
 		BFBFD48D1AEA58FD00657874 /* MBProgressHUD */ = {

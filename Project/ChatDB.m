@@ -404,13 +404,10 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.recipient = recipient;
     message.text = text;
     message.mtype = type;
-    NSLog(@"VERIFY TYPE: %@", message.mtype);
     message.attributes = attributes;
-    NSLog(@"VERIFY ATTRIBUTES: %@", message.attributes);
     message.status = status;
     message.date = [NSDate dateWithTimeIntervalSince1970:timestamp];
     message.archived = YES;
-    NSLog(@"message built %@ archived %d", message.text, message.archived);
     return message;
 }
 

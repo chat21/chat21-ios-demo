@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 //#import "SHPChatDelegate.h"
 //#import "ChatGroupsSubscriber.h"
-#import "ChatConversationSubscriber.h"
+//#import "ChatConversationSubscriber.h"
+#import "ChatEventType.h"
 
 @import Firebase;
 
@@ -18,6 +19,7 @@
 @class Firebase;
 @class ChatUser;
 @class ChatGroup;
+@class ChatMessage;
 
 @interface ChatConversationHandler : NSObject //<ChatGroupsDelegate>
 
@@ -41,9 +43,14 @@
 //@property (assign, nonatomic) id <SHPChatDelegate> delegateView;
 
 // subscribers
-@property (strong, nonatomic) NSMutableArray<id<ChatConversationSubscriber>> *subcribers;
--(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber;
--(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber;
+//@property (strong, nonatomic) NSMutableArray<id<ChatConversationSubscriber>> *subcribers;
+//-(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber;
+//-(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber;
+// subscribers v2
+@property (strong, nonatomic) NSMutableDictionary *eventObservers;
+@property (assign, atomic) volatile int64_t lastEventHandler;
+-(NSUInteger)observeEventType:(ChatEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
+-(void)removeObserverWithHandler:(NSUInteger)event_handler;
 
 @property (assign, nonatomic) double lastSentReadNotificationTime;
 

@@ -26,14 +26,9 @@
     NSString *timeMessagePart;
     NSString *unitMessagePart;
     NSDate *now = [[NSDate alloc] init];
-    NSLog(@"NOW: %@", now);
-    NSLog(@"DATE: %@", date);
     double nowInSeconds = [now timeIntervalSince1970];
-    NSLog(@"NOW IN SECONDS %f", nowInSeconds);
     double startDateInSeconds = [date timeIntervalSince1970];
-    NSLog(@"START DATE IN SECONDS %f", startDateInSeconds);
     double secondsElapsed = nowInSeconds - startDateInSeconds;
-    NSLog(@"SECONDS ELAPSED %f", secondsElapsed);
     if (secondsElapsed < 60) {
         timeMessagePart = NSLocalizedString(@"FewSecondsAgoLKey", nil);
         unitMessagePart = @"";

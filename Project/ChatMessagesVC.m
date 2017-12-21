@@ -25,11 +25,9 @@
 #import "ChatMessagesTVC.h"
 #import "ChatGroup.h"
 #import "ChatStatusTitle.h"
-//#import "SHPAppDelegate.h"
 #import "ChatGroupsHandler.h"
 #import "HelloChatUtil.h"
 #import "ChatUIManager.h"
-//#import "ChatSpeaker.h"
 
 @interface ChatMessagesVC (){
      SystemSoundID soundID;
@@ -197,6 +195,28 @@
     [[ChatManager getInstance].groupsHandler addSubcriber:self];
 }
 
+-(void)subscribe:(ChatConversationHandler  *)handler {
+    self.added_handler = [handler observeEventType:ChatEventMessageAdded withCallback:^(ChatMessage *message) {
+        NSLog(@"messaggio aggiunto!, %@", message.messageId);
+        [self finishedReceivingMessage:message];
+    }];
+    self.changed_handler = [handler observeEventType:ChatEventMessageChanged withCallback:^(ChatMessage *message) {
+        NSLog(@"messaggio changed!, %@", message.messageId);
+        [self finishedReceivingMessage:message];
+    }];
+    self.deleted_handler = [handler observeEventType:ChatEventMessageDeleted withCallback:^(ChatMessage *message) {
+        NSLog(@"messaggio deleted!, %@", message.messageId);
+        [self finishedReceivingMessage:message];
+    }];
+    NSLog(@"added_handler: %lu, changed_handler: %lu, deleted_handler: %lu", self.added_handler, self.changed_handler, self.deleted_handler);
+}
+
+-(void)removeSubscribers {
+    [self.conversationHandler removeObserverWithHandler:self.added_handler];
+    [self.conversationHandler removeObserverWithHandler:self.changed_handler];
+    [self.conversationHandler removeObserverWithHandler:self.deleted_handler];
+}
+
 -(void)sendTextAsChatOpens {
     if (self.textToSendAsChatOpens) {
         [self sendMessage:self.textToSendAsChatOpens attributes:self.attributesToSendAsChatOpens];
@@ -220,7 +240,8 @@
         [self resetTitleView];
         self.tabBarController.tabBar.hidden=NO;
 //        self.conversationHandler.delegateView = nil;
-        [self.conversationHandler removeSubcriber:self];
+//        [self.conversationHandler removeSubcriber:self];
+        [self removeSubscribers];
         [[ChatManager getInstance].groupsHandler removeSubcriber:self];
 
         for (NSString *k in self.imageDownloadsInProgress) {
@@ -318,10 +339,8 @@
 
 -(void)onlineStatus {
     if (self.online) {
-        NSLog(@"WELL, CONNECTED. AND ONLINE!");
         [self setSubTitle:NSLocalizedString(@"online", nil)];
     } else {
-        NSLog(@"WELL, CONNECTED. BUT OFFLINE!");
         NSString *last_online_status;
         if (self.lastOnline) {
             NSString *last_seen = NSLocalizedString(@"last seen", nil);
@@ -345,7 +364,6 @@
             self.online = YES;
             [self onlineStatus];
         } else {
-            NSLog(@"OFFLINE: %@", snapshot);
             self.online = NO;
             [self onlineStatus];
         }
@@ -357,7 +375,6 @@
     self.lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:self.recipient.userId];
     NSLog(@"last online ref: %@", self.lastOnlineRef);
     self.last_online_ref_handle = [self.lastOnlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        NSLog(@"LAST ONLINE: %@", snapshot);
         [self snapshotDate:snapshot];
         [self onlineStatus];
     }];
@@ -368,7 +385,6 @@
         return;
     }
     self.lastOnline = [NSDate dateWithTimeIntervalSince1970:[snapshot.value longValue]/1000];
-    NSLog(@"LAST ONLINE DATE: %@", self.lastOnline);
 }
 
 
@@ -489,8 +505,8 @@
             handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId];
         }
         [chatm addConversationHandler:handler];
-        [handler addSubcriber:self];
-        
+//        [handler addSubcriber:self];
+        [self subscribe:handler];
         self.conversationHandler = handler;
         
         // db
@@ -509,7 +525,8 @@
         NSLog(@"Adding new handler %@ to Conversations Manager.", handler);
     }
     else {
-        [handler addSubcriber:self];
+//        [handler addSubcriber:self];
+        [self subscribe:handler];
         self.conversationHandler = handler;
         [self checkImGroupMember];
     }
