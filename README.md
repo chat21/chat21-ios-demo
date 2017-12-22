@@ -19,14 +19,15 @@ This demo shows the following features:
 
 # Install & run #
 
-Create a new Firebase project, then install the Firebase cloud functions that are available [here](https://github.com/chat21/chat21-cloud-functions). 
+1. Create a new Firebase project
+2. Configure you project installing your Google-Info.plist from the Firebase site
+3. Install the Firebase cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). 
+4. Run "pod install" in the project folder.
 
-Then run "pod install" in the project folder.
-
-Start the project with the new created file "tilechat.xcworkspace".
+Now you can start the project with the new created file "tilechat.xcworkspace".
 
 More detailed instructions will be available soon.
 
-Meanwhile feel free to contact us at support@frontiere21.it.
+Meanwhile feel free to ask for support at support@frontiere21.it.
 
-Enjoy.
+Enjoy!
