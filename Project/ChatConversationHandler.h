@@ -46,10 +46,11 @@
 //@property (strong, nonatomic) NSMutableArray<id<ChatConversationSubscriber>> *subcribers;
 //-(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber;
 //-(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber;
-// subscribers v2
-@property (strong, nonatomic) NSMutableDictionary *eventObservers;
+
+// observer
+@property (strong, nonatomic) NSMutableDictionary *eventObservers; // ( event_enum : DictionaryOfCallbacks (event_handle : event_callback) )
 @property (assign, atomic) volatile int64_t lastEventHandler;
--(NSUInteger)observeEvent:(ChatEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
+-(NSUInteger)observeEvent:(ChatMessageEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
 -(void)removeObserverWithHandle:(NSUInteger)event_handler;
 
 @property (assign, nonatomic) double lastSentReadNotificationTime;

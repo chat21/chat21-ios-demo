@@ -30,9 +30,9 @@ static NSString *SIGNED_USER_EMAIL = @"email";
         user.lastName = [userPreferences objectForKey:SIGNED_USER_LASTNAME];
         user.fullName = [userPreferences objectForKey:SIGNED_USER_FULLNAME];
         user.email = [userPreferences objectForKey:SIGNED_USER_EMAIL];
-        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"Password" accessGroup:nil];
-        NSString *password = [wrapper objectForKey:(__bridge NSString *)kSecValueData];
-        NSString *username = [wrapper objectForKey:(__bridge NSString *)kSecAttrAccount];
+        KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"Password" accessGroup:nil];
+        NSString *password = [keychain objectForKey:(__bridge NSString *)kSecValueData];
+        NSString *username = [keychain objectForKey:(__bridge NSString *)kSecAttrAccount];
         user.password = password;
         user.username = username;
         return user;
@@ -50,9 +50,9 @@ static NSString *SIGNED_USER_EMAIL = @"email";
     [userPreferences setObject:user.fullName forKey:SIGNED_USER_FULLNAME];
     [userPreferences setObject:user.email forKey:SIGNED_USER_EMAIL];
     [userPreferences synchronize];
-    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"Password" accessGroup:nil];
-    [wrapper setObject:user.password forKey:(__bridge NSString *)kSecValueData];
-    [wrapper setObject:user.username forKey:(__bridge NSString *)kSecAttrAccount];
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"Password" accessGroup:nil];
+    [keychain setObject:user.password forKey:(__bridge NSString *)kSecValueData];
+    [keychain setObject:user.username forKey:(__bridge NSString *)kSecAttrAccount];
 }
 
 +(void)deleteLoggedUser {
@@ -63,8 +63,8 @@ static NSString *SIGNED_USER_EMAIL = @"email";
     [userPreferences removeObjectForKey:SIGNED_USER_LASTNAME];
     [userPreferences removeObjectForKey:SIGNED_USER_FULLNAME];
     [userPreferences synchronize];
-    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"Password" accessGroup:nil];
-    [wrapper resetKeychainItem];
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"Password" accessGroup:nil];
+    [keychain resetKeychainItem];
 }
 
 

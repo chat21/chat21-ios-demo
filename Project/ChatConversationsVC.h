@@ -52,6 +52,11 @@
 @property (strong, nonatomic) UILabel *statusLabel;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
+// subscribers
+@property (assign, nonatomic) NSUInteger added_handle;
+@property (assign, nonatomic) NSUInteger changed_handle;
+@property (assign, nonatomic) NSUInteger deleted_handle;
+
 // user thumbs
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 

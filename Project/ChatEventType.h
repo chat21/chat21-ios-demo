@@ -15,13 +15,16 @@
 /**
  * This enum is the set of events that you can observe in a Conversation.
  */
-typedef NS_ENUM(NSInteger, ChatEventType) {
-    /// A new child node is added to a location.
+typedef NS_ENUM(NSInteger, ChatMessageEventType) {
     ChatEventMessageAdded,
-    /// A child node is removed from a location.
     ChatEventMessageDeleted,
-    /// A child node at a location changes.
     ChatEventMessageChanged,
+};// CHAT_SWIFT_NAME(DataEventType);
+
+typedef NS_ENUM(NSInteger, ChatConversationEventType) {
+    ChatEventConversationAdded,
+    ChatEventConversationDeleted,
+    ChatEventConversationChanged,
 };// CHAT_SWIFT_NAME(DataEventType);
 
 #endif /* ChatEventType_h */

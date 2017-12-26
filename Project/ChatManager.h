@@ -41,7 +41,7 @@
 @property (nonatomic, strong) ChatPresenceHandler *presenceHandler;
 @property (nonatomic, strong) ChatGroupsHandler *groupsHandler;
 @property (nonatomic, strong) ChatContactsSynchronizer *contactsSynchronizer;
-@property (nonatomic, strong) ChatConversationsVC * conversationsVC;
+//@property (nonatomic, strong) ChatConversationsVC * conversationsVC;
 @property (strong, nonatomic) FIRAuthStateDidChangeListenerHandle authStateDidChangeListenerHandle;
 @property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
 @property (assign, nonatomic) BOOL groupsMode;
@@ -53,7 +53,7 @@
 -(void)addConversationHandler:(ChatConversationHandler *)handler;
 -(ChatConversationHandler *)getConversationHandlerByConversationId:(NSString *)conversationId;
 
--(ChatConversationsHandler *)createConversationsHandlerForUser:(ChatUser *)user;
+-(ChatConversationsHandler *)createConversationsHandler;
 -(ChatPresenceHandler *)createPresenceHandlerForUser:(ChatUser *)user;
 -(ChatGroupsHandler *)createGroupsHandlerForUser:(ChatUser *)user;
 -(ChatContactsSynchronizer *)createContactsSynchronizerForUser:(ChatUser *)user;

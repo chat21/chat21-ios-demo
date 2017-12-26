@@ -62,8 +62,8 @@ static ChatManager *sharedInstance = nil;
     return (ChatConversationHandler *)[self.handlers objectForKey:conversationId];
 }
 
--(ChatConversationsHandler *)createConversationsHandlerForUser:(ChatUser *)user {
-    ChatConversationsHandler *handler = [[ChatConversationsHandler alloc] initWithTenant:self.tenant user:user];
+-(ChatConversationsHandler *)createConversationsHandler {
+    ChatConversationsHandler *handler = [[ChatConversationsHandler alloc] initWithTenant:self.tenant user:self.loggedUser];
     NSLog(@"Setting new handler %@ to Conversations Manager.", handler);
     self.conversationsHandler = handler;
     return handler;
@@ -231,14 +231,14 @@ static ChatManager *sharedInstance = nil;
             NSLog(@"snapshot %@ - %d", snapshot, [snapshot.value boolValue]);
             if([snapshot.value boolValue]) {
                 NSLog(@".connected.");
-                if (self.conversationsVC) {
-                    [self.conversationsVC setUIStatusConnected];
-                }
+//                if (self.conversationsVC) {
+//                    [self.conversationsVC setUIStatusConnected];
+//                }
             } else {
                 NSLog(@".not connected.");
-                if (self.conversationsVC) {
-                    [self.conversationsVC setUIStatusDisconnected];
-                }
+//                if (self.conversationsVC) {
+//                    [self.conversationsVC setUIStatusDisconnected];
+//                }
             }
         }];
     }
@@ -272,9 +272,10 @@ static ChatManager *sharedInstance = nil;
 -(void)dispose {
     NSLog(@"ChatManager.dispose()");
     [self removeInstanceId];
-    [self.conversationsVC logout]; // TODO: refactoring, to be removed
-    self.conversationsVC = nil;
+//    [self.conversationsVC logout]; // TODO: refactoring, to be removed
+//    self.conversationsVC = nil;
     [self.conversationsHandler.conversationsRef removeAllObservers];
+    [self.conversationsHandler dispose];
     self.conversationsHandler = nil;
     if (self.authStateDidChangeListenerHandle) {
         NSLog(@"disposing self.authStateDidChangeListenerHandle...");

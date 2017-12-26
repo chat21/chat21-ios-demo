@@ -4,24 +4,15 @@
 //
 //  Created by Andrea Sponziello on 19/12/14.
 //
-//
 
 #import "ChatConversationHandler.h"
-//#import <Firebase/Firebase.h>
 #import "ChatMessage.h"
 #import "FirebaseCustomAuthHelper.h"
-//#import "SHPUser.h"
-//#import "SHPFirebaseTokenDC.h"
 #import "ChatUtil.h"
 #import "ChatDB.h"
 #import "ChatConversation.h"
-//#import "SHPChatDelegate.h"
-//#import "SHPPushNotificationService.h"
-//#import "SHPPushNotification.h"
 #import "ChatManager.h"
 #import "ChatGroup.h"
-//#import "ParseChatNotification.h"
-//#import "ChatParsePushService.h"
 #import "HelloApplicationContext.h"
 #import "ChatUser.h"
 #import <libkern/OSAtomic.h>
@@ -159,6 +150,7 @@
     }
     
     self.messages_ref_handle = [[[self.messagesRef queryOrderedByChild:@"timestamp"] queryStartingAtValue:@(lasttime)] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        // IMPORTANT: this query ignores messages without a timestamp.
         // IMPORTANT: This callback is called also for newly locally created messages not still sent.
         NSLog(@">>>> NEW MESSAGE SNAPSHOT: %@", snapshot);
         ChatMessage *message = [ChatMessage messageFromSnapshotFactory:snapshot];
@@ -498,7 +490,7 @@
 //    }
 //}
 
-// subscribers
+// observer
 
 //-(void)addSubcriber:(id<ChatConversationSubscriber>)subscriber {
 //    if (!self.subcribers) {
@@ -514,7 +506,7 @@
 //    [self.subcribers removeObject:subscriber];
 //}
 
--(void)notifyEvent:(ChatEventType)event message:(ChatMessage *)message {
+-(void)notifyEvent:(ChatMessageEventType)event message:(ChatMessage *)message {
 //    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
 //        [subscriber messageAdded:message];
 //    }
@@ -545,7 +537,7 @@
 
 // v2
 
--(NSUInteger)observeEvent:(ChatEventType)eventType withCallback:(void (^)(ChatMessage *message))callback {
+-(NSUInteger)observeEvent:(ChatMessageEventType)eventType withCallback:(void (^)(ChatMessage *message))callback {
     if (!self.eventObservers) {
         self.eventObservers = [[NSMutableDictionary alloc] init];
     }
@@ -564,11 +556,11 @@
         return;
     }
     
-    // test
-    for (NSNumber *event_key in self.eventObservers) {
-        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
-        NSLog(@"Removing callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
-    }
+//    // test
+//    for (NSNumber *event_key in self.eventObservers) {
+//        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+//        NSLog(@"Removing callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
+//    }
     
     // iterate all keys (events)
     for (NSNumber *event_key in self.eventObservers) {
@@ -576,10 +568,10 @@
         [eventCallbacks removeObjectForKey:@(event_handler)];
     }
     
-    for (NSNumber *event_key in self.eventObservers) {
-        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
-        NSLog(@"After removed callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
-    }
+//    for (NSNumber *event_key in self.eventObservers) {
+//        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+//        NSLog(@"After removed callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
+//    }
 }
 
 @end

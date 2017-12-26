@@ -246,6 +246,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [self removeSubscribers];
 //    if (self.authStateDidChangeListenerHandle) {
 //        [[FIRAuth auth] removeAuthStateDidChangeListener:self.authStateDidChangeListenerHandle];
 //    }
@@ -381,7 +382,7 @@
     if (loggedUser && !self.me) { // > just signed in / first load after startup
         self.me = loggedUser;
         
-        chat.conversationsVC = self;
+//        chat.conversationsVC = self;
         [self initChat];
         NSLog(@"reloadData loggedUser && !self.me");
         [self.tableView reloadData];
@@ -408,7 +409,7 @@
 //        [chat dispose];
         NSLog(@"Creating new handlers...");
         [chat startWithUser:loggedUser];
-        chat.conversationsVC = self;
+//        chat.conversationsVC = self;
         [self initChat];
         NSLog(@"reloadData !loggedUser && self.me");
         [self.tableView reloadData];
@@ -426,12 +427,6 @@
 
 -(void)initChat {
     [self initConversationsHandler];
-//    [self initContactsSynchronizer];
-//    if (self.groupsMode) {
-//        [self initGroupsHandler];
-//    }
-////    [self setupConnectionStatus];
-////    [self initPresenceHandler];
 }
 
 -(void)initConversationsHandler {
@@ -439,8 +434,9 @@
     ChatConversationsHandler *handler = chat.conversationsHandler;
     if (!handler) {
         NSLog(@"Conversations Handler not found. Creating & initializing a new one.");
-        handler = [chat createConversationsHandlerForUser:self.me];
-        handler.delegateView = self;
+        handler = [chat createConversationsHandler];
+        [self subscribe:handler];
+//        handler.delegateView = self;
         
         NSLog(@"DISABLED *** Restoring DB archived conversations *** DISABLED: using Firebase keepSynced:YES");
         NSLog(@"Restoring DB archived conversations.");
@@ -454,9 +450,28 @@
         self.conversationsHandler = handler;
     } else {
         NSLog(@"Conversations Handler instance already set. Assigning delegate.");
-        handler.delegateView = self;
+        [self subscribe:handler];
+//        handler.delegateView = self;
         self.conversationsHandler = handler;
     }
+}
+
+-(void)subscribe:(ChatConversationsHandler *)handler {
+    self.added_handle = [handler observeEvent:ChatEventConversationAdded withCallback:^(ChatConversation *conversation) {
+        [self conversationReceived:conversation];
+    }];
+    self. changed_handle = [handler observeEvent:ChatEventConversationChanged withCallback:^(ChatConversation *conversation) {
+        [self conversationReceived:conversation];
+    }];
+    self.deleted_handle = [handler observeEvent:ChatEventConversationDeleted withCallback:^(ChatConversation *conversation) {
+        [self conversationDeleted:conversation];
+    }];
+}
+
+-(void)removeSubscribers {
+    [self.conversationsHandler removeObserverWithHandle:self.added_handle];
+    [self.conversationsHandler removeObserverWithHandle:self.changed_handle];
+    [self.conversationsHandler removeObserverWithHandle:self.deleted_handle];
 }
 
 //-(void)initContactsSynchronizer {
@@ -507,7 +522,7 @@
 
 //protocol SHPConversationsViewDelegate
 
--(void)finishedReceivingConversation:(ChatConversation *)conversation {
+-(void)conversationReceived:(ChatConversation *)conversation {
     // STUDIARE: since iOS 5, you can do the move like so:
     // [tableView moveRowAtIndexPath:indexPathOfRowToMove toIndexPath:indexPathOfTopRow];
     
@@ -521,7 +536,7 @@
     });
 }
 
--(void)finishedRemovingConversation:(ChatConversation *)conversation {
+-(void)conversationDeleted:(ChatConversation *)conversation {
     NSLog(@"Deleting conversation...");
     NSLog(@"Conversation removed %@ by %@ (sender: %@)", conversation.last_message_text, conversation.conversWith_fullname, conversation.sender);
     [self.tableView reloadData];

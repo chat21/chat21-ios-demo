@@ -13,11 +13,13 @@
 #import "ChatDB.h"
 #import "ChatManager.h"
 #import "ChatUser.h"
+#import <libkern/OSAtomic.h>
 
 @implementation ChatConversationsHandler
 
 -(id)initWithTenant:(NSString *)tenant user:(ChatUser *)user {
     if (self = [super init]) {
+//        self.lastEventHandler = 1;
         //        self.firebaseRef = firebaseRef;
         self.rootRef = [[FIRDatabase database] reference];
         self.tenant = tenant;
@@ -26,6 +28,10 @@
         self.conversations = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(void)dispose {
+    [self.conversationsRef removeAllObservers];
 }
 
 -(void)printAllConversations {
@@ -54,7 +60,7 @@
 }
 
 -(void)connect {
-    NSLog(@"Setting up conversations for handler %@ on delegate %@", self, self.delegateView);
+    NSLog(@"Connecting conversations' handler.");
     ChatManager *chat = [ChatManager getInstance];
     NSString *conversations_path = [ChatUtil conversationsPathForUserId:self.loggeduser.userId];
     NSLog(@"firebase_conversations_ref: %@", conversations_path);
@@ -81,7 +87,8 @@
         }
         [self insertOrUpdateConversationOnDB:conversation];
         [self restoreConversationsFromDB];
-        [self finishedReceivingConversation:conversation];
+//        [self finishedReceivingConversation:conversation];
+        [self notifyEvent:ChatEventConversationAdded conversation:conversation];
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];
@@ -104,7 +111,8 @@
         // AD OGNI NUOVO ARRIVO/AGGIORNAMENTO
         [self insertOrUpdateConversationOnDB:conversation];
         [self restoreConversationsFromDB];
-        [self finishedReceivingConversation:conversation];
+//        [self finishedReceivingConversation:conversation];
+        [self notifyEvent:ChatEventConversationChanged conversation:conversation];
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];
@@ -125,7 +133,8 @@
         // AD OGNI NUOVO ARRIVO/AGGIORNAMENTO
         [self removeConversationOnDB:conversation];
         [self restoreConversationsFromDB];
-        [self finishedReceivingConversation:conversation];
+//        [self finishedReceivingConversation:conversation];
+        [self notifyEvent:ChatEventConversationDeleted conversation:conversation];
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];
@@ -141,20 +150,87 @@
     [[ChatDB getSharedInstance] removeConversation:conversation.conversationId];
 }
 
--(void)finishedReceivingConversation:(ChatConversation *)conversation {
-    NSLog(@"Finished receiving conversation %@ on delegate: %@",conversation.last_message_text, self.delegateView);
-    // callbackToSubscribers()
-    if (self.delegateView) {
-        [self.delegateView finishedReceivingConversation:conversation];
+//-(void)finishedReceivingConversation:(ChatConversation *)conversation {
+//    NSLog(@"Finished receiving conversation %@ on delegate: %@",conversation.last_message_text, self.delegateView);
+//    // callbackToSubscribers()
+//    if (self.delegateView) {
+//        [self.delegateView finishedReceivingConversation:conversation];
+//    }
+//}
+
+//-(void)finishedRemovingConversation:(ChatConversation *)conversation {
+//    NSLog(@"Finished removing conversation %@ on delegate: %@",conversation.last_message_text, self.delegateView);
+//    // callbackToSubscribers()
+//    if (self.delegateView) {
+//        [self.delegateView finishedRemovingConversation:conversation];
+//    }
+//}
+
+// observer
+
+-(void)notifyEvent:(ChatConversationEventType)event conversation:(ChatConversation *)conversation {
+    if (!self.eventObservers) {
+        return;
+    }
+    NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:@(event)];
+    if (!eventCallbacks) {
+        return;
+    }
+    for (NSNumber *event_handle_key in eventCallbacks.allKeys) {
+        void (^callback)(ChatConversation *conversation) = [eventCallbacks objectForKey:event_handle_key];
+        callback(conversation);
     }
 }
 
--(void)finishedRemovingConversation:(ChatConversation *)conversation {
-    NSLog(@"Finished removing conversation %@ on delegate: %@",conversation.last_message_text, self.delegateView);
-    // callbackToSubscribers()
-    if (self.delegateView) {
-        [self.delegateView finishedRemovingConversation:conversation];
+//-(void)notifySubscribersMessageChanged:(ChatMessage *)message {
+//    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
+//        [subscriber messageChanged:message];
+//    }
+//}
+
+//-(void)notifySubscribersMessageDeleted:(ChatMessage *)message {
+//    for (id<ChatConversationSubscriber> subscriber in self.subcribers) {
+//        [subscriber messageDeleted:message];
+//    }
+//}
+
+// v2
+
+-(NSUInteger)observeEvent:(ChatConversationEventType)eventType withCallback:(void (^)(ChatConversation *conversation))callback {
+    if (!self.eventObservers) {
+        self.eventObservers = [[NSMutableDictionary alloc] init];
     }
+    NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:@(eventType)];
+    if (!eventCallbacks) {
+        eventCallbacks = [[NSMutableDictionary alloc] init];
+        [self.eventObservers setObject:eventCallbacks forKey:@(eventType)];
+    }
+    NSUInteger callback_handle = (NSUInteger) OSAtomicIncrement64Barrier(&_lastEventHandler);
+    [eventCallbacks setObject:callback forKey:@(callback_handle)];
+    return callback_handle;
+}
+
+-(void)removeObserverWithHandle:(NSUInteger)event_handler {
+    if (!self.eventObservers) {
+        return;
+    }
+    
+    //    // test
+    //    for (NSNumber *event_key in self.eventObservers) {
+    //        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+    //        NSLog(@"Removing callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
+    //    }
+    
+    // iterate all keys (events)
+    for (NSNumber *event_key in self.eventObservers) {
+        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+        [eventCallbacks removeObjectForKey:@(event_handler)];
+    }
+    
+    //    for (NSNumber *event_key in self.eventObservers) {
+    //        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+    //        NSLog(@"After removed callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
+    //    }
 }
 
 @end
