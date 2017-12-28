@@ -2,7 +2,7 @@
 
 # Features #
 
-![conversations-mockup](https://user-images.githubusercontent.com/32564846/34414053-510845e0-ebe7-11e7-8456-e587cee610e5.png)
+![conversations-mockup](https://user-images.githubusercontent.com/32564846/34414053-510845e0-ebe7-11e7-8456-e587cee610e5.png | width=100)
 
 Chat21 is a *multiplatform chat SDK* developed using only Firebase as the backend.
 
