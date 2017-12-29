@@ -15,7 +15,7 @@ This demo shows the following features:
 * Offline messages' history
 * Received receipts (you can see if a message was sent and delivered)
 * Presence Manager with online/offline and inactivity period indicator
-* Show integration of a custom user profile's view
+* Integration of a custom user profile's view
 * Signup/Login with email and password
 * Synchronized contacts (with offline search and selection)
 * Integrates an example of a mobile live-chat support (an "help" button on the top left corner of every tab)
