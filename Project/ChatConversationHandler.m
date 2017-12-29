@@ -21,14 +21,14 @@
 
 -(id)init {
     if (self = [super init]) {
-        self.lastEventHandler = 1;
+        self.lastEventHandle = 1;
     }
     return self;
 }
 
 -(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName {
     if (self = [super init]) {
-        self.lastEventHandler = 1;
+        self.lastEventHandle = 1;
         self.recipientId = recipientId;
         self.recipientFullname = recipientFullName;
         self.user = [ChatManager getInstance].loggedUser;
@@ -41,7 +41,7 @@
 
 -(id)initWithGroupId:(NSString *)groupId {
     if (self = [super init]) {
-        self.lastEventHandler = 1;
+        self.lastEventHandle = 1;
         self.groupId = groupId;
         self.user = [ChatManager getInstance].loggedUser;
         self.senderId = self.user.userId;
@@ -69,6 +69,7 @@
 
 -(void)dispose {
     [self.messagesRef removeAllObservers];
+    [self removeAllObservers];
 }
 
 -(void)restoreMessagesFromDB {
@@ -121,17 +122,17 @@
 //}
 
 -(void)connect {
+    // if already connected return
+    if (self.messages_ref_handle) {
+        return;
+    }
+    
     NSLog(@"Setting up references' connections with firebase using token: %@", self.firebaseToken);
     if (self.messages_ref_handle) {
         NSLog(@"Trying to re-open messages_ref_handle %ld while already open. Returning.", self.messages_ref_handle);
         return;
     }
     self.messagesRef = [ChatUtil conversationMessagesRef:self.recipientId];
-    
-    // AUTHENTICATION DISABLED FOR THE MOMENT!
-//    [self initFirebaseWithRef:self.messagesRef token:self.firebaseToken];
-    
-    
     self.conversationOnSenderRef = [ChatUtil conversationRefForUser:self.senderId conversationId:self.conversationId];
     self.conversationOnReceiverRef = [ChatUtil conversationRefForUser:self.recipientId conversationId:self.conversationId];
     
@@ -142,11 +143,6 @@
         lasttime = message.date.timeIntervalSince1970 * 1000; // objc return time in seconds, firebase saves time in milliseconds. queryStartingAtValue: will respond to events at nodes with a value greater than or equal to startValue. So seconds is always < then milliseconds. * 1000 translates seconds in millis and the query is ok.
     } else {
         lasttime = 0;
-    }
-    
-    // if already connected return
-    if (self.messages_ref_handle) {
-        return;
     }
     
     self.messages_ref_handle = [[[self.messagesRef queryOrderedByChild:@"timestamp"] queryStartingAtValue:@(lasttime)] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
@@ -546,12 +542,12 @@
         eventCallbacks = [[NSMutableDictionary alloc] init];
         [self.eventObservers setObject:eventCallbacks forKey:@(eventType)];
     }
-    NSUInteger callback_handle = (NSUInteger) OSAtomicIncrement64Barrier(&_lastEventHandler);
+    NSUInteger callback_handle = (NSUInteger) OSAtomicIncrement64Barrier(&_lastEventHandle);
     [eventCallbacks setObject:callback forKey:@(callback_handle)];
     return callback_handle;
 }
 
--(void)removeObserverWithHandle:(NSUInteger)event_handler {
+-(void)removeObserverWithHandle:(NSUInteger)event_handle {
     if (!self.eventObservers) {
         return;
     }
@@ -565,13 +561,25 @@
     // iterate all keys (events)
     for (NSNumber *event_key in self.eventObservers) {
         NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
-        [eventCallbacks removeObjectForKey:@(event_handler)];
+        [eventCallbacks removeObjectForKey:@(event_handle)];
     }
     
 //    for (NSNumber *event_key in self.eventObservers) {
 //        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
 //        NSLog(@"After removed callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
 //    }
+}
+
+-(void)removeAllObservers {
+    if (!self.eventObservers) {
+        return;
+    }
+    
+    // iterate all keys (events)
+    for (NSNumber *event_key in self.eventObservers) {
+        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+        [eventCallbacks removeAllObjects];
+    }
 }
 
 @end

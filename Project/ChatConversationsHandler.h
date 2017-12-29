@@ -36,6 +36,7 @@
 @property (assign, atomic) volatile int64_t lastEventHandler;
 -(NSUInteger)observeEvent:(ChatConversationEventType)eventType withCallback:(void (^)(ChatConversation *conversation))callback;
 -(void)removeObserverWithHandle:(NSUInteger)event_handler;
+-(void)removeAllObservers;
 
 -(id)initWithTenant:(NSString *)tenant user:(ChatUser *)user;
 -(void)connect;

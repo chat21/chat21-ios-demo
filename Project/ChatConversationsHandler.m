@@ -32,6 +32,7 @@
 
 -(void)dispose {
     [self.conversationsRef removeAllObservers];
+    [self removeAllObservers];
 }
 
 -(void)printAllConversations {
@@ -60,6 +61,11 @@
 }
 
 -(void)connect {
+    // if already connected, return.
+    if (self.conversations_ref_handle_added) {
+        return;
+    }
+    
     NSLog(@"Connecting conversations' handler.");
     ChatManager *chat = [ChatManager getInstance];
     NSString *conversations_path = [ChatUtil conversationsPathForUserId:self.loggeduser.userId];
@@ -231,6 +237,18 @@
     //        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
     //        NSLog(@"After removed callback for event %@. Callback: %@",event_key, [eventCallbacks objectForKey:@(event_handler)]);
     //    }
+}
+
+-(void)removeAllObservers {
+    if (!self.eventObservers) {
+        return;
+    }
+    
+    // iterate all keys (events)
+    for (NSNumber *event_key in self.eventObservers) {
+        NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
+        [eventCallbacks removeAllObjects];
+    }
 }
 
 @end

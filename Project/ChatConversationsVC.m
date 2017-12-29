@@ -435,23 +435,19 @@
     if (!handler) {
         NSLog(@"Conversations Handler not found. Creating & initializing a new one.");
         handler = [chat createConversationsHandler];
-        [self subscribe:handler];
-//        handler.delegateView = self;
-        
-        NSLog(@"DISABLED *** Restoring DB archived conversations *** DISABLED: using Firebase keepSynced:YES");
-        NSLog(@"Restoring DB archived conversations.");
-        [handler restoreConversationsFromDB];
-        NSLog(@"Archived conversations count %lu", (unsigned long)self.conversationsHandler.conversations.count);
-        
-        [self update_unread];
-//        [self update_unread_ui];
-        NSLog(@"Connecting handler to firebase.");
-        [handler connect];
         self.conversationsHandler = handler;
-    } else {
-        NSLog(@"Conversations Handler instance already set. Assigning delegate.");
         [self subscribe:handler];
-//        handler.delegateView = self;
+        
+        NSLog(@"Restoring DB archived conversations...");
+        [handler restoreConversationsFromDB];
+        NSLog(@"%lu archived conversations restored", (unsigned long)self.conversationsHandler.conversations.count);
+        [self update_unread];
+        
+        NSLog(@"Connecting handler...");
+        [handler connect];
+    } else {
+        NSLog(@"Conversations Handler instance already set.");
+        [self subscribe:handler];
         self.conversationsHandler = handler;
     }
 }
@@ -532,7 +528,6 @@
 //    [self printAllConversations];
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self update_unread];
-//        [self update_unread_ui];
     });
 }
 
@@ -542,7 +537,6 @@
     [self.tableView reloadData];
     dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self update_unread];
-//        [self update_unread_ui];
     });
 }
 
@@ -716,7 +710,6 @@
 }
 
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"selected s:%d i:%d", (int)indexPath.section, (int)indexPath.row);
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) { // toolbar
         return;
@@ -724,7 +717,6 @@
     NSArray *conversations = self.conversationsHandler.conversations;
     ChatConversation *selectedConversation = (ChatConversation *)[conversations objectAtIndex:indexPath.row];
     self.selectedConversationId = selectedConversation.conversationId;
-    NSLog(@"selected conv: %@ and conversWith: %@", selectedConversation, selectedConversation.conversWith);
     if (selectedConversation.groupId) {
         self.selectedGroupId = selectedConversation.groupId;
     }
@@ -732,7 +724,6 @@
         self.selectedRecipient = selectedConversation.conversWith;
         self.selectedRecipientFullname = selectedConversation.conversWith_fullname;
     }
-    
     NSLog(@"Opening conversation with id: %@, recipient: %@, groupId: %@", self.selectedConversationId, self.selectedRecipient, self.selectedGroupId);
     
     if (selectedConversation.status == CONV_STATUS_FAILED) {
@@ -995,7 +986,6 @@
     [self.tableView endUpdates];
     
     [self update_unread];
-//    [self update_unread_ui];
     
     // verify
     ChatConversation *conv = [[ChatDB getSharedInstance] getConversationById:removingConversation.conversationId];

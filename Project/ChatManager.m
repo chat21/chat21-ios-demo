@@ -272,11 +272,14 @@ static ChatManager *sharedInstance = nil;
 -(void)dispose {
     NSLog(@"ChatManager.dispose()");
     [self removeInstanceId];
-//    [self.conversationsVC logout]; // TODO: refactoring, to be removed
-//    self.conversationsVC = nil;
-    [self.conversationsHandler.conversationsRef removeAllObservers];
     [self.conversationsHandler dispose];
     self.conversationsHandler = nil;
+    if (self.handlers) {
+        for (ChatConversationHandler *handler in self.handlers) {
+            [handler dispose];
+        }
+        [self.handlers removeAllObjects];
+    }
     if (self.authStateDidChangeListenerHandle) {
         NSLog(@"disposing self.authStateDidChangeListenerHandle...");
         [[FIRAuth auth] removeAuthStateDidChangeListener:self.authStateDidChangeListenerHandle];
@@ -298,13 +301,6 @@ static ChatManager *sharedInstance = nil;
     if (self.contactsSynchronizer) {
         [self.contactsSynchronizer dispose];
         self.contactsSynchronizer = nil;
-    }
-    if (self.groupsHandler) {
-        [self.groupsHandler dispose];
-        self.groupsHandler = nil;
-    }
-    if (self.handlers) {
-        [self.handlers removeAllObjects];
     }
     self.loggedUser = nil;
 }

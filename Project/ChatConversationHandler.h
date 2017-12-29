@@ -49,9 +49,10 @@
 
 // observer
 @property (strong, nonatomic) NSMutableDictionary *eventObservers; // ( event_enum : DictionaryOfCallbacks (event_handle : event_callback) )
-@property (assign, atomic) volatile int64_t lastEventHandler;
+@property (assign, atomic) volatile int64_t lastEventHandle;
 -(NSUInteger)observeEvent:(ChatMessageEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
--(void)removeObserverWithHandle:(NSUInteger)event_handler;
+-(void)removeObserverWithHandle:(NSUInteger)event_handle;
+-(void)removeAllObservers;
 
 @property (assign, nonatomic) double lastSentReadNotificationTime;
 

@@ -519,7 +519,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     ChatMessage *message;
     ChatMessage *previousMessage;
     ChatMessage *nextMessage;
-    NSLog(@"CREO CELLA INDICE: %ld", indexPath.row);
     
     NSArray *messages = self.conversationHandler.messages;
 //    NSLog(@"ALL MESSAGES:");
@@ -530,7 +529,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 //    }
     if (messages && messages.count > 0) {
         message = (ChatMessage *)[messages objectAtIndex:indexPath.row];
-        NSLog(@"CURRENT MESSAGE[%ld]: %@", indexPath.row, message.text);
         [self analyzeMessageText:message forIndexPath:indexPath];
         
         NSLog(@"type: %@ text: %@", message.mtype, message.text);
@@ -631,7 +629,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         //-----------------------------------------------------------//
         //END STATE MESSAGE
         //-----------------------------------------------------------//
-        NSLog(@"FINE ELABORAZIONE CELLA.");
+//        NSLog(@"FINE ELABORAZIONE CELLA.");
         //        UITextView *textMessage = (UITextView *)[cell viewWithTag:10];
         //        textMessage.text = [NSString stringWithFormat:@"%@", message.text];
         //        //textMessage.selectable = NO;
@@ -657,14 +655,14 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
     NSLog(@"componenents[%lu] text: %@ urlsMatches: %@ linkMatches: %@",indexPath.row, components.text, components.urlsMatches, components.chatLinkMatches);
     NSArray *urlMatches = components.urlsMatches;
-    NSLog(@"urlMatches %@ .count: %lu", urlMatches, (unsigned long)urlMatches.count);
+//    NSLog(@"urlMatches %@ .count: %lu", urlMatches, (unsigned long)urlMatches.count);
     if (urlMatches) {
         for (NSTextCheckingResult *match in urlMatches) {
             [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:match.range];
         }
     }
     NSArray *chatLinkMatches = components.chatLinkMatches;
-    NSLog(@"chatLinkMatches %@ .count: %lu", chatLinkMatches, (unsigned long)chatLinkMatches.count);
+//    NSLog(@"chatLinkMatches %@ .count: %lu", chatLinkMatches, (unsigned long)chatLinkMatches.count);
     if (chatLinkMatches) {
         for (NSTextCheckingResult *match in chatLinkMatches) {
             [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor brownColor] range:match.range];
@@ -675,15 +673,15 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 
 -(void)analyzeMessageText:(ChatMessage *)message forIndexPath:(NSIndexPath *)indexPath {
     // TEST URLs
-    NSLog(@"CREATING COMPONENTS[%ld], TEXT: %@", (long)indexPath.row, message.text);
+//    NSLog(@"CREATING COMPONENTS[%ld], TEXT: %@", (long)indexPath.row, message.text);
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
     if (components) {
-        NSLog(@"COMPONENTS[%ld] ALREADY CREATED. %@",indexPath.row, components.text);
+//        NSLog(@"COMPONENTS[%ld] ALREADY CREATED. %@",indexPath.row, components.text);
         return;
     }
     components = [[ChatMessageComponents alloc] init];
     components.text = message.text;
-    NSLog(@"CREATED componenst[%lu].text=%@", indexPath.row, components.text);
+//    NSLog(@"CREATED componenst[%lu].text=%@", indexPath.row, components.text);
     // HTTP URLs
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -694,14 +692,14 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     }
     
     // CHAT LINKs
-    NSLog(@"ESTRAGGO LINK CHAT");
+//    NSLog(@"ESTRAGGO LINK CHAT");
     NSError *error_chat;
     NSRegularExpression *regex_chat = [NSRegularExpression regularExpressionWithPattern:@"(chat://)([a-zA-Z0-9_])+" options:NSRegularExpressionCaseInsensitive error:&error_chat];
     
     NSString *_text = message.text; //@"andrea qui: chat:antonio e qui: chat:mario_fino0 fine";
-    NSLog(@"analizzo il testo: %@", _text);
+//    NSLog(@"analizzo il testo: %@", _text);
     NSArray *_arrayOfAllMatches = [regex_chat matchesInString:_text options:0 range:NSMakeRange(0, [_text length])];
-    NSLog(@"match trovati: %@", _arrayOfAllMatches);
+//    NSLog(@"match trovati: %@", _arrayOfAllMatches);
     if (_arrayOfAllMatches) {
         components.chatLinkMatches = _arrayOfAllMatches;
     }
@@ -762,15 +760,15 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 }
 
 -(void)printMessage:(ChatMessage *)message {
-    NSLog(@"message.text: %@", message.text);
-    NSLog(@"message.type: %@", message.mtype);
-    NSLog(@"message.archived: %d", message.archived);
-    NSLog(@"message.attributes:");
-    NSDictionary *attributes = message.attributes;
-    NSArray *keys = [attributes allKeys];
-    for (NSString *k in keys) {
-        NSLog(@"\"%@\":\"%@\"", k, attributes[k]);
-    }
+//    NSLog(@"message.text: %@", message.text);
+//    NSLog(@"message.type: %@", message.mtype);
+//    NSLog(@"message.archived: %d", message.archived);
+//    NSLog(@"message.attributes:");
+//    NSDictionary *attributes = message.attributes;
+//    NSArray *keys = [attributes allKeys];
+//    for (NSString *k in keys) {
+//        NSLog(@"\"%@\":\"%@\"", k, attributes[k]);
+//    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
