@@ -22,10 +22,20 @@ This demo shows the following features:
 
 # Install & run #
 
-1. Create a new Firebase project
-2. Configure you project installing your Google-Info.plist from the Firebase site
-3. Install the Firebase cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). Follow the included instructions.
-4. Run "pod install" in the project folder.
+Before you do anything else, you shoud change the Bundle Identifier, and assign an appropriate Team.
+
+Select **tilechat** in the **Project Navigator**, and then select the **tilechat** target. In the **General tab** change **Bundle Identifier** to use your own domain name, in reverse-domain-notation - for example **it.frontiere21.tilechat**.
+Then, from the **Team** menu, select the team associated with your developer account like so:
+
+<img width="1103" alt="xcode-conf" src="https://user-images.githubusercontent.com/32564846/34434947-3a0fc496-ec8a-11e7-9bdd-a6e05d2bf978.png">
+
+1. Create a new project on [firebase](https://firebase.google.com) site
+2. Select the option "Add Firebase to your iOS app"
+3. Configure you Xcode project installing your the Google-Info.plist file (download from the iOS App console). 
+5. Run "pod install" in the Xcode project folder.
+6. Install the Firebase cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). Follow the included instructions. This will setup your backend.
+7. Configure the Xcode project with bundle id and development team as shown in the following picture.
+8. Launch the app
 
 Now you can start the project with the new created file "tilechat.xcworkspace".
 
