@@ -53,11 +53,11 @@
 		</dict>
 		<dict>
 			<key>it</key>
-			<string>Connettivita PC</string>
+			<string>Connettività</string>
 			<key>en</key>
-			<string>Connettivita PC</string>
+			<string>Connectivity</string>
 			<key>id</key>
-			<string>connettivita-pc</string>
+			<string>connectivity</string>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -88,11 +88,11 @@
 				</dict>
 			</array>
 			<key>it</key>
-			<string>Posta elettronica</string>
+			<string>Email</string>
 			<key>en</key>
-			<string>Posta elettronica</string>
+			<string>Email</string>
 			<key>id</key>
-			<string>posta-elettronica</string>
+			<string>Email</string>
 		</dict>
 		<dict>
 			<key>it</key>

@@ -12,6 +12,7 @@
 #import "HelloApplicationContext.h"
 #import "HelloAuthTVC.h"
 #import "SHPAppDelegate.h"
+#import "HelpFacade.h"
 
 @interface HelloVC ()
 
@@ -23,6 +24,8 @@
     [super viewDidLoad];
     SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
     self.appName.text = [app.applicationContext.plistDictionary objectForKey:@"app-name"];
+    
+    [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,5 +61,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)helpAction:(id)sender {
+    NSLog(@"Help in Home menu view.");
+    [[HelpFacade sharedInstance] openSupportView:self];
+}
+
+-(void)helpWizardEnd:(NSDictionary *)context {
+    NSLog(@"helpWizardEnd");
+    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
+    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
+}
 
 @end

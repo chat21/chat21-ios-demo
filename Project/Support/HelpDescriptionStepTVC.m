@@ -27,10 +27,10 @@
     }
     [self validateDescription];
     
-    self.nextButton.title = NSLocalizedString(@"Invia", nil);
-    self.titleLabel.text = @"Sintetizza il tuo problema";//NSLocalizedString(@"description title", nil);
-    self.subtitleLabel.text = @"Descrivi sinteticamente il tuo problema, ti metteremo in contatto con un operatore specializzato";//NSLocalizedString(@"description subtitle", nil);
-    self.navigationItem.title = @"Descrivi";//NSLocalizedString(@"description view title", nil);
+    self.nextButton.title = NSLocalizedString(@"Send help", nil);
+    self.titleLabel.text = NSLocalizedString(@"help wizard title", nil);
+    self.subtitleLabel.text = NSLocalizedString(@"help wizard description", nil);//@"Descrivi sinteticamente il tuo problema, ti metteremo in contatto con un operatore specializzato";//NSLocalizedString(@"description subtitle", nil);
+    self.navigationItem.title = NSLocalizedString(@"help wizard navigation title", nil);
     
     // test
     NSLog(@"context: %@", self.context);

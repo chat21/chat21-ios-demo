@@ -85,7 +85,7 @@ static NSInteger NEXT_STEP_CELL_HEIGHT = 60;
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"title-cell" forIndexPath:indexPath];
         UILabel *titleLabel = [cell viewWithTag:1];
-        titleLabel.text = @"Seleziona un argomento";//NSLocalizedString(@"quote title", nil);
+        titleLabel.text = NSLocalizedString(@"Help wizard select argument", nil);
     }
     if (indexPath.section == 1) {
         HelpCategory *category = self.categories[indexPath.row];

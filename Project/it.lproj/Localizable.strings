@@ -105,3 +105,10 @@
 "change fullname" = "Nome visualizzato";
 "change password" = "Cambia Password";
 "settingsLegalSection" = "Legale";
+
+// Help
+"help wizard title" = "Sintetizza il tuo problema";
+"help wizard description" = "Descrivi sinteticamente il tuo problema, ti metteremo in contatto con un operatore specializzato";
+"help wizard navigation title" = "Aiuto";
+"Help wizard select argument" = "Seleziona un argomento";
+"Send help" = "Invia";
