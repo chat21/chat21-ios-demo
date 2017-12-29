@@ -27,7 +27,7 @@ Before you do anything else, you shoud change the Bundle Identifier, and assign 
 Select **tilechat** in the **Project Navigator**, and then select the **tilechat** target. In the **General tab** change **Bundle Identifier** to use your own domain name, in reverse-domain-notation - for example **it.frontiere21.tilechat**.
 Then, from the **Team** menu, select the team associated with your developer account like so:
 
-<img width="1103" alt="xcode-conf" src="https://user-images.githubusercontent.com/32564846/34434947-3a0fc496-ec8a-11e7-9bdd-a6e05d2bf978.png">
+<img width="1103" alt="xcode-conf" src="https://user-images.githubusercontent.com/32564846/34435195-089a5bea-ec8c-11e7-91af-b2bb15253849.png">
 
 
 1. Create a new project on [firebase](https://firebase.google.com) site
