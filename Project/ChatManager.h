@@ -31,12 +31,13 @@
 @class ChatUser;
 @class ChatContactsSynchronizer;
 @class ChatSpeaker;
+@class ChatConversationHandler;
 
 @interface ChatManager : NSObject
 
 @property (nonatomic, strong) NSString *tenant;
 @property (nonatomic, strong) ChatUser *loggedUser;
-@property (nonatomic, strong) NSMutableDictionary *handlers;
+@property (nonatomic, strong) NSMutableDictionary<NSString*, ChatConversationHandler*> *handlers;
 @property (nonatomic, strong) ChatConversationsHandler *conversationsHandler;
 @property (nonatomic, strong) ChatPresenceHandler *presenceHandler;
 @property (nonatomic, strong) ChatGroupsHandler *groupsHandler;

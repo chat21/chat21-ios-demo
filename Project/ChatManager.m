@@ -275,7 +275,8 @@ static ChatManager *sharedInstance = nil;
     [self.conversationsHandler dispose];
     self.conversationsHandler = nil;
     if (self.handlers) {
-        for (ChatConversationHandler *handler in self.handlers) {
+        for (NSString *conv_id in self.handlers) {
+            ChatConversationHandler *handler = [self.handlers objectForKey:conv_id];
             [handler dispose];
         }
         [self.handlers removeAllObjects];

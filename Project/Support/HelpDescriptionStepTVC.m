@@ -27,7 +27,7 @@
     }
     [self validateDescription];
     
-    self.nextButton.title = NSLocalizedString(@"Send help", nil);
+    self.nextButton.title = NSLocalizedString(@"Help wizard send button", nil);
     self.titleLabel.text = NSLocalizedString(@"help wizard title", nil);
     self.subtitleLabel.text = NSLocalizedString(@"help wizard description", nil);//@"Descrivi sinteticamente il tuo problema, ti metteremo in contatto con un operatore specializzato";//NSLocalizedString(@"description subtitle", nil);
     self.navigationItem.title = NSLocalizedString(@"help wizard navigation title", nil);
@@ -232,7 +232,7 @@ static NSInteger MIN_CHARACTERS_DESCRIPTION = 4;
                                       }];
     
     UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"Non ancora"
+                             actionWithTitle:NSLocalizedString(@"Help wizard not now button", nil)
                              style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction * action)
                              {

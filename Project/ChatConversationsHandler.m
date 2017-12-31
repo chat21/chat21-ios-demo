@@ -103,7 +103,6 @@
     
     self.conversations_ref_handle_changed =
     [self.conversationsRef observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot *snapshot) {
-//        NSLog(@"************************* CONVERSATION UPDATED ****************************");
         NSLog(@"CHANGED CONVERSATION snapshot............... %@", snapshot);
         ChatConversation *conversation = [ChatConversation conversationFromSnapshotFactory:snapshot me:self.loggeduser];
         if ([self.currentOpenConversationId isEqualToString:conversation.conversationId] && conversation.is_new == YES) {

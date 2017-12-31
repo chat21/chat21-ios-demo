@@ -111,4 +111,5 @@
 "help wizard description" = "Descrivi sinteticamente il tuo problema, ti metteremo in contatto con un operatore specializzato";
 "help wizard navigation title" = "Aiuto";
 "Help wizard select argument" = "Seleziona un argomento";
-"Send help" = "Invia";
+"Help wizard send button" = "Invia";
+"Help wizard not now button" = "Non ancora";

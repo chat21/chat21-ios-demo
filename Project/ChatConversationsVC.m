@@ -244,12 +244,11 @@
     NSLog(@"Back");
 }
 
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self removeSubscribers];
-//    if (self.authStateDidChangeListenerHandle) {
-//        [[FIRAuth auth] removeAuthStateDidChangeListener:self.authStateDidChangeListenerHandle];
-//    }
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isMovingFromParentViewController) {
+        [self removeSubscribers];
+    }
 }
      
 -(void)viewDidAppear:(BOOL)animated {
