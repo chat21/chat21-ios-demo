@@ -79,7 +79,7 @@
 -(void)setUIStatusDisconnected;
 -(void)setUIStatusConnected;
 
--(void)logout;
+//-(void)logout;
 
 @end
 

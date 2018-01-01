@@ -369,64 +369,58 @@
 }
 
 -(void)logout {
+    [self removeSubscribers];
+    [self.conversationsHandler dispose];
+    self.conversationsHandler = nil;
     self.me = nil;
 }
 
 -(void)initializeWithSignedUser {
-//    NSLog(@"Initializing user. Signed in as %@", self.applicationContext.loggedUser.username);
     ChatManager *chat = [ChatManager getInstance];
     NSLog(@"Current ChatManager.presenceHandler: %@", chat.presenceHandler);
     ChatUser *loggedUser = chat.loggedUser; //[self userBy:self.applicationContext.loggedUser];
     NSString *loggedUserId = loggedUser.userId;
+    NSLog(@"Initializing user. Signed in as %@/%@", loggedUser.userId, loggedUser.fullname);
     if (loggedUser && !self.me) { // > just signed in / first load after startup
         self.me = loggedUser;
-        
-//        chat.conversationsVC = self;
-        [self initChat];
-        NSLog(@"reloadData loggedUser && !self.me");
+        [self initConversationsHandler];
         [self.tableView reloadData];
     }
-    else if (!loggedUser && self.me) {
-        NSLog(@"**** You just logged out! Disposing current chat handlers...");
-        // DEPRECATED
-        self.me = nil;
-        self.conversationsHandler = nil;
-        ChatManager *chat = [ChatManager getInstance];
-        [chat dispose];
-        NSLog(@"reloadData !loggedUser && self.me");
-        [self.tableView reloadData];
-    }
-    else if (loggedUser && ![self.me.userId isEqualToString:loggedUserId]) { // user changed
-        NSAssert(false, @"user changed? this code must be unreacheable!");
-        // DEPRECATED
+    else if (loggedUser && ![self.me.userId isEqualToString:loggedUserId]) {
         // user changed
-        // reset handlers
-        NSLog(@"**** User changed! Disposing current chat handlers and creating new one...");
-        self.me = nil;
-        self.conversationsHandler = nil;
-        ChatManager *chat = [ChatManager getInstance];
-//        [chat dispose];
-        NSLog(@"Creating new handlers...");
-        [chat startWithUser:loggedUser];
-//        chat.conversationsVC = self;
-        [self initChat];
-        NSLog(@"reloadData !loggedUser && self.me");
+        NSLog(@"User changed. Logged user is %@/%@ while self.me is %@/%@", loggedUser.userId, loggedUser.fullname, self.me.userId, self.me.fullname);
+        [self logout];
+        self.me = loggedUser;
+        NSLog(@"Self.me set to %@", loggedUser.userId);
+        [self initConversationsHandler];
         [self.tableView reloadData];
     }
-    else if (!loggedUser) { // logged out
-        NSLog(@"**** User still not logged in.");
-        // DEPRECATED
-        // not signed in
-        // do nothing
-    }
+//    else if (!loggedUser && self.me) {
+//        NSAssert(false, @"You just signed out so you can't be here! This code must be unreacheable!");
+//        NSLog(@"**** You just logged out! Disposing current chat handlers...");
+//        // DEPRECATED
+//        self.me = nil;
+//        self.conversationsHandler = nil;
+////        ChatManager *chat = [ChatManager getInstance];
+////        [chat dispose];
+//        NSLog(@"reloadData !loggedUser && self.me");
+//        [self.tableView reloadData];
+//    }
+//    else if (!loggedUser) { // logged out
+//        NSAssert(false, @"Signed out you can't be here! This code must be unreacheable!");
+//        NSLog(@"**** User still not logged in.");
+//        // DEPRECATED
+//        // not signed in
+//        // do nothing
+//    }
     else if (loggedUser && [loggedUserId isEqualToString:self.me.userId]) {
         NSLog(@"**** You are logged in with the same user. Do nothing.");
     }
 }
 
--(void)initChat {
-    [self initConversationsHandler];
-}
+//-(void)initChat {
+//    [self initConversationsHandler];
+//}
 
 -(void)initConversationsHandler {
     ChatManager *chat = [ChatManager getInstance];
@@ -452,21 +446,30 @@
 }
 
 -(void)subscribe:(ChatConversationsHandler *)handler {
+    if (self.added_handle > 0) {
+        NSLog(@"Subscribe(): just subscribed to conversations handler. Do nothing.");
+        return;
+    }
+    NSLog(@"Subscribing to conversationsHandler");
     self.added_handle = [handler observeEvent:ChatEventConversationAdded withCallback:^(ChatConversation *conversation) {
         [self conversationReceived:conversation];
     }];
-    self. changed_handle = [handler observeEvent:ChatEventConversationChanged withCallback:^(ChatConversation *conversation) {
+    self.changed_handle = [handler observeEvent:ChatEventConversationChanged withCallback:^(ChatConversation *conversation) {
         [self conversationReceived:conversation];
     }];
     self.deleted_handle = [handler observeEvent:ChatEventConversationDeleted withCallback:^(ChatConversation *conversation) {
         [self conversationDeleted:conversation];
     }];
+    NSLog(@"Subscription handles: added_handle = %lu, changed_handle = %lu, deleted_handle = %lu", (unsigned long)self.added_handle, (unsigned long)self.changed_handle, (unsigned long)self.deleted_handle);
 }
 
 -(void)removeSubscribers {
     [self.conversationsHandler removeObserverWithHandle:self.added_handle];
     [self.conversationsHandler removeObserverWithHandle:self.changed_handle];
     [self.conversationsHandler removeObserverWithHandle:self.deleted_handle];
+    self.added_handle = 0;
+    self.changed_handle = 0;
+    self.deleted_handle = 0;
 }
 
 //-(void)initContactsSynchronizer {
