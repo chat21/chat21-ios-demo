@@ -33,7 +33,7 @@
     }
     if (!self.category) {
         self.cancelButton.title = NSLocalizedString(@"cancel", nil);
-        self.navigationItem.title = @"Argomento";//NSLocalizedString(@"quote view title", nil);
+        self.navigationItem.title = NSLocalizedString(@"help wizard title topic", nil);
     }
     else {
         self.navigationItem.leftBarButtonItem = nil;
