@@ -32,6 +32,7 @@
 @class ChatContactsSynchronizer;
 @class ChatSpeaker;
 @class ChatConversationHandler;
+@class ChatConnectionStatusHandler;
 
 @interface ChatManager : NSObject
 
@@ -40,11 +41,12 @@
 @property (nonatomic, strong) NSMutableDictionary<NSString*, ChatConversationHandler*> *handlers;
 @property (nonatomic, strong) ChatConversationsHandler *conversationsHandler;
 @property (nonatomic, strong) ChatPresenceHandler *presenceHandler;
+@property (nonatomic, strong) ChatConnectionStatusHandler *connectionStatusHandler;
 @property (nonatomic, strong) ChatGroupsHandler *groupsHandler;
 @property (nonatomic, strong) ChatContactsSynchronizer *contactsSynchronizer;
 //@property (nonatomic, strong) ChatConversationsVC * conversationsVC;
 @property (strong, nonatomic) FIRAuthStateDidChangeListenerHandle authStateDidChangeListenerHandle;
-@property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
+//@property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
 @property (assign, nonatomic) BOOL groupsMode;
 
 +(void)configureWithAppId:(NSString *)app_id;

@@ -212,6 +212,9 @@
     [self.conversationHandler removeObserverWithHandle:self.added_handle];
     [self.conversationHandler removeObserverWithHandle:self.changed_handle];
     [self.conversationHandler removeObserverWithHandle:self.deleted_handle];
+    self.added_handle = 0;
+    self.changed_handle = 0;
+    self.deleted_handle = 0;
 }
 
 -(void)sendTextAsChatOpens {

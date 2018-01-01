@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "SHPChatDelegate.h"
-//#import "ChatGroupsSubscriber.h"
-//#import "ChatConversationSubscriber.h"
 #import "ChatEventType.h"
 
 @import Firebase;
@@ -48,7 +45,7 @@
 //-(void)removeSubcriber:(id<ChatConversationSubscriber>)subscriber;
 
 // observer
-@property (strong, nonatomic) NSMutableDictionary *eventObservers; // ( event_enum : DictionaryOfCallbacks (event_handle : event_callback) )
+@property (strong, nonatomic) NSMutableDictionary *eventObservers;
 @property (assign, atomic) volatile int64_t lastEventHandle;
 -(NSUInteger)observeEvent:(ChatMessageEventType)eventType withCallback:(void (^)(ChatMessage *message))callback;
 -(void)removeObserverWithHandle:(NSUInteger)event_handle;

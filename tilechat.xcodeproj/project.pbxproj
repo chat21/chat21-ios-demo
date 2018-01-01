@@ -103,6 +103,7 @@
 		B240CF911FFA228800D9A651 /* status_title_ios11.xib in Resources */ = {isa = PBXBuildFile; fileRef = B240CF591FFA228800D9A651 /* status_title_ios11.xib */; };
 		B240CF921FFA228800D9A651 /* NotificationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B240CF5A1FFA228800D9A651 /* NotificationAlertView.m */; };
 		B240CF931FFA228800D9A651 /* GroupInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B240CF5B1FFA228800D9A651 /* GroupInfoVC.m */; };
+		B2493C221FFAA7AE0066FA84 /* ChatConnectionStatusHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B2493C211FFAA7AE0066FA84 /* ChatConnectionStatusHandler.m */; };
 		B24AD7B61F86134800A526E9 /* HelpCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AD7B51F86134800A526E9 /* HelpCategory.m */; };
 		B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AD7B81F86249C00A526E9 /* HelpFacade.m */; };
 		B24AD7C11F86392700A526E9 /* help-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7C01F86392700A526E9 /* help-info.plist */; };
@@ -307,6 +308,8 @@
 		B240CF5B1FFA228800D9A651 /* GroupInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInfoVC.m; sourceTree = "<group>"; };
 		B240CF5C1FFA228800D9A651 /* ChatSelectUserLocalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectUserLocalVC.h; sourceTree = "<group>"; };
 		B240CF5D1FFA228800D9A651 /* ChatConversationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsVC.h; sourceTree = "<group>"; };
+		B2493C201FFAA7AE0066FA84 /* ChatConnectionStatusHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConnectionStatusHandler.h; sourceTree = "<group>"; };
+		B2493C211FFAA7AE0066FA84 /* ChatConnectionStatusHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConnectionStatusHandler.m; sourceTree = "<group>"; };
 		B24AD7B41F86134800A526E9 /* HelpCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCategory.h; sourceTree = "<group>"; };
 		B24AD7B51F86134800A526E9 /* HelpCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategory.m; sourceTree = "<group>"; };
 		B24AD7B71F86249C00A526E9 /* HelpFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFacade.h; sourceTree = "<group>"; };
@@ -458,6 +461,15 @@
 		B240CEB91FFA223800D9A651 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B240CEC51FFA223800D9A651 /* ChatMessage.h */,
+				B240CED51FFA223800D9A651 /* ChatMessage.m */,
+				B240CEDD1FFA223800D9A651 /* ChatUser.h */,
+				B240CEC71FFA223800D9A651 /* ChatUser.m */,
+				B240CECC1FFA223800D9A651 /* ChatGroup.h */,
+				B240CED81FFA223800D9A651 /* ChatGroup.m */,
+				B240CED11FFA223800D9A651 /* ChatConversation.h */,
+				B240CEBF1FFA223800D9A651 /* ChatConversation.m */,
+				B240CEC21FFA223800D9A651 /* ChatEventType.h */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -469,37 +481,30 @@
 				B240CEBC1FFA223800D9A651 /* ChatGroupsDB.h */,
 				B240CEBD1FFA223800D9A651 /* ChatPresenceViewDelegate.h */,
 				B240CEBE1FFA223800D9A651 /* FirebaseCustomAuthHelper.h */,
-				B240CEBF1FFA223800D9A651 /* ChatConversation.m */,
 				B240CEC01FFA223800D9A651 /* ChatConversationHandler.h */,
 				B240CEC11FFA223800D9A651 /* DEPRECATED_ChatConversationSubscriber.h */,
-				B240CEC21FFA223800D9A651 /* ChatEventType.h */,
 				B240CEC31FFA223800D9A651 /* ChatGroupsHandler.m */,
 				B240CEC41FFA223800D9A651 /* ChatPresenceHandler.m */,
-				B240CEC51FFA223800D9A651 /* ChatMessage.h */,
 				B240CEC61FFA223800D9A651 /* ContactsDB.m */,
-				B240CEC71FFA223800D9A651 /* ChatUser.m */,
 				B240CEC81FFA223800D9A651 /* ChatContactsSynchronizer.m */,
 				B240CEC91FFA223800D9A651 /* ChatDB.m */,
 				B240CECA1FFA223800D9A651 /* SHPConversationsViewDelegate.h */,
 				B240CECB1FFA223800D9A651 /* ChatManager.h */,
-				B240CECC1FFA223800D9A651 /* ChatGroup.h */,
 				B240CECD1FFA223800D9A651 /* ChatGroupsDB.m */,
 				B240CECE1FFA223800D9A651 /* ChatConversationsHandler.h */,
 				B240CECF1FFA223800D9A651 /* ChatGroupsSubscriber.h */,
 				B240CED01FFA223800D9A651 /* ChatConversationHandler.m */,
-				B240CED11FFA223800D9A651 /* ChatConversation.h */,
 				B240CED21FFA223800D9A651 /* DEPRECATED_SHPChatDelegate.h */,
 				B240CED31FFA223800D9A651 /* FirebaseCustomAuthHelper.m */,
 				B240CED41FFA223800D9A651 /* ContactsDB.h */,
-				B240CED51FFA223800D9A651 /* ChatMessage.m */,
 				B240CED61FFA223800D9A651 /* ChatPresenceHandler.h */,
 				B240CED71FFA223800D9A651 /* ChatGroupsHandler.h */,
-				B240CED81FFA223800D9A651 /* ChatGroup.m */,
 				B240CED91FFA223800D9A651 /* ChatManager.m */,
 				B240CEDA1FFA223800D9A651 /* ChatSynchDelegate.h */,
 				B240CEDB1FFA223800D9A651 /* ChatDB.h */,
 				B240CEDC1FFA223800D9A651 /* ChatContactsSynchronizer.h */,
-				B240CEDD1FFA223800D9A651 /* ChatUser.h */,
+				B2493C201FFAA7AE0066FA84 /* ChatConnectionStatusHandler.h */,
+				B2493C211FFAA7AE0066FA84 /* ChatConnectionStatusHandler.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -710,8 +715,8 @@
 			isa = PBXGroup;
 			children = (
 				B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */,
-				B240CF081FFA228800D9A651 /* chat21ui */,
 				B240CEB81FFA223800D9A651 /* chat21core */,
+				B240CF081FFA228800D9A651 /* chat21ui */,
 				B24AD7B11F8612A400A526E9 /* Support */,
 				B2CE2F391F19314E002E2150 /* Hello */,
 				BFBFD36A1AEA544F00657874 /* Project */,
@@ -1089,6 +1094,7 @@
 				B240CF881FFA228800D9A651 /* ChatConversationsVC.m in Sources */,
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
 				B240CF8E1FFA228800D9A651 /* ChatRootNC.m in Sources */,
+				B2493C221FFAA7AE0066FA84 /* ChatConnectionStatusHandler.m in Sources */,
 				B240CF831FFA228800D9A651 /* QBPlasticPopupMenu.m in Sources */,
 				BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */,
 				B240CF021FFA223800D9A651 /* ChatMessageComponents.m in Sources */,

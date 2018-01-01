@@ -27,4 +27,9 @@ typedef NS_ENUM(NSInteger, ChatConversationEventType) {
     ChatEventConversationChanged,
 };// CHAT_SWIFT_NAME(DataEventType);
 
+typedef NS_ENUM(NSInteger, ChatConnectionStatusEventType) {
+    ChatConnectionStatusEventConnected,
+    ChatConnectionStatusEventDisconnected
+};// CHAT_SWIFT_NAME(DataEventType);
+
 #endif /* ChatEventType_h */

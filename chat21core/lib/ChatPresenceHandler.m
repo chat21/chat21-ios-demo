@@ -25,25 +25,6 @@
     return self;
 }
 
-//-(id)initWithFirebaseRef:(NSString *)firebaseRef tenant:(NSString *)tenant user:(SHPUser *)user {
-//    if (self = [super init]) {
-//        self.firebaseRef = firebaseRef;
-//        self.tenant = tenant;
-//        self.loggeduser = user;
-//    }
-//    return self;
-//}
-
-//- (void)connect {
-//    //    NSLog(@"Firebase login with username %@...", self.me);
-//    //    if (!self.me) {
-//    //        NSLog(@"ERROR: First set .me property with a valid username.");
-//    //    }
-//    //    [self firebaseLogin];
-//    NSLog(@"connecting handler %@ to firebase: %@", self, self.firebaseRef);
-//    [self setupMyConnections];
-//}
-
 +(FIRDatabaseReference *)lastOnlineRefForUser:(NSString *)userid {
     NSString *tenant = [ChatManager getInstance].tenant;
     NSString *lastOnlineRefURL = [[NSString alloc] initWithFormat:@"apps/%@/presence/%@/lastOnline",tenant, userid];

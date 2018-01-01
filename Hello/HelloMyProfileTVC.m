@@ -107,7 +107,7 @@
     //signout firebase
     NSError *signOutError;
     BOOL status = [[FIRAuth auth] signOut:&signOutError];
-    NSLog(@"logut status %d", status);
+    NSLog(@"logut status %d, error: %@", status, signOutError);
     if (!status) {
         NSLog(@"Error signing out from Firebase: %@", signOutError);
     }

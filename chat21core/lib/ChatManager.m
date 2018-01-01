@@ -22,6 +22,7 @@
 #import "ChatConversationsVC.h"
 #import "ChatUser.h"
 #import "ChatContactsSynchronizer.h"
+#import "ChatConnectionStatusHandler.h"
 
 @import Firebase;
 
@@ -69,10 +70,28 @@ static ChatManager *sharedInstance = nil;
     return handler;
 }
 
--(ChatPresenceHandler *)createPresenceHandlerForUser:(ChatUser *)user {
-    ChatPresenceHandler *handler = [[ChatPresenceHandler alloc] initWithTenant:self.tenant user:user];
+-(ChatPresenceHandler *)createPresenceHandler {
+    ChatPresenceHandler *handler = [[ChatPresenceHandler alloc] initWithTenant:self.tenant user:self.loggedUser];
     NSLog(@"Setting new handler %@ to Conversations Manager.", handler);
     self.presenceHandler = handler;
+    return handler;
+}
+
+-(void)initConnectionStatusHandler {
+    ChatConnectionStatusHandler *handler = self.connectionStatusHandler;
+    if (!handler) {
+        NSLog(@"ConnectionStatusHandler not found. Creating & initializing a new one.");
+        handler = [self createConnectionStatusHandler];
+        self.connectionStatusHandler = handler;
+        NSLog(@"Connecting connectionStatusHandler to firebase.");
+        [self.connectionStatusHandler connect];
+    }
+}
+
+-(ChatConnectionStatusHandler *)createConnectionStatusHandler {
+    ChatConnectionStatusHandler *handler = [[ChatConnectionStatusHandler alloc] init];
+    NSLog(@"Setting new ConnectionStatusHandler %@.", handler);
+    self.connectionStatusHandler = handler;
     return handler;
 }
 
@@ -80,7 +99,7 @@ static ChatManager *sharedInstance = nil;
     ChatPresenceHandler *handler = self.presenceHandler;
     if (!handler) {
         NSLog(@"Presence Handler not found. Creating & initializing a new one.");
-        handler = [self createPresenceHandlerForUser:self.loggedUser];
+        handler = [self createPresenceHandler];
         self.presenceHandler = handler;
         NSLog(@"Connecting handler to firebase.");
         [self.presenceHandler setupMyPresence];
@@ -134,7 +153,7 @@ static ChatManager *sharedInstance = nil;
              NSLog(@"Firebase stato autenticazione cambiato! Auth: %@ user: %@", auth.currentUser, user);
              if (user) {
                  NSLog(@"Signed in.");
-                 [self setupConnectionStatus];
+                 [self initConnectionStatusHandler];
                  [self initPresenceHandler];
                  [self initContactsSynchronizer];
                  if (self.groupsMode) {
@@ -142,9 +161,12 @@ static ChatManager *sharedInstance = nil;
                  }
              }
              else {
+                 // practically never called because of dispose() method removes this handle (and dispose is called just
+                 // during the logout action.
                  NSLog(@"Signed out.");
                  if (self.authStateDidChangeListenerHandle) {
                      [[FIRAuth auth] removeAuthStateDidChangeListener:self.authStateDidChangeListenerHandle];
+                     self.authStateDidChangeListenerHandle = nil;
                  }
              }
          }];
@@ -219,30 +241,30 @@ static ChatManager *sharedInstance = nil;
 //    //     }];
 //}
 
--(void)setupConnectionStatus {
-    NSLog(@"Connection status.");
-    NSString *url = @"/.info/connected";
-    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *connectedRef = [rootRef child:url];
-    
-    // event
-    if (!self.connectedRefHandle) {
-        self.connectedRefHandle = [connectedRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-            NSLog(@"snapshot %@ - %d", snapshot, [snapshot.value boolValue]);
-            if([snapshot.value boolValue]) {
-                NSLog(@".connected.");
-//                if (self.conversationsVC) {
-//                    [self.conversationsVC setUIStatusConnected];
-//                }
-            } else {
-                NSLog(@".not connected.");
-//                if (self.conversationsVC) {
-//                    [self.conversationsVC setUIStatusDisconnected];
-//                }
-            }
-        }];
-    }
-}
+//-(void)setupConnectionStatus {
+//    NSLog(@"Connection status.");
+//    NSString *url = @"/.info/connected";
+//    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+//    FIRDatabaseReference *connectedRef = [rootRef child:url];
+//
+//    // event
+//    if (!self.connectedRefHandle) {
+//        self.connectedRefHandle = [connectedRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+//            NSLog(@"snapshot %@ - %d", snapshot, [snapshot.value boolValue]);
+//            if([snapshot.value boolValue]) {
+//                NSLog(@".connected.");
+////                if (self.conversationsVC) {
+////                    [self.conversationsVC setUIStatusConnected];
+////                }
+//            } else {
+//                NSLog(@".not connected.");
+////                if (self.conversationsVC) {
+////                    [self.conversationsVC setUIStatusDisconnected];
+////                }
+//            }
+//        }];
+//    }
+//}
 
 -(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback {
     NSString *url = @"/.info/connected";
@@ -286,14 +308,18 @@ static ChatManager *sharedInstance = nil;
         [[FIRAuth auth] removeAuthStateDidChangeListener:self.authStateDidChangeListenerHandle];
         self.authStateDidChangeListenerHandle = nil;
     }
-    NSString *url = @"/.info/connected";
-    FIRDatabaseReference *connectedRef = [[[FIRDatabase database] reference] child:url];
-    if (self.connectedRefHandle) {
-        [connectedRef removeObserverWithHandle:self.connectedRefHandle];
-    }
+//    NSString *url = @"/.info/connected";
+//    FIRDatabaseReference *connectedRef = [[[FIRDatabase database] reference] child:url];
+//    if (self.connectedRefHandle) {
+//        [connectedRef removeObserverWithHandle:self.connectedRefHandle];
+//    }
     if (self.presenceHandler) {
         [self.presenceHandler goOffline];
         self.presenceHandler = nil;
+    }
+    if (self.connectionStatusHandler) {
+        [self.connectionStatusHandler dispose];
+        self.connectionStatusHandler = nil;
     }
     if (self.groupsHandler) {
         [self.groupsHandler dispose];
