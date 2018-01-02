@@ -57,7 +57,7 @@
 -(ChatConversationHandler *)getConversationHandlerByConversationId:(NSString *)conversationId;
 
 -(ChatConversationsHandler *)createConversationsHandler;
--(ChatPresenceHandler *)createPresenceHandlerForUser:(ChatUser *)user;
+-(ChatPresenceHandler *)createPresenceHandler;
 -(ChatGroupsHandler *)createGroupsHandlerForUser:(ChatUser *)user;
 -(ChatContactsSynchronizer *)createContactsSynchronizerForUser:(ChatUser *)user;
 
@@ -90,7 +90,7 @@
 -(void)removeInstanceId;
 -(void)loadGroup:(NSString *)group_id completion:(void (^)(ChatGroup* group, BOOL error))callback;
 
--(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback;
+//-(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback;
 
 @end
 

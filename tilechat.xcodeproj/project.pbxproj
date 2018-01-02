@@ -191,7 +191,7 @@
 		B240CEC71FFA223800D9A651 /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
 		B240CEC81FFA223800D9A651 /* ChatContactsSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsSynchronizer.m; sourceTree = "<group>"; };
 		B240CEC91FFA223800D9A651 /* ChatDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDB.m; sourceTree = "<group>"; };
-		B240CECA1FFA223800D9A651 /* SHPConversationsViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPConversationsViewDelegate.h; sourceTree = "<group>"; };
+		B240CECA1FFA223800D9A651 /* DEPRECATED_SHPConversationsViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_SHPConversationsViewDelegate.h; sourceTree = "<group>"; };
 		B240CECB1FFA223800D9A651 /* ChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
 		B240CECC1FFA223800D9A651 /* ChatGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroup.h; sourceTree = "<group>"; };
 		B240CECD1FFA223800D9A651 /* ChatGroupsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsDB.m; sourceTree = "<group>"; };
@@ -310,6 +310,7 @@
 		B240CF5D1FFA228800D9A651 /* ChatConversationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsVC.h; sourceTree = "<group>"; };
 		B2493C201FFAA7AE0066FA84 /* ChatConnectionStatusHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConnectionStatusHandler.h; sourceTree = "<group>"; };
 		B2493C211FFAA7AE0066FA84 /* ChatConnectionStatusHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConnectionStatusHandler.m; sourceTree = "<group>"; };
+		B2493C231FFB92B80066FA84 /* Tile Chat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tile Chat.entitlements"; sourceTree = "<group>"; };
 		B24AD7B41F86134800A526E9 /* HelpCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCategory.h; sourceTree = "<group>"; };
 		B24AD7B51F86134800A526E9 /* HelpCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategory.m; sourceTree = "<group>"; };
 		B24AD7B71F86249C00A526E9 /* HelpFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFacade.h; sourceTree = "<group>"; };
@@ -488,7 +489,7 @@
 				B240CEC61FFA223800D9A651 /* ContactsDB.m */,
 				B240CEC81FFA223800D9A651 /* ChatContactsSynchronizer.m */,
 				B240CEC91FFA223800D9A651 /* ChatDB.m */,
-				B240CECA1FFA223800D9A651 /* SHPConversationsViewDelegate.h */,
+				B240CECA1FFA223800D9A651 /* DEPRECATED_SHPConversationsViewDelegate.h */,
 				B240CECB1FFA223800D9A651 /* ChatManager.h */,
 				B240CECD1FFA223800D9A651 /* ChatGroupsDB.m */,
 				B240CECE1FFA223800D9A651 /* ChatConversationsHandler.h */,
@@ -581,6 +582,7 @@
 				B240CF5B1FFA228800D9A651 /* GroupInfoVC.m */,
 				B240CF5C1FFA228800D9A651 /* ChatSelectUserLocalVC.h */,
 				B240CF5D1FFA228800D9A651 /* ChatConversationsVC.h */,
+				B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */,
 			);
 			path = chat21ui;
 			sourceTree = "<group>";
@@ -714,6 +716,7 @@
 		BFBFD35F1AEA544F00657874 = {
 			isa = PBXGroup;
 			children = (
+				B2493C231FFB92B80066FA84 /* Tile Chat.entitlements */,
 				B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */,
 				B240CEB81FFA223800D9A651 /* chat21core */,
 				B240CF081FFA228800D9A651 /* chat21ui */,
@@ -740,7 +743,6 @@
 			children = (
 				BFBFD3911AEA54DA00657874 /* SHPAppDelegate.h */,
 				BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */,
-				B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */,
 				B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */,
 				BFBFD4911AEA591100657874 /* Util */,
 				BFBFD36B1AEA544F00657874 /* Supporting Files */,
@@ -762,20 +764,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BFBFD48D1AEA58FD00657874 /* MBProgressHUD */ = {
+		BFBFD4911AEA591100657874 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				B21760C11FE9C88900C83215 /* MBProgressHUD.h */,
 				B21760C21FE9C88900C83215 /* MBProgressHUD.m */,
-			);
-			name = MBProgressHUD;
-			path = Project;
-			sourceTree = "<group>";
-		};
-		BFBFD4911AEA591100657874 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				BFBFD48D1AEA58FD00657874 /* MBProgressHUD */,
 				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
 				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
 				BFBFD5371AEA7C3700657874 /* SHPImageCache.h */,
@@ -1213,6 +1206,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "Tile Chat.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1249,6 +1243,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "Tile Chat.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

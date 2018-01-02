@@ -27,6 +27,7 @@
 #import "ChatSelectGroupMembersLocal.h"
 #import "ChatSelectGroupLocalTVC.h"
 #import "HelpFacade.h"
+#import "ChatConnectionStatusHandler.h"
 
 @interface ChatConversationsVC ()
 - (IBAction)writeToAction:(id)sender;
@@ -132,28 +133,28 @@
 // --------- USER INFO END ------------
 // ------------------------------------
 
--(void)isStatusConnected {
-    NSString *url = @"/.info/connected";
-    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *connectedRef = [rootRef child:url];
-    
-    // once
-    [connectedRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        // Get user value
-        NSLog(@"SNAPSHOT ONCE %@ - %d", snapshot, [snapshot.value boolValue]);
-        if([snapshot.value boolValue]) {
-            NSLog(@"..connected once..");
-            // come giu, rifattorizzare
-            [self setUIStatusConnected];
-        }
-        else {
-            NSLog(@"..not connected once..");
-            [self setUIStatusDisconnected];
-        }
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
-}
+//-(void)isStatusConnected {
+//    NSString *url = @"/.info/connected";
+//    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+//    FIRDatabaseReference *connectedRef = [rootRef child:url];
+//
+//    // once
+//    [connectedRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        // Get user value
+//        NSLog(@"SNAPSHOT ONCE %@ - %d", snapshot, [snapshot.value boolValue]);
+//        if([snapshot.value boolValue]) {
+//            NSLog(@"..connected once..");
+//            // come giu, rifattorizzare
+//            [self setUIStatusConnected];
+//        }
+//        else {
+//            NSLog(@"..not connected once..");
+//            [self setUIStatusDisconnected];
+//        }
+//    } withCancelBlock:^(NSError * _Nonnull error) {
+//        NSLog(@"%@", error.localizedDescription);
+//    }];
+//}
 
 //-(void)setupConnectionStatus {
 //    NSLog(@"Connection status.");
@@ -257,7 +258,7 @@
     
     //[self isStatusConnected];
     ChatManager *chat = [ChatManager getInstance];
-    [chat isStatusConnectedWithCompletionBlock:^(BOOL connected, NSError *error) {
+    [chat.connectionStatusHandler isStatusConnectedWithCompletionBlock:^(BOOL connected, NSError *error) {
         if (connected) {
             [self setUIStatusConnected];
         }
@@ -383,7 +384,7 @@
     NSLog(@"Initializing user. Signed in as %@/%@", loggedUser.userId, loggedUser.fullname);
     if (loggedUser && !self.me) { // > just signed in / first load after startup
         self.me = loggedUser;
-        [self initConversationsHandler];
+        [self initChat];
         [self.tableView reloadData];
     }
     else if (loggedUser && ![self.me.userId isEqualToString:loggedUserId]) {
@@ -392,7 +393,7 @@
         [self logout];
         self.me = loggedUser;
         NSLog(@"Self.me set to %@", loggedUser.userId);
-        [self initConversationsHandler];
+        [self initChat];
         [self.tableView reloadData];
     }
 //    else if (!loggedUser && self.me) {
@@ -418,9 +419,19 @@
     }
 }
 
-//-(void)initChat {
-//    [self initConversationsHandler];
-//}
+-(void)initChat {
+    [self initConversationsHandler];
+    ChatManager *chat = [ChatManager getInstance];
+    ChatConnectionStatusHandler *connectionStatusHandler = chat.connectionStatusHandler;
+    if (connectionStatusHandler) {
+        [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
+            [self setUIStatusConnected];
+        }];
+        [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
+            [self setUIStatusDisconnected];
+        }];
+    }
+}
 
 -(void)initConversationsHandler {
     ChatManager *chat = [ChatManager getInstance];
@@ -470,6 +481,9 @@
     self.added_handle = 0;
     self.changed_handle = 0;
     self.deleted_handle = 0;
+    ChatManager *chatm = [ChatManager getInstance];
+    [chatm.connectionStatusHandler removeObserverWithHandle:self.connectedHandle];
+    [chatm.connectionStatusHandler removeObserverWithHandle:self.disconnectedHandle];
 }
 
 //-(void)initContactsSynchronizer {

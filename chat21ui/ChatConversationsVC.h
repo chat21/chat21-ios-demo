@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "SHPFirebaseTokenDelegate.h"
 //#import <Firebase/Firebase.h>
-#import "SHPConversationsViewDelegate.h"
+//#import "SHPConversationsViewDelegate.h"
 #import "ChatPresenceHandler.h"
 //#import "SHPImageDownloader.h"
 #import "SHPModalCallerDelegate.h"
@@ -27,8 +27,8 @@
 @class SHPUserDC;
 @class ChatContactsSynchronizer;
 
-@interface ChatConversationsVC : UITableViewController <SHPConversationsViewDelegate, ChatPresenceViewDelegate, UIActionSheetDelegate, SHPModalCallerDelegate>
-- (IBAction)testConnectionAction:(id)sender;
+@interface ChatConversationsVC : UITableViewController <ChatPresenceViewDelegate, UIActionSheetDelegate, SHPModalCallerDelegate>
+//- (IBAction)testConnectionAction:(id)sender;
 - (IBAction)newGroupAction:(id)sender;
 - (IBAction)groupsAction:(id)sender;
 
@@ -56,6 +56,9 @@
 @property (assign, nonatomic) NSUInteger added_handle;
 @property (assign, nonatomic) NSUInteger changed_handle;
 @property (assign, nonatomic) NSUInteger deleted_handle;
+// status
+@property (assign, nonatomic) NSUInteger connectedHandle;
+@property (assign, nonatomic) NSUInteger disconnectedHandle;
 
 // user thumbs
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;

@@ -16,6 +16,8 @@
 @property (strong, nonatomic) FIRDatabaseReference *connectedRef;
 @property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
 
+-(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback;
+
 // observer
 @property (strong, nonatomic) NSMutableDictionary *eventObservers;
 @property (assign, atomic) volatile int64_t lastEventHandle;

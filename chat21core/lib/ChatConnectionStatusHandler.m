@@ -39,6 +39,25 @@
     }
 }
 
+-(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback {
+    // once
+    [self.connectedRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // Get user value
+        NSLog(@"SNAPSHOT ONCE %@ - %d", snapshot, [snapshot.value boolValue]);
+        if([snapshot.value boolValue]) {
+            NSLog(@"..connected once..");
+            callback(YES, nil);
+        }
+        else {
+            NSLog(@"..not connected once..");
+            callback(NO, nil);
+        }
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+        callback(NO, error);
+    }];
+}
+
 -(void)dispose {
     [self.connectedRef removeAllObservers];
     [self removeAllObservers];

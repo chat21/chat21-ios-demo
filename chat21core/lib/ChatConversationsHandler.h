@@ -6,20 +6,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHPConversationsViewDelegate.h"
+//#import "SHPConversationsViewDelegate.h"
 #import "ChatEventType.h"
 
 @import Firebase;
 
-@class FirebaseCustomAuthHelper;
-@class Firebase;
 @class ChatUser;
+@class ChatConversation;
 
 @interface ChatConversationsHandler : NSObject
 
 @property (strong, nonatomic) ChatUser *loggeduser;
 @property (strong, nonatomic) NSString *me;
-@property (strong, nonatomic) FirebaseCustomAuthHelper *authHelper;
+//@property (strong, nonatomic) FirebaseCustomAuthHelper *authHelper;
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (strong, nonatomic) NSString *firebaseToken;
 @property (strong, nonatomic) FIRDatabaseReference *conversationsRef;

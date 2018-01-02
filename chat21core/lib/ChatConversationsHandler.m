@@ -9,7 +9,7 @@
 #import "ChatConversationsHandler.h"
 #import "ChatUtil.h"
 #import "ChatConversation.h"
-#import "SHPConversationsViewDelegate.h"
+//#import "SHPConversationsViewDelegate.h"
 #import "ChatDB.h"
 #import "ChatManager.h"
 #import "ChatUser.h"

@@ -266,28 +266,28 @@ static ChatManager *sharedInstance = nil;
 //    }
 //}
 
--(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback {
-    NSString *url = @"/.info/connected";
-    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *connectedRef = [rootRef child:url];
-    
-    // once
-    [connectedRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        // Get user value
-        NSLog(@"SNAPSHOT ONCE %@ - %d", snapshot, [snapshot.value boolValue]);
-        if([snapshot.value boolValue]) {
-            NSLog(@"..connected once..");
-            callback(YES, nil);
-        }
-        else {
-            NSLog(@"..not connected once..");
-            callback(NO, nil);
-        }
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
-        callback(NO, error);
-    }];
-}
+//-(void)isStatusConnectedWithCompletionBlock:(void (^)(BOOL connected, NSError* error))callback {
+//    NSString *url = @"/.info/connected";
+//    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+//    FIRDatabaseReference *connectedRef = [rootRef child:url];
+//
+//    // once
+//    [connectedRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        // Get user value
+//        NSLog(@"SNAPSHOT ONCE %@ - %d", snapshot, [snapshot.value boolValue]);
+//        if([snapshot.value boolValue]) {
+//            NSLog(@"..connected once..");
+//            callback(YES, nil);
+//        }
+//        else {
+//            NSLog(@"..not connected once..");
+//            callback(NO, nil);
+//        }
+//    } withCancelBlock:^(NSError * _Nonnull error) {
+//        NSLog(@"%@", error.localizedDescription);
+//        callback(NO, error);
+//    }];
+//}
 
 // IL METODO DISPOSE NON ESEGUE IL LOGOUT PERCHè PUO' ESSERE RICHIAMATO ANCHE PER DISPORRE UNA CHAT
 // CON UTENTE CONNESSO, COME NEL CASO DI CAMBIO UTENTE.
