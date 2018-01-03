@@ -7,7 +7,7 @@
 //
 
 #import "ChatRootNC.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "ChatConversationsVC.h"
 #import "NotConnectedVC.h"
 #import "HelloApplicationContext.h"
@@ -22,7 +22,7 @@
     [super viewDidLoad];
     NSLog(@"DIDLOADINGROOTNC");
     if(!self.applicationContext){
-        SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+        HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
         self.applicationContext = appDelegate.applicationContext;
     }
     self.chatConfig = [self.applicationContext.plistDictionary valueForKey:@"Chat21"];

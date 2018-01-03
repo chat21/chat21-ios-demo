@@ -11,7 +11,7 @@
 #import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
 #import "HelloApplicationContext.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 
 @interface NotificationAlertVC () {
     SystemSoundID soundID;

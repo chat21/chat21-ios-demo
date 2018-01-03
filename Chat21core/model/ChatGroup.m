@@ -11,7 +11,7 @@
 //#import "SHPPushNotification.h"
 #import "HelloApplicationContext.h"
 #import "ChatUtil.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 
 @implementation ChatGroup
 
@@ -20,15 +20,6 @@
 }
 
 -(FIRDatabaseReference *)reference {
-//    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSLog(@"appDelegate.applicationContext %@", appDelegate.applicationContext);
-//    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
-//    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Settings"];
-//    NSLog(@"settingsDictionary %@", settingsDictionary);
-//    NSString *firebase_chat_ref = (NSString *)[settingsDictionary objectForKey:@"Firebase-chat-ref"];
-//    FIRDatabaseReference *groups_ref = [ChatUtil groupsRefWithBase:firebase_chat_ref];
-//    FIRDatabaseReference *group_ref = [groups_ref child:self.groupId];
-    
     FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
     NSString *groups_path = [ChatUtil groupsPath];
     FIRDatabaseReference *group_ref = [[rootRef child:groups_path] child:self.groupId];

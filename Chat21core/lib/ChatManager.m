@@ -18,7 +18,7 @@
 #import "ChatGroupsDB.h"
 #import "ChatPresenceHandler.h"
 #import "ChatUtil.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "ChatConversationsVC.h"
 #import "ChatUser.h"
 #import "ChatContactsSynchronizer.h"

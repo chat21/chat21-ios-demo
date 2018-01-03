@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([SHPAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([HelloAppDelegate class]));
     }
 }

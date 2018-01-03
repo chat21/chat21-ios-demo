@@ -1,9 +1,7 @@
 //
-//  SHPAppDelegate.h
-//  Shopper
+//  HelloAppDelegate.h
 //
 //  Created by andrea sponziello on 24/05/17.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -13,7 +11,7 @@
 @class HelloApplicationContext;
 @class MBProgressHUD;
 
-@interface SHPAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, UITabBarControllerDelegate, UNUserNotificationCenterDelegate>
+@interface HelloAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, UITabBarControllerDelegate, UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) HelloApplicationContext *applicationContext;

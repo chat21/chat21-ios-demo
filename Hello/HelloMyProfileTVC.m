@@ -11,7 +11,7 @@
 #import "ChatManager.h"
 #import "ChatRootNC.h"
 #import "HelloUser.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "ChatUtil.h"
 #import "ChatManager.h"
 #import "ChatUser.h"
@@ -29,7 +29,7 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
     self.versionLabel.text = [NSString stringWithFormat:@"ver. %@ build %@", version, build];
-    SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
     self.appNameLabel.text = [app.applicationContext.plistDictionary objectForKey:@"app-name"];
     
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
@@ -95,7 +95,7 @@
     NSLog(@"LOGOUT");
     
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-    SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
     HelloApplicationContext *context = app.applicationContext;
     [context signout];
     [self resetTab];

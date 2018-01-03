@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>FacebookAppID</key>
 	<string>650207891822542</string>
 	<key>FacebookDisplayName</key>
@@ -75,9 +75,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) set profile photo, send photos in chat</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Permetti l&apos;accesso ai servizi di localizzazione per avere il meglio dalla App</string>
+	<string>Permetti l'accesso ai servizi di localizzazione per avere il meglio dalla App</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Permetti l&apos;accesso ai servizi di localizzazione per avere il meglio dalla App</string>
+	<string>Permetti l'accesso ai servizi di localizzazione per avere il meglio dalla App</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) set profile photo, send photos in chat</string>
 	<key>UIBackgroundModes</key>

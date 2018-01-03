@@ -8,7 +8,7 @@
 
 #import "HelloChatUtil.h"
 #import "ChatUser.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "HelloApplicationContext.h"
 #import "HelloUser.h"
 #import "ChatManager.h"
@@ -21,7 +21,7 @@
 @implementation HelloChatUtil
 
 +(void)initChat {
-    SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
     ChatUser *chatUser = [[ChatUser alloc] init];
     chatUser.userId = app.applicationContext.loggedUser.userid;
     chatUser.firstname = app.applicationContext.loggedUser.firstName;

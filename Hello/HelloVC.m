@@ -8,10 +8,9 @@
 
 #import "HelloVC.h"
 #import "HelloUser.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "HelloApplicationContext.h"
 #import "HelloAuthTVC.h"
-#import "SHPAppDelegate.h"
 #import "HelpFacade.h"
 
 @interface HelloVC ()
@@ -22,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
     self.appName.text = [app.applicationContext.plistDictionary objectForKey:@"app-name"];
     
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
@@ -35,7 +34,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     // here just to reduce the time that home controller is visible during signin out.
-    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
     HelloUser *loggedUser = appDelegate.applicationContext.loggedUser;
     if (!loggedUser) {
         [self showLoginView];

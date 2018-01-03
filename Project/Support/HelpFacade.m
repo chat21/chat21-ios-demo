@@ -7,7 +7,7 @@
 //
 
 #import "HelpFacade.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "HelloApplicationContext.h"
 #import "HelpCategoryStepTVC.h"
 #import "ChatUser.h"
@@ -30,7 +30,7 @@ static HelpFacade *sharedInstance = nil;
 +(HelpFacade *)sharedInstance {
     if (!sharedInstance) {
         sharedInstance = [[super alloc] init];
-        SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+        HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
         HelloApplicationContext *applicationContext = appDelegate.applicationContext;
         BOOL support_enabled = [[applicationContext.plistDictionary valueForKey:@"chat-support"] boolValue];
         sharedInstance.supportEnabled = support_enabled;

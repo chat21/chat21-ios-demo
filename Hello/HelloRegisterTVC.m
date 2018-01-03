@@ -13,7 +13,7 @@
 #import "ChatUser.h"
 #import "ChatManager.h"
 #import "HelloChatUtil.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 
 @import Firebase;
 
@@ -114,7 +114,7 @@
              }];
              
              [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
-                 SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+                 HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
                  [app startPushNotifications];
              }];
          }

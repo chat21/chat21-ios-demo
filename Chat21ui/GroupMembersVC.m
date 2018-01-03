@@ -14,7 +14,7 @@
 //#import "SHPHomeProfileTVC.h"
 //#import "SHPSelectUserVC.h"
 #import "ChatImageCache.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 // user image handling
 #import "ChatImageWrapper.h"
 #import "SHPImageDownloader.h"

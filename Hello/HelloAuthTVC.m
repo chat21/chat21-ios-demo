@@ -10,7 +10,7 @@
 #import "HelloApplicationContext.h"
 #import "HelloUser.h"
 #import "MBProgressHUD.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
 #import "HelloChatUtil.h"
@@ -168,7 +168,7 @@
             }];
             
             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
-                SHPAppDelegate *app = (SHPAppDelegate *) [[UIApplication sharedApplication] delegate];
+                HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
                 [app startPushNotifications];
             }];
         }

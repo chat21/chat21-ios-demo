@@ -7,7 +7,7 @@
 //
 
 #import "ChatTitleVC.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 
 @implementation ChatTitleVC
 

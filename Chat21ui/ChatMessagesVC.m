@@ -298,17 +298,25 @@
     // initial status UI
     [self offlineStatus];
     
-    ChatManager *chat = [ChatManager getInstance];
-    ChatConnectionStatusHandler *connectionStatusHandler = chat.connectionStatusHandler;
+    ChatManager *chatm = [ChatManager getInstance];
+    ChatConnectionStatusHandler *connectionStatusHandler = chatm.connectionStatusHandler;
     if (connectionStatusHandler) {
-        self.connectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
-            NSLog(@"connected");
-            [self connectedStatus];
+        [connectionStatusHandler isStatusConnectedWithCompletionBlock:^(BOOL connected, NSError *error) {
+            if (connectionStatusHandler) {
+                [self connectedStatus];
+            }
+            else {
+                [self offlineStatus];
+            }
         }];
-        self.disconnectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
-            NSLog(@"not connected");
-            [self offlineStatus];
-        }];
+//        self.connectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
+//            NSLog(@"connected");
+//            [self connectedStatus];
+//        }];
+//        self.disconnectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
+//            NSLog(@"not connected");
+//            [self offlineStatus];
+//        }];
     }
     
 //    // initial status UI

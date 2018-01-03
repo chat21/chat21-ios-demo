@@ -1,12 +1,10 @@
 //
-//  SHPAppDelegate.m
-//  Shopper
+//  HelloAppDelegate.m
 //
 //  Created by andrea sponziello on 24/05/17.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "HelloApplicationContext.h"
 #import "SHPCaching.h"
 #import "HelloUser.h"
@@ -26,9 +24,7 @@
 #import <sys/utsname.h>
 @import Firebase;
 
-@implementation SHPAppDelegate
-
-//@synthesize window = _window;
+@implementation HelloAppDelegate
 
 static NSString *NOTIFICATION_TYPE_KEY = @"t"; //type
 static NSString *NOTIFICATION_TYPE_CHAT_KEY = @"chat";
@@ -38,10 +34,6 @@ static NSString *NOTIFICATION_ALERT_KEY = @"alert";
 static NSString *NOTIFICATION_CATEGORY_KEY = @"category";
 static NSString *NOTIFICATION_APS_KEY = @"aps";
 static NSString *NOTIFICATION_BADGE_KEY = @"badge";
-
-//int TAB_NOTIFICATIONS_INDEX;
-
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -8,7 +8,7 @@
 #import "HelloApplicationContext.h"
 #import "HelloAuth.h"
 #import "HelloUser.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 #import "ChatConversationHandler.h"
 #import "ChatConversationsVC.h"
 
@@ -84,7 +84,7 @@ static HelloApplicationContext *sharedInstance = nil;
 //}
 
 +(int)tabIndexByName:(NSString *)tab_name {
-    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
     HelloApplicationContext *context = appDelegate.applicationContext;
     NSDictionary *tabBarDictionary = [context.plistDictionary objectForKey:@"TabBar"];
     NSArray *tabBarMenuItems = [tabBarDictionary objectForKey:@"Menu"];

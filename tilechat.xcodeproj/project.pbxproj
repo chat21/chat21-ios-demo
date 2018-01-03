@@ -119,7 +119,7 @@
 		B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */; };
 		BFBBC2C01B1ED7E30028EA4F /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2BF1B1ED7E30028EA4F /* settings.plist */; };
 		BFBBC2E71B1EDCC90028EA4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2E91B1EDCC90028EA4F /* Localizable.strings */; };
-		BFBFD3951AEA54DA00657874 /* SHPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */; };
+		BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */; };
 		BFBFD4D71AEA598000657874 /* HelloUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD4B71AEA598000657874 /* HelloUser.m */; };
 		BFBFD4E31AEA59D100657874 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD4E21AEA59D100657874 /* main.m */; };
 		BFBFD4F21AEA5C9C00657874 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFD4F11AEA5C9C00657874 /* SystemConfiguration.framework */; };
@@ -336,8 +336,8 @@
 		BFBBC2EA1B1EDCD60028EA4F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFBBC2EB1B1EDCD80028EA4F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFBFD3681AEA544F00657874 /* Tile Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tile Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFBFD3911AEA54DA00657874 /* SHPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPAppDelegate.h; sourceTree = "<group>"; };
-		BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPAppDelegate.m; sourceTree = "<group>"; };
+		BFBFD3911AEA54DA00657874 /* HelloAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloAppDelegate.h; sourceTree = "<group>"; };
+		BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloAppDelegate.m; sourceTree = "<group>"; };
 		BFBFD4B61AEA598000657874 /* HelloUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloUser.h; sourceTree = "<group>"; };
 		BFBFD4B71AEA598000657874 /* HelloUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloUser.m; sourceTree = "<group>"; };
 		BFBFD4E21AEA59D100657874 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -449,14 +449,14 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		B240CEB81FFA223800D9A651 /* chat21core */ = {
+		B240CEB81FFA223800D9A651 /* Chat21core */ = {
 			isa = PBXGroup;
 			children = (
 				B240CEB91FFA223800D9A651 /* model */,
 				B240CEBA1FFA223800D9A651 /* lib */,
 				B240CEDE1FFA223800D9A651 /* utility */,
 			);
-			path = chat21core;
+			path = Chat21core;
 			sourceTree = SOURCE_ROOT;
 		};
 		B240CEB91FFA223800D9A651 /* model */ = {
@@ -535,7 +535,7 @@
 			path = utility;
 			sourceTree = "<group>";
 		};
-		B240CF081FFA228800D9A651 /* chat21ui */ = {
+		B240CF081FFA228800D9A651 /* Chat21ui */ = {
 			isa = PBXGroup;
 			children = (
 				B240CF461FFA228800D9A651 /* sounds */,
@@ -584,7 +584,7 @@
 				B240CF5D1FFA228800D9A651 /* ChatConversationsVC.h */,
 				B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */,
 			);
-			path = chat21ui;
+			path = Chat21ui;
 			sourceTree = "<group>";
 		};
 		B240CF151FFA228800D9A651 /* images */ = {
@@ -718,8 +718,8 @@
 			children = (
 				B2493C231FFB92B80066FA84 /* Tile Chat.entitlements */,
 				B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */,
-				B240CEB81FFA223800D9A651 /* chat21core */,
-				B240CF081FFA228800D9A651 /* chat21ui */,
+				B240CEB81FFA223800D9A651 /* Chat21core */,
+				B240CF081FFA228800D9A651 /* Chat21ui */,
 				B24AD7B11F8612A400A526E9 /* Support */,
 				B2CE2F391F19314E002E2150 /* Hello */,
 				BFBFD36A1AEA544F00657874 /* Project */,
@@ -741,8 +741,8 @@
 		BFBFD36A1AEA544F00657874 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				BFBFD3911AEA54DA00657874 /* SHPAppDelegate.h */,
-				BFBFD3921AEA54DA00657874 /* SHPAppDelegate.m */,
+				BFBFD3911AEA54DA00657874 /* HelloAppDelegate.h */,
+				BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */,
 				B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */,
 				BFBFD4911AEA591100657874 /* Util */,
 				BFBFD36B1AEA544F00657874 /* Supporting Files */,
@@ -1025,7 +1025,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFBFD3951AEA54DA00657874 /* SHPAppDelegate.m in Sources */,
+				BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */,
 				B240CEFA1FFA223800D9A651 /* ChatConversationHandler.m in Sources */,
 				B240CEFE1FFA223800D9A651 /* ChatManager.m in Sources */,
 				B240CF641FFA228800D9A651 /* ChatSelectGroupMembersLocal.m in Sources */,

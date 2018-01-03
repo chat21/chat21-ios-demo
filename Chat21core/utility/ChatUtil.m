@@ -15,7 +15,7 @@
 #import "HelloApplicationContext.h"
 #import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
-#import "SHPAppDelegate.h"
+#import "HelloAppDelegate.h"
 
 static NotificationAlertView *notificationAlertInstance = nil;
 
@@ -262,7 +262,7 @@ static NotificationAlertView *notificationAlertInstance = nil;
 // ****** GROUP IMAGES ******
 
 +(NSString *)groupImagesRelativePath {
-    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
     NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
     NSString *imagesPath = [settingsDictionary objectForKey:@"groupImagesPath"];
@@ -272,7 +272,7 @@ static NotificationAlertView *notificationAlertInstance = nil;
 // smart21
 +(NSString *)groupImageDownloadUrl {
     
-    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
     NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
     NSString *serviceURL = [settingsDictionary objectForKey:@"smart21ServiceDownload"];
@@ -285,7 +285,7 @@ static NotificationAlertView *notificationAlertInstance = nil;
 
 +(NSString *)groupImageDeleteUrl {
     
-    SHPAppDelegate *appDelegate = (SHPAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
     NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
     NSString *serviceURL = [settingsDictionary objectForKey:@"smart21ServiceDelete"];
