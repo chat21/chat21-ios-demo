@@ -28,6 +28,8 @@
 #import "ChatGroupsHandler.h"
 #import "HelloChatUtil.h"
 #import "ChatUIManager.h"
+#import "ChatConnectionStatusHandler.h"
+#import "ChatPresenceHandler.h"
 
 @interface ChatMessagesVC (){
      SystemSoundID soundID;
@@ -92,7 +94,7 @@
 -(void)setupForDirectMessageMode {
     [self setupConnectionStatus];
     [self initConversationHandler];
-    [self setupOnlineStatus];
+    [self setupRecipientOnlineStatus];
     [self sendTextAsChatOpens];
     self.recipient.fullname ? [self setTitle:self.recipient.fullname] : [self setTitle:self.recipient.userId];
 }
@@ -157,14 +159,6 @@
 //}
 
 -(void)writeBoxEnabled {
-//    NSLog(@"can I write in this group?");
-//    if (!self.group) {
-//        return;
-//    }
-//    NSDictionary *members = self.group.members;
-//
-//    NSString *user_found = [members objectForKey:self.me.userId];
-//    user_found ? [self hideBottomView:NO] : [self hideBottomView:YES];
     [self ImInGroup] ? [self hideBottomView:NO] : [self hideBottomView:YES];
 }
 
@@ -183,7 +177,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden=YES;
-    //[self.tableView reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -209,12 +202,20 @@
 }
 
 -(void)removeSubscribers {
-    [self.conversationHandler removeObserverWithHandle:self.added_handle];
-    [self.conversationHandler removeObserverWithHandle:self.changed_handle];
-    [self.conversationHandler removeObserverWithHandle:self.deleted_handle];
+    if (self.conversationHandler) {
+        [self.conversationHandler removeObserverWithHandle:self.added_handle];
+        [self.conversationHandler removeObserverWithHandle:self.changed_handle];
+        [self.conversationHandler removeObserverWithHandle:self.deleted_handle];
+    }
     self.added_handle = 0;
     self.changed_handle = 0;
     self.deleted_handle = 0;
+//    [self.connectedRef removeObserverWithHandle:self.connectedRefHandle];
+    ChatManager *chatm = [ChatManager getInstance];
+    [chatm.connectionStatusHandler removeObserverWithHandle:self.connectedHandle];
+    [chatm.connectionStatusHandler removeObserverWithHandle:self.disconnectedHandle];
+    self.connectedHandle = 0;
+    self.disconnectedHandle = 0;
 }
 
 -(void)sendTextAsChatOpens {
@@ -250,10 +251,6 @@
             [iconDownloader cancelDownload];
             iconDownloader.delegate = nil;
         }
-        NSLog(@"Removing Firebase references...");
-        [self.connectedRef removeObserverWithHandle:self.connectedRefHandle];
-        [self.onlineRef removeObserverWithHandle:self.online_ref_handle];
-        [self.lastOnlineRef removeObserverWithHandle:self.last_online_ref_handle];
         [self freeKeyboardNotifications];
         containerTVC.vc = nil;
         containerTVC.conversationHandler = nil;
@@ -301,19 +298,35 @@
     // initial status UI
     [self offlineStatus];
     
-//    ChatManager *chat = [ChatManager getSharedInstance];
-    NSString *url = @"/.info/connected";
-    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-    self.connectedRef = [rootRef child:url];
-    self.connectedRefHandle = [self.connectedRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        if([snapshot.value boolValue]) {
+    ChatManager *chat = [ChatManager getInstance];
+    ChatConnectionStatusHandler *connectionStatusHandler = chat.connectionStatusHandler;
+    if (connectionStatusHandler) {
+        self.connectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
             NSLog(@"connected");
             [self connectedStatus];
-        } else {
+        }];
+        self.disconnectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
             NSLog(@"not connected");
             [self offlineStatus];
-        }
-    }];
+        }];
+    }
+    
+//    // initial status UI
+//    [self offlineStatus];
+//
+////    ChatManager *chat = [ChatManager getSharedInstance];
+//    NSString *url = @"/.info/connected";
+//    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+//    self.connectedRef = [rootRef child:url];
+//    self.connectedRefHandle = [self.connectedRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+//        if([snapshot.value boolValue]) {
+//            NSLog(@"connected");
+//            [self connectedStatus];
+//        } else {
+//            NSLog(@"not connected");
+//            [self offlineStatus];
+//        }
+//    }];
 }
 
 -(void)connectedStatus {
@@ -354,38 +367,51 @@
     }
 }
 
--(void)setupOnlineStatus {
-    // apps/{TENANT}/presence/{USERID}/connections
-    self.onlineRef = [ChatPresenceHandler onlineRefForUser:self.recipient.userId]; //[ChatPresenceHandler onlineRefForUser:[self.recipient stringByReplacingOccurrencesOfString:@"." withString:@"_"]];
-    NSLog(@"online ref: %@", self.onlineRef);
-    self.online_ref_handle = [self.onlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        if(snapshot.exists) {
-            NSLog(@"ONLINE: %@", snapshot);
-            self.online = YES;
-            [self onlineStatus];
-        } else {
-            self.online = NO;
-            [self onlineStatus];
-        }
+-(void)setupRecipientOnlineStatus {
+    
+    ChatManager *chatm = [ChatManager getInstance];
+    [chatm.presenceHandler onlineStatusForUser:self.recipient.userId withCallback:^(BOOL status) {
+        self.online = status;
+        [self onlineStatus];
     }];
+    
+    [chatm.presenceHandler lastOnlineDateForUser:self.recipient.userId withCallback:^(NSDate *lastOnlineDate) {
+        self.lastOnline = lastOnlineDate;
+        [self onlineStatus];
+    }];
+//    [chatm.presenceHandler ]
+//    // apps/{TENANT}/presence/{USERID}/connections
+//    self.onlineRef = [ChatPresenceHandler onlineRefForUser:self.recipient.userId];
+//    self.online_ref_handle = [self.onlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+//        if(snapshot.exists) {
+//            NSLog(@"ONLINE: %@", snapshot);
+//            self.online = YES;
+//            [self onlineStatus];
+//        } else {
+//            self.online = NO;
+//            [self onlineStatus];
+//        }
+//    }];
     
     // LAST ONLINE
     
     // apps/{TENANT}/presence/{USERID}/lastOnline
-    self.lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:self.recipient.userId];
-    NSLog(@"last online ref: %@", self.lastOnlineRef);
-    self.last_online_ref_handle = [self.lastOnlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        [self snapshotDate:snapshot];
-        [self onlineStatus];
-    }];
+//    self.lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:self.recipient.userId];
+//    NSLog(@"last online ref: %@", self.lastOnlineRef);
+//    self.last_online_ref_handle = [self.lastOnlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+//        [self snapshotDate:snapshot];
+//        [self onlineStatus];
+//    }];
+    
+    
 }
 
--(void)snapshotDate:(FIRDataSnapshot *)snapshot {
-    if (!snapshot.exists) {
-        return;
-    }
-    self.lastOnline = [NSDate dateWithTimeIntervalSince1970:[snapshot.value longValue]/1000];
-}
+//-(void)snapshotDate:(FIRDataSnapshot *)snapshot {
+//    if (!snapshot.exists) {
+//        return;
+//    }
+//    self.lastOnline = [NSDate dateWithTimeIntervalSince1970:[snapshot.value longValue]/1000];
+//}
 
 
 // ************************

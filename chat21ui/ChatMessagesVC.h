@@ -13,12 +13,12 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "ChatGroupsSubscriber.h"
 
-@import Firebase;
+//@import Firebase;
 
-@class FAuthData;
-@class FirebaseCustomAuthHelper;
+//@class FAuthData;
+//@class FirebaseCustomAuthHelper;
 @class ChatConversationHandler;
-@class  QBPopupMenu;
+@class QBPopupMenu;
 @class ChatImageCache;
 @class ChatMessagesTVC;
 @class ChatTitleVC;
@@ -76,14 +76,17 @@
 @property (weak, nonatomic) UIButton *usernameButton;
 @property (weak, nonatomic) UILabel *statusLabel;
 @property (weak, nonatomic) UIActivityIndicatorView *activityIndicator;
-// connection status
-@property (strong, nonatomic) FIRDatabaseReference *connectedRef;
-@property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
+// status
+@property (assign, nonatomic) NSUInteger connectedHandle;
+@property (assign, nonatomic) NSUInteger disconnectedHandle;
+//@property (strong, nonatomic) FIRDatabaseReference *connectedRef;
+//@property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
+
 @property (strong, nonatomic) NSDate *lastOnline;
-@property (strong, nonatomic) FIRDatabaseReference *onlineRef;
-@property (strong, nonatomic) FIRDatabaseReference *lastOnlineRef;
-@property (assign, nonatomic) FIRDatabaseHandle online_ref_handle;
-@property (assign, nonatomic) FIRDatabaseHandle last_online_ref_handle;
+//@property (strong, nonatomic) FIRDatabaseReference *onlineRef;
+//@property (strong, nonatomic) FIRDatabaseReference *lastOnlineRef;
+//@property (assign, nonatomic) FIRDatabaseHandle online_ref_handle;
+//@property (assign, nonatomic) FIRDatabaseHandle last_online_ref_handle;
 @property (assign, nonatomic) BOOL online;
 
 // sound

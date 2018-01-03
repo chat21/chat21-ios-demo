@@ -83,6 +83,38 @@
     }];
 }
 
+-(void)onlineStatusForUser:(NSString *)userid withCallback:(void (^)(BOOL status))callback {
+    // apps/{TENANT}/presence/{USERID}/connections
+    FIRDatabaseReference *onlineRef = [ChatPresenceHandler onlineRefForUser:userid];
+    [onlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        if(snapshot.exists) {
+            NSLog(@"ONLINE: %@", snapshot);
+            callback(YES);
+//            self.online = YES;
+//            [self onlineStatus];
+        } else {
+            callback(NO);
+//            self.online = NO;
+//            [self onlineStatus];
+        }
+    }];
+}
+-(void)lastOnlineDateForUser:(NSString *)userid withCallback:(void (^)(NSDate *lastOnlineDate))callback {
+    // apps/{TENANT}/presence/{USERID}/lastOnline
+    FIRDatabaseReference *lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:userid];
+    [lastOnlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        NSDate *lastOnlineDate = [self snapshotDate:snapshot];
+        callback(lastOnlineDate);
+    }];
+}
+
+-(NSDate *)snapshotDate:(FIRDataSnapshot *)snapshot {
+    if (!snapshot.exists) {
+        return nil;
+    }
+    return [NSDate dateWithTimeIntervalSince1970:[snapshot.value longValue]/1000];
+}
+
 -(void)goOffline {
     NSString *connectedRefURL = @"/.info/connected";
     FIRDatabaseReference *connectedRef = [[[FIRDatabase database] reference] child:connectedRefURL];

@@ -256,7 +256,6 @@
     [super viewDidAppear:animated];
     NSLog(@"Conversations viewDidAppear");
     
-    //[self isStatusConnected];
     ChatManager *chat = [ChatManager getInstance];
     [chat.connectionStatusHandler isStatusConnectedWithCompletionBlock:^(BOOL connected, NSError *error) {
         if (connected) {
@@ -421,13 +420,17 @@
 
 -(void)initChat {
     [self initConversationsHandler];
+    [self setupConnectionStatusHandler];
+}
+
+-(void)setupConnectionStatusHandler {
     ChatManager *chat = [ChatManager getInstance];
     ChatConnectionStatusHandler *connectionStatusHandler = chat.connectionStatusHandler;
     if (connectionStatusHandler) {
-        [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
+        self.connectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
             [self setUIStatusConnected];
         }];
-        [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
+        self.disconnectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
             [self setUIStatusDisconnected];
         }];
     }
@@ -484,6 +487,8 @@
     ChatManager *chatm = [ChatManager getInstance];
     [chatm.connectionStatusHandler removeObserverWithHandle:self.connectedHandle];
     [chatm.connectionStatusHandler removeObserverWithHandle:self.disconnectedHandle];
+    self.connectedHandle = 0;
+    self.disconnectedHandle = 0;
 }
 
 //-(void)initContactsSynchronizer {

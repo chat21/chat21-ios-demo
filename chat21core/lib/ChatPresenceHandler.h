@@ -34,6 +34,8 @@
 +(FIRDatabaseReference *)onlineRefForUser:(NSString *)userid;
 +(FIRDatabaseReference *)lastOnlineRefForUser:(NSString *)userid;
 -(void)setupMyPresence;
+-(void)onlineStatusForUser:(NSString *)userid withCallback:(void (^)(BOOL status))callback;
+-(void)lastOnlineDateForUser:(NSString *)userid withCallback:(void (^)(NSDate *lastOnlineDate))callback;
 -(void)goOffline;
 
 @end
