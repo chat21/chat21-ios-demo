@@ -530,7 +530,7 @@
     ChatManager *chatm = [ChatManager getInstance];
     ChatConversationHandler *handler = [chatm getConversationHandlerByConversationId:self.recipient.userId];
     if (!handler) {
-        NSLog(@"Conversation Handler not found. Creating & initializing a new one with conv-id %@", self.conversationId);
+        NSLog(@"Conversation Handler not found. Creating & initializing a new one with conv-id %@", self.recipient.userId);
         // GROUP_MOD
         if (self.recipient) {
             handler = [[ChatConversationHandler alloc] initWithRecipient:self.recipient.userId recipientFullName:self.recipient.fullname];
@@ -709,8 +709,7 @@
 
 -(void)keyboardWasShown:(NSNotification*)aNotification
 {
-    NSLog(@"Keyboard was shown %ld",self.messageTextField.autocorrectionType);
-    //NSLog(@"Content Size: %f", self.tableView.contentSize.height);
+    NSLog(@"Keyboard was shown %ld",(long)self.messageTextField.autocorrectionType);
     if(keyboardShow == NO){
         NSLog(@"KEYBOARD-SHOW == NO!");
         //CGFloat content_h = self.tableView.contentSize.height;
@@ -899,25 +898,16 @@
 
 - (IBAction)prindb:(id)sender {
     NSLog(@"Printing messages...");
-    [self printDBMessages];
+//    [self printDBMessages];
 }
 
--(void)printDBMessages {
-    NSLog(@"--- all messages for conv %@", self.conversationId);
-    NSArray *messages = [[ChatDB getSharedInstance] getAllMessagesForConversation:self.conversationId];
-    for (ChatMessage *msg in messages) {
-        //NSLog(@"*** MESSAGE FROM SQLITE\n****\nmessageId:%@\nconversationid:%@\nsender:%@\nrecipient:%@\ntext:%@\nstatus:%d\ntimestamp:%@", msg.messageId, msg.conversationId, msg.sender, msg.recipient, msg.text, msg.status, msg.date);
-        NSLog(@"%@>%@:%@ [%@]", msg.sender, msg.recipient, msg.text, msg.messageId);
-    }
-    
-    //    NSLog(@"--- all messages:");
-    //    NSArray *allmessages = [[ChatDB getSharedInstance] getAllMessages];
-    //    for (ChatMessage *msg in allmessages) {
-    //        //NSLog(@"*** MESSAGE FROM SQLITE\n****\nmessageId:%@\nconversationid:%@\nsender:%@\nrecipient:%@\ntext:%@\nstatus:%d\ntimestamp:%@", msg.messageId, msg.conversationId, msg.sender, msg.recipient, msg.text, msg.status, msg.date);
-    //        NSLog(@"%@>%@:%@ [id:%@ conv:%@]", msg.sender, msg.recipient, msg.text, msg.messageId, msg.conversationId);
-    //    }
-    
-}
+//-(void)printDBMessages {
+//    NSLog(@"--- all messages for conv %@", self.conversationId);
+//    NSArray *messages = [[ChatDB getSharedInstance] getAllMessagesForConversation:self.conversationId];
+//    for (ChatMessage *msg in messages) {
+//        NSLog(@"%@>%@:%@ [%@]", msg.sender, msg.recipient, msg.text, msg.messageId);
+//    }
+//}
 
 //// conversation subscriber
 //-(void)messageAdded:(ChatMessage *)message {

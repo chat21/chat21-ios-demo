@@ -26,7 +26,7 @@
 #import "ChatSelectUserLocalVC.h"
 #import "ChatSelectGroupMembersLocal.h"
 #import "ChatSelectGroupLocalTVC.h"
-#import "HelpFacade.h"
+//#import "HelpFacade.h"
 #import "ChatConnectionStatusHandler.h"
 
 @interface ChatConversationsVC ()
@@ -53,11 +53,18 @@
     
     self.groupsMode =  [ChatManager getInstance].groupsMode;
 
-    [self backButtonSetup];
+//    [self backButtonSetup];
     [self customizeTitleView];
     [self setupTitle:@"Chat"];
     [self setUIStatusDisconnected];
-    [[HelpFacade sharedInstance] activateSupportBarButton:self];
+    if (!self.isModal) {
+        // hide cancel button
+        self.navigationItem.leftBarButtonItem = nil;
+    } else {
+        // show and translate cancel button
+        self.cancelButton.title = NSLocalizedString(@"cancel", nil);
+    }
+//    [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }
 
 //-(void)customizeRightBarButton {
@@ -229,16 +236,16 @@
 //    }
 }
 
--(void)backButtonSetup {
-    if (!self.backButton) {
-        self.backButton = [[UIBarButtonItem alloc]
-                           initWithTitle:@"Chat"
-                           style:UIBarButtonItemStylePlain
-                           target:self
-                           action:@selector(backButtonClicked:)];
-    }
-    self.navigationItem.backBarButtonItem = self.backButton;
-}
+//-(void)backButtonSetup {
+//    if (!self.backButton) {
+//        self.backButton = [[UIBarButtonItem alloc]
+//                           initWithTitle:@"Chat"
+//                           style:UIBarButtonItemStylePlain
+//                           target:self
+//                           action:@selector(backButtonClicked:)];
+//    }
+//    self.navigationItem.backBarButtonItem = self.backButton;
+//}
 
 -(void)backButtonClicked:(UIBarButtonItem*)sender
 {
@@ -742,11 +749,9 @@
         self.selectedGroupId = selectedConversation.groupId;
     }
     else {
-        self.selectedRecipient = selectedConversation.conversWith;
+        self.selectedRecipientId = selectedConversation.conversWith;
         self.selectedRecipientFullname = selectedConversation.conversWith_fullname;
     }
-    NSLog(@"Opening conversation with id: %@, recipient: %@, groupId: %@", self.selectedConversationId, self.selectedRecipient, self.selectedGroupId);
-    
     if (selectedConversation.status == CONV_STATUS_FAILED) {
         // TODO
         NSLog(@"CONV_STATUS_FAILED. Not implemented. Re-start group creation workflow");
@@ -778,10 +783,10 @@
         NSLog(@"self.conversationsHandler.currentOpenConversationId = %@", self.selectedConversationId);
 //        vc.conversationsVC = self;
         
-        vc.conversationId = self.selectedConversationId;
-        NSLog(@"self.selectedRecipient: %@", self.selectedRecipient);
-        if (self.selectedRecipient) {
-            ChatUser *recipient = [[ChatUser alloc] init:self.selectedRecipient fullname:self.selectedRecipientFullname];
+//        vc.conversationId = self.selectedConversationId;
+        NSLog(@"self.selectedRecipient: %@", self.selectedRecipientId);
+        if (self.selectedRecipientId) {
+            ChatUser *recipient = [[ChatUser alloc] init:self.selectedRecipientId fullname:self.selectedRecipientFullname];
             vc.recipient = recipient;
         }
         else {
@@ -836,7 +841,7 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
     self.selectedRecipientTextToSend = text;
     if (user) {
-        self.selectedRecipient = user.userId;
+        self.selectedRecipientId = user.userId;
         self.selectedRecipientFullname = user.fullname;
 //        ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
         self.selectedConversationId = user.userId; //[ChatUtil conversationIdWithSender:loggedUser.userId receiver:user.userId];
@@ -858,7 +863,7 @@
 -(void)resetSelectedConversationStatus {
     self.selectedRecipientTextToSend = nil;
     self.selectedRecipientAttributesToSend = nil;
-    self.selectedRecipient = nil;
+    self.selectedRecipientId = nil;
     self.selectedRecipientFullname = nil;
     self.selectedGroupId = nil;
 }
@@ -1105,6 +1110,13 @@
     }
 }
 
+- (IBAction)cancelAction:(id)sender {
+    NSLog(@"Dismissing Conversations View.");
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.dismissModalCallback();
+    }];
+}
+
 - (IBAction)actionNewMessage:(id)sender {
     [self performSegueWithIdentifier:@"SelectUser" sender:self];
 }
@@ -1123,21 +1135,19 @@
     
 }
 
-
-
 - (IBAction)writeToAction:(id)sender {
     [self performSegueWithIdentifier:@"SelectUser" sender:self];
 }
 
-- (IBAction)helpAction:(id)sender {
-    NSLog(@"Help in Documents' navigator view");
-    [[HelpFacade sharedInstance] openSupportView:self];
-}
+//- (IBAction)helpAction:(id)sender {
+//    NSLog(@"Help in Documents' navigator view");
+//    [[HelpFacade sharedInstance] openSupportView:self];
+//}
 
--(void)helpWizardEnd:(NSDictionary *)context {
-    NSLog(@"helpWizardEnd");
-    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
-    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
-}
+//-(void)helpWizardEnd:(NSDictionary *)context {
+//    NSLog(@"helpWizardEnd");
+//    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
+//    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
+//}
 
 @end

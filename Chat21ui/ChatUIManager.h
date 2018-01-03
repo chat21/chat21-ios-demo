@@ -15,5 +15,7 @@
 @property (nonatomic, copy) void (^pushProfileCallback)(ChatUser *user, ChatMessagesVC *vc);
 
 +(ChatUIManager *)getInstance;
+-(void)openConversationsViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock;
+-(UINavigationController *)conversationViewController;
 
 @end

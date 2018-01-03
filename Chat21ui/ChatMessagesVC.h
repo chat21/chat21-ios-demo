@@ -7,16 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "SHPChatDelegate.h"
 #import "SHPImageDownloader.h"
 #import "QBPopupMenu.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "ChatGroupsSubscriber.h"
 
-//@import Firebase;
-
-//@class FAuthData;
-//@class FirebaseCustomAuthHelper;
 @class ChatConversationHandler;
 @class QBPopupMenu;
 @class ChatImageCache;
@@ -44,7 +39,6 @@
 @property (strong, nonatomic) NSString *textToSendAsChatOpens;
 @property (strong, nonatomic) NSDictionary *attributesToSendAsChatOpens;
 @property (assign, nonatomic) BOOL bottomReached;
-@property (strong, nonatomic) NSString *conversationId;
 @property (strong, nonatomic) UILabel *unreadLabel;
 @property (assign, nonatomic) int unread_count;
 @property (strong, nonatomic) UIStoryboard *profileSB;

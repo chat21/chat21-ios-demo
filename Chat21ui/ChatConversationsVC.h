@@ -33,7 +33,7 @@
 - (IBAction)groupsAction:(id)sender;
 
 @property (strong, nonatomic) NSString *selectedConversationId;
-@property (strong, nonatomic) NSString *selectedRecipient;
+@property (strong, nonatomic) NSString *selectedRecipientId;
 @property (strong, nonatomic) NSString *selectedRecipientFullname;
 @property (strong, nonatomic) NSString *selectedRecipientTextToSend;
 @property (strong, nonatomic) NSDictionary *selectedRecipientAttributesToSend;
@@ -45,6 +45,8 @@
 @property (strong, nonatomic) ChatImageCache *imageCache;
 @property (assign, nonatomic) int unread_count;
 @property (strong, nonatomic) NSDictionary *settings;
+@property (assign, nonatomic) BOOL isModal;
+@property (nonatomic, copy) void (^dismissModalCallback)();
 
 // connection status
 @property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
@@ -71,6 +73,8 @@
 
 -(void)initializeWithSignedUser; // call this on every signin
 -(void)resetCurrentConversation;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+- (IBAction)cancelAction:(id)sender;
 
 - (IBAction)actionNewMessage:(id)sender;
 

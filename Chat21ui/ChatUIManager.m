@@ -7,6 +7,7 @@
 //
 
 #import "ChatUIManager.h"
+#import "ChatConversationsVC.h"
 
 static ChatUIManager *sharedInstance = nil;
 
@@ -17,6 +18,22 @@ static ChatUIManager *sharedInstance = nil;
         sharedInstance = [[ChatUIManager alloc] init];
     }
     return sharedInstance;
+}
+
+-(void)openConversationsViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock {
+    UINavigationController * nc = [self conversationViewController];
+    ChatConversationsVC *conversationsVc = (ChatConversationsVC *)[[nc viewControllers] objectAtIndex:0];
+    conversationsVc.isModal = YES;
+    conversationsVc.dismissModalCallback = completionBlock;
+    [vc presentViewController:nc animated:YES completion:^{
+        //
+    }];
+}
+
+-(UINavigationController *)conversationViewController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Chat" bundle:nil];
+    UINavigationController *chatNC = [sb instantiateViewControllerWithIdentifier:@"ChatNavigationController"];
+    return chatNC;
 }
 
 @end

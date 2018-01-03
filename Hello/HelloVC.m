@@ -12,6 +12,7 @@
 #import "HelloApplicationContext.h"
 #import "HelloAuthTVC.h"
 #import "HelpFacade.h"
+#import "ChatUIManager.h"
 
 @interface HelloVC ()
 
@@ -70,6 +71,12 @@
     NSLog(@"helpWizardEnd");
     [context setValue:NSStringFromClass([self class]) forKey:@"section"];
     [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
+}
+
+- (IBAction)openConversationsAction:(id)sender {
+    [[ChatUIManager getInstance] openConversationsViewAsModal:self withCompletionBlock:^{
+        NSLog(@"OK");
+    }];
 }
 
 @end

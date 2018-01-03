@@ -501,6 +501,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Conversations" id="YE7-1D-3xL">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="7ru-mJ-B7F">
+                            <connections>
+                                <action selector="cancelAction:" destination="dWa-Fr-xJD" id="oDT-Et-jgd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="F7s-n4-Svq">
                             <connections>
                                 <action selector="writeToAction:" destination="dWa-Fr-xJD" id="4Dp-RG-rf7"/>
@@ -508,6 +513,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="7ru-mJ-B7F" id="aF8-xH-t1d"/>
                         <segue destination="YRA-7f-UEv" kind="presentation" identifier="CreateGroup" id="aKa-kt-vKD"/>
                         <segue destination="aR6-Un-Mbx" kind="presentation" identifier="SelectUser" id="9WY-cj-bmd"/>
                         <segue destination="a2h-tO-Ac8" kind="show" identifier="CHAT_SEGUE" id="FIp-g3-mtz"/>
