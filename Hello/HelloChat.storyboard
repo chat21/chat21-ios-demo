@@ -42,8 +42,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNk-kV-pZc">
-                                <rect key="frame" x="71" y="192" width="234" height="30"/>
-                                <state key="normal" title="Open Messages modally with nico"/>
+                                <rect key="frame" x="59.5" y="192" width="257" height="30"/>
+                                <state key="normal" title="Open Messages modally with Andrew"/>
                                 <connections>
                                     <action selector="openConversationWithSomeone:" destination="Irp-rI-EaY" eventType="touchUpInside" id="qFM-hL-niq"/>
                                 </connections>
@@ -69,10 +69,12 @@
             </objects>
             <point key="canvasLocation" x="1062" y="1550"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="mqe-jv-dBZ">
             <objects>
                 <navigationController storyboardIdentifier="home-vc" id="p6J-UO-O6H" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="icon_light_home.png" id="BdJ-ko-Jrn"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zRV-dP-n7E">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -308,10 +310,12 @@
             </objects>
             <point key="canvasLocation" x="1045.5999999999999" y="2259.2203898050975"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="yqs-RY-Bic">
             <objects>
                 <navigationController storyboardIdentifier="profile-vc" id="b3G-x0-wR9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="ic_linear_profile.png" id="m2c-dg-lIh"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8yb-ys-t6B">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1015,7 +1019,9 @@
     <resources>
         <image name="app-icon-mobichat.png" width="134" height="134"/>
         <image name="ic_linear_chat.png" width="32" height="32"/>
+        <image name="ic_linear_profile.png" width="32" height="32"/>
         <image name="ic_linear_support_gray_01.png" width="32" height="32"/>
+        <image name="icon_light_home.png" width="32" height="32"/>
         <image name="user-profile-man.jpg" width="1200" height="1200"/>
     </resources>
 </document>

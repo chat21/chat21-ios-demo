@@ -122,6 +122,7 @@ static ChatManager *sharedInstance = nil;
     [contactsDB createDBWithName:user.userId];
     ChatGroupsDB *groupsDB = [ChatGroupsDB getSharedInstance];
     [groupsDB createDBWithName:user.userId];
+    [self initConnectionStatusHandler];
     [self startAuthStatusListner];
 }
 
@@ -153,7 +154,6 @@ static ChatManager *sharedInstance = nil;
              NSLog(@"Firebase stato autenticazione cambiato! Auth: %@ user: %@", auth.currentUser, user);
              if (user) {
                  NSLog(@"Signed in.");
-                 [self initConnectionStatusHandler];
                  [self initPresenceHandler];
                  [self initContactsSynchronizer];
                  if (self.groupsMode) {

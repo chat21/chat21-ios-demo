@@ -20,6 +20,7 @@
 #import "ChatContactsSynchronizer.h"
 #import "ChatUser.h"
 #import "HelloChatUtil.h"
+#import "ChatUIManager.h"
 
 #import <sys/utsname.h>
 @import Firebase;
@@ -55,9 +56,6 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     NSLog(@"initialize chat on tenant: %@", tenant);
     [FIRApp configure];
     [ChatManager configureWithAppId:tenant]; // user:loggedUser];
-//    [ChatManager configure];
-//    [ChatManager getSharedInstance].groupsMode = YES;
-    // end chat config
     // initial chat signin
     if ((context.loggedUser)) {
         [HelloChatUtil initChat]; // initialize logged user so I can get chat-history from DB, regardless of a real Firebase successfull authentication/connection
@@ -70,38 +68,33 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
                 NSLog(@"Firebase authentication success.");
             }
         }];
-        
-        
-//        // updates user's email and password
-//        [DocChatUtil firebaseAuth:context.loggedUser.username password:context.loggedUser.password completion:^(NSError *error) {
-//            NSLog(@"Successfully Firebase signedin on didiFinishWithOptions.");
-//            // updates user password
-//            [[FIRAuth auth].currentUser updatePassword:@"123456" completion:^(NSError * _Nullable error) {
-//                NSLog(@"password updated. error: %@", error);
-//            }];
-//        }];
-//        // updates user email
-//        [[FIRAuth auth].currentUser updateEmail:@"walter.cavalcante@mobilesoft.it" completion:^(NSError *_Nullable error) {
-//            NSLog(@"updated email. error: %@", error);
-//        }];
     }
     
-    [self buildTabBar];
-    [self configTabBar];
+//    [self buildTabBar];
+//    [self configTabBar];
+//
+    // adding chat controller
+    int chat_tab_index = 1; //[HelloApplicationContext tabIndexByName:@"ChatController"];
     
-    // preloading chat controllers
-    NSLog(@"Preloading ChatRootNC");
-    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
     if (chat_tab_index >= 0) {
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         UITabBarController *tabController = (UITabBarController *)window.rootViewController;
-        NSArray *controllers = [tabController viewControllers];
-        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-        [nc loadViewIfNeeded]; // preload navigation controller
-        [nc.topViewController loadViewIfNeeded]; // preload conversations' view
-        NSLog(@"ChatRootNC loaded.");
+        NSMutableArray *controllers = [[tabController viewControllers] mutableCopy];
+        UINavigationController *conversationsNC = [[ChatUIManager getInstance] conversationsViewController];
+        controllers[1] = conversationsNC;
+        [tabController setViewControllers:controllers];
+        ChatConversationsVC *conversationsVC = conversationsNC.viewControllers[0];
+        [conversationsVC loadViewIfNeeded];
+        
+        // setting icon & name of the chat's tabbar item
+        UITabBar *tabBar = tabController.tabBar;
+        UITabBarItem *tabChat = tabBar.items[chat_tab_index];
+//        UITabBarItem *tab in tabBar.items
+        [tabChat setImage:[[UIImage imageNamed:@"ic_linear_chat"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+        [tabChat setSelectedImage:[[UIImage imageNamed:@"ic_linear_chat"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+        tabChat.title = @"Chat";
     } else {
-        NSLog(@"ChatRootNC does'n exist.");
+        NSLog(@"ChatController doesn't exist.");
     }
     
     // #notificationworkflow
@@ -373,10 +366,10 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
         NSString *StoryboardControllerID = [tabBarConfig objectForKey:@"StoryboardControllerID"];
         NSString *sbname = [tabBarConfig objectForKey:@"StoryboardName"];
         NSLog(@"found storyboard: %@", sbname);
-        if(sbname){
+        if(sbname) {
             storyboard = [UIStoryboard storyboardWithName:sbname bundle: nil];
         }
-        else{
+        else {
             storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
         }
         vc = [storyboard instantiateViewControllerWithIdentifier:StoryboardControllerID];

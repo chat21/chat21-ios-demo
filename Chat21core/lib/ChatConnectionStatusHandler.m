@@ -25,15 +25,9 @@
             if(status) {
                 NSLog(@".connected.");
                 [self notifyEvent:ChatConnectionStatusEventConnected];
-                //                if (self.conversationsVC) {
-                //                    [self.conversationsVC setUIStatusConnected];
-                //                }
             } else {
                 NSLog(@".not connected.");
                 [self notifyEvent:ChatConnectionStatusEventDisconnected];
-                //                if (self.conversationsVC) {
-                //                    [self.conversationsVC setUIStatusDisconnected];
-                //                }
             }
         }];
     }
