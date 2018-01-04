@@ -16,6 +16,7 @@
 
 +(ChatUIManager *)getInstance;
 -(void)openConversationsViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock;
+-(void)openConversationMessagesViewAsModalWith:(ChatUser *)recipient viewController:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock;
 -(UINavigationController *)conversationViewController;
 
 @end

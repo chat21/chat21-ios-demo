@@ -34,16 +34,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSS-Yb-yDd">
-                                <rect key="frame" x="110" y="230" width="156" height="33"/>
+                                <rect key="frame" x="78" y="230" width="220" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Open Conversations"/>
+                                <state key="normal" title="Open Conversations modally"/>
                                 <connections>
                                     <action selector="openConversationsAction:" destination="Irp-rI-EaY" eventType="touchUpInside" id="oQQ-lP-h9u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNk-kV-pZc">
+                                <rect key="frame" x="71" y="192" width="234" height="30"/>
+                                <state key="normal" title="Open Messages modally with nico"/>
+                                <connections>
+                                    <action selector="openConversationWithSomeone:" destination="Irp-rI-EaY" eventType="touchUpInside" id="qFM-hL-niq"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zNk-kV-pZc" firstAttribute="centerX" secondItem="qqH-MK-4k9" secondAttribute="centerX" id="37m-U0-I0Y"/>
+                            <constraint firstItem="zNk-kV-pZc" firstAttribute="top" secondItem="U8Y-VF-tad" secondAttribute="bottom" constant="128" id="Bzv-p0-8Wj"/>
                             <constraint firstItem="ngm-j6-aqk" firstAttribute="leading" secondItem="qqH-MK-4k9" secondAttribute="leading" constant="39" id="CK7-Ft-Q3D"/>
                             <constraint firstItem="NSS-Yb-yDd" firstAttribute="centerX" secondItem="qqH-MK-4k9" secondAttribute="centerX" id="Iui-Fs-uEH"/>
                             <constraint firstItem="ngm-j6-aqk" firstAttribute="centerY" secondItem="qqH-MK-4k9" secondAttribute="centerY" id="KoO-SE-ubd"/>

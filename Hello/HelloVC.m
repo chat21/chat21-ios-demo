@@ -13,6 +13,7 @@
 #import "HelloAuthTVC.h"
 #import "HelpFacade.h"
 #import "ChatUIManager.h"
+#import "ChatUser.h"
 
 @interface HelloVC ()
 
@@ -75,7 +76,14 @@
 
 - (IBAction)openConversationsAction:(id)sender {
     [[ChatUIManager getInstance] openConversationsViewAsModal:self withCompletionBlock:^{
-        NSLog(@"OK");
+        NSLog(@"Conversations view dismissed.");
+    }];
+}
+
+- (IBAction)openConversationWithSomeone:(id)sender {
+    ChatUser *recipient = [[ChatUser alloc] init:@"y4QN01LIgGPGnoV6ql07hwPAQg23" fullname:@"Andrew Sponzillo"];
+    [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)recipient viewController:self withCompletionBlock:^{
+        NSLog(@"Messageds view dismissed.");
     }];
 }
 

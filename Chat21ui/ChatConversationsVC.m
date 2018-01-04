@@ -1113,7 +1113,9 @@
 - (IBAction)cancelAction:(id)sender {
     NSLog(@"Dismissing Conversations View.");
     [self dismissViewControllerAnimated:YES completion:^{
-        self.dismissModalCallback();
+        if (self.dismissModalCallback) {
+            self.dismissModalCallback();
+        }
     }];
 }
 

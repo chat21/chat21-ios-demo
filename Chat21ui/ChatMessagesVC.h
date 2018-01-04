@@ -45,6 +45,8 @@
 @property (strong, nonatomic) UINavigationController *profileNC;
 @property (strong, nonatomic) NSString *selectedText;
 @property (strong, nonatomic) UITapGestureRecognizer *tapToDismissKB;
+@property (assign, nonatomic) BOOL isModal;
+@property (nonatomic, copy) void (^dismissModalCallback)();
 
 // subscribers
 @property (assign, nonatomic) NSUInteger added_handle;

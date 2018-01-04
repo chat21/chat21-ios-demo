@@ -79,6 +79,12 @@
     else {
         NSLog(@"Error: impossible configuration! No Group and no recipient!");
     }
+    
+    if (self.isModal) {
+        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelAction)];
+        [self.navigationItem setLeftBarButtonItem:leftBarButton];
+        //self.cancelButton.title = NSLocalizedString(@"cancel", nil);
+    }
 }
 
 -(BOOL)ImInGroup {
@@ -1150,5 +1156,14 @@
 // **************************************************
 // *************** END PHOTO SECTION ****************
 // **************************************************
+
+- (void)cancelAction {
+    NSLog(@"Dismissing Messages view.");
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.dismissModalCallback) {
+            self.dismissModalCallback();
+        }
+    }];
+}
 
 @end
