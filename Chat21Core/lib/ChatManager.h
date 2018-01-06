@@ -48,13 +48,17 @@
 @property (strong, nonatomic) FIRAuthStateDidChangeListenerHandle authStateDidChangeListenerHandle;
 //@property (assign, nonatomic) FIRDatabaseHandle connectedRefHandle;
 @property (assign, nonatomic) BOOL groupsMode;
+@property (assign, nonatomic) NSInteger tabBarIndex;
 
 +(void)configureWithAppId:(NSString *)app_id;
++(void)configure;
 +(ChatManager *)getInstance;
 -(void)getContactLocalDB:(NSString *)userid withCompletion:(void(^)(ChatUser *user))callback;
 
 -(void)addConversationHandler:(ChatConversationHandler *)handler;
--(ChatConversationHandler *)getConversationHandlerByConversationId:(NSString *)conversationId;
+-(ChatConversationsHandler *)getConversationsHandler;
+-(ChatConversationHandler *)getConversationHandlerForRecipient:(ChatUser *)recipient;
+-(ChatConversationHandler *)getConversationHandlerForGroup:(ChatGroup *)group;
 
 -(ChatConversationsHandler *)createConversationsHandler;
 -(ChatPresenceHandler *)createPresenceHandler;

@@ -26,13 +26,6 @@
 +(NSString *)contactPathOfUser:(NSString *)userid;
 +(NSString *)groupsPath;
 +(NSString *)mainGroupsPath;
-+(void)showNotificationWithMessage:(NSString *)message image:(UIImage *)image sender:(NSString *)sender senderFullname:(NSString *)senderFullname;
-
-+(void)moveToConversationViewWithUser:(ChatUser *)user;
-+(void)moveToConversationViewWithUser:(ChatUser *)user sendMessage:(NSString *)message;
-+(void)moveToConversationViewWithGroup:(NSString *)groupid;
-+(void)moveToConversationViewWithGroup:(NSString *)groupid sendMessage:(NSString *)message;
-+(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes;
 
 +(NSMutableDictionary *)groupMembersAsDictionary:(NSArray *)membersArray;
 +(NSMutableArray *)groupMembersAsArray:(NSDictionary *)membersDictionary;

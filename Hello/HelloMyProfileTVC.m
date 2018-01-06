@@ -9,7 +9,7 @@
 #import "HelloMyProfileTVC.h"
 #import "HelloApplicationContext.h"
 #import "ChatManager.h"
-#import "ChatRootNC.h"
+//#import "ChatRootNC.h"
 #import "HelloUser.h"
 #import "HelloAppDelegate.h"
 #import "ChatUtil.h"

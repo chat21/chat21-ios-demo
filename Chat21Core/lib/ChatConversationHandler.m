@@ -70,6 +70,8 @@
 -(void)dispose {
     [self.messagesRef removeAllObservers];
     [self removeAllObservers];
+    self.messages_ref_handle = 0;
+    self.updated_messages_ref_handle = 0;
 }
 
 -(void)restoreMessagesFromDB {

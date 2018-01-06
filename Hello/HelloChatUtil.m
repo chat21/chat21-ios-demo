@@ -15,6 +15,7 @@
 #import "ChatUIManager.h"
 #import "ChatMessagesVC.h"
 #import "HelloUserProfileTVC.h"
+#import "ChatConversationsVC.h"
 
 @import Firebase;
 

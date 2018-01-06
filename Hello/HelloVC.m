@@ -83,7 +83,7 @@
 - (IBAction)openConversationWithSomeone:(id)sender {
     ChatUser *recipient = [[ChatUser alloc] init:@"y4QN01LIgGPGnoV6ql07hwPAQg23" fullname:@"Andrew Sponzillo"];
     [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)recipient viewController:self withCompletionBlock:^{
-        NSLog(@"Messageds view dismissed.");
+        NSLog(@"Messages view dismissed.");
     }];
 }
 

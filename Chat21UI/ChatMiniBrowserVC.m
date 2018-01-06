@@ -7,7 +7,7 @@
 //
 
 #import "ChatMiniBrowserVC.h"
-#import "ChatRootNC.h"
+//#import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
 
 @interface ChatMiniBrowserVC ()

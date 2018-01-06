@@ -10,36 +10,10 @@
 #import <Firebase/Firebase.h>
 #import "ChatConversation.h"
 #import "ChatManager.h"
-//#import "NotificationAlertVC.h"
 #import "NotificationAlertView.h"
-#import "HelloApplicationContext.h"
-#import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
-#import "HelloAppDelegate.h"
-
-static NotificationAlertView *notificationAlertInstance = nil;
 
 @implementation ChatUtil
-
-+(NotificationAlertView*)getNotificationAlertInstance {
-    if (!notificationAlertInstance) {
-        NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"notification_view" owner:self options:nil];
-        NotificationAlertView *view = [subviewArray objectAtIndex:0];
-        [view initViewWithHeight:60];
-        notificationAlertInstance = view;
-    }
-    return notificationAlertInstance;
-}
-
-+(void)showNotificationWithMessage:(NSString *)message image:(UIImage *)image sender:(NSString *)sender senderFullname:(NSString *)senderFullname {
-    
-    NotificationAlertView *alert = [ChatUtil getNotificationAlertInstance];
-    alert.messageLabel.text = message;
-    alert.senderLabel.text = senderFullname ? senderFullname : sender;
-    alert.userImage.image = image;
-    alert.sender = sender;
-    [alert animateShow];
-}
 
 //+(NSString *)conversationIdWithSender:(NSString *)sender receiver:(NSString *)receiver {// tenant:(NSString *)tenant {
 //    NSLog(@"conversationIdWithSender> sender is: %@ receiver is: %@", sender, receiver);
@@ -172,41 +146,25 @@ static NotificationAlertView *notificationAlertInstance = nil;
     return contact_path;
 }
 
-+(void)moveToConversationViewWithUser:(ChatUser *)user {
-    [ChatUtil moveToConversationViewWithUser:user orGroup:nil sendMessage:nil attributes:nil];
-}
-
-+(void)moveToConversationViewWithUser:(ChatUser *)user sendMessage:(NSString *)message {
-    [ChatUtil moveToConversationViewWithUser:user orGroup:nil sendMessage:message attributes:nil];
-}
-
-+(void)moveToConversationViewWithGroup:(NSString *)groupid {
-    [ChatUtil moveToConversationViewWithUser:nil orGroup:groupid sendMessage:nil attributes:nil];
-}
-
-+(void)moveToConversationViewWithGroup:(NSString *)groupid sendMessage:(NSString *)message {
-    [ChatUtil moveToConversationViewWithUser:nil orGroup:groupid sendMessage:message attributes:nil];
-}
-
-+(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes {
-    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
-    NSLog(@"processRemoteNotification: messages_tab_index %d", chat_tab_index);
-    // move to the converstations tab
-    if (chat_tab_index >= 0) {
-        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        UITabBarController *tabController = (UITabBarController *)window.rootViewController;
-        NSLog(@"Current tab bar controller selectedIndex: %lu", (unsigned long)tabController.selectedIndex);
-        NSArray *controllers = [tabController viewControllers];
-        UIViewController *currentVc = [controllers objectAtIndex:tabController.selectedIndex];
-        [currentVc dismissViewControllerAnimated:NO completion:nil];
-        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-        NSLog(@"openConversationWithRecipient:%@ orGroup: %@ sendText:%@", user.userId, groupid, message);
-        tabController.selectedIndex = chat_tab_index;
-        [nc openConversationWithUser:user orGroup:groupid sendMessage:message attributes:attributes];
-    } else {
-        NSLog(@"No Chat Tab configured");
-    }
-}
+//+(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes {
+//    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
+//    NSLog(@"processRemoteNotification: messages_tab_index %d", chat_tab_index);
+//    // move to the converstations tab
+//    if (chat_tab_index >= 0) {
+//        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+//        UITabBarController *tabController = (UITabBarController *)window.rootViewController;
+//        NSLog(@"Current tab bar controller selectedIndex: %lu", (unsigned long)tabController.selectedIndex);
+//        NSArray *controllers = [tabController viewControllers];
+//        UIViewController *currentVc = [controllers objectAtIndex:tabController.selectedIndex];
+//        [currentVc dismissViewControllerAnimated:NO completion:nil];
+//        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
+//        NSLog(@"openConversationWithRecipient:%@ orGroup: %@ sendText:%@", user.userId, groupid, message);
+//        tabController.selectedIndex = chat_tab_index;
+//        [nc openConversationWithUser:user orGroup:groupid sendMessage:message attributes:attributes];
+//    } else {
+//        NSLog(@"No Chat Tab configured");
+//    }
+//}
 
 // at creation time from array (memory, UI) to dictionary (firebase)
 +(NSMutableDictionary *)groupMembersAsDictionary:(NSArray *)membersArray {
@@ -262,38 +220,39 @@ static NotificationAlertView *notificationAlertInstance = nil;
 // ****** GROUP IMAGES ******
 
 +(NSString *)groupImagesRelativePath {
-    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
-    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
-    NSString *imagesPath = [settingsDictionary objectForKey:@"groupImagesPath"];
-    return imagesPath;
+//    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
+//    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
+//    NSString *imagesPath = [settingsDictionary objectForKey:@"groupImagesPath"];
+//    return imagesPath;
+    return nil;
 }
 
 // smart21
 +(NSString *)groupImageDownloadUrl {
-    
-    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
-    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
-    NSString *serviceURL = [settingsDictionary objectForKey:@"smart21ServiceDownload"];
-    
-    NSString *imagesPath = [ChatUtil groupImagesRelativePath];
-    NSString *url = [[NSString alloc] initWithFormat:@"%@/%@", serviceURL, imagesPath];
-    
-    return url;
+//    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
+//    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
+//    NSString *serviceURL = [settingsDictionary objectForKey:@"smart21ServiceDownload"];
+//
+//    NSString *imagesPath = [ChatUtil groupImagesRelativePath];
+//    NSString *url = [[NSString alloc] initWithFormat:@"%@/%@", serviceURL, imagesPath];
+//    return url;
+    return nil;
 }
 
 +(NSString *)groupImageDeleteUrl {
     
-    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
-    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
-    NSString *serviceURL = [settingsDictionary objectForKey:@"smart21ServiceDelete"];
-    
-    NSString *imagesPath = [ChatUtil groupImagesRelativePath];
-    NSString *url = [[NSString alloc] initWithFormat:@"%@/%@", serviceURL, imagesPath];
-    
-    return url;
+//    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSDictionary *plistDictionary = appDelegate.applicationContext.plistDictionary;
+//    NSDictionary *settingsDictionary = [plistDictionary objectForKey:@"Images"];
+//    NSString *serviceURL = [settingsDictionary objectForKey:@"smart21ServiceDelete"];
+//
+//    NSString *imagesPath = [ChatUtil groupImagesRelativePath];
+//    NSString *url = [[NSString alloc] initWithFormat:@"%@/%@", serviceURL, imagesPath];
+//
+//    return url;
+    return nil;
 }
 
 +(NSString *)groupImageUrlById:(NSString *)imageID {

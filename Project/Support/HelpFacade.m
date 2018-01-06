@@ -15,6 +15,7 @@
 #import "HelpCategory.h"
 #import <sys/utsname.h>
 #import "HelpDescriptionStepTVC.h"
+#import "ChatUIManager.h"
 
 static HelpFacade *sharedInstance = nil;
 
@@ -73,7 +74,7 @@ static HelpFacade *sharedInstance = nil;
     NSLog(@"Passing control to support agent");
     HelpCategory *cat = [context objectForKey:@"category"];
     // Agent user
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"help-info" ofType:@"plist"]];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Help-Info" ofType:@"plist"]];
     NSString *client = [[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleNameKey]; //[dictionary objectForKey:@"client-name"];
     NSString *cat_name = cat.nameInCurrentLocale;
     NSString *cat_id = cat.pathId;
@@ -98,7 +99,7 @@ static HelpFacade *sharedInstance = nil;
     int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
     // move to the converstations tab
     if (chat_tab_index >= 0) {
-        [ChatUtil moveToConversationViewWithUser:recipient orGroup:nil sendMessage:text attributes:attributes];
+        [ChatUIManager moveToConversationViewWithUser:recipient orGroup:nil sendMessage:text attributes:attributes];
     }
 }
 

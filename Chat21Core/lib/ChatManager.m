@@ -37,6 +37,15 @@ static ChatManager *sharedInstance = nil;
     return self;
 }
 
++(void)configure {
+    sharedInstance = [[super alloc] init];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Chat-Info" ofType:@"plist"]];
+    sharedInstance.tenant = [dictionary objectForKey:@"app-id"];
+    sharedInstance.groupsMode = [[dictionary objectForKey:@"groups-mode"] boolValue];
+    sharedInstance.tabBarIndex = [[dictionary objectForKey:@"tabbar-index"] integerValue];
+    sharedInstance.loggedUser = nil;
+}
+
 +(void)configureWithAppId:(NSString *)app_id {
     sharedInstance = [[super alloc] init];
     [FIRDatabase database].persistenceEnabled = NO;
@@ -59,8 +68,48 @@ static ChatManager *sharedInstance = nil;
     [self.handlers removeObjectForKey:conversationId];
 }
 
--(ChatConversationHandler *)getConversationHandlerByConversationId:(NSString *)conversationId {
-    return (ChatConversationHandler *)[self.handlers objectForKey:conversationId];
+-(ChatConversationsHandler *)getConversationsHandler {
+    if (!self.conversationsHandler) {
+        NSLog(@"Conversations Handler not found. Creating & initializing a new one.");
+        self.conversationsHandler = [self createConversationsHandler];
+        NSLog(@"Restoring DB archived conversations...");
+        [self.conversationsHandler restoreConversationsFromDB];
+        NSLog(@"%lu archived conversations restored", (unsigned long)self.conversationsHandler.conversations.count);
+        NSLog(@"Connecting handler...");
+        [self.conversationsHandler connect];
+    }
+    return self.conversationsHandler;
+}
+
+-(ChatConversationHandler *)getConversationHandlerForRecipient:(ChatUser *)recipient {
+    ChatConversationHandler *handler = [self.handlers objectForKey:recipient.userId];
+    if (!handler) {
+        NSLog(@"Conversation Handler not found. Creating & initializing a new one with recipient-id %@", recipient.userId);
+        handler = [[ChatConversationHandler alloc] initWithRecipient:recipient.userId recipientFullName:recipient.fullname];
+        [self addConversationHandler:handler];
+        NSLog(@"Restoring DB archived conversations.");
+        [handler restoreMessagesFromDB];
+        NSLog(@"Archived messages count %lu", (unsigned long)handler.messages.count);
+        NSLog(@"Connecting handler to firebase.");
+        [handler connect];
+    }
+    return handler;
+}
+
+-(ChatConversationHandler *)getConversationHandlerForGroup:(ChatGroup *)group {
+    ChatConversationHandler *handler = [self.handlers objectForKey:group.groupId];
+    if (!handler) {
+        NSLog(@"Conversation Handler not found. Creating & initializing a new one with group-id %@", group.groupId);
+        // GROUP_MOD
+        handler = [[ChatConversationHandler alloc] initWithGroupId:group.groupId];
+        [self addConversationHandler:handler];
+        NSLog(@"Restoring DB archived conversations.");
+        [handler restoreMessagesFromDB];
+        NSLog(@"Archived messages count %lu", (unsigned long)handler.messages.count);
+        NSLog(@"Connecting handler to firebase.");
+        [handler connect];
+    }
+    return handler;
 }
 
 -(ChatConversationsHandler *)createConversationsHandler {

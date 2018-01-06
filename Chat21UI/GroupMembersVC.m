@@ -98,10 +98,10 @@
             handler:^(UIAlertAction * action)
             {
                 NSLog(@"Send message");
-                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-                ChatUser *member = [[ChatUser alloc] init];
-                member.userId = memberId;
-                [ChatUtil moveToConversationViewWithUser:member sendMessage:nil];
+//                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//                ChatUser *member = [[ChatUser alloc] init];
+//                member.userId = memberId;
+//                [ChatUtil moveToConversationViewWithUser:member sendMessage:nil];
             }];
     
     

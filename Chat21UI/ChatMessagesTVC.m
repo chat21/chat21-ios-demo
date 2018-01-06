@@ -152,19 +152,20 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             [self highlightTappedLinkWithTimeout:NO];
             [self setupMenuForSelectedLink];
             //        [self.linkMenu showInView:[[[UIApplication sharedApplication] delegate] window]];//]self.view];
-        } else if ([selectedmatchType isEqualToString:MATCH_TYPE_CHAT_LINK]) {
-            [self highlightTappedLinkWithTimeout:YES];
-            NSLog(@"chat link: %@", self.selectedHighlightLink);
-            NSArray *parts = [self.selectedHighlightLink componentsSeparatedByString:@"//"];
-            for (NSString *p in parts) {
-                NSLog(@"part: %@", p);
-            }
-            NSString *chatToUser = parts[1];
-            ChatUser *user = [[ChatUser alloc] init];
-            user.userId = chatToUser;
-            [ChatUtil moveToConversationViewWithUser:user];
-            NSLog(@"MATCH_TYPE_CHAT_LINK");
         }
+//        else if ([selectedmatchType isEqualToString:MATCH_TYPE_CHAT_LINK]) {
+//            [self highlightTappedLinkWithTimeout:YES];
+//            NSLog(@"chat link: %@", self.selectedHighlightLink);
+//            NSArray *parts = [self.selectedHighlightLink componentsSeparatedByString:@"//"];
+//            for (NSString *p in parts) {
+//                NSLog(@"part: %@", p);
+//            }
+//            NSString *chatToUser = parts[1];
+//            ChatUser *user = [[ChatUser alloc] init];
+//            user.userId = chatToUser;
+//            [ChatUtil moveToConversationViewWithUser:user];
+//            NSLog(@"MATCH_TYPE_CHAT_LINK");
+//        }
     } else {
         // ****** LONG TAP ON CELL ****** //
         [self showCustomPopupMenu:recognizer];
@@ -247,19 +248,20 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             [self highlightTappedLinkWithTimeout:YES];
             //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.selectedHighlightLink]];
             [self performSegueWithIdentifier:@"webView" sender:self];
-        } else if ([selectedmatchType isEqualToString:MATCH_TYPE_CHAT_LINK]) {
-            [self highlightTappedLinkWithTimeout:YES];
-            NSLog(@"chat link: %@", self.selectedHighlightLink);
-            NSArray *parts = [self.selectedHighlightLink componentsSeparatedByString:@"//"];
-            for (NSString *p in parts) {
-                NSLog(@"part: %@", p);
-            }
-            NSString *chatToUser = parts[1];
-            ChatUser *user = [[ChatUser alloc] init];
-            user.userId = chatToUser;
-            [ChatUtil moveToConversationViewWithUser:user];
-            NSLog(@"MATCH_TYPE_CHAT_LINK");
         }
+//        else if ([selectedmatchType isEqualToString:MATCH_TYPE_CHAT_LINK]) {
+//            [self highlightTappedLinkWithTimeout:YES];
+//            NSLog(@"chat link: %@", self.selectedHighlightLink);
+//            NSArray *parts = [self.selectedHighlightLink componentsSeparatedByString:@"//"];
+//            for (NSString *p in parts) {
+//                NSLog(@"part: %@", p);
+//            }
+//            NSString *chatToUser = parts[1];
+//            ChatUser *user = [[ChatUser alloc] init];
+//            user.userId = chatToUser;
+//            [ChatUtil moveToConversationViewWithUser:user];
+//            NSLog(@"MATCH_TYPE_CHAT_LINK");
+//        }
     }
 }
 

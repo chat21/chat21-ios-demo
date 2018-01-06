@@ -7,9 +7,10 @@
 //
 
 #import "NotificationAlertView.h"
-#import "ChatRootNC.h"
+//#import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
 #import "HelloApplicationContext.h"
+#import "ChatManager.h"
 
 @interface NotificationAlertView () {
     SystemSoundID soundID;
@@ -58,24 +59,24 @@
     //    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     NSLog(@"View tapped!! Moving to conversation tab.");
     [self animateClose];
-    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
+    int chat_tab_index = [ChatManager getInstance].tabBarIndex; // tabIndexByName:@"ChatController"];
     // move to the converstations tab
-    if (chat_tab_index >= 0) {
-        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-        UITabBarController *tabController = (UITabBarController *)window.rootViewController;
-        NSArray *controllers = [tabController viewControllers];
-        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
-        ChatConversationsVC *vc = nc.viewControllers[0];
-        if (vc.presentedViewController) {
-            NSLog(@"THERE IS A MODAL PRESENTED! NOT SWITCHING TO ANY CONVERSATION VIEW.");
-        } else {
-            NSLog(@"SWITCHING TO CONVERSATION VIEW. DISABLED.");
-            // IF YOU ENABLE THIS IS MANDATORY TO FIND A WAY TO DISMISS OR HANDLE THE CURRENT MODAL VIEW
-            //            [nc popToRootViewControllerAnimated:NO];
-            //            [vc openConversationWithRecipient:self.sender];
-            //            tabController.selectedIndex = chat_tab_index;
-        }
-    }
+//    if (chat_tab_index >= 0) {
+//        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+//        UITabBarController *tabController = (UITabBarController *)window.rootViewController;
+//        NSArray *controllers = [tabController viewControllers];
+//        ChatRootNC *nc = [controllers objectAtIndex:chat_tab_index];
+//        ChatConversationsVC *vc = nc.viewControllers[0];
+//        if (vc.presentedViewController) {
+//            NSLog(@"THERE IS A MODAL PRESENTED! NOT SWITCHING TO ANY CONVERSATION VIEW.");
+//        } else {
+//            NSLog(@"SWITCHING TO CONVERSATION VIEW. DISABLED.");
+//            // IF YOU ENABLE THIS IS MANDATORY TO FIND A WAY TO DISMISS OR HANDLE THE CURRENT MODAL VIEW
+//            //            [nc popToRootViewControllerAnimated:NO];
+//            //            [vc openConversationWithRecipient:self.sender];
+//            //            tabController.selectedIndex = chat_tab_index;
+//        }
+//    }
 }
 
 static float animationDurationShow = 0.5;

@@ -85,6 +85,7 @@
         [self.navigationItem setLeftBarButtonItem:leftBarButton];
         //self.cancelButton.title = NSLocalizedString(@"cancel", nil);
     }
+    [self setContainer];
 }
 
 -(BOOL)ImInGroup {
@@ -534,44 +535,59 @@
 
 -(void)initConversationHandler {
     ChatManager *chatm = [ChatManager getInstance];
-    ChatConversationHandler *handler = [chatm getConversationHandlerByConversationId:self.recipient.userId];
-    if (!handler) {
-        NSLog(@"Conversation Handler not found. Creating & initializing a new one with conv-id %@", self.recipient.userId);
-        // GROUP_MOD
-        if (self.recipient) {
-            handler = [[ChatConversationHandler alloc] initWithRecipient:self.recipient.userId recipientFullName:self.recipient.fullname];
-        } else {
-            NSLog(@"*** CONVERSATION HANDLER IN GROUP MOD!!!!!!!");
-            handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId];
-        }
-        [chatm addConversationHandler:handler];
-        [self subscribe:handler];
-        self.conversationHandler = handler;
-        
-        // db
-        NSLog(@"Restoring DB archived conversations.");
-        [self.conversationHandler restoreMessagesFromDB];
-        NSLog(@"Archived messages count %lu", (unsigned long)self.conversationHandler.messages.count);
-        
-        if (self.recipient) {
-            NSLog(@"Connecting handler to firebase.");
-            [handler connect];
-        }
-        else {
-            [self checkImGroupMember];
-        }
-        NSLog(@"Handler ref: %@", handler.messagesRef);
-        NSLog(@"Adding new handler %@ to Conversations Manager.", handler);
+    ChatConversationHandler *handler;
+    if (self.recipient) {
+        handler = [chatm getConversationHandlerForRecipient:self.recipient];
+    } else {
+        NSLog(@"*** CONVERSATION HANDLER IN GROUP MOD!!!!!!!");
+        handler = [chatm getConversationHandlerForGroup:self.group];
     }
-    else {
-//        [handler addSubcriber:self];
-        [handler connect];
-        [self subscribe:handler];
-        self.conversationHandler = handler;
-        [self checkImGroupMember];
-    }
-    [self setContainer];
+    [handler connect];
+    [self subscribe:handler];
+    self.conversationHandler = handler;
+    [self checkImGroupMember];
 }
+
+//-(void)initConversationHandler {
+//    ChatManager *chatm = [ChatManager getInstance];
+//    ChatConversationHandler *handler = [chatm getConversationHandlerByConversationId:self.recipient.userId]; // [chatm getConversationHandlerByRecipient:self.recipient];
+//    if (!handler) {
+//        NSLog(@"Conversation Handler not found. Creating & initializing a new one with conv-id %@", self.recipient.userId);
+//        // GROUP_MOD
+//        if (self.recipient) {
+//            handler = [[ChatConversationHandler alloc] initWithRecipient:self.recipient.userId recipientFullName:self.recipient.fullname];
+//        } else {
+//            NSLog(@"*** CONVERSATION HANDLER IN GROUP MOD!!!!!!!");
+//            handler = [[ChatConversationHandler alloc] initWithGroupId:self.group.groupId];
+//        }
+//        [chatm addConversationHandler:handler];
+//        [self subscribe:handler];
+//        self.conversationHandler = handler;
+//
+//        // db
+//        NSLog(@"Restoring DB archived conversations.");
+//        [self.conversationHandler restoreMessagesFromDB];
+//        NSLog(@"Archived messages count %lu", (unsigned long)self.conversationHandler.messages.count);
+//
+//        if (self.recipient) {
+//            NSLog(@"Connecting handler to firebase.");
+//            [handler connect];
+//        }
+//        else {
+//            [self checkImGroupMember];
+//        }
+//        NSLog(@"Handler ref: %@", handler.messagesRef);
+//        NSLog(@"Adding new handler %@ to Conversations Manager.", handler);
+//    }
+//    else {
+////        [handler addSubcriber:self];
+//        [handler connect];
+//        [self subscribe:handler];
+//        self.conversationHandler = handler;
+//        [self checkImGroupMember];
+//    }
+//    [self setContainer];
+//}
 
 -(void)checkImGroupMember {
     if (self.group) {

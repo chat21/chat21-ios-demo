@@ -14,7 +14,7 @@
 #import "ChatManager.h"
 #import "ChatUtil.h"
 #import "ChatConversationsVC.h"
-#import "ChatRootNC.h"
+//#import "ChatRootNC.h"
 #import "ChatUtil.h"
 #import "HelloAuthTVC.h"
 #import "ChatContactsSynchronizer.h"
@@ -55,7 +55,8 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     
     NSLog(@"initialize chat on tenant: %@", tenant);
     [FIRApp configure];
-    [ChatManager configureWithAppId:tenant]; // user:loggedUser];
+//    [ChatManager configureWithAppId:tenant]; // user:loggedUser];
+    [ChatManager configure];
     // initial chat signin
     if ((context.loggedUser)) {
         [HelloChatUtil initChat]; // initialize logged user so I can get chat-history from DB, regardless of a real Firebase successfull authentication/connection
@@ -285,7 +286,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
         
         if (groupid) {
 //            [DocChatUtil firebaseAuth:self.applicationContext.loggedUser.username password:self.applicationContext.loggedUser.password completion:^(NSError *error) {
-                [ChatUtil moveToConversationViewWithGroup:groupid];
+                [ChatUIManager moveToConversationViewWithGroup:groupid];
 //            }];
         }
         else {
@@ -296,7 +297,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
                 ChatUser *user = [[ChatUser alloc] init];
                 user.userId = senderid;
                 user.fullname = sender_fullname;
-                [ChatUtil moveToConversationViewWithUser:user];
+                [ChatUIManager moveToConversationViewWithUser:user];
             }
         }
     }
@@ -353,75 +354,75 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 }
 // [END refresh_token]
 
--(void)buildTabBar {
-    NSLog(@"Building tabbar...");
-    NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
-    NSArray *tabBarMenuItems = [tabBarDictionary objectForKey:@"Menu"];
-    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-    // Adding tabbar controllers (using StoryboardID)
-    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    UIStoryboard *storyboard;// = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
-    UIViewController *vc = [[UIViewController alloc] init];
-    for (NSDictionary *tabBarConfig in tabBarMenuItems) {
-        NSString *StoryboardControllerID = [tabBarConfig objectForKey:@"StoryboardControllerID"];
-        NSString *sbname = [tabBarConfig objectForKey:@"StoryboardName"];
-        NSLog(@"found storyboard: %@", sbname);
-        if(sbname) {
-            storyboard = [UIStoryboard storyboardWithName:sbname bundle: nil];
-        }
-        else {
-            storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
-        }
-        vc = [storyboard instantiateViewControllerWithIdentifier:StoryboardControllerID];
-        NSLog(@"Adding controller %@:%@", StoryboardControllerID, vc);
-        [controllers addObject:vc];
-    }
-    [tabController setViewControllers:controllers];
-    
-    // configuring tabbar buttons
-    UITabBar *tabBar = tabController.tabBar;
-    int i=0;
-    for(UITabBarItem *tab in tabBar.items) {
-        NSDictionary *tabBarItemConfig = [tabBarMenuItems objectAtIndex:i];
-        //        NSLog(@"tabBarItemConfig %@, %@", tabBarItemConfig[@"title"], tabBarItemConfig[@"StoryboardControllerID"]);
-        NSString *title = tabBarItemConfig[@"title"];
-        tab.title = NSLocalizedString(title, nil);
-        //        [tab setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaLTStd-Roman" size:10.0f], NSFontAttributeName,  [UIColor whiteColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
-        
-        [tab setImage:[[UIImage imageNamed:tabBarItemConfig[@"icon"]] imageWithRenderingMode:UIImageRenderingModeAutomatic]];//UIImageRenderingModeAlwaysOriginal
-        [tab setSelectedImage:[[UIImage imageNamed:tabBarItemConfig[@"icon"]] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
-        //UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
-        i++;
-    }
-}
+//-(void)buildTabBar {
+//    NSLog(@"Building tabbar...");
+//    NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
+//    NSArray *tabBarMenuItems = [tabBarDictionary objectForKey:@"Menu"];
+//    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
+//    // Adding tabbar controllers (using StoryboardID)
+//    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+//    UIStoryboard *storyboard;// = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+//    UIViewController *vc = [[UIViewController alloc] init];
+//    for (NSDictionary *tabBarConfig in tabBarMenuItems) {
+//        NSString *StoryboardControllerID = [tabBarConfig objectForKey:@"StoryboardControllerID"];
+//        NSString *sbname = [tabBarConfig objectForKey:@"StoryboardName"];
+//        NSLog(@"found storyboard: %@", sbname);
+//        if(sbname) {
+//            storyboard = [UIStoryboard storyboardWithName:sbname bundle: nil];
+//        }
+//        else {
+//            storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+//        }
+//        vc = [storyboard instantiateViewControllerWithIdentifier:StoryboardControllerID];
+//        NSLog(@"Adding controller %@:%@", StoryboardControllerID, vc);
+//        [controllers addObject:vc];
+//    }
+//    [tabController setViewControllers:controllers];
+//
+//    // configuring tabbar buttons
+//    UITabBar *tabBar = tabController.tabBar;
+//    int i=0;
+//    for(UITabBarItem *tab in tabBar.items) {
+//        NSDictionary *tabBarItemConfig = [tabBarMenuItems objectAtIndex:i];
+//        //        NSLog(@"tabBarItemConfig %@, %@", tabBarItemConfig[@"title"], tabBarItemConfig[@"StoryboardControllerID"]);
+//        NSString *title = tabBarItemConfig[@"title"];
+//        tab.title = NSLocalizedString(title, nil);
+//        //        [tab setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaLTStd-Roman" size:10.0f], NSFontAttributeName,  [UIColor whiteColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+//
+//        [tab setImage:[[UIImage imageNamed:tabBarItemConfig[@"icon"]] imageWithRenderingMode:UIImageRenderingModeAutomatic]];//UIImageRenderingModeAlwaysOriginal
+//        [tab setSelectedImage:[[UIImage imageNamed:tabBarItemConfig[@"icon"]] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
+//        //UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
+//        i++;
+//    }
+//}
 
--(void)configTabBar {
-    //----------------------------------------------------------------------------//
-    //CONFIG TABBAR
-    //----------------------------------------------------------------------------//
-    // http://stackoverflow.com/questions/18795117/change-tab-bar-tint-color-ios-7
-    //http://www.appcoda.com/ios-programming-how-to-customize-tab-bar-background-appearance/
+//-(void)configTabBar {
+//    //----------------------------------------------------------------------------//
+//    //CONFIG TABBAR
+//    //----------------------------------------------------------------------------//
+//    // http://stackoverflow.com/questions/18795117/change-tab-bar-tint-color-ios-7
+//    //http://www.appcoda.com/ios-programming-how-to-customize-tab-bar-background-appearance/
+//
+//    if ([[UITabBar class] respondsToSelector:@selector(appearance)]) {
+//        NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
+//        UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
+//        [[UITabBar appearance] setTintColor: tintColor]; //set button active
+//
+//        UIColor *barTintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"barTintColor"]];
+//        [[UITabBar appearance] setBarTintColor:barTintColor]; //set background tabbar
+//        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : tintColor }
+//                                                 forState:UIControlStateSelected];
+//    }
+//}
 
-    if ([[UITabBar class] respondsToSelector:@selector(appearance)]) {
-        NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
-        UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
-        [[UITabBar appearance] setTintColor: tintColor]; //set button active
-
-        UIColor *barTintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"barTintColor"]];
-        [[UITabBar appearance] setBarTintColor:barTintColor]; //set background tabbar
-        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : tintColor }
-                                                 forState:UIControlStateSelected];
-    }
-}
-
--(NSDictionary *)checkItemTabTagIn:(NSArray *)arrayTabbar itemTabTag:(int)tag{
-    for (NSDictionary *itemTab in arrayTabbar){
-        if(tag == [itemTab[@"tag"] intValue]){
-            return itemTab;
-        }
-    }
-    return nil;
-}
+//-(NSDictionary *)checkItemTabTagIn:(NSArray *)arrayTabbar itemTabTag:(int)tag{
+//    for (NSDictionary *itemTab in arrayTabbar){
+//        if(tag == [itemTab[@"tag"] intValue]){
+//            return itemTab;
+//        }
+//    }
+//    return nil;
+//}
 
 // #notificationworkflow
 //-(void)sendDeviceTokenToProvider:(NSString *)devToken {

@@ -28,6 +28,7 @@
 #import "ChatSelectGroupLocalTVC.h"
 //#import "HelpFacade.h"
 #import "ChatConnectionStatusHandler.h"
+#import "ChatUIManager.h"
 
 @interface ChatConversationsVC ()
 - (IBAction)writeToAction:(id)sender;
@@ -272,98 +273,7 @@
             [self setUIStatusDisconnected];
         }
     }];
-    
-//    if (!self.authStateDidChangeListenerHandle) {
-//        self.authStateDidChangeListenerHandle =
-//            [[FIRAuth auth]
-//                 addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
-//                     NSLog(@"Firebase stato autenticazione cambiato! Auth: %@ user: %@", auth.currentUser, user);
-//                     if (user) {
-//                         NSLog(@"Signed in.");
-//                         [self setupConnectionStatus];
-////                         [self initPresenceHandler];
-//                     }
-//                     else {
-//                         NSLog(@"Signed out.");
-//                     }
-//                 }];
-//    }
-    
-    // è necessario impostare queste variabili da ChatRootNC.openConversationWithRecipient
-    // per preservare la sequenza delle animazioni: popToRootVC > animate to recipient.MessagesVC
-//    if (self.selectedRecipient) {
-//        NSLog(@"self.selectedRecipient TRUE. [self openConversationWithRecipient:%@]", self.selectedRecipient);
-//        [self openConversationWithRecipient:self.selectedRecipient];
-//    }
 }
-
-//-(void)testFirebase {
-//
-//    // TEST SCRITTURA FIREBASE
-//    FIRDatabaseReference *_ref1 = [[FIRDatabase database] reference];
-//    [[_ref1 child:@"TEST"] setValue:@{@"PLATFORM": @"1.8"} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//        if (error) {
-//            NSLog(@"Error saving RAILS2: %@", error);
-//        }
-//        else {
-//            NSLog(@"RAILS2 SAVED!");
-//        }
-//    }];
-//
-//    [[FIRAuth auth] createUserWithEmail:@"andrea.sponziello@frontiere21.it"
-//                               password:@"123456"
-//                             completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-//                                 NSLog(@"Utente creato: andrea.sponziello@gmail.com/pallino");
-//                             }];
-//
-//    [[FIRAuth auth] signInWithEmail:@"andrea.sponziello@frontiere21.it"
-//                           password:@"123456"
-//                         completion:^(FIRUser *user, NSError *error) {
-//                             NSLog(@"Autenticato: %@ - %@/emailverified: %d", error, user.email, user.emailVerified);
-//                             if (!user.emailVerified) {
-//                                 NSLog(@"Email non verificata. Invio email verifica...");
-//                                 [user sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
-//                                     NSLog(@"Email verifica inviata.");
-//                                 }];
-//                             }
-//                             // TEST CONNECTION
-//                             FIRDatabaseReference *_ref = [[FIRDatabase database] reference];
-//                             //                             FIRUser *currentUser = [FIRAuth auth].currentUser;
-//                             [[_ref child:@"yesmister3"] setValue:@"andrea" withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//
-//                                 NSLog(@"completato! %@", ref);
-//                                 
-//                             }];
-//                             
-//                             [[_ref child:@"test"] setValue:@{@"username": @"Lampatu"}];
-//                             [[_ref child:@"test2"] setValue:@{@"valore": @"Andrea"}];
-//                             [[_ref child:@"NADAL"] setValue:@{@"Vince": @"Wimbledon"}];
-//                             
-//                             [[_ref child:@"test"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//                                 NSLog(@"snapshot: %@", snapshot);
-//                             } withCancelBlock:^(NSError * _Nonnull error) {
-//                                 NSLog(@"error: %@", error.localizedDescription);
-//                             }];
-//                             
-//                             [[_ref child:@"test10"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//                                 NSLog(@"snapshot: %@", snapshot);
-//                             } withCancelBlock:^(NSError * _Nonnull error) {
-//                                 NSLog(@"error: %@", error.localizedDescription);
-//                             }];
-//                             
-//                             [[_ref child:@"yesmister"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//                                 NSLog(@"snapshot: %@", snapshot);
-//                             } withCancelBlock:^(NSError * _Nonnull error) {
-//                                 NSLog(@"error: %@", error.localizedDescription);
-//                             }];
-//                             
-//                         }];
-//
-//    [[FIRAuth auth]
-//     addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
-//         NSLog(@"Firebase autenticatooooo! auth: %@ user: %@", auth, user);
-//     }];
-//}
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -375,33 +285,31 @@
     [self resetCurrentConversation];
 }
 
--(void)logout {
-    [self removeSubscribers];
-    [self.conversationsHandler dispose];
-    self.conversationsHandler = nil;
-    self.me = nil;
-}
-
 -(void)initializeWithSignedUser {
     ChatManager *chat = [ChatManager getInstance];
-    NSLog(@"Current ChatManager.presenceHandler: %@", chat.presenceHandler);
-    ChatUser *loggedUser = chat.loggedUser; //[self userBy:self.applicationContext.loggedUser];
+    ChatUser *loggedUser = chat.loggedUser;
     NSString *loggedUserId = loggedUser.userId;
-    NSLog(@"Initializing user. Signed in as %@/%@", loggedUser.userId, loggedUser.fullname);
-    if (loggedUser && !self.me) { // > just signed in / first load after startup
+    if ((loggedUser && !self.me) || // > just signed in / first load after startup
+        (loggedUser && ![self.me.userId isEqualToString:loggedUserId])) { // user changed
+        [self removeSubscribers];
+        self.conversationsHandler = nil;
         self.me = loggedUser;
         [self initChat];
         [self.tableView reloadData];
     }
-    else if (loggedUser && ![self.me.userId isEqualToString:loggedUserId]) {
-        // user changed
-        NSLog(@"User changed. Logged user is %@/%@ while self.me is %@/%@", loggedUser.userId, loggedUser.fullname, self.me.userId, self.me.fullname);
-        [self logout];
-        self.me = loggedUser;
-        NSLog(@"Self.me set to %@", loggedUser.userId);
-        [self initChat];
-        [self.tableView reloadData];
-    }
+//    if (loggedUser && !self.me) { // > just signed in / first load after startup
+//        self.me = loggedUser;
+//        [self initChat];
+//        [self.tableView reloadData];
+//    }
+//    else if (loggedUser && ![self.me.userId isEqualToString:loggedUserId]) {
+//        // user changed
+//        NSLog(@"User changed. Logged user is %@/%@ while self.me is %@/%@", loggedUser.userId, loggedUser.fullname, self.me.userId, self.me.fullname);
+//        [self logout];
+//        self.me = loggedUser;
+//        [self initChat];
+//        [self.tableView reloadData];
+//    }
 //    else if (!loggedUser && self.me) {
 //        NSAssert(false, @"You just signed out so you can't be here! This code must be unreacheable!");
 //        NSLog(@"**** You just logged out! Disposing current chat handlers...");
@@ -444,27 +352,35 @@
 }
 
 -(void)initConversationsHandler {
-    ChatManager *chat = [ChatManager getInstance];
-    ChatConversationsHandler *handler = chat.conversationsHandler;
-    if (!handler) {
-        NSLog(@"Conversations Handler not found. Creating & initializing a new one.");
-        handler = [chat createConversationsHandler];
-        self.conversationsHandler = handler;
-        [self subscribe:handler];
-        
-        NSLog(@"Restoring DB archived conversations...");
-        [handler restoreConversationsFromDB];
-        NSLog(@"%lu archived conversations restored", (unsigned long)self.conversationsHandler.conversations.count);
-        [self update_unread];
-        
-        NSLog(@"Connecting handler...");
-        [handler connect];
-    } else {
-        NSLog(@"Conversations Handler instance already set.");
-        [self subscribe:handler];
-        self.conversationsHandler = handler;
-    }
+    ChatManager *chatm = [ChatManager getInstance];
+    ChatConversationsHandler *handler = [chatm getConversationsHandler];
+    NSLog(@"Conversations Handler instance already set.");
+    [self subscribe:handler];
+    self.conversationsHandler = handler;
 }
+
+//-(void)initConversationsHandler {
+//    ChatManager *chatm = [ChatManager getInstance];
+//    ChatConversationsHandler *handler = chatm.conversationsHandler; // [chatm getConversationsHandler];
+//    if (!handler) {
+//        NSLog(@"Conversations Handler not found. Creating & initializing a new one.");
+//        handler = [chat createConversationsHandler];
+//        self.conversationsHandler = handler;
+//        [self subscribe:handler];
+//
+//        NSLog(@"Restoring DB archived conversations...");
+//        [handler restoreConversationsFromDB];
+//        NSLog(@"%lu archived conversations restored", (unsigned long)self.conversationsHandler.conversations.count);
+//        [self update_unread];
+//
+//        NSLog(@"Connecting handler...");
+//        [handler connect];
+//    } else {
+//        NSLog(@"Conversations Handler instance already set.");
+//        [self subscribe:handler];
+//        self.conversationsHandler = handler;
+//    }
+//}
 
 -(void)subscribe:(ChatConversationsHandler *)handler {
     if (self.added_handle > 0) {
@@ -612,7 +528,7 @@
 //        if(_circled_cached_image) {
 //            userImage = _circled_cached_image;
 //        }
-        [ChatUtil showNotificationWithMessage:conversation.last_message_text image:nil sender:conversation.conversWith senderFullname:conversation.conversWith_fullname];
+        [ChatUIManager showNotificationWithMessage:conversation.last_message_text image:nil sender:conversation.conversWith senderFullname:conversation.conversWith_fullname];
     }
 }
 

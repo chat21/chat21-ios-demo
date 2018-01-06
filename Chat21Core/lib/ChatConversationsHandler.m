@@ -33,6 +33,9 @@
 -(void)dispose {
     [self.conversationsRef removeAllObservers];
     [self removeAllObservers];
+    self.conversations_ref_handle_added = 0;
+    self.conversations_ref_handle_changed = 0;
+    self.conversations_ref_handle_removed = 0;
 }
 
 -(void)printAllConversations {

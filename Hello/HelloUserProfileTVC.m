@@ -10,7 +10,7 @@
 #import "HelloUser.h"
 #import "ChatUser.h"
 #import "ChatMessagesVC.h"
-#import "ChatUtil.h"
+#import "ChatUIManager.h"
 
 @interface HelloUserProfileTVC ()
 
@@ -66,8 +66,7 @@
     chatUser.lastname = self.user.lastName;
     chatUser.fullname = self.user.fullName;
     
-    [ChatUtil moveToConversationViewWithUser:chatUser];
-    
+    [ChatUIManager moveToConversationViewWithUser:chatUser];
 }
 
 - (UIViewController *)backViewController
