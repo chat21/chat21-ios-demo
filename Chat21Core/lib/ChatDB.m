@@ -13,8 +13,14 @@
 #import "ChatUser.h"
 
 static ChatDB *sharedInstance = nil;
-static sqlite3 *database = nil;
-static sqlite3_stmt *statement = nil;
+//static sqlite3 *database = nil;
+//static sqlite3_stmt *statement = nil;
+
+@interface ChatDB () {
+    sqlite3 *database;
+    sqlite3_stmt *statement;
+}
+@end
 
 @implementation ChatDB
 
@@ -26,14 +32,27 @@ static sqlite3_stmt *statement = nil;
     return sharedInstance;
 }
 
+-(id)init {
+    if (self = [super init]) {
+        self.logQuery = YES;
+        database = nil;
+        statement = nil;
+    }
+    return self;
+}
+
 // name only [a-zA-Z0-9_]
 -(BOOL)createDBWithName:(NSString *)name {
     NSString *docsDir;
-    NSArray *dirPaths;
+//    NSArray *dirPaths;
     // Get the documents directory
-    dirPaths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    docsDir = dirPaths[0];
+//    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    docsDir = dirPaths[0];
+//    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    docsDir = [dirPaths lastObject];
+    NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSLog(@"Messages DB urlPath: %@", urlPath);
+    docsDir = urlPath.path;
     // Build the path to the database file
     NSString *db_name = nil;
     if (name) {
@@ -45,7 +64,6 @@ static sqlite3_stmt *statement = nil;
     BOOL isSuccess = YES;
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
-
     // **** TESTING ONLY ****
     // if you add another table or change an existing one you must (for the moment) drop the DB
 //    [self drop_database];

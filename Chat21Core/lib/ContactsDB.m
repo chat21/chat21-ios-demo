@@ -10,12 +10,15 @@
 #import "ChatUser.h"
 
 static ContactsDB *sharedInstance = nil;
-static sqlite3 *database = nil;
-static sqlite3_stmt *statement = nil;
-static sqlite3_stmt *statement_insert = nil;
+//static sqlite3 *database = nil;
+//static sqlite3_stmt *statement = nil;
+//static sqlite3_stmt *statement_insert = nil;
 
 @interface ContactsDB () {
     dispatch_queue_t serialDatabaseQueue;
+    sqlite3 *database;
+    sqlite3_stmt *statement;
+    sqlite3_stmt *statement_insert;
 }
 @end
 
@@ -32,6 +35,9 @@ static sqlite3_stmt *statement_insert = nil;
     if (self = [super init]) {
         serialDatabaseQueue = dispatch_queue_create("db.sqllite", DISPATCH_QUEUE_SERIAL);
         self.logQuery = YES;
+        database = nil;
+        statement = nil;
+        statement_insert = nil;
     }
     return self;
 }
@@ -39,12 +45,9 @@ static sqlite3_stmt *statement_insert = nil;
 // name only [a-zA-Z0-9_]
 -(BOOL)createDBWithName:(NSString *)name {
     NSString *docsDir;
-    NSArray *dirPaths;
-    // Get the documents directory
-    dirPaths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    docsDir = dirPaths[0];
-    // Build the path to the database file
+    NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSLog(@"urlPath: %@", urlPath);
+    docsDir = urlPath.path;
     NSString *db_name = nil;
     if (name) {
         db_name = [[NSString alloc] initWithFormat:@"contacts_%@.db", name];
@@ -54,33 +57,34 @@ static sqlite3_stmt *statement_insert = nil;
     NSLog(@"Using contacts database: %@", databasePath);
     BOOL isSuccess = YES;
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    
-    
+
     // **** TESTING ONLY ****
     // if you add another table or change an existing one you must (for the moment) drop the DB
 //    [self drop_database];
     const char *dbpath = [databasePath UTF8String];
+
     if ([filemgr fileExistsAtPath: databasePath ] == NO) {
         NSLog(@"Database %@ not exists. Creating...", databasePath);
-        if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
+        const char *dbpath = [databasePath UTF8String];
+        int result;
+        result = sqlite3_open_v2(dbpath, &database, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, NULL);
+        if (result == SQLITE_OK) {
             char *errMsg;
-            
-            if (self.logQuery) {NSLog(@"**** CREATING TABLE MESSAGES...");}
-            
+            if (self.logQuery) {NSLog(@"**** CREATING TABLE CONTACTS...");}
             NSLog(@"**** CREATING TABLE CONTACTS...");
             const char *sql_stmt_contacts =
             "create table if not exists contacts (contactId text primary key, firstname text, lastname text, fullname text, email text, imageurl text, createdon real)";
             if (sqlite3_exec(database, sql_stmt_contacts, NULL, NULL, &errMsg) != SQLITE_OK) {
                 isSuccess = NO;
-                NSLog(@"Failed to create table contacts");
+                NSLog(@"Failed to create table contacts. ERROR: %s", errMsg);
             }
             else {
                 NSLog(@"Table contacts successfully created.");
             }
-            
+
 //            NSString *updateSQL = [NSString stringWithFormat:@"UPDATE contacts SET firstname = ?, lastname = ?, fullname = ?, email = ?, imageurl = ?, createdon = ? WHERE contactId = ?"];
 //            sqlite3_prepare(database, [updateSQL UTF8String], -1, &statement_insert, NULL);
-            
+
 //            sqlite3_close(database);
             return  isSuccess;
         }
@@ -91,6 +95,7 @@ static sqlite3_stmt *statement_insert = nil;
     } else {
         NSLog(@"Database %@ already exists. Opening.", databasePath);
         if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
+//            NSLog(@"Database: %@", database);
             return  isSuccess;
         }
         else {
@@ -123,7 +128,7 @@ static sqlite3_stmt *statement_insert = nil;
         NSLog(@"INSERT OR UPDATE CONTACT: %@/%@ saved-date: %@", contact.userId, contact.fullname, contact.createdonAsDate);
         [self getContactByIdSyncronized:contact.userId completion:^(ChatUser *user) {
             NSLog(@"user.lastname %@, contact.lastname %@", user.lastname, contact.lastname);
-            if (user && ![user isEqual:contact]) {
+            if (user) {
                 NSLog(@"CONTACTSDB: CONTACT %@/%@ saved-date: %@ CHANGED, UPDATING....", contact.userId, contact.fullname, contact.createdonAsDate);
                 [self updateContact:contact];
                 callback();

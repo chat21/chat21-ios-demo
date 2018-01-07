@@ -10,11 +10,13 @@
 #import "ChatGroup.h"
 
 static ChatGroupsDB *sharedInstance = nil;
-static sqlite3 *database = nil;
-static sqlite3_stmt *statement = nil;
+//static sqlite3 *database = nil;
+//static sqlite3_stmt *statement = nil;
 
 @interface ChatGroupsDB () {
     dispatch_queue_t serialDatabaseQueue;
+    sqlite3 *database;
+    sqlite3_stmt *statement;
 }
 @end
 
@@ -31,6 +33,8 @@ static sqlite3_stmt *statement = nil;
     if (self = [super init]) {
         serialDatabaseQueue = dispatch_queue_create("db.groups.sqllite", DISPATCH_QUEUE_SERIAL);
         self.logQuery = YES;
+        database = nil;
+        statement = nil;
     }
     return self;
 }
