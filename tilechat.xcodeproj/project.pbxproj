@@ -153,7 +153,7 @@
 		32378CCCFAD647706436F432 /* Pods-mobichat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobichat.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobichat/Pods-mobichat.release.xcconfig"; sourceTree = "<group>"; };
 		A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tilechat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE93058BDB602E5AB534A56 /* Pods-tilechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tilechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tilechat/Pods-tilechat.debug.xcconfig"; sourceTree = "<group>"; };
-		B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHPModalCallerDelegate.h; sourceTree = "<group>"; };
+		B20D931B1D6C8F4D00ADC264 /* ChatModalCallerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatModalCallerDelegate.h; sourceTree = "<group>"; };
 		B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21459BF1FFF7F1F0048535E /* Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; sourceTree = "<group>"; };
@@ -576,7 +576,7 @@
 				B240CF551FFA228800D9A651 /* NotificationAlertVC.m */,
 				B240CF331FFA228800D9A651 /* NotificationAlertView.h */,
 				B240CF5A1FFA228800D9A651 /* NotificationAlertView.m */,
-				B20D931B1D6C8F4D00ADC264 /* SHPModalCallerDelegate.h */,
+				B20D931B1D6C8F4D00ADC264 /* ChatModalCallerDelegate.h */,
 				B240CF591FFA228800D9A651 /* status_title_ios11.xib */,
 				B240CF541FFA228800D9A651 /* UIView+Property.h */,
 				B240CF101FFA228800D9A651 /* UIView+Property.m */,

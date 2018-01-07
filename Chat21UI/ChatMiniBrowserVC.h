@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 
-@interface ChatMiniBrowserVC : UIViewController<UIWebViewDelegate, UIActionSheetDelegate, SHPModalCallerDelegate>
+@interface ChatMiniBrowserVC : UIViewController<UIWebViewDelegate, UIActionSheetDelegate, ChatModalCallerDelegate>
 {
     UIBarButtonItem *refreshButtonItem;
     UIActivityIndicatorView *activityIndicator;

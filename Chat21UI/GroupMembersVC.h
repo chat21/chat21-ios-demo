@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 #import "SHPImageDownloader.h"
 
 @class ChatGroup;
 @class ChatImageCache;
 
-@interface GroupMembersVC : UITableViewController <SHPModalCallerDelegate, SHPImageDownloaderDelegate>
+@interface GroupMembersVC : UITableViewController <ChatModalCallerDelegate, SHPImageDownloaderDelegate>
 
 @property (strong, nonatomic) ChatGroup *group;
 @property (strong, nonatomic) NSMutableArray *members_array;

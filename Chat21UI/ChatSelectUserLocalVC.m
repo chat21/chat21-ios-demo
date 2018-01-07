@@ -9,7 +9,7 @@
 #import "ChatSelectUserLocalVC.h"
 
 #import "SHPImageDownloader.h"
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 #import "SHPImageUtil.h"
 #import "SHPCaching.h"
 #import "ChatImageCache.h"
@@ -42,8 +42,6 @@
     //    self.imageCache = self.applicationContext.smallImagesCache;
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    
-    NSLog(@"tableView %@", self.tableView);
     
     self.searchBar.delegate = self;
     
@@ -113,10 +111,7 @@
 }
 
 -(void)disposeResources {
-//    if (self.currentRequest) {
-//        [self.currentRequest cancel];
-//    }
-    NSLog(@"Disposing pending image connections...");
+    [contacts removeSynchSubcriber:self];
     [self terminatePendingImageConnections];
 }
 
@@ -343,10 +338,18 @@
 -(void)selectUser:(ChatUser *)selectedUser {
     [self updateRecentUsersWith:selectedUser];
     [self saveRecents];
+    [self disposeResources];
     NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
     [options setObject:selectedUser forKey:@"user"];
     [self.view endEditing:YES];
-    [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
+    if (self.modalCallerDelegate) {
+        [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
+    }
+    if (self.completionCallback) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.completionCallback(selectedUser, NO);
+        }];
+    }
 }
 
 /*
@@ -362,7 +365,7 @@
 // UISEARCHBAR DELEGATE
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar {
-    NSLog(@"start editing.");
+//    NSLog(@"start editing.");
 }
 
 //- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -414,14 +417,11 @@
 }
 
 -(void)search {
-    NSLog(@"(SHPSearchViewController) userPaused:");
     NSString *text = self.searchBar.text;
     self.textToSearch = [self prepareTextToSearch:text];
-    NSLog(@"timer on userPaused: searching for %@", self.textToSearch);
     ContactsDB *db = [ContactsDB getSharedInstance];
     [db searchContactsByFullnameSynchronized:self.textToSearch completion:^(NSArray<ChatUser *> *users) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"USERS LOADED! %lu", (unsigned long)users.count);
             self.users = users;
             [self.tableView reloadData];
         });
@@ -449,30 +449,33 @@
 //
 //}
 
--(void)networkError {
-    NSString *title = NSLocalizedString(@"NetworkErrorTitle", nil);
-    NSString *msg = NSLocalizedString(@"NetworkError", nil);
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
-}
+//-(void)networkError {
+//    NSString *title = NSLocalizedString(@"NetworkErrorTitle", nil);
+//    NSString *msg = NSLocalizedString(@"NetworkError", nil);
+//    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alertView show];
+//}
 
 
 // dismiss modal
 
 - (IBAction)CancelAction:(id)sender {
-    NSLog(@"dismissing %@", self.modalCallerDelegate);
-    [contacts removeSynchSubcriber:self];
     [self disposeResources];
     [self.view endEditing:YES];
-    [self.modalCallerDelegate setupViewController:self didCancelSetupWithInfo:nil];
+    if (self.modalCallerDelegate) {
+        [self.modalCallerDelegate setupViewController:self didCancelSetupWithInfo:nil];
+    }
+    if (self.completionCallback) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.completionCallback(nil, YES);
+        }];
+    }
 }
 
 // IMAGE HANDLING
 
 -(void)terminatePendingImageConnections {
-    NSLog(@"''''''''''''''''''''''   Terminate all pending IMAGE connections...");
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-    NSLog(@"total downloads: %ld", (long)allDownloads.count);
     for(SHPImageDownloader *obj in allDownloads) {
         obj.delegate = nil;
     }
@@ -574,7 +577,7 @@ static NSString* const chatRecentUsers = @"chatRecentUsers";
 }
 
 -(void)updateRecentUsersWith:(ChatUser *)user {
-    NSLog(@"............ADDING.... user %@", user.userId);
+//    NSLog(@"............ADDING.... user %@", user.userId);
     //    for (SHPUser *u in self.recentUsers) {
     //        NSLog(@"recent-user %@", u.username);
     //    }
@@ -590,7 +593,7 @@ static NSString* const chatRecentUsers = @"chatRecentUsers";
         index++;
     }
     //    if (!found) {
-    NSLog(@"user NOT FOUND, adding on top");
+//    NSLog(@"user NOT FOUND, adding on top");
     [self.recentUsers insertObject:user atIndex:0];
     //    }
     //    NSLog(@"AFTER");

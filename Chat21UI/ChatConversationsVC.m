@@ -724,7 +724,6 @@
         vc.attributesToSendAsChatOpens = self.selectedRecipientAttributesToSend;
         [self resetSelectedConversationStatus];
     }
-    // TODO: DOPO, DIVENTA UN EXTENSION POINT.
     else if ([[segue identifier] isEqualToString:@"SelectUser"]) {
         UINavigationController *navigationController = [segue destinationViewController];
         ChatSelectUserLocalVC *vc = (ChatSelectUserLocalVC *)[[navigationController viewControllers] objectAtIndex:0];
@@ -793,20 +792,6 @@
     NSLog(@"Nuovo gruppo");
 //    [self performSegueWithIdentifier:@"CreateGroup" sender:self];
 }
-
-//- (IBAction)testAction:(id)sender {
-//    NSLog(@"Test action.");
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    [chat firebaseScout];
-//}
-
-//- (IBAction)printAction:(id)sender {
-//    [self printDBConvs];
-//}
-
-//- (IBAction)printGroupsAction:(id)sender {
-//    [self printDBGroups];
-//}
 
 - (IBAction)groupsAction:(id)sender {
 //    [self printDBGroups];

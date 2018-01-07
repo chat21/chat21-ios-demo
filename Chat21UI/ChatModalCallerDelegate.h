@@ -1,5 +1,5 @@
 //
-//  SHPModalCallerDelegate.h
+//  ChatModalCallerDelegate.h
 //  Shopper
 //
 //  Created by andrea sponziello on 27/07/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol SHPModalCallerDelegate <NSObject>
+@protocol ChatModalCallerDelegate <NSObject>
 
 - (void)setupViewController:(UIViewController *)controller didFinishSetupWithInfo:(NSDictionary *)setupInfo;
 - (void)setupViewController:(UIViewController *)controller didCancelSetupWithInfo:(NSDictionary *)setupInfo;

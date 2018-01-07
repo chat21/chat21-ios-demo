@@ -7,15 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "SHPFirebaseTokenDelegate.h"
-//#import <Firebase/Firebase.h>
-//#import "SHPConversationsViewDelegate.h"
 #import "ChatPresenceHandler.h"
-//#import "SHPImageDownloader.h"
-#import "SHPModalCallerDelegate.h"
-//#import "SHPPushNotification.h"
-//#import "SHPPushNotificationService.h"
-//#import "SHPUserDC.h"
+#import "ChatModalCallerDelegate.h"
 #import "ChatUser.h"
 
 @import FirebaseDatabase;
@@ -27,8 +20,7 @@
 @class SHPUserDC;
 @class ChatContactsSynchronizer;
 
-@interface ChatConversationsVC : UITableViewController <ChatPresenceViewDelegate, UIActionSheetDelegate, SHPModalCallerDelegate>
-//- (IBAction)testConnectionAction:(id)sender;
+@interface ChatConversationsVC : UITableViewController <ChatPresenceViewDelegate, UIActionSheetDelegate, ChatModalCallerDelegate>
 - (IBAction)newGroupAction:(id)sender;
 - (IBAction)groupsAction:(id)sender;
 

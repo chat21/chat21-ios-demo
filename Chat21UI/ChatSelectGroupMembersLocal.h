@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "ChatUsersDC.h"
 #import "SHPImageDownloader.h"
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 
 @class HelloApplicationContext;
 @class ChatImageCache;
@@ -29,7 +29,7 @@
 //@property (strong, nonatomic) ChatUsersDC *userDC;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
-@property (strong, nonatomic) id <SHPModalCallerDelegate> modalCallerDelegate;
+@property (strong, nonatomic) id <ChatModalCallerDelegate> modalCallerDelegate;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *createButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

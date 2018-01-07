@@ -48,6 +48,20 @@
                                     <action selector="openConversationWithSomeone:" destination="Irp-rI-EaY" eventType="touchUpInside" id="qFM-hL-niq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRq-JH-RTC">
+                                <rect key="frame" x="89.5" y="154" width="195" height="30"/>
+                                <state key="normal" title="Select contact and converse"/>
+                                <connections>
+                                    <action selector="selectContactAndConverseAction:" destination="Irp-rI-EaY" eventType="touchUpInside" id="LLK-pe-Otk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYL-DY-20q">
+                                <rect key="frame" x="138" y="116" width="100" height="30"/>
+                                <state key="normal" title="Select contact"/>
+                                <connections>
+                                    <action selector="selectContactAction:" destination="Irp-rI-EaY" eventType="touchUpInside" id="BNL-eT-PD9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -58,6 +72,10 @@
                             <constraint firstItem="ngm-j6-aqk" firstAttribute="centerY" secondItem="qqH-MK-4k9" secondAttribute="centerY" id="KoO-SE-ubd"/>
                             <constraint firstItem="NSS-Yb-yDd" firstAttribute="top" secondItem="U8Y-VF-tad" secondAttribute="bottom" constant="166" id="QU8-gX-bnz"/>
                             <constraint firstAttribute="trailing" secondItem="ngm-j6-aqk" secondAttribute="trailing" constant="38" id="W3p-bs-JBX"/>
+                            <constraint firstItem="NYL-DY-20q" firstAttribute="top" secondItem="U8Y-VF-tad" secondAttribute="bottom" constant="52" id="bve-Mf-LgU"/>
+                            <constraint firstItem="PRq-JH-RTC" firstAttribute="top" secondItem="U8Y-VF-tad" secondAttribute="bottom" constant="90" id="jvk-io-MLo"/>
+                            <constraint firstItem="NYL-DY-20q" firstAttribute="centerX" secondItem="qqH-MK-4k9" secondAttribute="centerX" id="nGm-fa-Vvp"/>
+                            <constraint firstItem="PRq-JH-RTC" firstAttribute="centerX" secondItem="qqH-MK-4k9" secondAttribute="centerX" id="poY-jp-Rhu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6mJ-ZS-Ddh"/>

@@ -45,7 +45,7 @@ static NSString *VERSION = @"1.0";
     [archiver finishEncoding];
     NSString *file = [SHPStringUtil filePathInApp:LAST_USED_SHOPS_FILE];
     NSError *err;
-    NSLog(@"path: %@", file);
+//    NSLog(@"path: %@", file);
     BOOL success = [data writeToFile:file options:NSDataWritingAtomic error:&err];
     if (!success) {
         NSLog(@"Could not write file %@", [err description]);
@@ -86,7 +86,7 @@ static NSString *VERSION = @"1.0";
     [archiver finishEncoding];
     NSString *file = [SHPStringUtil filePathInApp:LAST_PRODUCT_FORM_FILE];
     NSError *err;
-    NSLog(@"path: %@", file);
+//    NSLog(@"path: %@", file);
     BOOL success = [data writeToFile:file options:NSDataWritingAtomic error:&err];
     if (!success) {
         NSLog(@"Could not write file %@", [err description]);
@@ -118,7 +118,7 @@ static NSString *VERSION = @"1.0";
     [archiver finishEncoding];
     NSString *file = [SHPStringUtil filePathInApp:fileName];
     NSError *err;
-    NSLog(@"path: %@", file);
+//    NSLog(@"path: %@", file);
     BOOL success = [data writeToFile:file options:NSDataWritingAtomic error:&err];
     if (!success) {
         NSLog(@"Could not write file %@", [err description]);
@@ -139,7 +139,7 @@ static NSString *VERSION = @"1.0";
     NSMutableData *data = [[NSMutableData alloc] init];
     NSString *file = [SHPStringUtil filePathInApp:fileName];
     NSError *err;
-    NSLog(@"path: %@", file);
+//    NSLog(@"path: %@", file);
     BOOL success = [data writeToFile:file options:NSDataWritingAtomic error:&err];
     if (!success) {
         NSLog(@"Could not write file %@", [err description]);
@@ -184,7 +184,7 @@ static NSString *VERSION = @"1.0";
     NSString *file = [SHPStringUtil filePathInApp:labelKey];
    [NSKeyedArchiver archiveRootObject:image toFile:file];//@"/path/to/archive"];
     NSError *err;
-    NSLog(@"path: %@", file);
+//    NSLog(@"path: %@", file);
     BOOL success = [data writeToFile:file options:NSDataWritingAtomic error:&err];
     if (!success) {
         NSLog(@"Could not write file %@", [err description]);
@@ -217,7 +217,7 @@ static NSString *VERSION = @"1.0";
     [archiver finishEncoding];
     NSString *file = [SHPStringUtil filePathInApp:fileName];
     NSError *err;
-    NSLog(@"path: %@", file);
+//    NSLog(@"path: %@", file);
     BOOL success = [data writeToFile:file options:NSDataWritingAtomic error:&err];
     if (!success) {
         NSLog(@"Could not write file %@", [err description]);

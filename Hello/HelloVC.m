@@ -87,4 +87,44 @@
     }];
 }
 
+- (IBAction)selectContactAction:(id)sender {
+    NSLog(@"Selecting contact");
+    [[ChatUIManager getInstance] openSelectContactViewAsModal:self withCompletionBlock:^(ChatUser *contact, BOOL canceled) {
+        if (canceled) {
+            NSLog(@"Select Contact canceled");
+        }
+        else {
+            NSLog(@"Selected contact: %@/%@", contact.fullname, contact.userId);
+            NSString *msg = [[NSString alloc] initWithFormat:@"You selected: %@", contact.fullname];
+            UIAlertController *view = [UIAlertController
+                                       alertControllerWithTitle:msg
+                                       message:nil
+                                       preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *confirm = [UIAlertAction
+                                      actionWithTitle:@"OK"
+                                      style:UIAlertActionStyleDefault
+                                      handler:nil];
+            [view addAction:confirm];
+            [self presentViewController:view animated:YES completion:nil];
+        }
+    }];
+}
+
+- (IBAction)selectContactAndConverseAction:(id)sender {
+    NSLog(@"Selecting contact");
+    [[ChatUIManager getInstance] openSelectContactViewAsModal:self withCompletionBlock:^(ChatUser *contact, BOOL canceled) {
+        if (canceled) {
+            NSLog(@"Select Contact canceled");
+        }
+        else {
+            NSLog(@"Selected contact: %@/%@", contact.fullname, contact.userId);
+            [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)contact viewController:self withCompletionBlock:^{
+                NSLog(@"Messages view dismissed.");
+            }];
+        }
+    }];
+}
+
+
 @end

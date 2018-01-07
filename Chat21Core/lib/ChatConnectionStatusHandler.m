@@ -55,6 +55,8 @@
 -(void)dispose {
     [self.connectedRef removeAllObservers];
     [self removeAllObservers];
+    self.connectedRef = nil;
+    self.connectedRefHandle = 0;
 }
 
 // observer

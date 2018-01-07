@@ -8,7 +8,7 @@
 
 #import "ChatSelectGroupLocalTVC.h"
 #import "SHPImageDownloader.h"
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 #import "SHPImageUtil.h"
 #import "SHPCaching.h"
 #import "ChatImageCache.h"

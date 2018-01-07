@@ -11,6 +11,7 @@
 #import "ChatMessagesVC.h"
 #import "ChatManager.h"
 #import "NotificationAlertView.h"
+#import "ChatSelectUserLocalVC.h"
 
 static ChatUIManager *sharedInstance = nil;
 static NotificationAlertView *notificationAlertInstance = nil;
@@ -56,6 +57,22 @@ static NotificationAlertView *notificationAlertInstance = nil;
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Chat" bundle:nil];
     UINavigationController *chatNC = [sb instantiateViewControllerWithIdentifier:@"MessagesNavigationController"];
     return chatNC;
+}
+
+-(void)openSelectContactViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)(ChatUser *contact, BOOL canceled))completionBlock {
+    UINavigationController * nc = [self selectContactViewController];
+    ChatSelectUserLocalVC *selectContactVC = (ChatSelectUserLocalVC *)[[nc viewControllers] objectAtIndex:0];
+//    selectContactVC.isModal = YES;
+    selectContactVC.completionCallback = completionBlock;
+    [vc presentViewController:nc animated:YES completion:^{
+        // NO CALLBACK AFTER PRESENT ACTION
+    }];
+}
+
+-(UINavigationController *)selectContactViewController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Chat" bundle:nil];
+    UINavigationController *NC = [sb instantiateViewControllerWithIdentifier:@"SelectContactNavController"];
+    return NC;
 }
 
 // only for tabbed applications

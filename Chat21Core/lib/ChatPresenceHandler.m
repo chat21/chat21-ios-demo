@@ -120,6 +120,7 @@
     FIRDatabaseReference *connectedRef = [[[FIRDatabase database] reference] child:connectedRefURL];
     [connectedRef removeObserverWithHandle:self.connectionsRefHandle];
     [self.deviceConnectionRef removeValue];
+    self.connectionsRefHandle = 0;
     NSString *userid = self.loggeduser.userId;
     FIRDatabaseReference *lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:userid];
     [lastOnlineRef setValue:[FIRServerValue timestamp]];

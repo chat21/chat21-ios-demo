@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SHPImageDownloader.h"
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 #import "ChatSynchDelegate.h"
 
 @class ChatImageCache;
@@ -22,7 +22,8 @@
 @property (strong, nonatomic) NSMutableArray<ChatUser *> *recentUsers;
 @property (strong, nonatomic) NSMutableArray *allUsers;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
-@property (strong, nonatomic) id <SHPModalCallerDelegate> modalCallerDelegate;
+@property (strong, nonatomic) id <ChatModalCallerDelegate> modalCallerDelegate;
+@property (nonatomic, copy) void (^completionCallback)(ChatUser *contact, BOOL canceled);
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSString *searchBarPlaceholder;
@@ -34,7 +35,7 @@
 @property (assign, nonatomic) BOOL synchronizing;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
--(void)networkError;
+//-(void)networkError;
 - (IBAction)CancelAction:(id)sender;
 
 @end

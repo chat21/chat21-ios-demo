@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ChatGroupsDB.h"
-#import "SHPModalCallerDelegate.h"
+#import "ChatModalCallerDelegate.h"
 
 @class ChatImageCache;
 @class ChatGroup;
@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @property (strong, nonatomic) NSMutableArray<ChatGroup *> *groups;
-@property (strong, nonatomic) id <SHPModalCallerDelegate> modalCallerDelegate;
+@property (strong, nonatomic) id <ChatModalCallerDelegate> modalCallerDelegate;
 
 - (IBAction)CancelAction:(id)sender;
 
