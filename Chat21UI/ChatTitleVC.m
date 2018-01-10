@@ -7,7 +7,6 @@
 //
 
 #import "ChatTitleVC.h"
-#import "HelloAppDelegate.h"
 
 @implementation ChatTitleVC
 
@@ -26,3 +25,4 @@
 }
 
 @end
+

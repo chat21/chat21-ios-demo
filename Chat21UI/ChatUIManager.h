@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 @class ChatUser;
 @class ChatMessagesVC;
 
@@ -32,3 +33,4 @@
 +(void)showNotificationWithMessage:(NSString *)message image:(UIImage *)image sender:(NSString *)sender senderFullname:(NSString *)senderFullname;
 
 @end
+

@@ -9,9 +9,7 @@
 #import "ChatMessagesTVC.h"
 #import "ChatMessagesVC.h"
 #import "ChatConversationHandler.h"
-#import "SHPImageUtil.h"
 #import "ChatMessage.h"
-#import "SHPStringUtil.h"
 #import "ChatMessageComponents.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ChatUtil.h"
@@ -582,12 +580,12 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             previousMessage = (ChatMessage *)[messages objectAtIndex:(indexPath.row-1)];
             if(messages.count > (indexPath.row+1)){
                 nextMessage = (ChatMessage *)[messages objectAtIndex:(indexPath.row+1)];
-                numberDaysNextChat = (int)[SHPStringUtil daysBetweenDate:message.date andDate:nextMessage.date];
+                numberDaysNextChat = (int)[ChatUtil daysBetweenDate:message.date andDate:nextMessage.date];
             }
-            numberDaysPrevChat = (int)[SHPStringUtil daysBetweenDate:previousMessage.date andDate:message.date];
+            numberDaysPrevChat = (int)[ChatUtil daysBetweenDate:previousMessage.date andDate:message.date];
             dateChat = [self formatDateMessage:numberDaysPrevChat message:message row:indexPath.row];
         }else{
-            numberDaysPrevChat = (int)[SHPStringUtil daysBetweenDate:message.date andDate:dateToday];
+            numberDaysPrevChat = (int)[ChatUtil daysBetweenDate:message.date andDate:dateToday];
             dateChat = [self formatDateMessage:numberDaysPrevChat message:message row:indexPath.row];
         }
         if(numberDaysPrevChat>0){
@@ -742,7 +740,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         NSDate *today;
         today = [NSDate date];
-        int days = (int)[SHPStringUtil daysBetweenDate:message.date andDate:today];
+        int days = (int)[ChatUtil daysBetweenDate:message.date andDate:today];
         if(days==0){
             dateChat = NSLocalizedString(@"today", nil);
         }

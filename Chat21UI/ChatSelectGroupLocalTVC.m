@@ -7,15 +7,13 @@
 //
 
 #import "ChatSelectGroupLocalTVC.h"
-#import "SHPImageDownloader.h"
 #import "ChatModalCallerDelegate.h"
-#import "SHPImageUtil.h"
-#import "SHPCaching.h"
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
 #import "ChatGroup.h"
 #import "ChatManager.h"
 #import "ChatUser.h"
+#import "ChatUtil.h"
 
 @interface ChatSelectGroupLocalTVC ()
 
@@ -72,7 +70,7 @@
         ChatGroup *group = [self.groups objectAtIndex:groupIndex];
         UILabel *name_label = (UILabel *)[cell viewWithTag:2];
         name_label.text = group.name;
-        UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"group-conversation-avatar"]];
+        UIImage *circled = [ChatUtil circleImage:[UIImage imageNamed:@"group-conversation-avatar"]];
         UIImageView *image_view = (UIImageView *)[cell viewWithTag:1];
         image_view.image = circled;
     }

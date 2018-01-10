@@ -34,16 +34,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSS-Yb-yDd">
-                                <rect key="frame" x="78" y="230" width="220" height="33"/>
+                                <rect key="frame" x="110" y="230" width="156" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Open Conversations modally"/>
+                                <state key="normal" title="Open Conversations"/>
                                 <connections>
                                     <action selector="openConversationsAction:" destination="Irp-rI-EaY" eventType="touchUpInside" id="oQQ-lP-h9u"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNk-kV-pZc">
-                                <rect key="frame" x="59.5" y="192" width="257" height="30"/>
-                                <state key="normal" title="Open Messages modally with Andrew"/>
+                                <rect key="frame" x="88" y="192" width="200" height="30"/>
+                                <state key="normal" title="Open Messages with Andrew"/>
                                 <connections>
                                     <action selector="openConversationWithSomeone:" destination="Irp-rI-EaY" eventType="touchUpInside" id="qFM-hL-niq"/>
                                 </connections>

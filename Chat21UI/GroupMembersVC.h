@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ChatModalCallerDelegate.h"
-#import "SHPImageDownloader.h"
 
 @class ChatGroup;
 @class ChatImageCache;
 
-@interface GroupMembersVC : UITableViewController <ChatModalCallerDelegate, SHPImageDownloaderDelegate>
+@interface GroupMembersVC : UITableViewController <ChatModalCallerDelegate>
 
 @property (strong, nonatomic) ChatGroup *group;
 @property (strong, nonatomic) NSMutableArray *members_array;
@@ -25,3 +24,4 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 @end
+

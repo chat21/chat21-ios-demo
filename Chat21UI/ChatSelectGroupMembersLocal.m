@@ -7,11 +7,7 @@
 //
 
 #import "ChatSelectGroupMembersLocal.h"
-#import "HelloApplicationContext.h"
-#import "SHPImageDownloader.h"
 #import "ChatModalCallerDelegate.h"
-#import "SHPImageUtil.h"
-#import "SHPCaching.h"
 #import "UIView+Property.h"
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
@@ -40,7 +36,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self restoreMembers];
+//    [self restoreMembers];
     //    NSLog(@"Current RECENTS...");
     //    for (SHPUser *u in self.members) {
     //        NSLog(@"recent-user %@", u.username);
@@ -140,7 +136,7 @@
         usernameLabel.text = user.userId;
         
         
-        UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"avatar"]];
+        UIImage *circled = [ChatUtil circleImage:[UIImage imageNamed:@"avatar"]];
         UIImageView *image_view = (UIImageView *)[cell viewWithTag:1];
         image_view.image = circled;
         //        // USER IMAGE
@@ -203,7 +199,7 @@
         fullnameLabel.text = user.fullname;
         usernameLabel.text = user.userId;
         
-        UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"avatar"]];
+        UIImage *circled = [ChatUtil circleImage:[UIImage imageNamed:@"avatar"]];
         UIImageView *image_view = (UIImageView *)[cell viewWithTag:1];
         image_view.image = circled;
         // USER IMAGE
@@ -424,13 +420,13 @@
 // IMAGE HANDLING
 
 -(void)terminatePendingImageConnections {
-    NSLog(@"''''''''''''''''''''''   Terminate all pending IMAGE connections...");
-    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-    NSLog(@"total downloads: %ld", (long)allDownloads.count);
-    for(SHPImageDownloader *obj in allDownloads) {
-        obj.delegate = nil;
-    }
-    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+//    NSLog(@"''''''''''''''''''''''   Terminate all pending IMAGE connections...");
+//    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+//    NSLog(@"total downloads: %ld", (long)allDownloads.count);
+//    for(SHPImageDownloader *obj in allDownloads) {
+//        obj.delegate = nil;
+//    }
+//    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
 }
 
 - (void)startIconDownload:(NSString *)username forIndexPath:(NSIndexPath *)indexPath
@@ -470,34 +466,34 @@
 //    }
 //}
 
-// called by our ImageDownloader when an icon is ready to be displayed
-- (void)appImageDidLoad:(UIImage *)image withURL:(NSString *)imageURL downloader:(SHPImageDownloader *)downloader
-{
-    image = [SHPImageUtil circleImage:image];
-    [self.imageCache addImage:image withKey:imageURL];
-    NSDictionary *options = downloader.options;
-    NSIndexPath *indexPath = [options objectForKey:@"indexPath"];
-    // if the cell for the image is visible updates the cell
-    NSArray *indexes = [self.tableView indexPathsForVisibleRows];
-    for (NSIndexPath *index in indexes) {
-        if (index.row == indexPath.row && index.section == indexPath.section) {
-            UITableViewCell *cell = [(UITableView *)self.tableView cellForRowAtIndexPath:index];
-            UIImageView *iv = (UIImageView *)[cell viewWithTag:1];
-            iv.image = image;
-        }
-    }
-    [self.imageDownloadsInProgress removeObjectForKey:imageURL];
-}
+//// called by our ImageDownloader when an icon is ready to be displayed
+//- (void)appImageDidLoad:(UIImage *)image withURL:(NSString *)imageURL downloader:(SHPImageDownloader *)downloader
+//{
+//    image = [SHPImageUtil circleImage:image];
+//    [self.imageCache addImage:image withKey:imageURL];
+//    NSDictionary *options = downloader.options;
+//    NSIndexPath *indexPath = [options objectForKey:@"indexPath"];
+//    // if the cell for the image is visible updates the cell
+//    NSArray *indexes = [self.tableView indexPathsForVisibleRows];
+//    for (NSIndexPath *index in indexes) {
+//        if (index.row == indexPath.row && index.section == indexPath.section) {
+//            UITableViewCell *cell = [(UITableView *)self.tableView cellForRowAtIndexPath:index];
+//            UIImageView *iv = (UIImageView *)[cell viewWithTag:1];
+//            iv.image = image;
+//        }
+//    }
+//    [self.imageDownloadsInProgress removeObjectForKey:imageURL];
+//}
 
 // members
 
--(void)restoreMembers {
-    self.members = (NSMutableArray *) [self.applicationContext getVariable:@"groupMembers"];
-    if (!self.members) {
-        self.members = [[NSMutableArray alloc] init];
-        [self.applicationContext setVariable:@"groupMembers" withValue:self.members];
-    }
-}
+//-(void)restoreMembers {
+//    self.members = (NSMutableArray *) [self.applicationContext getVariable:@"groupMembers"];
+//    if (!self.members) {
+//        self.members = [[NSMutableArray alloc] init];
+//        [self.applicationContext setVariable:@"groupMembers" withValue:self.members];
+//    }
+//}
 
 -(void)addGroupMember:(ChatUser *)user {
     NSLog(@"............ADDING.... member %@/%@", user.userId, user.fullname);
@@ -568,31 +564,31 @@
 }
 
 - (IBAction)createGroupAction:(id)sender {
-    NSLog(@"Creating group... %@", self.applicationContext);
-    
-    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-    NSString *iconID = (NSString *)[self.applicationContext getVariable:@"groupIconID"];  //groupImageUrl
-    NSLog(@"Group iconID %@, URL: %@", iconID, [ChatUtil groupImageUrlById:iconID]);
-    
-    
-    // set options
-    if (iconID) {
-        [options setObject:iconID forKey:@"groupIconID"];
-    }
-    [options setObject:self.members forKey:@"groupMembers"];
-    [options setObject:[self.applicationContext getVariable:@"newGroupId"] forKey:@"newGroupId"];
-    [options setObject:[self.applicationContext getVariable:@"groupName"] forKey:@"groupName"];
-    
-    // clean context
-    [self.applicationContext removeVariable:@"groupMembers"];
-    [self.applicationContext removeVariable:@"groupName"];
-    [self.applicationContext removeVariable:@"newGroupId"];
-    if (iconID) {
-        [self.applicationContext removeVariable:@"groupIconID"];
-    }
-    
-    [self.view endEditing:YES]; // or [self.searchBar resignFirstResponder];
-    [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
+//    NSLog(@"Creating group... %@", self.applicationContext);
+//
+//    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+//    NSString *iconID = (NSString *)[self.applicationContext getVariable:@"groupIconID"];  //groupImageUrl
+//    NSLog(@"Group iconID %@, URL: %@", iconID, [ChatUtil groupImageUrlById:iconID]);
+//
+//
+//    // set options
+//    if (iconID) {
+//        [options setObject:iconID forKey:@"groupIconID"];
+//    }
+//    [options setObject:self.members forKey:@"groupMembers"];
+//    [options setObject:[self.applicationContext getVariable:@"newGroupId"] forKey:@"newGroupId"];
+//    [options setObject:[self.applicationContext getVariable:@"groupName"] forKey:@"groupName"];
+//
+//    // clean context
+//    [self.applicationContext removeVariable:@"groupMembers"];
+//    [self.applicationContext removeVariable:@"groupName"];
+//    [self.applicationContext removeVariable:@"newGroupId"];
+//    if (iconID) {
+//        [self.applicationContext removeVariable:@"groupIconID"];
+//    }
+//    
+//    [self.view endEditing:YES]; // or [self.searchBar resignFirstResponder];
+//    [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
 }
 
 @end

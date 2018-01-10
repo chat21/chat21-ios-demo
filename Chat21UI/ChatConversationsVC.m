@@ -1021,7 +1021,8 @@
 }
 
 - (IBAction)actionNewMessage:(id)sender {
-    [self performSegueWithIdentifier:@"SelectUser" sender:self];
+//    [self performSegueWithIdentifier:@"SelectUser" sender:self];
+    
 }
 
 -(IBAction)unwindToConversationsView:(UIStoryboardSegue *)sender {

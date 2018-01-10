@@ -87,7 +87,7 @@
     }];
 }
 
-- (IBAction)selectContactAction:(id)sender { 
+- (IBAction)selectContactAction:(id)sender {
     NSLog(@"Selecting contact");
     [[ChatUIManager getInstance] openSelectContactViewAsModal:self withCompletionBlock:^(ChatUser *contact, BOOL canceled) {
         if (canceled) {

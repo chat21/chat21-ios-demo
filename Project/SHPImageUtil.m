@@ -7,7 +7,6 @@
 //
 
 #import "SHPImageUtil.h"
-//#import "SHPProduct.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SHPImageUtil

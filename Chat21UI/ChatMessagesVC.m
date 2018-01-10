@@ -26,13 +26,12 @@
 #import "ChatGroup.h"
 #import "ChatStatusTitle.h"
 #import "ChatGroupsHandler.h"
-#import "HelloChatUtil.h"
 #import "ChatUIManager.h"
 #import "ChatConnectionStatusHandler.h"
 #import "ChatPresenceHandler.h"
 
 @interface ChatMessagesVC (){
-     SystemSoundID soundID;
+    SystemSoundID soundID;
 }
 @end
 
@@ -60,10 +59,10 @@
     self.bottomReached = YES;
     
     [self setupLabels];
-//    [self initImageCache];
+    //    [self initImageCache];
     [self buildUnreadBadge];
     
-//    self.group.name = nil; // TEST DOWNLOAD GRUPPO METADATI PARZIALI
+    //    self.group.name = nil; // TEST DOWNLOAD GRUPPO METADATI PARZIALI
     if (self.recipient) { // online status only in DM mode
         [self setupForDirectMessageMode];
     }
@@ -113,7 +112,7 @@
     if ([self ImInGroup]) {
         [self sendTextAsChatOpens];
     }
-//    [self.usernameButton setTitle:self.group.name forState:UIControlStateNormal];
+    //    [self.usernameButton setTitle:self.group.name forState:UIControlStateNormal];
     [self setTitle:self.group.name];
     [self setSubTitle:[ChatUtil groupMembersAsStringForUI:self.group.members]];
 }
@@ -123,7 +122,7 @@
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     [self setSubTitle:@""];
-//    self.statusLabel.text = @"";
+    //    self.statusLabel.text = @"";
     ChatManager *chatm = [ChatManager getInstance];
     NSString *group_id = self.group.groupId;
     __weak ChatMessagesVC *weakSelf = self;
@@ -134,7 +133,7 @@
         [weakSelf.activityIndicator stopAnimating];
         if (error) {
             [weakSelf setSubTitle:@"Errore gruppo"];
-//            weakSelf.statusLabel.text = @"Errore gruppo";
+            //            weakSelf.statusLabel.text = @"Errore gruppo";
         }
         else {
             weakSelf.group = group;
@@ -217,7 +216,7 @@
     self.added_handle = 0;
     self.changed_handle = 0;
     self.deleted_handle = 0;
-//    [self.connectedRef removeObserverWithHandle:self.connectedRefHandle];
+    //    [self.connectedRef removeObserverWithHandle:self.connectedRefHandle];
     ChatManager *chatm = [ChatManager getInstance];
     [chatm.connectionStatusHandler removeObserverWithHandle:self.connectedHandle];
     [chatm.connectionStatusHandler removeObserverWithHandle:self.disconnectedHandle];
@@ -247,17 +246,15 @@
         NSLog(@"isMovingFromParentViewController: OK");
         [self resetTitleView];
         self.tabBarController.tabBar.hidden=NO;
-//        self.conversationHandler.delegateView = nil;
-//        [self.conversationHandler removeSubcriber:self];
         [self removeSubscribers];
         [[ChatManager getInstance].groupsHandler removeSubcriber:self];
-
-        for (NSString *k in self.imageDownloadsInProgress) {
-            NSLog(@"Removing downloader: %@", k);
-            SHPImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:k];
-            [iconDownloader cancelDownload];
-            iconDownloader.delegate = nil;
-        }
+        
+        //        for (NSString *k in self.imageDownloadsInProgress) {
+        //            NSLog(@"Removing downloader: %@", k);
+        //            SHPImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:k];
+        //            [iconDownloader cancelDownload];
+        //            iconDownloader.delegate = nil;
+        //        }
         [self freeKeyboardNotifications];
         containerTVC.vc = nil;
         containerTVC.conversationHandler = nil;
@@ -316,32 +313,32 @@
                 [self offlineStatus];
             }
         }];
-//        self.connectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
-//            NSLog(@"connected");
-//            [self connectedStatus];
-//        }];
-//        self.disconnectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
-//            NSLog(@"not connected");
-//            [self offlineStatus];
-//        }];
+        //        self.connectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventConnected withCallback:^{
+        //            NSLog(@"connected");
+        //            [self connectedStatus];
+        //        }];
+        //        self.disconnectedHandle = [connectionStatusHandler observeEvent:ChatConnectionStatusEventDisconnected withCallback:^{
+        //            NSLog(@"not connected");
+        //            [self offlineStatus];
+        //        }];
     }
     
-//    // initial status UI
-//    [self offlineStatus];
-//
-////    ChatManager *chat = [ChatManager getSharedInstance];
-//    NSString *url = @"/.info/connected";
-//    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
-//    self.connectedRef = [rootRef child:url];
-//    self.connectedRefHandle = [self.connectedRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//        if([snapshot.value boolValue]) {
-//            NSLog(@"connected");
-//            [self connectedStatus];
-//        } else {
-//            NSLog(@"not connected");
-//            [self offlineStatus];
-//        }
-//    }];
+    //    // initial status UI
+    //    [self offlineStatus];
+    //
+    ////    ChatManager *chat = [ChatManager getSharedInstance];
+    //    NSString *url = @"/.info/connected";
+    //    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+    //    self.connectedRef = [rootRef child:url];
+    //    self.connectedRefHandle = [self.connectedRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+    //        if([snapshot.value boolValue]) {
+    //            NSLog(@"connected");
+    //            [self connectedStatus];
+    //        } else {
+    //            NSLog(@"not connected");
+    //            [self offlineStatus];
+    //        }
+    //    }];
 }
 
 -(void)connectedStatus {
@@ -349,11 +346,11 @@
     self.activityIndicator.hidden = YES;
     self.sendButton.enabled = YES;
     [self.activityIndicator stopAnimating];
-//    if (self.group) {
-//        self.statusLabel.text = [ChatUtil groupMembersAsStringForUI:self.group.members];
-//    } else {
+    //    if (self.group) {
+    //        self.statusLabel.text = [ChatUtil groupMembersAsStringForUI:self.group.members];
+    //    } else {
     [self onlineStatus];
-//    }
+    //    }
 }
 
 -(void)offlineStatus {
@@ -362,7 +359,7 @@
     self.sendButton.enabled = NO;
     [self.activityIndicator startAnimating];
     [self setSubTitle:NSLocalizedString(@"ChatDisconnected", nil)];
-//    self.statusLabel.text = NSLocalizedString(@"ChatDisconnected", nil);
+    //    self.statusLabel.text = NSLocalizedString(@"ChatDisconnected", nil);
 }
 
 -(void)onlineStatus {
@@ -378,7 +375,7 @@
             last_online_status = NSLocalizedString(@"offline", nil);
         }
         [self setSubTitle:last_online_status];
-//        self.statusLabel.text = last_online_status;
+        //        self.statusLabel.text = last_online_status;
     }
 }
 
@@ -394,29 +391,29 @@
         self.lastOnline = lastOnlineDate;
         [self onlineStatus];
     }];
-//    [chatm.presenceHandler ]
-//    // apps/{TENANT}/presence/{USERID}/connections
-//    self.onlineRef = [ChatPresenceHandler onlineRefForUser:self.recipient.userId];
-//    self.online_ref_handle = [self.onlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//        if(snapshot.exists) {
-//            NSLog(@"ONLINE: %@", snapshot);
-//            self.online = YES;
-//            [self onlineStatus];
-//        } else {
-//            self.online = NO;
-//            [self onlineStatus];
-//        }
-//    }];
+    //    [chatm.presenceHandler ]
+    //    // apps/{TENANT}/presence/{USERID}/connections
+    //    self.onlineRef = [ChatPresenceHandler onlineRefForUser:self.recipient.userId];
+    //    self.online_ref_handle = [self.onlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+    //        if(snapshot.exists) {
+    //            NSLog(@"ONLINE: %@", snapshot);
+    //            self.online = YES;
+    //            [self onlineStatus];
+    //        } else {
+    //            self.online = NO;
+    //            [self onlineStatus];
+    //        }
+    //    }];
     
     // LAST ONLINE
     
     // apps/{TENANT}/presence/{USERID}/lastOnline
-//    self.lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:self.recipient.userId];
-//    NSLog(@"last online ref: %@", self.lastOnlineRef);
-//    self.last_online_ref_handle = [self.lastOnlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//        [self snapshotDate:snapshot];
-//        [self onlineStatus];
-//    }];
+    //    self.lastOnlineRef = [ChatPresenceHandler lastOnlineRefForUser:self.recipient.userId];
+    //    NSLog(@"last online ref: %@", self.lastOnlineRef);
+    //    self.last_online_ref_handle = [self.lastOnlineRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+    //        [self snapshotDate:snapshot];
+    //        [self onlineStatus];
+    //    }];
     
     
 }
@@ -480,7 +477,7 @@
     self.statusLabel = view.statusLabel;
     self.activityIndicator = view.activityIndicator;
     self.usernameButton = view.usernameButton;
-//    [view.usernameButton setTitle:title forState:UIControlStateNormal];
+    //    [view.usernameButton setTitle:title forState:UIControlStateNormal];
     [view.usernameButton addTarget:self
                             action:@selector(goToProfile:)
                   forControlEvents:UIControlEventTouchUpInside];
@@ -509,15 +506,15 @@
     } else {
         if (![ChatUIManager getInstance].pushProfileCallback) {
             NSLog(@"Default profile view not implemented.");
-//            self.profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-//            self.profileNC = [self.profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
-//            SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[self.profileNC viewControllers] objectAtIndex:0];
-//            ChatUser *authorProfile = [[ChatUser alloc] init];
-//            authorProfile.userId = self.recipient.userId;
-//            authorProfile.fullname = self.recipient.fullname;
-//            profileVC.otherUser = authorProfile;
-//            NSLog(@"self.profileVC.otherUser %@ fullname: %@", profileVC.otherUser.userId, profileVC.otherUser.fullname);
-//            [self.navigationController pushViewController:profileVC animated:YES];
+            //            self.profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            //            self.profileNC = [self.profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
+            //            SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[self.profileNC viewControllers] objectAtIndex:0];
+            //            ChatUser *authorProfile = [[ChatUser alloc] init];
+            //            authorProfile.userId = self.recipient.userId;
+            //            authorProfile.fullname = self.recipient.fullname;
+            //            profileVC.otherUser = authorProfile;
+            //            NSLog(@"self.profileVC.otherUser %@ fullname: %@", profileVC.otherUser.userId, profileVC.otherUser.fullname);
+            //            [self.navigationController pushViewController:profileVC animated:YES];
         }
         else {
             ChatUser *user = [[ChatUser alloc] init];
@@ -630,43 +627,43 @@
 }
 
 - (IBAction)addContentAction:(id)sender {
-//    UIAlertController * view=   [UIAlertController
-//                                 alertControllerWithTitle:nil
-//                                 message:@"Allega"
-//                                 preferredStyle:UIAlertControllerStyleActionSheet];
-//
-//    UIAlertAction* documenti = [UIAlertAction
-//                           actionWithTitle:@"Documenti"
-//                           style:UIAlertActionStyleDefault
-//                           handler:^(UIAlertAction * action)
-//                           {
-//                               NSLog(@"Documenti");
-//                               UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
-//                               UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
-//                               DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
-//                               navigatorVC.selectionMode = YES;
-//                               navigatorVC.selectionDelegate = self;
-//                               [self.navigationController presentViewController:nc animated:YES completion:nil];
-//                           }];
-////    UIAlertAction* dropbox = [UIAlertAction
-////                           actionWithTitle:@"Dropbox"
-////                           style:UIAlertActionStyleDefault
-////                           handler:^(UIAlertAction * action)
-////                           {
-////                               NSLog(@"Open dropbox");
-////                               [self openDropbox];
-////                           }];
-//    UIAlertAction* cancel = [UIAlertAction
-//                             actionWithTitle:NSLocalizedString(@"CancelLKey", nil)
-//                             style:UIAlertActionStyleCancel
-//                             handler:^(UIAlertAction * action)
-//                             {
-//                                 NSLog(@"cancel");
-//                             }];
-//    [view addAction:documenti];
-////    [view addAction:dropbox];
-//    [view addAction:cancel];
-//    [self presentViewController:view animated:YES completion:nil];
+    //    UIAlertController * view=   [UIAlertController
+    //                                 alertControllerWithTitle:nil
+    //                                 message:@"Allega"
+    //                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    //
+    //    UIAlertAction* documenti = [UIAlertAction
+    //                           actionWithTitle:@"Documenti"
+    //                           style:UIAlertActionStyleDefault
+    //                           handler:^(UIAlertAction * action)
+    //                           {
+    //                               NSLog(@"Documenti");
+    //                               UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
+    //                               UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
+    //                               DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
+    //                               navigatorVC.selectionMode = YES;
+    //                               navigatorVC.selectionDelegate = self;
+    //                               [self.navigationController presentViewController:nc animated:YES completion:nil];
+    //                           }];
+    ////    UIAlertAction* dropbox = [UIAlertAction
+    ////                           actionWithTitle:@"Dropbox"
+    ////                           style:UIAlertActionStyleDefault
+    ////                           handler:^(UIAlertAction * action)
+    ////                           {
+    ////                               NSLog(@"Open dropbox");
+    ////                               [self openDropbox];
+    ////                           }];
+    //    UIAlertAction* cancel = [UIAlertAction
+    //                             actionWithTitle:NSLocalizedString(@"CancelLKey", nil)
+    //                             style:UIAlertActionStyleCancel
+    //                             handler:^(UIAlertAction * action)
+    //                             {
+    //                                 NSLog(@"cancel");
+    //                             }];
+    //    [view addAction:documenti];
+    ////    [view addAction:dropbox];
+    //    [view addAction:cancel];
+    //    [self presentViewController:view animated:YES completion:nil];
 }
 
 //-(void)openDropbox {
@@ -706,7 +703,7 @@
 //}
 
 -(void)dismissKeyboardFromTableView:(BOOL)activated {
-//    NSLog(@"DISMISSING");
+    //    NSLog(@"DISMISSING");
     [self backgroundTapToDismissKB:activated];
 }
 
@@ -768,8 +765,8 @@
         NSLog(@"Difference: %f", difference);
         NSTimeInterval animationDuration;
         [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-//        CGFloat viewport_h_with_kb = self.view.frame.size.height + difference;
-//        CGFloat viewport_final_h = viewport_h_with_kb;
+        //        CGFloat viewport_h_with_kb = self.view.frame.size.height + difference;
+        //        CGFloat viewport_final_h = viewport_h_with_kb;
         
         [self.view layoutIfNeeded];
         [UIView animateWithDuration:animationDuration animations:^{
@@ -839,9 +836,9 @@
 }
 
 -(void)sendMessage:(NSString *)text {
-//    [DocChatUtil firebaseAuth:self.applicationContext.loggedUser.username password:self.applicationContext.loggedUser.password completion:^(NSError *error) {
-//        NSLog(@"CONNECTED!!!!");
-//    }];
+    //    [DocChatUtil firebaseAuth:self.applicationContext.loggedUser.username password:self.applicationContext.loggedUser.password completion:^(NSError *error) {
+    //        NSLog(@"CONNECTED!!!!");
+    //    }];
     [self sendMessage:text attributes:nil];
 }
 
@@ -865,7 +862,7 @@
 }
 
 -(void)sendDropboxMessage:(NSString *)name link:(NSString *)link size:(NSNumber *)size iconURL:(NSString *)iconURL thumbs:(NSDictionary *)thumbs {
-
+    
     // check: if in a group, are you still a member?
     if (self.group) {
         if ([self.group isMember:self.me.userId]) {
@@ -913,14 +910,14 @@
     [attributes setValue:link forKey:@"link"];
     [attributes setValue:name forKey:@"name"];
     
-//    NSString *text = [NSString stringWithFormat:@"%@ %@", name, link];
+    //    NSString *text = [NSString stringWithFormat:@"%@ %@", name, link];
     NSString *text = link;
     [self.conversationHandler sendMessageWithText:text type:MSG_TYPE_ALFRESCO attributes:attributes];
 }
 
 - (IBAction)prindb:(id)sender {
     NSLog(@"Printing messages...");
-//    [self printDBMessages];
+    //    [self printDBMessages];
 }
 
 //-(void)printDBMessages {
@@ -949,7 +946,7 @@
 //// end subscriber
 
 -(void)messageReceived:(ChatMessage *)message {
-//    NSLog(@"MessagesVC. NEW MESSAGE: %@", message.text);
+    //    NSLog(@"MessagesVC. NEW MESSAGE: %@", message.text);
     
     // SE MESSAGGIO.TIMESTAMP < "1 SEC FA" MOSTRA SUBITO. SE MESSAGGIO >= 1 SEC FA IMPOSTA UN TIMER. SE ARRIVA UN ALTRO MESSAGGIO DURANTE IL TIMER FAI RIPARTIRE IL TIMER. AFTER THE TIMER ENDS, RELOAD TABLE.
     
@@ -1014,30 +1011,30 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    if (actionSheet == self.menuSheet) {
-//        NSString *option = [actionSheet buttonTitleAtIndex:buttonIndex];
-//        
-//        if ([option isEqualToString:@"Info gruppo"]) {
-//            [self performSegueWithIdentifier:@"GroupInfo" sender:self];
-//        }
-//        else if ([option isEqualToString:@"Invia immagine"]) {
-//            NSLog(@"invia immagine");
-//            [self.photoMenuSheet showInView:self.parentViewController.tabBarController.view];
-//        }
-//    } else {
-//        switch (buttonIndex) {
-//            case 0:
-//            {
-//                [self takePhoto];
-//                break;
-//            }
-//            case 1:
-//            {
-//                [self chooseExisting];
-//                break;
-//            }
-//        }
-//    }
+    //    if (actionSheet == self.menuSheet) {
+    //        NSString *option = [actionSheet buttonTitleAtIndex:buttonIndex];
+    //
+    //        if ([option isEqualToString:@"Info gruppo"]) {
+    //            [self performSegueWithIdentifier:@"GroupInfo" sender:self];
+    //        }
+    //        else if ([option isEqualToString:@"Invia immagine"]) {
+    //            NSLog(@"invia immagine");
+    //            [self.photoMenuSheet showInView:self.parentViewController.tabBarController.view];
+    //        }
+    //    } else {
+    //        switch (buttonIndex) {
+    //            case 0:
+    //            {
+    //                [self takePhoto];
+    //                break;
+    //            }
+    //            case 1:
+    //            {
+    //                [self chooseExisting];
+    //                break;
+    //            }
+    //        }
+    //    }
 }
 
 // ChatGroupsSubscriber protocol
@@ -1062,7 +1059,7 @@
     if ([[segue identifier] isEqualToString:@"GroupInfo"]) {
         GroupInfoVC *vc = (GroupInfoVC *)[segue destinationViewController];
         NSLog(@"vc %@", vc);
-//        vc.applicationContext = self.applicationContext;
+        //        vc.applicationContext = self.applicationContext;
         vc.groupId = self.group.groupId;
     }
 }
@@ -1072,7 +1069,7 @@
 // **************************************************
 
 - (void)takePhoto {
-//    NSLog(@"taking photo with user %@...", self.applicationContext.loggedUser);
+    //    NSLog(@"taking photo with user %@...", self.applicationContext.loggedUser);
     if (self.imagePickerController == nil) {
         [self initializeCamera];
     }
@@ -1111,30 +1108,30 @@
 }
 
 -(void)afterPickerCompletion:(UIImagePickerController *)picker withInfo:(NSDictionary *)info {
-//    self.bigImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-//    NSLog(@"BIG IMAGE: %@", self.bigImage);
-//    // enable to crop
-//    // self.scaledImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-//    NSLog(@"edited image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
-//    if (!self.bigImage) {
-//        self.bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-//        NSLog(@"original image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
-//    }
-//    // end
-//
-//    self.scaledImage = [SHPImageUtil scaleImage:self.bigImage toSize:CGSizeMake(self.applicationContext.settings.uploadImageSize, self.applicationContext.settings.uploadImageSize)];
-//    NSLog(@"SCALED IMAGE w:%f h:%f", self.scaledImage.size.width, self.scaledImage.size.height);
-//
-//    if (picker == self.imagePickerController) {
-//        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
-//                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
-//    }
-//
-//    NSLog(@"image: %@", self.scaledImage);
+    //    self.bigImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    //    NSLog(@"BIG IMAGE: %@", self.bigImage);
+    //    // enable to crop
+    //    // self.scaledImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    //    NSLog(@"edited image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
+    //    if (!self.bigImage) {
+    //        self.bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //        NSLog(@"original image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
+    //    }
+    //    // end
+    //
+    //    self.scaledImage = [SHPImageUtil scaleImage:self.bigImage toSize:CGSizeMake(self.applicationContext.settings.uploadImageSize, self.applicationContext.settings.uploadImageSize)];
+    //    NSLog(@"SCALED IMAGE w:%f h:%f", self.scaledImage.size.width, self.scaledImage.size.height);
+    //
+    //    if (picker == self.imagePickerController) {
+    //        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
+    //                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    //    }
+    //
+    //    NSLog(@"image: %@", self.scaledImage);
     
     
-//    UIImage *imageEXIFAdjusted = [SHPImageUtil adjustEXIF:self.scaledImage];
-//    NSData *imageData = UIImageJPEGRepresentation(imageEXIFAdjusted, 90);
+    //    UIImage *imageEXIFAdjusted = [SHPImageUtil adjustEXIF:self.scaledImage];
+    //    NSData *imageData = UIImageJPEGRepresentation(imageEXIFAdjusted, 90);
     
     //    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
     //    NSLog(@"imageFile: %@", imageFile);
@@ -1183,3 +1180,4 @@
 }
 
 @end
+

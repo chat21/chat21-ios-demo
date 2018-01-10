@@ -7,9 +7,7 @@
 //
 
 #import "NotificationAlertView.h"
-//#import "ChatRootNC.h"
 #import "ChatConversationsVC.h"
-#import "HelloApplicationContext.h"
 #import "ChatManager.h"
 
 @interface NotificationAlertView () {

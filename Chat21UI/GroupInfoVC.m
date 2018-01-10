@@ -12,7 +12,6 @@
 #import "GroupMembersVC.h"
 #import "ChatManager.h"
 #import "ChatUtil.h"
-#import "SHPImageUtil.h"
 #import "ChatUploadsController.h"
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
@@ -36,9 +35,9 @@
     
     self.navigationItem.title = NSLocalizedString(@"group info", nil);
     
-//    ChatDB *db = [ChatDB getSharedInstance];
-//    self.group = [db getGroupById:self.groupId];
-
+    //    ChatDB *db = [ChatDB getSharedInstance];
+    //    self.group = [db getGroupById:self.groupId];
+    
     self.group = [[ChatManager getInstance] groupById:self.groupId];
     
     // group image
@@ -46,7 +45,7 @@
     UITapGestureRecognizer *tapLabelView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
     [self.groupImageView addGestureRecognizer:tapImageView];
     [self.addPhotoLabelOverloaded addGestureRecognizer:tapLabelView];
-//    self.addPhotoLabelOverloaded.userInteractionEnabled = YES;
+    //    self.addPhotoLabelOverloaded.userInteractionEnabled = YES;
     self.addPhotoLabelOverloaded.hidden = YES;
     self.groupImageView.userInteractionEnabled = YES;
     [self initImageCache];
@@ -55,20 +54,20 @@
 }
 
 -(void)initImageCache {
-//    // cache setup
-//    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
-//    if (!self.imageCache) {
-//        self.imageCache = [[ChatImageCache alloc] init];
-//        self.imageCache.cacheName = @"chatUserIcons";
-//        // test
-//        // [self.imageCache listAllImagesFromDisk];
-//        // [self.imageCache empty];
-//        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
-//    }
+    //    // cache setup
+    //    self.imageCache = (ChatImageCache *) [self.applicationContext getVariable:@"chatUserIcons"];
+    //    if (!self.imageCache) {
+    //        self.imageCache = [[ChatImageCache alloc] init];
+    //        self.imageCache.cacheName = @"chatUserIcons";
+    //        // test
+    //        // [self.imageCache listAllImagesFromDisk];
+    //        // [self.imageCache empty];
+    //        [self.applicationContext setVariable:@"chatUserIcons" withValue:self.imageCache];
+    //    }
 }
 
 -(void)setupImage {
-//    [ChatUtil groupImageUrlById:self.group.groupId]
+    //    [ChatUtil groupImageUrlById:self.group.groupId]
     // CONVERSATION IMAGE
     
     NSString *imageURL = self.group.iconUrl;
@@ -76,18 +75,18 @@
     UIImage *image = cached_image_wrap.image;
     if(!image) {
         NSLog(@"IMAGE %@ NOT CACHED. DOWNLOADING...", imageURL);
-//        [self downloadImage:imageURL];
-        UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"group-conversation-avatar"]];
+        //        [self downloadImage:imageURL];
+        UIImage *circled = [ChatUtil circleImage:[UIImage imageNamed:@"group-conversation-avatar"]];
         self.groupImageView.image = circled;
     } else {
         NSLog(@"IMAGE CACHED %@", imageURL);
         self.addPhotoLabelOverloaded.hidden = YES;
-        self.groupImageView.image = [SHPImageUtil circleImage:image];
+        self.groupImageView.image = [ChatUtil circleImage:image];
         // update too old images
         double now = [[NSDate alloc] init].timeIntervalSince1970;
         double reload_timer_secs = 86400; // one day
         if (now - cached_image_wrap.createdTime.timeIntervalSince1970 > reload_timer_secs) {
-//            [self downloadImage:imageURL];
+            //            [self downloadImage:imageURL];
         }
     }
 }
@@ -108,7 +107,7 @@
 
 -(void)updateImage:(UIImage *)image {
     [self.imageCache addImage:image withKey:self.group.iconUrl];
-    self.groupImageView.image = [SHPImageUtil circleImage:image];
+    self.groupImageView.image = [ChatUtil circleImage:image];
     self.addPhotoLabelOverloaded.hidden = YES;
 }
 
@@ -162,14 +161,14 @@
     self.membersLabel.text = [ChatUtil groupMembersAsStringForUI:self.group.members];
     
     //NSString *created_by_msg = @"Gruppo creato da";
-//    self.createdByLabel.text = [[NSString alloc] initWithFormat:@"%@ %@.",created_by_msg, self.group.owner];
+    //    self.createdByLabel.text = [[NSString alloc] initWithFormat:@"%@ %@.",created_by_msg, self.group.owner];
     self.createdByLabel.text = [NSString stringWithFormat:NSLocalizedString(@"group created by", nil), self.group.owner];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd LLLL yyyy"];
     NSString *createdOn_s = [formatter stringFromDate:self.group.createdOn];
-//    NSString *created_on_msg = @"Creato il";
-//    self.createdOnLabel.text = [[NSString alloc] initWithFormat:@"%@ %@.", created_on_msg, createdOn_s];
+    //    NSString *created_on_msg = @"Creato il";
+    //    self.createdOnLabel.text = [[NSString alloc] initWithFormat:@"%@ %@.", created_on_msg, createdOn_s];
     self.createdOnLabel.text = [NSString stringWithFormat:NSLocalizedString(@"group created on", nil), createdOn_s];
     
     self.adminLabel.text = self.group.owner;
@@ -196,45 +195,45 @@
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-//    
+//
 //    // Configure the cell...
-//    
+//
 //    return cell;
 //}
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -342,7 +341,7 @@
 //// **************************************************
 //
 //-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    
+//
 //    NSString *option = [actionSheet buttonTitleAtIndex:buttonIndex];
 //    if ([option isEqualToString:NSLocalizedString(@"TakePhotoLKey", nil)]) {
 //        NSLog(@"Take Photo");
@@ -356,7 +355,7 @@
 //        NSLog(@"Remove Photo");
 //        [self removePhoto];
 //    }
-//    
+//
 //    //    switch (buttonIndex) {
 //    //        case 0:
 //    //        {
@@ -388,12 +387,12 @@
 //}
 //
 //-(void)removePhoto {
-//    
+//
 ////    self.groupImageView.image = nil;
 ////    self.addPhotoLabelOverloaded.hidden = NO;
 //    UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"group-conversation-avatar"]];
 //    self.groupImageView.image = circled;
-//    
+//
 //    self.bigImage = nil;
 //    self.scaledImage = nil;
 //    if (self.uploader) {
@@ -439,7 +438,7 @@
 //        NSLog(@"original image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
 //    }
 //    // end
-//    
+//
 //    self.scaledImage = [SHPImageUtil scaleImage:self.bigImage toSize:CGSizeMake(self.applicationContext.settings.uploadImageSize, self.applicationContext.settings.uploadImageSize)];
 //    NSLog(@"SCALED IMAGE w:%f h:%f", self.scaledImage.size.width, self.scaledImage.size.height);
 //
@@ -448,11 +447,11 @@
 ////        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
 ////                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
 ////    }
-//    
+//
 //    NSLog(@"image: %@", self.scaledImage);
 //    UIImage *imageEXIFAdjusted = [SHPImageUtil adjustEXIF:self.scaledImage];
 //    NSData *imageData = UIImageJPEGRepresentation(imageEXIFAdjusted, 90);
-//    
+//
 //    [self updateImage:self.scaledImage];
 //    //self.groupImageView.image = self.scaledImage; //[SHPImageUtil circleImage:self.scaledImage];
 //    //    [self.addPhotoLabelOverloaded removeFromSuperview];
@@ -485,3 +484,4 @@
 }
 
 @end
+

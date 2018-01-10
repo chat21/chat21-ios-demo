@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHPImageDownloader.h"
 #import "ChatModalCallerDelegate.h"
 #import "ChatSynchDelegate.h"
 
@@ -15,7 +14,7 @@
 @class ChatGroup;
 @class ChatUser;
 
-@interface ChatSelectUserLocalVC : UIViewController <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SHPImageDownloaderDelegate, ChatSynchDelegate>
+@interface ChatSelectUserLocalVC : UIViewController <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, ChatSynchDelegate>
 
 @property (strong, nonatomic) ChatUser *userSelected;
 @property (strong, nonatomic) NSArray<ChatUser *> *users;
@@ -39,3 +38,4 @@
 - (IBAction)CancelAction:(id)sender;
 
 @end
+

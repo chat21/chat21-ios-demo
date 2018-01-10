@@ -9,16 +9,9 @@
 #import "GroupMembersVC.h"
 #import "ChatManager.h"
 #import "ChatGroup.h"
-//#import "SHPUser.h"
 #import "ChatUtil.h"
-//#import "SHPHomeProfileTVC.h"
-//#import "SHPSelectUserVC.h"
 #import "ChatImageCache.h"
-#import "HelloAppDelegate.h"
-// user image handling
 #import "ChatImageWrapper.h"
-#import "SHPImageDownloader.h"
-#import "SHPImageUtil.h"
 #import "ChatUser.h"
 #import "ChatSelectUserLocalVC.h"
 #import "ChatUser.h"
@@ -56,9 +49,9 @@
 -(void)showMemberMenu:(NSIndexPath *)indexPath {
     NSString *memberId = [self.members_array objectAtIndex:indexPath.row];
     UIAlertController *view = [UIAlertController
-                                 alertControllerWithTitle:nil
-                                 message:memberId
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
+                               alertControllerWithTitle:nil
+                               message:memberId
+                               preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *info = [UIAlertAction
                            actionWithTitle:NSLocalizedString(@"Member info", nil)
@@ -82,27 +75,27 @@
     UIAlertAction* remove = nil;
     if ([self canIRemoveMember:memberId]) {
         remove = [UIAlertAction
-            actionWithTitle:NSLocalizedString(@"Member remove", nil)
-            style:UIAlertActionStyleDestructive
-            handler:^(UIAlertAction * action)
-            {
-                NSLog(@"Removing...");
-                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-                [self removeMember:memberId];
-            }];
+                  actionWithTitle:NSLocalizedString(@"Member remove", nil)
+                  style:UIAlertActionStyleDestructive
+                  handler:^(UIAlertAction * action)
+                  {
+                      NSLog(@"Removing...");
+                      [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                      [self removeMember:memberId];
+                  }];
     }
     
     UIAlertAction* send_message = [UIAlertAction
-            actionWithTitle:NSLocalizedString(@"Send message", nil)
-            style:UIAlertActionStyleDefault
-            handler:^(UIAlertAction * action)
-            {
-                NSLog(@"Send message");
-//                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//                ChatUser *member = [[ChatUser alloc] init];
-//                member.userId = memberId;
-//                [ChatUtil moveToConversationViewWithUser:member sendMessage:nil];
-            }];
+                                   actionWithTitle:NSLocalizedString(@"Send message", nil)
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action)
+                                   {
+                                       NSLog(@"Send message");
+                                       //                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                                       //                ChatUser *member = [[ChatUser alloc] init];
+                                       //                member.userId = memberId;
+                                       //                [ChatUtil moveToConversationViewWithUser:member sendMessage:nil];
+                                   }];
     
     
     if (remove) {
@@ -123,7 +116,7 @@
 
 -(void)removeMember:(NSString *)memberId {
     ChatManager *chat = [ChatManager getInstance];
-//    Firebase *member_ref =
+    //    Firebase *member_ref =
     [chat removeMember:memberId fromGroup:self.group withCompletionBlock:^(NSError *error) {
         if (error) {
             NSLog(@"Member %@ not removed. Error %@", memberId, error);
@@ -140,15 +133,15 @@
 }
 
 -(void)goToProfileOf:(NSString *)userId {
-//    UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-//    UINavigationController *profileNC = [profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
-//    SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[profileNC viewControllers] objectAtIndex:0];
-//    profileVC.applicationContext = self.applicationContext;
-//    ChatUser *user = [[ChatUser alloc] init];
-//    user.userId = userId;
-//    profileVC.otherUser = user;
-//    NSLog(@"self.profileVC.otherUser %@", profileVC.otherUser.userId);
-//    [self.navigationController pushViewController:profileVC animated:YES];
+    //    UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+    //    UINavigationController *profileNC = [profileSB instantiateViewControllerWithIdentifier:@"navigationProfile"];
+    //    SHPHomeProfileTVC *profileVC = (SHPHomeProfileTVC *)[[profileNC viewControllers] objectAtIndex:0];
+    //    profileVC.applicationContext = self.applicationContext;
+    //    ChatUser *user = [[ChatUser alloc] init];
+    //    user.userId = userId;
+    //    profileVC.otherUser = user;
+    //    NSLog(@"self.profileVC.otherUser %@", profileVC.otherUser.userId);
+    //    [self.navigationController pushViewController:profileVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -188,11 +181,11 @@
         NSLog(@"USER %@ IMAGE NOT CACHED. DOWNLOADING...", user_id);
         [self startIconDownload:user_id forIndexPath:indexPath];
         // if a download is deferred or in progress, return a placeholder image
-        UIImage *circled = [SHPImageUtil circleImage:[UIImage imageNamed:@"avatar"]];
+        UIImage *circled = [ChatUtil circleImage:[UIImage imageNamed:@"avatar"]];
         image_view.image = circled;
     } else {
         //NSLog(@"USER IMAGE CACHED. %@", conversation.conversWith);
-        image_view.image = [SHPImageUtil circleImage:user_image];
+        image_view.image = [ChatUtil circleImage:user_image];
         // update too old images
         double now = [[NSDate alloc] init].timeIntervalSince1970;
         double reload_timer_secs = 30;//86400; // one day
@@ -230,55 +223,55 @@
 
 - (void)startIconDownload:(NSString *)username forIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *imageURL = @""; //[SHPUser photoUrlByUsername:username];
-    NSLog(@"START DOWNLOADING IMAGE: %@ imageURL: %@", username, imageURL);
-    SHPImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:imageURL];
-    //    NSLog(@"IconDownloader..%@", iconDownloader);
-    if (iconDownloader == nil)
-    {
-        iconDownloader = [[SHPImageDownloader alloc] init];
-        NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-        [options setObject:indexPath forKey:@"indexPath"];
-        iconDownloader.options = options;
-        iconDownloader.imageURL = imageURL;
-        iconDownloader.delegate = self;
-        [self.imageDownloadsInProgress setObject:iconDownloader forKey:imageURL];
-        [iconDownloader startDownload];
-    }
+    //    NSString *imageURL = @""; //[SHPUser photoUrlByUsername:username];
+    //    NSLog(@"START DOWNLOADING IMAGE: %@ imageURL: %@", username, imageURL);
+    //    SHPImageDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:imageURL];
+    //    //    NSLog(@"IconDownloader..%@", iconDownloader);
+    //    if (iconDownloader == nil)
+    //    {
+    //        iconDownloader = [[SHPImageDownloader alloc] init];
+    //        NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+    //        [options setObject:indexPath forKey:@"indexPath"];
+    //        iconDownloader.options = options;
+    //        iconDownloader.imageURL = imageURL;
+    //        iconDownloader.delegate = self;
+    //        [self.imageDownloadsInProgress setObject:iconDownloader forKey:imageURL];
+    //        [iconDownloader startDownload];
+    //    }
 }
 
-// callback for the icon loaded
-- (void)appImageDidLoad:(UIImage *)image withURL:(NSString *)imageURL downloader:(SHPImageDownloader *)downloader {
-    //    NSLog(@"+******** IMAGE AT URL: %@ DID LOAD: %@", imageURL, image);
-    if (!image) {
-        return;
-    }
-    //UIImage *circled = [SHPImageUtil circleImage:image];
-    [self.imageCache addImage:image withKey:imageURL];
-    NSDictionary *options = downloader.options;
-    NSIndexPath *indexPath = [options objectForKey:@"indexPath"];
-    //    NSLog(@"+******** appImageDidLoad row: %ld", indexPath.row);
-    
-    // if the cell for the image is visible updates the cell
-    NSArray *indexes = [self.tableView indexPathsForVisibleRows];
-    for (NSIndexPath *index in indexes) {
-        if (index.row == indexPath.row && index.section == indexPath.section) {
-            UITableViewCell *cell = [(UITableView *)self.tableView cellForRowAtIndexPath:index];
-            UIImageView *iv = (UIImageView *)[cell viewWithTag:10];
-            iv.image = [SHPImageUtil circleImage:image];
-        }
-    }
-    [self.imageDownloadsInProgress removeObjectForKey:imageURL];
-}
+//// callback for the icon loaded
+//- (void)appImageDidLoad:(UIImage *)image withURL:(NSString *)imageURL downloader:(SHPImageDownloader *)downloader {
+//    //    NSLog(@"+******** IMAGE AT URL: %@ DID LOAD: %@", imageURL, image);
+//    if (!image) {
+//        return;
+//    }
+//    //UIImage *circled = [SHPImageUtil circleImage:image];
+//    [self.imageCache addImage:image withKey:imageURL];
+//    NSDictionary *options = downloader.options;
+//    NSIndexPath *indexPath = [options objectForKey:@"indexPath"];
+//    //    NSLog(@"+******** appImageDidLoad row: %ld", indexPath.row);
+//
+//    // if the cell for the image is visible updates the cell
+//    NSArray *indexes = [self.tableView indexPathsForVisibleRows];
+//    for (NSIndexPath *index in indexes) {
+//        if (index.row == indexPath.row && index.section == indexPath.section) {
+//            UITableViewCell *cell = [(UITableView *)self.tableView cellForRowAtIndexPath:index];
+//            UIImageView *iv = (UIImageView *)[cell viewWithTag:10];
+//            iv.image = [SHPImageUtil circleImage:image];
+//        }
+//    }
+//    [self.imageDownloadsInProgress removeObjectForKey:imageURL];
+//}
 
 -(void)terminatePendingImageConnections {
-    NSLog(@"''''''''''''''''''''''   Terminate all pending IMAGE connections...");
-    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
-    //    NSLog(@"total downloads: %d", allDownloads.count);
-    for(SHPImageDownloader *obj in allDownloads) {
-        obj.delegate = nil;
-    }
-    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    //    NSLog(@"''''''''''''''''''''''   Terminate all pending IMAGE connections...");
+    //    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    //    //    NSLog(@"total downloads: %d", allDownloads.count);
+    //    for(SHPImageDownloader *obj in allDownloads) {
+    //        obj.delegate = nil;
+    //    }
+    //    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
 }
 
 // ******************
@@ -324,3 +317,4 @@
 }
 
 @end
+
