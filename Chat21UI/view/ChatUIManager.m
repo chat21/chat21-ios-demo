@@ -12,6 +12,8 @@
 #import "ChatManager.h"
 #import "NotificationAlertView.h"
 #import "ChatSelectUserLocalVC.h"
+#import "ChatCreateGroupVC.h"
+#import "ChatGroup.h"
 
 static ChatUIManager *sharedInstance = nil;
 static NotificationAlertView *notificationAlertInstance = nil;
@@ -42,7 +44,7 @@ static NotificationAlertView *notificationAlertInstance = nil;
     messagesVc.isModal = YES;
     messagesVc.dismissModalCallback = completionBlock;
     [vc presentViewController:nc animated:YES completion:^{
-        //
+        // NO CALLBACK AFTER PRESENT ACTION COMPLETION
     }];
 }
 
@@ -65,13 +67,28 @@ static NotificationAlertView *notificationAlertInstance = nil;
 //    selectContactVC.isModal = YES;
     selectContactVC.completionCallback = completionBlock;
     [vc presentViewController:nc animated:YES completion:^{
-        // NO CALLBACK AFTER PRESENT ACTION
+        // NO CALLBACK AFTER PRESENT ACTION COMPLETION
     }];
 }
 
 -(UINavigationController *)selectContactViewController {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Chat" bundle:nil];
     UINavigationController *NC = [sb instantiateViewControllerWithIdentifier:@"SelectContactNavController"];
+    return NC;
+}
+
+-(void)openCreateGroupViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)(ChatGroup *group, BOOL canceled))completionBlock {
+    UINavigationController * nc = [self createGroupViewController];
+    ChatCreateGroupVC *VC = (ChatCreateGroupVC *)[[nc viewControllers] objectAtIndex:0];
+    VC.completionCallback = completionBlock;
+    [vc presentViewController:nc animated:YES completion:^{
+        // NO CALLBACK AFTER PRESENT ACTION COMPLETION
+    }];
+}
+
+-(UINavigationController *)createGroupViewController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Chat" bundle:nil];
+    UINavigationController *NC = [sb instantiateViewControllerWithIdentifier:@"CreateGroupNavController"];
     return NC;
 }
 

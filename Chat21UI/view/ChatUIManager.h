@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 @class ChatUser;
 @class ChatMessagesVC;
+@class ChatGroup;
 
 @interface ChatUIManager : NSObject
 
@@ -19,9 +20,11 @@
 -(void)openConversationsViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock;
 -(void)openConversationMessagesViewAsModalWith:(ChatUser *)recipient viewController:(UIViewController *)vc withCompletionBlock:(void (^)())completionBlock;
 -(void)openSelectContactViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)(ChatUser *contact, BOOL canceled))completionBlock;
+-(void)openCreateGroupViewAsModal:(UIViewController *)vc withCompletionBlock:(void (^)(ChatGroup *group, BOOL canceled))completionBlock;
 -(UINavigationController *)selectContactViewController;
 -(UINavigationController *)conversationsViewController;
 -(UINavigationController *)messagesViewController;
+-(UINavigationController *)createGroupViewController;
 
 // this methods work only with a tabbed application and Chat-Info.plist > tabbar-index property correctly configured to the tab index containing the ConversationsView
 +(void)moveToConversationViewWithUser:(ChatUser *)user;

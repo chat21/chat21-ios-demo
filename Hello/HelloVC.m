@@ -96,17 +96,7 @@
         else {
             NSLog(@"Selected contact: %@/%@", contact.fullname, contact.userId);
             NSString *msg = [[NSString alloc] initWithFormat:@"You selected: %@", contact.fullname];
-            UIAlertController *view = [UIAlertController
-                                       alertControllerWithTitle:msg
-                                       message:nil
-                                       preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *confirm = [UIAlertAction
-                                      actionWithTitle:@"OK"
-                                      style:UIAlertActionStyleDefault
-                                      handler:nil];
-            [view addAction:confirm];
-            [self presentViewController:view animated:YES completion:nil];
+            [self alert:msg];
         }
     }];
 }
@@ -126,5 +116,18 @@
     }];
 }
 
+-(void)alert:(NSString *)msg {
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:msg
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirm = [UIAlertAction
+                              actionWithTitle:@"OK"
+                              style:UIAlertActionStyleDefault
+                              handler:nil];
+    [view addAction:confirm];
+    [self presentViewController:view animated:YES completion:nil];
+}
 
 @end

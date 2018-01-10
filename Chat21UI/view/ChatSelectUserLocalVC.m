@@ -7,7 +7,6 @@
 //
 
 #import "ChatSelectUserLocalVC.h"
-#import "ChatModalCallerDelegate.h"
 #import "ChatImageCache.h"
 #import "ChatImageWrapper.h"
 #import "ChatGroup.h"
@@ -339,9 +338,6 @@
     NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
     [options setObject:selectedUser forKey:@"user"];
     [self.view endEditing:YES];
-    if (self.modalCallerDelegate) {
-        [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
-    }
     if (self.completionCallback) {
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionCallback(selectedUser, NO);
@@ -459,9 +455,6 @@
 - (IBAction)CancelAction:(id)sender {
     [self disposeResources];
     [self.view endEditing:YES];
-    if (self.modalCallerDelegate) {
-        [self.modalCallerDelegate setupViewController:self didCancelSetupWithInfo:nil];
-    }
     if (self.completionCallback) {
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionCallback(nil, YES);

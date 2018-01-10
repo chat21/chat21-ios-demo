@@ -213,7 +213,7 @@
         NSLog(@"CLASS %@", [[[navigationController viewControllers] objectAtIndex:0] class]);
         ChatSelectUserLocalVC *vc = (ChatSelectUserLocalVC *)[[navigationController viewControllers] objectAtIndex:0];
         vc.group = self.group;
-        vc.modalCallerDelegate = self;
+//        vc.modalCallerDelegate = self;
     }
 }
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>groups-mode</key>
-	<false/>
+	<true/>
 	<key>app-id</key>
 	<string>tilechat</string>
 	<key>tabbar-index</key>

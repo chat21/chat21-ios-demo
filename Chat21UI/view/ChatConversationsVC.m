@@ -4,7 +4,6 @@
 //
 //  Created by Andrea Sponziello on 07/11/14.
 //
-//
 
 #import "ChatConversationsVC.h"
 #import "ChatConversation.h"
@@ -724,16 +723,16 @@
         vc.attributesToSendAsChatOpens = self.selectedRecipientAttributesToSend;
         [self resetSelectedConversationStatus];
     }
-    else if ([[segue identifier] isEqualToString:@"SelectUser"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        ChatSelectUserLocalVC *vc = (ChatSelectUserLocalVC *)[[navigationController viewControllers] objectAtIndex:0];
-        vc.modalCallerDelegate = self;
-    }
+//    else if ([[segue identifier] isEqualToString:@"SelectUser"]) {
+//        UINavigationController *navigationController = [segue destinationViewController];
+//        ChatSelectUserLocalVC *vc = (ChatSelectUserLocalVC *)[[navigationController viewControllers] objectAtIndex:0];
+//        vc.modalCallerDelegate = self;
+//    }
 //    else if ([[segue identifier] isEqualToString:@"CreateGroup"]) {
 //        NSLog(@"CreateGroup");
-//        NSString *newGroupId = [[ChatManager getInstance] newGroupId];
-//        [self.applicationContext setVariable:@"newGroupId" withValue:newGroupId];
-//        NSLog(@"Creating group with ID: %@", newGroupId);
+////        NSString *newGroupId = [[ChatManager getInstance] newGroupId];
+////        [self.applicationContext setVariable:@"newGroupId" withValue:newGroupId];
+////        NSLog(@"Creating group with ID: %@", newGroupId);
 //        UINavigationController *navigationController = [segue destinationViewController];
 //        SHPChatCreateGroupVC *vc = (SHPChatCreateGroupVC *)[[navigationController viewControllers] objectAtIndex:0];
 //        vc.modalCallerDelegate = self;
@@ -789,8 +788,17 @@
 //}
 
 - (IBAction)newGroupAction:(id)sender {
-    NSLog(@"Nuovo gruppo");
+    NSLog(@"New Group Action");
 //    [self performSegueWithIdentifier:@"CreateGroup" sender:self];
+    [[ChatUIManager getInstance] openCreateGroupViewAsModal:self withCompletionBlock:^(ChatGroup *group, BOOL canceled) {
+        if (canceled) {
+            NSLog(@"Create group canceled");
+        }
+        else {
+//            NSLog(@"Selected contact: %@/%@", contact.fullname, contact.userId);
+//            [self openConversationWithUser:contact];
+        }
+    }];
 }
 
 - (IBAction)groupsAction:(id)sender {
@@ -946,65 +954,66 @@
 
 - (void)setupViewController:(UIViewController *)controller didFinishSetupWithInfo:(NSDictionary *)setupInfo {
     NSLog(@"setupViewController...");
-    if([controller isKindOfClass:[ChatSelectUserLocalVC class]])
-    {
-        ChatUser *user = nil;
-        if ([setupInfo objectForKey:@"user"]) {
-            user = [setupInfo objectForKey:@"user"];
-            NSLog(@">>>>>> SELECTED: user %@", user.userId);
-        }
-        [self dismissViewControllerAnimated:YES completion:^{
-            if (user) {
-//                self.selectedRecipientFullname = user.fullname;
-                [self openConversationWithUser:user];
-            }
-        }];
-    }
-    if([controller isKindOfClass:[ChatSelectGroupLocalTVC class]])
-    {
-        ChatGroup *group = nil;
-        if ([setupInfo objectForKey:@"group"]) {
-            group = [setupInfo objectForKey:@"group"];
-            NSLog(@">>>>>> SELECTED: group %@", group.groupId);
-        }
-        [self dismissViewControllerAnimated:YES completion:^{
-            if (group) {
-                self.selectedGroupId = group.groupId;
-                [self openConversationWithUser:nil orGroup:group.groupId sendMessage:nil attributes:nil];
-            }
-        }];
-    }
-    else if([controller isKindOfClass:[ChatSelectGroupMembersLocal class]])
-    {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        NSMutableArray<ChatUser *> *groupMembers = (NSMutableArray<ChatUser *> *)[setupInfo objectForKey:@"groupMembers"];
-        NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
-        for (ChatUser *u in groupMembers) {
-            [membersIDs addObject:u.userId];
-        }
-        // adding group's owner to members
-        [membersIDs addObject:self.me.userId];
-        NSString *groupId = (NSString *)[setupInfo objectForKey:@"newGroupId"];
-        NSLog(@"New Group ID: %@", groupId);
-        NSString *groupName = (NSString *)[setupInfo objectForKey:@"groupName"];
-        NSLog(@"New Group Name: %@", groupName);
-        ChatManager *chat = [ChatManager getInstance];
-        [chat createGroup:groupId name:groupName owner:self.me.userId members:membersIDs];
-    }
+//    if([controller isKindOfClass:[ChatSelectUserLocalVC class]])
+//    {
+//        ChatUser *user = nil;
+//        if ([setupInfo objectForKey:@"user"]) {
+//            user = [setupInfo objectForKey:@"user"];
+//            NSLog(@">>>>>> SELECTED: user %@", user.userId);
+//        }
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            if (user) {
+////                self.selectedRecipientFullname = user.fullname;
+//                [self openConversationWithUser:user];
+//            }
+//        }];
+//    }
+//    if([controller isKindOfClass:[ChatSelectGroupLocalTVC class]])
+//    {
+//        ChatGroup *group = nil;
+//        if ([setupInfo objectForKey:@"group"]) {
+//            group = [setupInfo objectForKey:@"group"];
+//            NSLog(@">>>>>> SELECTED: group %@", group.groupId);
+//        }
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            if (group) {
+//                self.selectedGroupId = group.groupId;
+//                [self openConversationWithUser:nil orGroup:group.groupId sendMessage:nil attributes:nil];
+//            }
+//        }];
+//    }
+//    else if([controller isKindOfClass:[ChatSelectGroupMembersLocal class]])
+//    {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        NSMutableArray<ChatUser *> *groupMembers = (NSMutableArray<ChatUser *> *)[setupInfo objectForKey:@"groupMembers"];
+//        NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
+//        for (ChatUser *u in groupMembers) {
+//            [membersIDs addObject:u.userId];
+//        }
+//        // adding group's owner to members
+//        [membersIDs addObject:self.me.userId];
+//        NSString *groupId = (NSString *)[setupInfo objectForKey:@"newGroupId"];
+//        NSLog(@"New Group ID: %@", groupId);
+//        NSString *groupName = (NSString *)[setupInfo objectForKey:@"groupName"];
+//        NSLog(@"New Group Name: %@", groupName);
+//        ChatManager *chat = [ChatManager getInstance];
+//        [chat createGroup:groupId name:groupName owner:self.me.userId members:membersIDs];
+//    }
 }
 
 - (void)setupViewController:(UIViewController *)controller didCancelSetupWithInfo:(NSDictionary *)setupInfo {
-    if([controller isKindOfClass:[ChatSelectUserLocalVC class]])
-    {
-        NSLog(@"User selection Canceled.");
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+//    if([controller isKindOfClass:[ChatSelectUserLocalVC class]])
+//    {
+//        NSLog(@"User selection Canceled.");
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
 //    else if([controller isKindOfClass:[SHPChatCreateGroupVC class]])
 //    {
 //        NSLog(@"Group creation canceled.");
 //        [self dismissViewControllerAnimated:YES completion:nil];
 //    }
-    else if([controller isKindOfClass:[ChatSelectGroupLocalTVC class]])
+//    else
+    if([controller isKindOfClass:[ChatSelectGroupLocalTVC class]])
     {
         NSLog(@"Group selection canceled.");
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -1040,7 +1049,16 @@
 }
 
 - (IBAction)writeToAction:(id)sender {
-    [self performSegueWithIdentifier:@"SelectUser" sender:self];
+//    [self performSegueWithIdentifier:@"SelectUser" sender:self];
+    [[ChatUIManager getInstance] openSelectContactViewAsModal:self withCompletionBlock:^(ChatUser *contact, BOOL canceled) {
+        if (canceled) {
+            NSLog(@"Select Contact canceled");
+        }
+        else {
+            NSLog(@"Selected contact: %@/%@", contact.fullname, contact.userId);
+            [self openConversationWithUser:contact];
+        }
+    }];
 }
 
 //- (IBAction)helpAction:(id)sender {
