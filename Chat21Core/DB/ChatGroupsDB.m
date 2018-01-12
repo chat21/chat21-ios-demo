@@ -50,7 +50,7 @@ static ChatGroupsDB *sharedInstance = nil;
     // Build the path to the database file
     NSString *db_name = nil;
     if (name) {
-        db_name = [[NSString alloc] initWithFormat:@"groups_%@.db", name];
+        db_name = [[NSString alloc] initWithFormat:@"%@_groups.db", name];
     }
     databasePath = [[NSString alloc] initWithString:
                     [docsDir stringByAppendingPathComponent: db_name]];

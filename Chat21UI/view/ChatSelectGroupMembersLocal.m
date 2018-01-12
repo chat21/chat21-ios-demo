@@ -15,7 +15,8 @@
 #import "ChatDB.h"
 #import "ChatUser.h"
 #import "ChatManager.h"
-#import "ContactsDB.h"
+#import "ChatContactsDB.h"
+#import "ChatGroup.h"
 
 @implementation ChatSelectGroupMembersLocal
 
@@ -36,11 +37,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-//    [self restoreMembers];
-    //    NSLog(@"Current RECENTS...");
-    //    for (SHPUser *u in self.members) {
-    //        NSLog(@"recent-user %@", u.username);
-    //    }
+    self.members = [[NSMutableArray alloc] init];
     self.createButton.title = NSLocalizedString(@"create", nil);
     self.searchBar.placeholder = NSLocalizedString(@"contact name", nil);
     
@@ -321,7 +318,7 @@
     NSString *text = self.searchBar.text;
     self.textToSearch = [self prepareTextToSearch:text];
     NSLog(@"timer on userPaused: searching for %@", self.textToSearch);
-    ContactsDB *db = [ContactsDB getSharedInstance];
+    ChatContactsDB *db = [ChatContactsDB getSharedInstance];
     [db searchContactsByFullnameSynchronized:self.textToSearch completion:^(NSArray<ChatUser *> *users) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"USERS LOADED! %lu", (unsigned long)users.count);
@@ -413,8 +410,13 @@
 // dismiss modal
 
 - (IBAction)CancelAction:(id)sender {
-    NSLog(@"dismiss %@", self.modalCallerDelegate);
-    [self.modalCallerDelegate setupViewController:self didCancelSetupWithInfo:nil];
+//    NSLog(@"dismiss %@", self.modalCallerDelegate);
+//    [self.modalCallerDelegate setupViewController:self didCancelSetupWithInfo:nil];
+    if (self.completionCallback) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.completionCallback(nil, YES);
+        }];
+    }
 }
 
 // IMAGE HANDLING
@@ -496,9 +498,10 @@
 //}
 
 -(void)addGroupMember:(ChatUser *)user {
-    NSLog(@"............ADDING.... member %@/%@", user.userId, user.fullname);
+    NSLog(@"Adding member: %@/%@", user.userId, user.fullname);
     [self.members addObject:user];
     [self enableCreateButton];
+    [self.tableView reloadData];
 }
 
 -(BOOL)userIsMember:(ChatUser *) user {
@@ -589,6 +592,24 @@
 //    
 //    [self.view endEditing:YES]; // or [self.searchBar resignFirstResponder];
 //    [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
+    if (self.completionCallback) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            ChatGroup *group = [[ChatGroup alloc] init];
+            group.groupId = [[ChatManager getInstance] newGroupId];
+            NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
+            for (ChatUser *u in self.members) {
+                [membersIDs addObject:u.userId];
+            }
+            NSString *me = [ChatManager getInstance].loggedUser.userId;
+            [membersIDs addObject:me];
+            group.members = [ChatGroup membersArray2Dictionary:membersIDs];
+            group.name = self.groupName;
+            group.owner = me;
+            group.user = me;
+            group.createdOn = [[NSDate alloc] init];
+            self.completionCallback(group, NO);
+        }];
+    }
 }
 
 @end

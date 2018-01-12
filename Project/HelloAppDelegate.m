@@ -18,6 +18,8 @@
 #import "ChatUser.h"
 #import "HelloChatUtil.h"
 #import "ChatUIManager.h"
+#import "ChatGroup.h"
+#import "ChatMessage.h"
 
 #import <sys/utsname.h>
 @import Firebase;
@@ -78,7 +80,7 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         UITabBarController *tabController = (UITabBarController *)window.rootViewController;
         NSMutableArray *controllers = [[tabController viewControllers] mutableCopy];
-        UINavigationController *conversationsNC = [[ChatUIManager getInstance] conversationsViewController];
+        UINavigationController *conversationsNC = [[ChatUIManager getInstance] getConversationsViewController];
         controllers[1] = conversationsNC;
         [tabController setViewControllers:controllers];
         ChatConversationsVC *conversationsVC = conversationsNC.viewControllers[0];
@@ -273,18 +275,22 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
     if ([category isEqualToString:@"OPEN_MESSAGE_LIST_ACTIVITY"]) {
         NSString *senderid = [userInfo objectForKey:@"sender"];
         NSString *sender_fullname = [userInfo objectForKey:@"sender_fullname"];
-        NSString *groupid = [userInfo objectForKey:@"group_id"];
-//        NSString *conversationid = [userInfo objectForKey:@"conversationId"];
+//        NSString *groupid = [userInfo objectForKey:@"group_id"];
+        NSString *recipientid = [userInfo objectForKey:@"recipient"];
+        NSString *recipient_fullname = [userInfo objectForKey:@"recipient_fullname"];
+        NSString *channel_type = [userInfo objectForKey:@"channel_type"];
+        
         NSString *badge = [[userInfo objectForKey:NOTIFICATION_APS_KEY] objectForKey:NOTIFICATION_BADGE_KEY];
         NSLog(@"==>Sender: %@", senderid);
-//        NSLog(@"==>ConversationId: %@", conversationid);
         NSLog(@"==>Badge: %@", badge);
-        NSLog(@"==>group_id: %@", groupid);
         
-        if (groupid) {
-//            [DocChatUtil firebaseAuth:self.applicationContext.loggedUser.username password:self.applicationContext.loggedUser.password completion:^(NSError *error) {
-                [ChatUIManager moveToConversationViewWithGroup:groupid];
-//            }];
+//        if (groupid) {
+        if ([channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
+            ChatGroup *group = [[ChatGroup alloc] init];
+            group.name = recipient_fullname;
+            group.groupId = recipientid;
+//            [ChatUIManager moveToConversationViewWithGroup:groupid];
+            [ChatUIManager moveToConversationViewWithGroup:group];
         }
         else {
             NSString *trimmedSender = [senderid stringByTrimmingCharactersInSet:

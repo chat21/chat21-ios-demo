@@ -51,12 +51,11 @@ static ChatDB *sharedInstance = nil;
 //    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    docsDir = [dirPaths lastObject];
     NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSLog(@"Messages DB urlPath: %@", urlPath);
     docsDir = urlPath.path;
     // Build the path to the database file
     NSString *db_name = nil;
     if (name) {
-        db_name = [[NSString alloc] initWithFormat:@"%@.db", name];
+        db_name = [[NSString alloc] initWithFormat:@"%@_chat.db", name];
     }
     databasePath = [[NSString alloc] initWithString:
                     [docsDir stringByAppendingPathComponent: db_name]];
@@ -68,121 +67,82 @@ static ChatDB *sharedInstance = nil;
     // if you add another table or change an existing one you must (for the moment) drop the DB
 //    [self drop_database];
     
+//    if ([filemgr fileExistsAtPath: databasePath ] == NO) {
+//        NSLog(@"Database %@ not exists. Creating...", databasePath);
+//        const char *dbpath = [databasePath UTF8String];
+    const char *dbpath = [databasePath UTF8String];
+    
     if ([filemgr fileExistsAtPath: databasePath ] == NO) {
-        NSLog(@"Database %@ not exists. Creating...", databasePath);
-        const char *dbpath = [databasePath UTF8String];
-        if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
+        if (self.logQuery) {NSLog(@"Database %@ not exists. Creating...", databasePath);}
+        int result;
+        result = sqlite3_open_v2(dbpath, &database, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, NULL);
+        if (result == SQLITE_OK) {
             char *errMsg;
-            
             if (self.logQuery) {NSLog(@"**** CREATING TABLE MESSAGES...");}
             const char *sql_stmt_messages =
-            "create table if not exists messages (messageId text primary key, conversationId text, text_body text, sender text, sender_fullname text, recipient text, status integer, timestamp real, type text, attributes text)";
+            "create table if not exists messages (messageId text primary key, conversationId text, text_body text, sender text, sender_fullname text, recipient text, status integer, timestamp real, type text, channel_type text, attributes text)";
             if (sqlite3_exec(database, sql_stmt_messages, NULL, NULL, &errMsg) != SQLITE_OK) {
                 isSuccess = NO;
-                NSLog(@"Failed to create table messages");
+                if (self.logQuery) {NSLog(@"Failed to create table messages");}
             }
             else {
-                NSLog(@"Table messages successfully created.");
+                if (self.logQuery) {NSLog(@"Table messages successfully created.");}
             }
-            
-            NSLog(@"**** CREATING TABLE CONVERSATIONS...");
+            if (self.logQuery) {NSLog(@"**** CREATING TABLE CONVERSATIONS...");}
             const char *sql_stmt_conversations =
-            "create table if not exists conversations (conversationId text primary key, user text, sender text, sender_fullname, recipient text, last_message_text text, convers_with text, convers_with_fullname text, group_id text, group_name text, is_new integer, timestamp real, status integer)";
+//            "create table if not exists conversations (conversationId text primary key, user text, sender text, sender_fullname, recipient text, last_message_text text, convers_with text, convers_with_fullname text, group_id text, group_name text, is_new integer, timestamp real, status integer, type text, channel_type text)";
+            "create table if not exists conversations (conversationId text primary key, user text, sender text, sender_fullname, recipient text, recipient_fullname text, last_message_text text, convers_with text, convers_with_fullname text, is_new integer, timestamp real, status integer, channel_type text)";
             if (sqlite3_exec(database, sql_stmt_conversations, NULL, NULL, &errMsg) != SQLITE_OK) {
                 isSuccess = NO;
-                NSLog(@"Failed to create table conversations");
+                if (self.logQuery) {NSLog(@"Failed to create table conversations");}
             }
             else {
-                NSLog(@"Table conversations successfully created.");
+                if (self.logQuery) {NSLog(@"Table conversations successfully created.");}
             }
-            
-//            NSLog(@"**** CREATING TABLE GROUPS...");
-//            const char *sql_stmt_groups =
-//            "create table if not exists groups (groupId text primary key, user text, groupName text, owner text, members text, createdOn real)";
-//            if (sqlite3_exec(database, sql_stmt_groups, NULL, NULL, &errMsg) != SQLITE_OK) {
-//                isSuccess = NO;
-//                NSLog(@"Failed to create table groups");
-//            }
-//            else {
-//                NSLog(@"Table groups successfully created.");
-//            }
-            
-//            NSLog(@"**** CREATING TABLE CONTACTS...");
-//            const char *sql_stmt_contacts =
-//            "create table if not exists contacts (contactId text primary key, firstname text, lastname text, fullname text, email text, imageurl text)";
-//            if (sqlite3_exec(database, sql_stmt_contacts, NULL, NULL, &errMsg) != SQLITE_OK) {
-//                isSuccess = NO;
-//                NSLog(@"Failed to create table contacts");
-//            }
-//            else {
-//                NSLog(@"Table contacts successfully created.");
-//            }
-            
             sqlite3_close(database);
             return  isSuccess;
         }
         else {
             isSuccess = NO;
-            NSLog(@"Failed to open/create database");
+            if (self.logQuery) {NSLog(@"Failed to open/create database");}
         }
     } else {
-        NSLog(@"Database %@ already exists.", databasePath);
+        if (self.logQuery) {NSLog(@"Database %@ already exists. Opening.", databasePath);}
+        if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
+            return  isSuccess;
+        }
+        else {
+            isSuccess = NO;
+            if (self.logQuery) {NSLog(@"Failed to open database.");}
+        }
     }
     return isSuccess;
 }
 
 // only for test
 -(void)drop_database {
-    NSLog(@"**** YOU DROPPED THE CHAT ARCHIVE: %@", databasePath);
+    if (self.logQuery) {NSLog(@"**** YOU DROPPED THE CHAT ARCHIVE: %@", databasePath);}
     NSFileManager *filemgr = [NSFileManager defaultManager];
     if ([filemgr fileExistsAtPath: databasePath ] == YES) {
-        NSLog(@"**** DROP DATABASE %@", databasePath);
-        NSLog(@"**** DATABASE DROPPED.");
+        if (self.logQuery) {NSLog(@"**** DROPPED DATABASE %@", databasePath);}
         NSError *error;
         [filemgr removeItemAtPath:databasePath error:&error];
         if (error){
-            NSLog(@"%@", error);
+            if (self.logQuery) {NSLog(@"%@", error);}
         }
     }
 }
 
-//- (BOOL)saveOrUpdateMessage:(ChatMessage *)message {
-//    const char *dbpath = [databasePath UTF8String];
-//    if (sqlite3_open(dbpath, &database) == SQLITE_OK)
-//    {
-//        NSString *querySQL = [NSString stringWithFormat:
-//                              @"select messageId from messages where messageId = \"%@\"", message.messageId];
-//        const char *query_stmt = [querySQL UTF8String];
-//        if (sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK) {
-//            if (sqlite3_step(statement) == SQLITE_ROW) {
-//                NSString *messageId = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-//                NSLog(@"*** MESSAGE FOUND. UPDATING: %@", messageId);
-//                [self updateMessage:message];
-//            } else {
-//                NSLog(@"*** MESSAGE NOT FOUND. INSERTING: %@", message.messageId);
-//                [self insertMessage:message];
-//            }
-//            sqlite3_reset(statement);
-//        } else {
-//            NSLog(@"**** PROBLEMS WHILE QUERYING MESSAGES...");
-//        }
-//    }
-//}
-
 -(BOOL)insertMessageIfNotExists:(ChatMessage *)message {
     if (!message.conversationId) {
-        NSLog(@"ERROR: CAN'T INSERT A MESSAGE WITHOUT A CONVERSATION ID. MESSAGE ID: %@ MESSAGE TEXT: %@ MESSAGE CONVID: %@", message.messageId, message.text, message.conversationId);
+        if (self.logQuery) {NSLog(@"ERROR: CAN'T INSERT A MESSAGE WITHOUT A CONVERSATION ID. MESSAGE ID: %@ MESSAGE TEXT: %@ MESSAGE CONVID: %@", message.messageId, message.text, message.conversationId);}
         return false;
     }
-    
-    if (!message.messageId) {
-        NSLog(@"ERROR: CAN'T INSERT A MESSAGE WITHOUT THE ID. MESSAGE ID: %@ MESSAGE TEXT: %@ MESSAGE CONVID: %@", message.messageId, message.text, message.conversationId);
+    else if (!message.messageId) {
+        if (self.logQuery) {NSLog(@"ERROR: CAN'T INSERT A MESSAGE WITHOUT THE ID. MESSAGE ID: %@ MESSAGE TEXT: %@ MESSAGE CONVID: %@", message.messageId, message.text, message.conversationId);}
         return false;
     }
-    
-//    NSLog(@"Inserting message: %@ - %@", message.messageId, message.text);
     ChatMessage *message_is_present = [self getMessageById:message.messageId];
-//    NSLog(@"Present? %@", message_is_present.messageId);
     if (message_is_present) {
         NSLog(@"Present. Not inserting.");
         return NO;
@@ -191,20 +151,10 @@ static ChatDB *sharedInstance = nil;
 }
 
 -(BOOL)insertMessage:(ChatMessage *)message {
-    NSLog(@"**** insert query for message %@ - %@", message.messageId, message.text);
-    NSLog(@"__message.attributes %@", message.attributes);
     const char *dbpath = [databasePath UTF8String];
     double timestamp = (double)[message.date timeIntervalSince1970]; // NSTimeInterval is a (double)
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
-        
-        
-        
-//        NSString *insertSQL = [NSString stringWithFormat:@"insert into messages (messageId, conversationId, sender, sender_fullname,  recipient, text_body, status, timestamp) values (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %d, %f)", message.messageId, message.conversationId, message.sender, message.senderFullname, message.recipient, message.text, message.status, timestamp];
-//        if (self.logQuery) {NSLog(@"**** QUERY:%@", insertSQL);}
-//        const char *insert_stmt = [insertSQL UTF8String];
-//        sqlite3_prepare_v2(database, insert_stmt,-1, &statement, NULL);
-
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into messages (messageId, conversationId, sender, sender_fullname,  recipient, text_body, status, timestamp, type, attributes) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
+        NSString *insertSQL = [NSString stringWithFormat:@"insert into messages (messageId, conversationId, sender, sender_fullname,  recipient, text_body, status, timestamp, type, channel_type, attributes) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
         if (self.logQuery) {NSLog(@"**** QUERY:%@", insertSQL);}
         sqlite3_prepare(database, [insertSQL UTF8String], -1, &statement, NULL);
         
@@ -217,29 +167,21 @@ static ChatDB *sharedInstance = nil;
         sqlite3_bind_int(statement, 7, message.status);
         sqlite3_bind_double(statement, 8, timestamp);
         sqlite3_bind_text(statement, 9, [message.mtype UTF8String], -1, SQLITE_TRANSIENT);
-        
+        sqlite3_bind_text(statement, 10, [message.channel_type UTF8String], -1, SQLITE_TRANSIENT);
         // convert attributes dictionary to JSON
         NSString * jsonAttributesAsString = nil;
         if (message.attributes) {
             NSError * err;
-            NSData * jsonData = [NSJSONSerialization dataWithJSONObject:message.attributes options:0 error:&err]; // options: NSJSONWritingPrettyPrinted
+            NSData * jsonData = [NSJSONSerialization dataWithJSONObject:message.attributes options:0 error:&err];
             jsonAttributesAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            NSLog(@"message.attributes converted to json string %@, err: %@", jsonAttributesAsString, err);
         }
-        sqlite3_bind_text(statement, 10, [jsonAttributesAsString UTF8String], -1, SQLITE_TRANSIENT);
-        
-//                               , message.messageId, message.conversationId, message.sender, message.senderFullname, message.recipient, message.text, message.status, timestamp];
-        
-//        const char *insert_stmt = [insertSQL UTF8String];
-//        sqlite3_prepare_v2(database, insert_stmt,-1, &statement, NULL);
-        
+        sqlite3_bind_text(statement, 11, [jsonAttributesAsString UTF8String], -1, SQLITE_TRANSIENT);
         if (sqlite3_step(statement) == SQLITE_DONE) {
             sqlite3_reset(statement);
             return YES;
         }
         else {
-            NSLog(@"Error on insert message.");
-            NSLog(@"Database returned error %d: %s", sqlite3_errcode(database), sqlite3_errmsg(database));
+            if (self.logQuery) {NSLog(@"Insert message, database error %d: %s", sqlite3_errcode(database), sqlite3_errmsg(database));}
             sqlite3_reset(statement);
             return NO;
         }
@@ -248,18 +190,13 @@ static ChatDB *sharedInstance = nil;
 }
 
 -(BOOL)updateMessage:(NSString *)messageId withStatus:(int)status {
-//    NSLog(@"**** update message %@ with status %d", messageId, status);
-//    ChatMessage *previous_msg = [self getMessageById:messageId]; // TEST ONLY QUERY
-//    NSLog(@"**** BEFORE MSG STATUS: %d", previous_msg.status);
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
         NSString *updateSQL = [NSString stringWithFormat:@"UPDATE messages SET status = %d WHERE messageId = \"%@\"", status, messageId];
-//        NSLog(@"**** QUERY:%@", updateSQL);
+        if (self.logQuery) {NSLog(@"**** QUERY:%@", updateSQL);}
         const char *update_stmt = [updateSQL UTF8String];
         sqlite3_prepare_v2(database, update_stmt,-1, &statement, NULL);
         if (sqlite3_step(statement) == SQLITE_DONE) {
-            ChatMessage *msg = [self getMessageById:messageId];
-            NSLog(@"**** AFTER MSG STATUS: %d", msg.status);
             sqlite3_reset(statement);
             return YES;
         }
@@ -271,15 +208,12 @@ static ChatDB *sharedInstance = nil;
     return NO;
 }
 
-static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversationId, sender, sender_fullname, recipient, text_body, status, timestamp, type, attributes from messages ";
+static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversationId, sender, sender_fullname, recipient, text_body, status, timestamp, type, channel_type, attributes from messages ";
 
 -(NSArray*)getAllMessages {
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
-        
-//        NSString *querySQL = [NSString stringWithFormat:@"select messageId, conversationId, sender, sender_fullname, recipient, text_body, status, timestamp, type, attributes from messages order by timestamp desc limit 40"];
-        
         NSString *querySQL = [NSString stringWithFormat:@"%@ order by timestamp desc limit 40", SELECT_FROM_MESSAGES_STATEMENT];
         if (self.logQuery) {NSLog(@"querySQL: %@", querySQL);}
         const char *query_stmt = [querySQL UTF8String];
@@ -301,9 +235,6 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
-        
-//        NSString *querySQL = [NSString stringWithFormat:@"select messageId, conversationId, sender, sender_fullname, recipient, text_body, status, timestamp, type, attributes FROM messages WHERE conversationId = \"%@\" order by timestamp desc limit %d,%d", conversationId, start, count];
-        
         NSString *querySQL = [NSString stringWithFormat:@"%@ WHERE conversationId = \"%@\" order by timestamp desc limit %d,%d", SELECT_FROM_MESSAGES_STATEMENT, conversationId, start, count];
         if (self.logQuery) {NSLog(@"querySQL: %@", querySQL);}
         const char *query_stmt = [querySQL UTF8String];
@@ -331,13 +262,10 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &database) == SQLITE_OK)
     {
-        
-//        NSString *querySQL = [NSString stringWithFormat: @"select messageId, conversationId, sender, sender_fullname, recipient, text_body, status, timestamp, type, attributes from messages where messageId = \"%@\"", messageId];
-        
         NSString *querySQL = [NSString stringWithFormat:@"%@ where messageId = \"%@\"",SELECT_FROM_MESSAGES_STATEMENT, messageId];
         if (self.logQuery) {NSLog(@"querySQL: %@", querySQL);}
         const char *query_stmt = [querySQL UTF8String];
-        if (sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK) {
+        if (sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK) { 
             while (sqlite3_step(statement) == SQLITE_ROW) {
                 message = [self messageFromStatement:statement];
             }
@@ -397,10 +325,16 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
         type = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 8)];
     }
     
+    NSString *channel_type = nil;
+    const char *channel_type_chars = (const char *) sqlite3_column_text(statement, 9);
+    if (channel_type_chars != NULL) {
+        channel_type = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)];
+    }
+    
     NSString *attributes_json = nil;
-    const char *attributes_json_chars = (const char *) sqlite3_column_text(statement, 9);
+    const char *attributes_json_chars = (const char *) sqlite3_column_text(statement, 10);
     if (attributes_json_chars != NULL) {
-        attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)];
+        attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 10)];
     }
     //NSString *attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)];
     NSMutableDictionary *attributes = nil;
@@ -413,7 +347,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
                                  options:kNilOptions
                                  error:&error];
     }
-    NSLog(@"*** MESSAGE FROM SQLITE:\nmessageId:%@\nconversationid:%@\nsender:%@\nrecipient:%@\ntext:%@\nstatus:%d\ntimestamp:%f", messageId, conversationId, sender, recipient, text, status, timestamp);
+    NSLog(@"MESSAGE DECODED:\nmessageId:%@\nconversationid:%@\nsender:%@\nrecipient:%@\ntext:%@\nstatus:%d\ntimestamp:%f\ntype:%@\nchannel_type:%@", messageId, conversationId, sender, recipient, text, status, timestamp, type, channel_type);
     ChatMessage *message = [[ChatMessage alloc] init];
     message.messageId = messageId;
     message.conversationId = conversationId;
@@ -422,6 +356,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.recipient = recipient;
     message.text = text;
     message.mtype = type;
+    message.channel_type = channel_type;
     message.attributes = attributes;
     message.status = status;
     message.date = [NSDate dateWithTimeIntervalSince1970:timestamp];
@@ -474,9 +409,21 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     double timestamp = (double)[conversation.date timeIntervalSince1970]; // NSTimeInterval is a (double)
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
         
-        NSLog(@">>>> Conversation groupID %@ and groupNAME %@", conversation.groupId, conversation.groupName);
-
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into conversations (conversationId, user, sender, sender_fullname, recipient, last_message_text, convers_with, convers_with_fullname, group_id, group_name, is_new, timestamp, status) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
+//        NSLog(@">>>> Conversation groupID %@ and groupNAME %@", conversation.groupId, conversation.groupName);
+        // conversationId
+        // user
+        // sender
+        // sender_fullname
+        // recipient
+        // recipient_fullname
+        // last_message_text
+        // convers_with
+        // convers_with_fullname
+        // is_new
+        // timestamp
+        // status
+        // channel_type
+        NSString *insertSQL = [NSString stringWithFormat:@"insert into conversations (conversationId, user, sender, sender_fullname, recipient, recipient_fullname, last_message_text, convers_with, convers_with_fullname, is_new, timestamp, status, channel_type) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
         
         if (self.logQuery) {NSLog(@"**** QUERY:%@", insertSQL);}
         
@@ -487,14 +434,14 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
         sqlite3_bind_text(statement, 3, [conversation.sender UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 4, [conversation.senderFullname UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 5, [conversation.recipient UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 6, [conversation.last_message_text UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 7, [conversation.conversWith UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 8, [conversation.conversWith_fullname UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 9, [conversation.groupId UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 10, [conversation.groupName UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_int(statement, 11, conversation.is_new);
-        sqlite3_bind_double(statement, 12, timestamp);
-        sqlite3_bind_int(statement, 13, conversation.status);
+        sqlite3_bind_text(statement, 6, [conversation.recipientFullname UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 7, [conversation.last_message_text UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 8, [conversation.conversWith UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 9, [conversation.conversWith_fullname UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(statement, 10, conversation.is_new);
+        sqlite3_bind_double(statement, 11, timestamp);
+        sqlite3_bind_int(statement, 12, conversation.status);
+        sqlite3_bind_text(statement, 13, [conversation.channel_type UTF8String], -1, SQLITE_TRANSIENT);
         
         if (sqlite3_step(statement) == SQLITE_DONE) {
             NSLog(@"QUERY INSERT OK.");
@@ -521,7 +468,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
         double timestamp = (double)[conversation.date timeIntervalSince1970]; // NSTimeInterval is a (double)
         
-        NSString *updateSQL = [NSString stringWithFormat:@"UPDATE conversations SET sender = ?, sender_fullname = ?, recipient = ?, convers_with_fullname = ?, last_message_text = ?, group_name = ?, is_new = ?, timestamp = ?, status = ? WHERE conversationId = ?"];
+        NSString *updateSQL = [NSString stringWithFormat:@"UPDATE conversations SET sender = ?, sender_fullname = ?, recipient = ?, recipient_fullname = ?, convers_with_fullname = ?, last_message_text = ?, is_new = ?, timestamp = ?, status = ? WHERE conversationId = ?"];
         if (self.logQuery) {NSLog(@"QUERY:%@", updateSQL);}
         
         sqlite3_prepare(database, [updateSQL UTF8String], -1, &statement, NULL);
@@ -529,24 +476,20 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
         sqlite3_bind_text(statement, 1, [conversation.sender UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [conversation.senderFullname UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [conversation.recipient UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 4, [conversation.conversWith_fullname UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 5, [conversation.last_message_text UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 6, [conversation.groupName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 4, [conversation.recipientFullname UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 5, [conversation.conversWith_fullname UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 6, [conversation.last_message_text UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_int(statement, 7, conversation.is_new);
         sqlite3_bind_double(statement, 8, timestamp);
         sqlite3_bind_int(statement, 9, conversation.status);
         sqlite3_bind_text(statement, 10, [conversation.conversationId UTF8String], -1, SQLITE_TRANSIENT);
         
         if (sqlite3_step(statement) == SQLITE_DONE) {
-            NSLog(@"Conversation successfully updated.");
-            ChatConversation *conv = [self getConversationById:conversation.conversationId];
-            NSLog(@"**** AFTER: CONV SENDER: %@", conv.sender);
             sqlite3_reset(statement);
             return YES;
         }
         else {
-            NSLog(@"Error while updating conversation.");
-            NSLog(@"Database returned error %d: %s", sqlite3_errcode(database), sqlite3_errmsg(database));
+            NSLog(@"Error while updating conversation. Database returned error %d: %s", sqlite3_errcode(database), sqlite3_errmsg(database));
             sqlite3_reset(statement);
             return NO;
         }
@@ -554,7 +497,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     return NO;
 }
 
-static NSString *SELECT_FROM_STATEMENT = @"SELECT conversationId, user, sender, sender_fullname, recipient, last_message_text, convers_with, convers_with_fullname, group_id, group_name, is_new, timestamp, status FROM conversations ";
+static NSString *SELECT_FROM_STATEMENT = @"SELECT conversationId, user, sender, sender_fullname, recipient, recipient_fullname, last_message_text, convers_with, convers_with_fullname, channel_type, is_new, timestamp, status FROM conversations ";
 
 - (NSArray*)getAllConversations {
     NSMutableArray *convs = [[NSMutableArray alloc] init];
@@ -676,52 +619,47 @@ static NSString *SELECT_FROM_STATEMENT = @"SELECT conversationId, user, sender, 
     }
     
     const char* _recipient = (const char *) sqlite3_column_text(statement, 4);
-//    NSLog(@">>>>>>>>>>> recipient = %s", _recipient);
     NSString *recipient = nil;
     if (_recipient) {
         recipient = [[NSString alloc] initWithUTF8String:_recipient];
     }
     
-    const char* _last_message_text = (const char *) sqlite3_column_text(statement, 5);
+    const char* _recipient_fullname = (const char *) sqlite3_column_text(statement, 5);
+    NSString *recipient_fullname = nil;
+    if (_recipient_fullname) {
+        recipient_fullname = [[NSString alloc] initWithUTF8String:_recipient_fullname];
+    }
+    
+    const char* _last_message_text = (const char *) sqlite3_column_text(statement, 6);
 //    NSLog(@">>>>>>>>>>> last_message_text = %s", _last_message_text);
     NSString *last_message_text = nil;
     if (_last_message_text) {
         last_message_text = [[NSString alloc] initWithUTF8String:_last_message_text];
     }
     
-    const char* _convers_with = (const char *) sqlite3_column_text(statement, 6);
+    const char* _convers_with = (const char *) sqlite3_column_text(statement, 7);
 //    NSLog(@">>>>>>>>>>> convers_with = %s", _convers_with);
     NSString *convers_with = nil;
     if (_convers_with) {
         convers_with = [[NSString alloc] initWithUTF8String:_convers_with];
     }
     
-    const char* _convers_with_fullname = (const char *) sqlite3_column_text(statement, 7);
+    const char* _convers_with_fullname = (const char *) sqlite3_column_text(statement, 8);
 //    NSLog(@">>>>>>>>>>> _convers_with_fullname = %s", _convers_with_fullname);
     NSString *convers_with_fullname = nil;
     if (_convers_with_fullname) {
         convers_with_fullname = [[NSString alloc] initWithUTF8String:_convers_with_fullname];
     }
     
-    const char* _group_id = (const char *) sqlite3_column_text(statement, 8);
-    NSLog(@">>>>>>>>>>> group_id = %s", _group_id);
-    NSString *group_id = nil;
-    if (_group_id) {
-        group_id = [[NSString alloc] initWithUTF8String:_group_id];
-    }
-    
-    const char* _group_name = (const char *) sqlite3_column_text(statement, 9);
-//    NSLog(@">>>>>>>>>>> group_name = %s", _group_name);
-    NSString *group_name = nil;
-    if (_group_name) {
-        group_name = [[NSString alloc] initWithUTF8String:_group_name];
+    const char* _channel_type = (const char *) sqlite3_column_text(statement, 9);
+    NSString *channel_type = nil;
+    if (_channel_type) {
+        channel_type = [[NSString alloc] initWithUTF8String:_channel_type];
     }
     
     BOOL is_new = sqlite3_column_int(statement, 10);
-//    NSLog(@">>>>>>>>>>> is_new = %d", is_new);
     double timestamp = sqlite3_column_double(statement, 11);
     int status = sqlite3_column_int(statement, 12);
-//    NSLog(@">>>>>>>>>>> status = %d", status);
     
     ChatConversation *conv = [[ChatConversation alloc] init];
     conv.conversationId = conversationId;
@@ -729,11 +667,11 @@ static NSString *SELECT_FROM_STATEMENT = @"SELECT conversationId, user, sender, 
     conv.sender = sender;
     conv.senderFullname = senderFullname;
     conv.recipient = recipient;
+    conv.recipientFullname = recipient_fullname;
     conv.last_message_text = last_message_text;
     conv.conversWith = convers_with;
     conv.conversWith_fullname = convers_with_fullname;
-    conv.groupId = group_id;
-    conv.groupName = group_name;
+    conv.channel_type = channel_type;
     conv.is_new = is_new;
     conv.date = [NSDate dateWithTimeIntervalSince1970:timestamp];
     conv.status = status;

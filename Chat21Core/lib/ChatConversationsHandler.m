@@ -56,7 +56,7 @@
             c.ref = conversation_ref;
         }
         else {
-            NSLog(@"ERROR restoring conv c: %@ id: %@, groupName: %@ groupId: %@ last_message_text: %@",c, c.conversationId, c.groupName, c.groupId, c.last_message_text);
+//            NSLog(@"ERROR restoring conv c: %@ id: %@, groupName: %@ groupId: %@ last_message_text: %@",c, c.conversationId, c.groupName, c.groupId, c.last_message_text);
         }
         
     }

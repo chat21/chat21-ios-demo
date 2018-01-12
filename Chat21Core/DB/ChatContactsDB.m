@@ -1,20 +1,20 @@
 //
-//  ContactsDB.m
+//  ChatContactsDB.m
 //  
 //
 //  Created by Andrea Sponziello on 17/09/2017.
 //
 //
 
-#import "ContactsDB.h"
+#import "ChatContactsDB.h"
 #import "ChatUser.h"
 
-static ContactsDB *sharedInstance = nil;
+static ChatContactsDB *sharedInstance = nil;
 //static sqlite3 *database = nil;
 //static sqlite3_stmt *statement = nil;
 //static sqlite3_stmt *statement_insert = nil;
 
-@interface ContactsDB () {
+@interface ChatContactsDB () {
     dispatch_queue_t serialDatabaseQueue;
     sqlite3 *database;
     sqlite3_stmt *statement;
@@ -22,9 +22,9 @@ static ContactsDB *sharedInstance = nil;
 }
 @end
 
-@implementation ContactsDB
+@implementation ChatContactsDB
 
-+(ContactsDB *)getSharedInstance {
++(ChatContactsDB *)getSharedInstance {
     if (!sharedInstance) {
         sharedInstance = [[super alloc] init];
     }
@@ -49,7 +49,7 @@ static ContactsDB *sharedInstance = nil;
     docsDir = urlPath.path;
     NSString *db_name = nil;
     if (name) {
-        db_name = [[NSString alloc] initWithFormat:@"contacts_%@.db", name];
+        db_name = [[NSString alloc] initWithFormat:@"%@_contacts.db", name];
     }
     databasePath = [[NSString alloc] initWithString:
                     [docsDir stringByAppendingPathComponent: db_name]];
@@ -64,13 +64,12 @@ static ContactsDB *sharedInstance = nil;
 
     if ([filemgr fileExistsAtPath: databasePath ] == NO) {
         NSLog(@"Database %@ not exists. Creating...", databasePath);
-        const char *dbpath = [databasePath UTF8String];
+//        const char *dbpath = [databasePath UTF8String];
         int result;
         result = sqlite3_open_v2(dbpath, &database, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, NULL);
         if (result == SQLITE_OK) {
             char *errMsg;
             if (self.logQuery) {NSLog(@"**** CREATING TABLE CONTACTS...");}
-            NSLog(@"**** CREATING TABLE CONTACTS...");
             const char *sql_stmt_contacts =
             "create table if not exists contacts (contactId text primary key, firstname text, lastname text, fullname text, email text, imageurl text, createdon real)";
             if (sqlite3_exec(database, sql_stmt_contacts, NULL, NULL, &errMsg) != SQLITE_OK) {
@@ -94,7 +93,6 @@ static ContactsDB *sharedInstance = nil;
     } else {
         NSLog(@"Database %@ already exists. Opening.", databasePath);
         if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
-//            NSLog(@"Database: %@", database);
             return  isSuccess;
         }
         else {
@@ -210,7 +208,7 @@ static NSString *SELECT_FROM_CONTACTS_STATEMENT = @"SELECT contactId, firstname,
 
 -(NSArray*)getAllContacts {
     NSMutableArray *contacts = [[NSMutableArray alloc] init];
-    const char *dbpath = [databasePath UTF8String];
+//    const char *dbpath = [databasePath UTF8String];
 //    if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
         NSString *querySQL = [NSString stringWithFormat:@"%@ order by fullname desc", SELECT_FROM_CONTACTS_STATEMENT];
         const char *query_stmt = [querySQL UTF8String];

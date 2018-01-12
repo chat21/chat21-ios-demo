@@ -12,7 +12,7 @@
 #import "ChatGroup.h"
 #import "ChatDB.h"
 #import "ChatUser.h"
-#import "ContactsDB.h"
+#import "ChatContactsDB.h"
 #import "ChatManager.h"
 #import "ChatContactsSynchronizer.h"
 #import "ChatUtil.h"
@@ -412,7 +412,7 @@
 -(void)search {
     NSString *text = self.searchBar.text;
     self.textToSearch = [self prepareTextToSearch:text];
-    ContactsDB *db = [ContactsDB getSharedInstance];
+    ChatContactsDB *db = [ChatContactsDB getSharedInstance];
     [db searchContactsByFullnameSynchronized:self.textToSearch completion:^(NSArray<ChatUser *> *users) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.users = users;

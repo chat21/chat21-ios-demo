@@ -1,5 +1,5 @@
 //
-//  ContactsDB.h
+//  ChatContactsDB.h
 //  
 //
 //  Created by Andrea Sponziello on 17/09/2017.
@@ -14,14 +14,14 @@
 @class ChatGroup;
 @class ChatUser;
 
-@interface ContactsDB : NSObject
+@interface ChatContactsDB : NSObject
 {
     NSString *databasePath;
 }
 
 @property (assign, nonatomic) BOOL logQuery;
 
-+(ContactsDB*)getSharedInstance;
++(ChatContactsDB*)getSharedInstance;
 -(BOOL)createDBWithName:(NSString *)name;
 
 // contacts

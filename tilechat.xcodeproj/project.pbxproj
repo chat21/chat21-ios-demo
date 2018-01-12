@@ -101,7 +101,7 @@
 		B2B503FF20062781007CC120 /* ChatConversationsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503D920062781007CC120 /* ChatConversationsHandler.m */; };
 		B2B5040020062781007CC120 /* ChatGroupsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503DF20062781007CC120 /* ChatGroupsHandler.m */; };
 		B2B5040120062781007CC120 /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503E020062781007CC120 /* ChatPresenceHandler.m */; };
-		B2B5040220062781007CC120 /* ContactsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503E120062781007CC120 /* ContactsDB.m */; };
+		B2B5040220062781007CC120 /* ChatContactsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503E120062781007CC120 /* ChatContactsDB.m */; };
 		B2B5040320062781007CC120 /* ChatContactsSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503E220062781007CC120 /* ChatContactsSynchronizer.m */; };
 		B2B5040420062781007CC120 /* ChatDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503E320062781007CC120 /* ChatDB.m */; };
 		B2B5040520062781007CC120 /* ChatGroupsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B503E720062781007CC120 /* ChatGroupsDB.m */; };
@@ -301,7 +301,7 @@
 		B2B503DE20062781007CC120 /* DEPRECATED_ChatConversationSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_ChatConversationSubscriber.h; sourceTree = "<group>"; };
 		B2B503DF20062781007CC120 /* ChatGroupsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsHandler.m; sourceTree = "<group>"; };
 		B2B503E020062781007CC120 /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
-		B2B503E120062781007CC120 /* ContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDB.m; sourceTree = "<group>"; };
+		B2B503E120062781007CC120 /* ChatContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsDB.m; sourceTree = "<group>"; };
 		B2B503E220062781007CC120 /* ChatContactsSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsSynchronizer.m; sourceTree = "<group>"; };
 		B2B503E320062781007CC120 /* ChatDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDB.m; sourceTree = "<group>"; };
 		B2B503E420062781007CC120 /* ChatConnectionStatusHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConnectionStatusHandler.h; sourceTree = "<group>"; };
@@ -313,7 +313,7 @@
 		B2B503EA20062781007CC120 /* ChatConversationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversationHandler.m; sourceTree = "<group>"; };
 		B2B503EB20062781007CC120 /* DEPRECATED_SHPChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_SHPChatDelegate.h; sourceTree = "<group>"; };
 		B2B503EC20062781007CC120 /* FirebaseCustomAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCustomAuthHelper.m; sourceTree = "<group>"; };
-		B2B503ED20062781007CC120 /* ContactsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDB.h; sourceTree = "<group>"; };
+		B2B503ED20062781007CC120 /* ChatContactsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContactsDB.h; sourceTree = "<group>"; };
 		B2B503EE20062781007CC120 /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
 		B2B503EF20062781007CC120 /* ChatGroupsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsHandler.h; sourceTree = "<group>"; };
 		B2B503F020062781007CC120 /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
@@ -579,6 +579,7 @@
 		B2B503C020062781007CC120 /* Chat21Core */ = {
 			isa = PBXGroup;
 			children = (
+				B2B504852007C3D6007CC120 /* DB */,
 				B2B503C120062781007CC120 /* util */,
 				B2B503CE20062781007CC120 /* model */,
 				B2B503D820062781007CC120 /* lib */,
@@ -624,34 +625,28 @@
 		B2B503D820062781007CC120 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				B2B503D920062781007CC120 /* ChatConversationsHandler.m */,
-				B2B503DA20062781007CC120 /* ChatGroupsDB.h */,
-				B2B503DB20062781007CC120 /* ChatPresenceViewDelegate.h */,
-				B2B503DC20062781007CC120 /* FirebaseCustomAuthHelper.h */,
-				B2B503DD20062781007CC120 /* ChatConversationHandler.h */,
-				B2B503DE20062781007CC120 /* DEPRECATED_ChatConversationSubscriber.h */,
-				B2B503DF20062781007CC120 /* ChatGroupsHandler.m */,
-				B2B503E020062781007CC120 /* ChatPresenceHandler.m */,
-				B2B503E120062781007CC120 /* ContactsDB.m */,
-				B2B503E220062781007CC120 /* ChatContactsSynchronizer.m */,
-				B2B503E320062781007CC120 /* ChatDB.m */,
 				B2B503E420062781007CC120 /* ChatConnectionStatusHandler.h */,
-				B2B503E520062781007CC120 /* ChatManager.h */,
-				B2B503E620062781007CC120 /* DEPRECATED_SHPConversationsViewDelegate.h */,
-				B2B503E720062781007CC120 /* ChatGroupsDB.m */,
-				B2B503E820062781007CC120 /* ChatConversationsHandler.h */,
-				B2B503E920062781007CC120 /* ChatGroupsSubscriber.h */,
-				B2B503EA20062781007CC120 /* ChatConversationHandler.m */,
-				B2B503EB20062781007CC120 /* DEPRECATED_SHPChatDelegate.h */,
-				B2B503EC20062781007CC120 /* FirebaseCustomAuthHelper.m */,
-				B2B503ED20062781007CC120 /* ContactsDB.h */,
-				B2B503EE20062781007CC120 /* ChatPresenceHandler.h */,
-				B2B503EF20062781007CC120 /* ChatGroupsHandler.h */,
-				B2B503F020062781007CC120 /* ChatManager.m */,
 				B2B503F120062781007CC120 /* ChatConnectionStatusHandler.m */,
-				B2B503F220062781007CC120 /* ChatSynchDelegate.h */,
-				B2B503F320062781007CC120 /* ChatDB.h */,
 				B2B503F420062781007CC120 /* ChatContactsSynchronizer.h */,
+				B2B503E220062781007CC120 /* ChatContactsSynchronizer.m */,
+				B2B503DD20062781007CC120 /* ChatConversationHandler.h */,
+				B2B503EA20062781007CC120 /* ChatConversationHandler.m */,
+				B2B503E820062781007CC120 /* ChatConversationsHandler.h */,
+				B2B503D920062781007CC120 /* ChatConversationsHandler.m */,
+				B2B503EF20062781007CC120 /* ChatGroupsHandler.h */,
+				B2B503DF20062781007CC120 /* ChatGroupsHandler.m */,
+				B2B503E920062781007CC120 /* ChatGroupsSubscriber.h */,
+				B2B503E520062781007CC120 /* ChatManager.h */,
+				B2B503F020062781007CC120 /* ChatManager.m */,
+				B2B503EE20062781007CC120 /* ChatPresenceHandler.h */,
+				B2B503E020062781007CC120 /* ChatPresenceHandler.m */,
+				B2B503DB20062781007CC120 /* ChatPresenceViewDelegate.h */,
+				B2B503F220062781007CC120 /* ChatSynchDelegate.h */,
+				B2B503DE20062781007CC120 /* DEPRECATED_ChatConversationSubscriber.h */,
+				B2B503EB20062781007CC120 /* DEPRECATED_SHPChatDelegate.h */,
+				B2B503E620062781007CC120 /* DEPRECATED_SHPConversationsViewDelegate.h */,
+				B2B503DC20062781007CC120 /* FirebaseCustomAuthHelper.h */,
+				B2B503EC20062781007CC120 /* FirebaseCustomAuthHelper.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -703,6 +698,19 @@
 				B2B5029720053D27007CC120 /* UIView+Property.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		B2B504852007C3D6007CC120 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				B2B503F320062781007CC120 /* ChatDB.h */,
+				B2B503E320062781007CC120 /* ChatDB.m */,
+				B2B503DA20062781007CC120 /* ChatGroupsDB.h */,
+				B2B503E720062781007CC120 /* ChatGroupsDB.m */,
+				B2B503ED20062781007CC120 /* ChatContactsDB.h */,
+				B2B503E120062781007CC120 /* ChatContactsDB.m */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		B2CE2F391F19314E002E2150 /* Hello */ = {
@@ -1105,7 +1113,7 @@
 				B24AD7B61F86134800A526E9 /* HelpCategory.m in Sources */,
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
 				B2B5034720053D27007CC120 /* GroupMembersVC.m in Sources */,
-				B2B5040220062781007CC120 /* ContactsDB.m in Sources */,
+				B2B5040220062781007CC120 /* ChatContactsDB.m in Sources */,
 				BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */,
 				B2B5035020053D27007CC120 /* NotConnectedVC.m in Sources */,
 				B2B503F820062781007CC120 /* ChatUpload.m in Sources */,

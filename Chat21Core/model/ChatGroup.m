@@ -131,7 +131,7 @@
 }
 
 -(BOOL)completeData {
-    BOOL complete = (self.name != nil);
+    BOOL complete = (self.members != nil);
     NSLog(@"complete: %d", complete);
     return complete;
 }
