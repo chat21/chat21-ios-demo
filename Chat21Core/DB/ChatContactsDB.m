@@ -252,6 +252,13 @@ static NSString *SELECT_FROM_CONTACTS_STATEMENT = @"SELECT contactId, firstname,
     });
 }
 
+-(void)getMultipleContactsByIdsSyncronized:(NSArray<NSString *> *)contactIds completion:(void(^)(NSArray<ChatUser *> *)) callback {
+    dispatch_async(serialDatabaseQueue, ^{
+        NSArray<ChatUser *> *users = [self getMultipleContactsByIds:contactIds];
+        callback(users);
+    });
+}
+
 -(ChatUser *)getContactById:(NSString *)contactId {
     NSLog(@"Searching contact with id: %@", contactId);
     ChatUser *contact = nil;
@@ -271,6 +278,43 @@ static NSString *SELECT_FROM_CONTACTS_STATEMENT = @"SELECT contactId, firstname,
         }
 //    }
     return contact;
+}
+
+-(NSArray<ChatUser *> *)getMultipleContactsByIds:(NSArray *)contactIds {
+    NSLog(@"Searching multiple contacts by ids: %@", contactIds);
+    NSMutableArray<ChatUser *> *contacts = [[NSMutableArray alloc] init];
+    if (contactIds.count == 0) {
+        return contacts;
+    }
+    NSString *last_contact_id = [contactIds lastObject];
+    NSString *contactsIds_query_part = @"(";
+    NSString *id_for_query;
+    for (NSString *contact_id in contactIds) {
+        if (contact_id != last_contact_id) {
+            id_for_query = [[NSString alloc] initWithFormat:@"'%@', ", contact_id];
+        }
+        else {
+            id_for_query = [[NSString alloc] initWithFormat:@"'%@')", contact_id];
+        }
+        contactsIds_query_part = [contactsIds_query_part stringByAppendingString:id_for_query];
+    }
+    //    const char *dbpath = [databasePath UTF8String];
+    //    if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
+    NSString *querySQL = [NSString stringWithFormat:
+                          @"%@ where contactId in %@", SELECT_FROM_CONTACTS_STATEMENT, contactsIds_query_part];
+    const char *query_stmt = [querySQL UTF8String];
+    if (sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            ChatUser *contact = [self contactFromStatement:statement];
+            [contacts addObject:contact];
+        }
+        sqlite3_reset(statement);
+    } else {
+        NSLog(@"**** PROBLEMS WHILE QUERYING CONTACTS...");
+        NSLog(@"Database returned error %d: %s", sqlite3_errcode(database), sqlite3_errmsg(database));
+    }
+    //    }
+    return contacts;
 }
 
 -(void)searchContactsByFullnameSynchronized:(NSString *)searchString completion:(void (^)(NSArray<ChatUser *> *))callback {

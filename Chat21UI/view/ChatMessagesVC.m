@@ -29,6 +29,7 @@
 #import "ChatUIManager.h"
 #import "ChatConnectionStatusHandler.h"
 #import "ChatPresenceHandler.h"
+#import "ChatContactsDB.h"
 
 @interface ChatMessagesVC (){
     SystemSoundID soundID;
@@ -113,7 +114,12 @@
     }
     //    [self.usernameButton setTitle:self.group.name forState:UIControlStateNormal];
     [self setTitle:self.group.name];
-    [self setSubTitle:[ChatUtil groupMembersAsStringForUI:self.group.members]];
+    ChatContactsDB *db = [ChatContactsDB getSharedInstance];
+    NSArray<NSString *> *contact_ids = [self.group.members allKeys];
+    [db getMultipleContactsByIdsSyncronized:contact_ids completion:^(NSArray<ChatUser *> *contacts) {
+        self.group.membersFull = contacts;
+        [self setSubTitle:[ChatUtil groupMembersFullnamesAsStringForUI:contacts]];
+    }];
 }
 
 //-(void)loadGroupInfo {
@@ -1059,7 +1065,7 @@
         GroupInfoVC *vc = (GroupInfoVC *)[segue destinationViewController];
         NSLog(@"vc %@", vc);
         //        vc.applicationContext = self.applicationContext;
-        vc.groupId = self.group.groupId;
+        vc.group = self.group;
     }
 }
 

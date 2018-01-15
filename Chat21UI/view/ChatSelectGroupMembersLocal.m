@@ -17,6 +17,12 @@
 #import "ChatManager.h"
 #import "ChatContactsDB.h"
 #import "ChatGroup.h"
+#import "MBProgressHUD.h"
+
+@interface ChatSelectGroupMembersLocal () {
+    MBProgressHUD *HUD;
+}
+@end
 
 @implementation ChatSelectGroupMembersLocal
 
@@ -567,49 +573,66 @@
 }
 
 - (IBAction)createGroupAction:(id)sender {
-//    NSLog(@"Creating group... %@", self.applicationContext);
-//
-//    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
-//    NSString *iconID = (NSString *)[self.applicationContext getVariable:@"groupIconID"];  //groupImageUrl
-//    NSLog(@"Group iconID %@, URL: %@", iconID, [ChatUtil groupImageUrlById:iconID]);
-//
-//
-//    // set options
-//    if (iconID) {
-//        [options setObject:iconID forKey:@"groupIconID"];
-//    }
-//    [options setObject:self.members forKey:@"groupMembers"];
-//    [options setObject:[self.applicationContext getVariable:@"newGroupId"] forKey:@"newGroupId"];
-//    [options setObject:[self.applicationContext getVariable:@"groupName"] forKey:@"groupName"];
-//
-//    // clean context
-//    [self.applicationContext removeVariable:@"groupMembers"];
-//    [self.applicationContext removeVariable:@"groupName"];
-//    [self.applicationContext removeVariable:@"newGroupId"];
-//    if (iconID) {
-//        [self.applicationContext removeVariable:@"groupIconID"];
-//    }
-//    
-//    [self.view endEditing:YES]; // or [self.searchBar resignFirstResponder];
-//    [self.modalCallerDelegate setupViewController:self didFinishSetupWithInfo:options];
     if (self.completionCallback) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            ChatGroup *group = [[ChatGroup alloc] init];
-            group.groupId = [[ChatManager getInstance] newGroupId];
-            NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
-            for (ChatUser *u in self.members) {
-                [membersIDs addObject:u.userId];
-            }
-            NSString *me = [ChatManager getInstance].loggedUser.userId;
-            [membersIDs addObject:me];
-            group.members = [ChatGroup membersArray2Dictionary:membersIDs];
-            group.name = self.groupName;
-            group.owner = me;
-            group.user = me;
-            group.createdOn = [[NSDate alloc] init];
-            self.completionCallback(group, NO);
+        ChatGroup *group = [[ChatGroup alloc] init];
+        group.groupId = [[ChatManager getInstance] newGroupId];
+        NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
+        for (ChatUser *u in self.members) {
+            [membersIDs addObject:u.userId];
+        }
+        NSString *me = [ChatManager getInstance].loggedUser.userId;
+        [membersIDs addObject:me];
+        group.members = [ChatGroup membersArray2Dictionary:membersIDs];
+        group.name = self.groupName;
+        group.owner = me;
+        group.user = me;
+        group.createdOn = [[NSDate alloc] init];
+        ChatManager *chat = [ChatManager getInstance];
+        NSLog(@"Creating group: %@", group.name);
+        [self showWaiting:@"Creo gruppo..."];
+        [chat createGroup:group withCompletionBlock:^(ChatGroup *group, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideWaiting];
+                if (error) {
+                    [self alert:NSLocalizedString(@"Group creation error", nil)];
+                }
+                else {
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        self.completionCallback(group, NO);
+                    }];
+                }
+            });
         }];
     }
+}
+
+-(void)showWaiting:(NSString *)label {
+    if (!HUD) {
+        HUD = [[MBProgressHUD alloc] initWithWindow:self.view.window];
+        [self.view.window addSubview:HUD];
+    }
+    HUD.center = self.view.center;
+    HUD.labelText = label;
+    HUD.animationType = MBProgressHUDAnimationZoom;
+    [HUD show:YES];
+}
+
+-(void)hideWaiting {
+    [HUD hide:YES];
+}
+
+-(void)alert:(NSString *)msg {
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:msg
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirm = [UIAlertAction
+                              actionWithTitle:@"OK"
+                              style:UIAlertActionStyleDefault
+                              handler:nil];
+    [view addAction:confirm];
+    [self presentViewController:view animated:YES completion:nil];
 }
 
 @end

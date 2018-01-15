@@ -50,7 +50,7 @@
 -(NSMutableArray *)restoreConversationsFromDB {
     self.conversations = [[[ChatDB getSharedInstance] getAllConversationsForUser:self.me] mutableCopy];
     for (ChatConversation *c in self.conversations) {
-        NSLog(@"restored conv user: %@, id: %@, last_message_text: %@",c.user, c.conversationId, c.last_message_text);
+//        NSLog(@"restored conv user: %@, id: %@, last_message_text: %@",c.user, c.conversationId, c.last_message_text);
         if (c.conversationId) {
             FIRDatabaseReference *conversation_ref = [self.conversationsRef child:c.conversationId];
             c.ref = conversation_ref;

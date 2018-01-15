@@ -7,8 +7,9 @@
 //
 
 #import "ChatGroup.h"
-#import "Firebase/Firebase.h"
+//#import "Firebase/Firebase.h"
 #import "ChatUtil.h"
+#import "ChatUser.h"
 
 @implementation ChatGroup
 
@@ -69,6 +70,26 @@
         }
     }
     return members;
+}
+
+-(NSString *)ownerFullname {
+    if (self.membersFull) {
+        NSString *fullname = nil;
+        for (ChatUser *user in self.membersFull) {
+            if ([user.userId isEqualToString:self.owner]) {
+                fullname = user.fullname;
+            }
+        }
+        if (fullname == nil) {
+            return self.owner;
+        }
+        else {
+            return fullname;
+        }
+    }
+    else {
+        return self.owner;
+    }
 }
 
 +(NSMutableDictionary *)membersString2Dictionary:(NSString *)membersString {

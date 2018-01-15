@@ -477,7 +477,7 @@ static ChatManager *sharedInstance = nil;
     }];
 }
 
--(void)createGroup:(ChatGroup *)group {
+-(void)createGroup:(ChatGroup *)group withCompletionBlock:(void (^)(ChatGroup *group, NSError* error))callback {
     //    SHPUser *me = self.context.loggedUser;
     NSString *me = self.loggedUser.userId;
     //    NSString *sanitized_username_for_firebase = [userId stringByReplacingOccurrencesOfString:@"." withString:@"_"];
@@ -513,6 +513,7 @@ static ChatManager *sharedInstance = nil;
             BOOL result = [[ChatDB getSharedInstance] insertOrUpdateConversation:groupConversation];
             NSLog(@">>>>> -Group Failed- Conversation insertOrUpdate operation is %d", result);
             [self.conversationsHandler restoreConversationsFromDB];
+            callback(group, error);
         } else {
             // we have the group-id
             NSLog(@"Group created with ID: %@", _groupId);
@@ -522,26 +523,26 @@ static ChatManager *sharedInstance = nil;
                 NSLog(@"DB.Group id: %@", group.groupId);
                 ChatGroup *group_on_db = [[ChatManager getInstance] groupById:group.groupId];
                 NSLog(@"GROUP. name: %@, id: %@", group_on_db.name, group_on_db.groupId);
-                
+                callback(group, nil);
                 // create new conversation for this group on local DB
                 // a local DB conversation entry is created to manage, locally, the group creation workflow.
                 // ex. success/failure on creation - add/removing members - change group title etc.
-                NSString *group_conv_id = _groupId; //[ChatUtil conversationIdForGroup:_groupId];
-                NSLog(@"group_conv_id created (%@): %@",me, group_conv_id);
-                NSString *conversation_message_for_admin = [self groupCreatedMessageForMemberInGroup:group];
+//                NSString *group_conv_id = _groupId; //[ChatUtil conversationIdForGroup:_groupId];
+//                NSLog(@"group_conv_id created (%@): %@",me, group_conv_id);
+//                NSString *conversation_message_for_admin = [self groupCreatedMessageForMemberInGroup:group];
 //                NSString *conversation_message_for_member = [self groupInvitedMessageForMemberInGroup:group];
-                ChatConversation *groupConversation = [[ChatConversation alloc] init];
-                groupConversation.conversationId = group_conv_id;
-                groupConversation.user = me; //.username;
-                groupConversation.key = group_conv_id;
-                groupConversation.recipient = _groupId;
-                groupConversation.recipientFullname = group.name; // compare nella cella al posto di "conversWith"
-                groupConversation.last_message_text = conversation_message_for_admin;
-                NSDate *now = [[NSDate alloc] init];
-                groupConversation.date = now;
-                groupConversation.status = CONV_STATUS_JUST_CREATED;
-                [[ChatDB getSharedInstance] insertOrUpdateConversation:groupConversation];
-                [self.conversationsHandler restoreConversationsFromDB];
+//                ChatConversation *groupConversation = [[ChatConversation alloc] init];
+//                groupConversation.conversationId = group_conv_id;
+//                groupConversation.user = me; //.username;
+//                groupConversation.key = group_conv_id;
+//                groupConversation.recipient = _groupId;
+//                groupConversation.recipientFullname = group.name; // compare nella cella al posto di "conversWith"
+////                groupConversation.last_message_text = conversation_message_for_admin;
+//                NSDate *now = [[NSDate alloc] init];
+//                groupConversation.date = now;
+//                groupConversation.status = CONV_STATUS_JUST_CREATED;
+//                [[ChatDB getSharedInstance] insertOrUpdateConversation:groupConversation];
+//                [self.conversationsHandler restoreConversationsFromDB];
                 
 //                NSLog(@"creating a remote Firebase conversation for every member...");
 //                // POSSIBLY UPDATE AS A FAN OUT ON CONVERSATIONS
@@ -554,7 +555,9 @@ static ChatManager *sharedInstance = nil;
 //                        NSLog(@"Added conversation on Firebase for member: %@ with message: %@", member_id, memberInvitedConversation.last_message_text);
 //                    }
 //                }
+                
 //                // ADDING CONVERSATION FOR ADMIN MEMBER
+//                NSString *conversation_message_for_admin = [self groupCreatedMessageForMemberInGroup:group];
 //                ChatConversation *adminInvitedConversation = [self buildInviteConversationForMember:me message:conversation_message_for_admin inGRoup:group createdOn:now];
 //                [self createOrUpdateConversation:adminInvitedConversation];
 //                NSLog(@"added group conversation on Firebase for admin: %@", me);

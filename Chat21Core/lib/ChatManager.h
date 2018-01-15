@@ -78,7 +78,7 @@
 +(ChatGroup *)groupFromSnapshotFactory:(FIRDataSnapshot *)snapshot;
 -(ChatGroup *)groupById:(NSString *)groupId;
 //-(void)createGroup:(NSString *)groupId name:(NSString *)name owner:(NSString *)owner members:(NSMutableArray *)membersIDs;
--(void)createGroup:(ChatGroup *)group;
+-(void)createGroup:(ChatGroup *)group withCompletionBlock:(void (^)(ChatGroup *group, NSError* error))callback;
 -(void)updateGroupName:(NSString *)name forGroup:(ChatGroup *)group withCompletionBlock:(void (^)(NSError *))completionBlock;
 -(NSDictionary *)allGroups;
 

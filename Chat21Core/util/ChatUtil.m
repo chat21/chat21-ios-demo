@@ -199,6 +199,23 @@
     return members_string;
 }
 
++(NSString *)groupMembersFullnamesAsStringForUI:(NSArray<ChatUser *> *)members {
+    ChatUser *last_contact = [members lastObject];
+    NSString *members_string = @"";
+    NSString *partial;
+    for (ChatUser *contact in members) {
+        NSString *fullname = [contact.fullname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (![contact.userId isEqualToString:last_contact.userId]) {
+            partial = [[NSString alloc] initWithFormat:@"%@,", fullname];
+        }
+        else {
+            partial = [[NSString alloc] initWithFormat:@"%@", fullname];
+        }
+        members_string = [members_string stringByAppendingString:partial];
+    }
+    return members_string;
+}
+
 +(NSString *)randomString:(NSInteger)length {
     NSString *alphabet  = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY0123456789";
     NSMutableString *s = [NSMutableString stringWithCapacity:length];

@@ -27,6 +27,7 @@
 // contacts
 -(void)insertOrUpdateContactSyncronized:(ChatUser *)contact completion:(void(^)()) callback;
 -(void)getContactByIdSyncronized:(NSString *)contactId completion:(void(^)(ChatUser *)) callback;
+-(void)getMultipleContactsByIdsSyncronized:(NSArray<NSString *> *)contactIds completion:(void(^)(NSArray<ChatUser *> *)) callback;
 -(void)searchContactsByFullnameSynchronized:(NSString *)searchString completion:(void (^)(NSArray<ChatUser *> *))callback;
 -(BOOL)removeContactSynchronized:(NSString *)contactId;
 -(ChatUser *)getMostRecentContact;

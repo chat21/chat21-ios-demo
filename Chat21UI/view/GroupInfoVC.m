@@ -38,7 +38,7 @@
     //    ChatDB *db = [ChatDB getSharedInstance];
     //    self.group = [db getGroupById:self.groupId];
     
-    self.group = [[ChatManager getInstance] groupById:self.groupId];
+//    self.group = [[ChatManager getInstance] groupById:self.groupId];
     
     // group image
     UITapGestureRecognizer *tapImageView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
@@ -156,13 +156,19 @@
 }
 
 -(void)setupUI {
-    self.groupNameLabel.text = self.group.name;
-    NSLog(@"self.groupNameLabel %@ self.group.name %@", self.groupNameLabel, self.group.name);
-    self.membersLabel.text = [ChatUtil groupMembersAsStringForUI:self.group.members];
+    ChatGroup *group = self.group;
+    self.groupNameLabel.text = group.name;
+    NSLog(@"self.groupNameLabel %@ self.group.name %@", self.groupNameLabel, group.name);
+    if (group.membersFull) {
+        self.membersLabel.text = [ChatUtil groupMembersFullnamesAsStringForUI:group.membersFull];
+    }
+    else {
+        self.membersLabel.text = [ChatUtil groupMembersAsStringForUI:group.members];
+    }
     
     //NSString *created_by_msg = @"Gruppo creato da";
     //    self.createdByLabel.text = [[NSString alloc] initWithFormat:@"%@ %@.",created_by_msg, self.group.owner];
-    self.createdByLabel.text = [NSString stringWithFormat:NSLocalizedString(@"group created by", nil), self.group.owner];
+    self.createdByLabel.text = [NSString stringWithFormat:NSLocalizedString(@"group created by", nil), [group ownerFullname]];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd LLLL yyyy"];
@@ -171,7 +177,7 @@
     //    self.createdOnLabel.text = [[NSString alloc] initWithFormat:@"%@ %@.", created_on_msg, createdOn_s];
     self.createdOnLabel.text = [NSString stringWithFormat:NSLocalizedString(@"group created on", nil), createdOn_s];
     
-    self.adminLabel.text = self.group.owner;
+    self.adminLabel.text = [group ownerFullname];
 }
 
 - (void)didReceiveMemoryWarning {

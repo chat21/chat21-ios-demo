@@ -31,7 +31,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.members_array = [ChatGroup membersDictionary2Array:self.group.members];
-    NSLog(@"members array.count: %d", (int) self.members_array.count);
     self.navigationItem.title = NSLocalizedString(@"Members", nil);
 }
 
@@ -47,7 +46,7 @@
 }
 
 -(void)showMemberMenu:(NSIndexPath *)indexPath {
-    NSString *memberId = [self.members_array objectAtIndex:indexPath.row];
+    NSString *memberId = [self.group.membersFull objectAtIndex:indexPath.row].userId;
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:nil
                                message:memberId
@@ -158,7 +157,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.members_array.count;
+    return self.group.membersFull.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,8 +165,8 @@
     int index = (int) indexPath.row;
     
     UILabel *username = (UILabel *)[cell viewWithTag:1];
-    NSString *user_id = [self.members_array objectAtIndex:index];
-    NSString *user_display = [self.members_array objectAtIndex:index];
+    NSString *user_id = [self.group.membersFull objectAtIndex:index].userId;
+    NSString *user_display = [self.group.membersFull objectAtIndex:index].fullname;
     if ([user_id isEqualToString:self.group.owner]) {
         user_display = [[NSString alloc] initWithFormat:@"%@ (%@)", user_display, NSLocalizedString(@"Group administrator", nil)];
     }

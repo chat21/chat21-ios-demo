@@ -391,14 +391,14 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
 
 
 -(BOOL)insertOrUpdateConversation:(ChatConversation *)conversation {
-    NSLog(@"insertOrUpdateConversation: %@ user: %@", conversation.conversationId, conversation.user);
+//    NSLog(@"insertOrUpdateConversation: %@ user: %@", conversation.conversationId, conversation.user);
     ChatConversation *conv_exists = [self getConversationById:conversation.conversationId];
     if (conv_exists) {
         //NSLog(@"CONVERSATION %@ EXISTS. UPDATING CONVERSATION... is_new: %d",conversation.conversationId, conversation.is_new);
         return [self updateConversation:conversation];
     }
     else {
-        NSLog(@"CONVERSATION IS NEW. INSERTING CONVERSATION...");
+//        NSLog(@"CONVERSATION IS NEW. INSERTING CONVERSATION...");
         return [self insertConversation:conversation];
     }
 }
@@ -587,18 +587,13 @@ static NSString *SELECT_FROM_STATEMENT = @"SELECT conversationId, user, sender, 
 
 
 -(ChatConversation *)conversationFromStatement:(sqlite3_stmt *)statement {
-    
-    NSLog(@"== CONVERSATION FROM STATEMENT ==");
     const char* _conversationId = (const char *) sqlite3_column_text(statement, 0);
-    NSLog(@">>>>>>>>>>> conversationID = %s", _conversationId);
     NSString *conversationId = nil;
     if (_conversationId) {
         conversationId = [[NSString alloc] initWithUTF8String:_conversationId];
-        NSLog(@"NSString conversationID = %@", conversationId);
     }
     
     const char* _user = (const char *) sqlite3_column_text(statement, 1);
-//    NSLog(@">>>>>>>>>>> user = %s", _user);
     NSString *user = nil;
     if (_user) {
         user = [[NSString alloc] initWithUTF8String:_user];

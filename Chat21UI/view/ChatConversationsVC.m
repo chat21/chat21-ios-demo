@@ -466,7 +466,7 @@
     // STUDIARE: since iOS 5, you can do the move like so:
     // [tableView moveRowAtIndexPath:indexPathOfRowToMove toIndexPath:indexPathOfTopRow];
     
-    NSLog(@"New conversation received %@ by %@ (sender: %@)", conversation.last_message_text, conversation.conversWith_fullname, conversation.sender);
+//    NSLog(@"New conversation received %@ by %@ (sender: %@)", conversation.last_message_text, conversation.conversWith_fullname, conversation.sender);
     [self showNotificationWindow:conversation];
     [self.tableView reloadData];
 //    [self printAllConversations];
@@ -486,11 +486,11 @@
 
 -(void)showNotificationWindow:(ChatConversation *)conversation {
     NSString *currentConversationId = self.conversationsHandler.currentOpenConversationId;
-    NSLog(@"conversation.is_new: %d", conversation.is_new);
-    NSLog(@"!self.view.window: %d", !self.view.window);
-    NSLog(@"conversation.conversationId: %@", conversation.conversationId);
-    NSLog(@"currentConversationId: %@", currentConversationId);
-    NSLog(@"conversation.is_new && !self.view.window && conversation.conversationId != currentConversationId");
+//    NSLog(@"conversation.is_new: %d", conversation.is_new);
+//    NSLog(@"!self.view.window: %d", !self.view.window);
+//    NSLog(@"conversation.conversationId: %@", conversation.conversationId);
+//    NSLog(@"currentConversationId: %@", currentConversationId);
+//    NSLog(@"conversation.is_new && !self.view.window && conversation.conversationId != currentConversationId");
     if ( conversation.is_new
          && !self.view.window // conversationsview hidden
          && conversation.conversationId != currentConversationId ) {
@@ -765,8 +765,8 @@
             NSLog(@"Create group canceled");
         }
         else {
-            ChatManager *chat = [ChatManager getInstance];
-            [chat createGroup:group];
+            NSLog(@"Group created. Opening conversation...");
+            [self openConversationWithUser:nil orGroup:group sendMessage:nil attributes:nil];
         }
     }];
 }
