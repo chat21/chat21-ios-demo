@@ -1,5 +1,5 @@
 //
-//  GroupInfoVC.h
+//  ChatGroupInfoVC.h
 //  Smart21
 //
 //  Created by Andrea Sponziello on 04/05/15.
@@ -11,7 +11,7 @@
 @class ChatGroup;
 @class ChatImageCache;
 
-@interface GroupInfoVC : UITableViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ChatGroupInfoVC : UITableViewController <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property(strong, nonatomic) NSString *groupId;
 @property(strong, nonatomic) ChatGroup *group;

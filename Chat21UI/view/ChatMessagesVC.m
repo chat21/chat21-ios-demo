@@ -16,7 +16,7 @@
 #import "ChatConversationHandler.h"
 #import "ChatConversationsVC.h"
 #import "ChatStringUtil.h"
-#import "GroupInfoVC.h"
+#import "ChatGroupInfoVC.h"
 #import "QBPopupMenu.h"
 #import "QBPopupMenuItem.h"
 #import "ChatTitleVC.h"
@@ -114,12 +114,15 @@
     }
     //    [self.usernameButton setTitle:self.group.name forState:UIControlStateNormal];
     [self setTitle:self.group.name];
-    ChatContactsDB *db = [ChatContactsDB getSharedInstance];
-    NSArray<NSString *> *contact_ids = [self.group.members allKeys];
-    [db getMultipleContactsByIdsSyncronized:contact_ids completion:^(NSArray<ChatUser *> *contacts) {
-        self.group.membersFull = contacts;
-        [self setSubTitle:[ChatUtil groupMembersFullnamesAsStringForUI:contacts]];
+    [self.group completeGroupMembersMetadataWithCompletionBlock:^() {
+        [self setSubTitle:[ChatUtil groupMembersFullnamesAsStringForUI:self.group.membersFull]];
     }];
+//    ChatContactsDB *db = [ChatContactsDB getSharedInstance];
+//    NSArray<NSString *> *contact_ids = [self.group.members allKeys];
+//    [db getMultipleContactsByIdsSyncronized:contact_ids completion:^(NSArray<ChatUser *> *contacts) {
+//        self.group.membersFull = contacts;
+//        [self setSubTitle:[ChatUtil groupMembersFullnamesAsStringForUI:contacts]];
+//    }];
 }
 
 //-(void)loadGroupInfo {
@@ -970,7 +973,9 @@
         [self checkImGroupMember];
         [self writeBoxEnabled];
         [self setTitle:self.group.name];
-        [self setSubTitle:[ChatUtil groupMembersAsStringForUI:self.group.members]];
+        [self.group completeGroupMembersMetadataWithCompletionBlock:^() {
+            [self setSubTitle:[ChatUtil groupMembersFullnamesAsStringForUI:self.group.membersFull]];
+        }];
     });
 }
 
@@ -1062,7 +1067,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"GroupInfo"]) {
-        GroupInfoVC *vc = (GroupInfoVC *)[segue destinationViewController];
+        ChatGroupInfoVC *vc = (ChatGroupInfoVC *)[segue destinationViewController];
         NSLog(@"vc %@", vc);
         //        vc.applicationContext = self.applicationContext;
         vc.group = self.group;

@@ -1,15 +1,15 @@
 //
-//  GroupInfoVC.m
+//  ChatGroupInfoVC.m
 //  Smart21
 //
 //  Created by Andrea Sponziello on 04/05/15.
 //
 //
 
-#import "GroupInfoVC.h"
+#import "ChatGroupInfoVC.h"
 #import "ChatDB.h"
 #import "ChatGroup.h"
-#import "GroupMembersVC.h"
+#import "ChatGroupMembersVC.h"
 #import "ChatManager.h"
 #import "ChatUtil.h"
 #import "ChatUploadsController.h"
@@ -18,11 +18,11 @@
 #import "ChatChangeGroupNameVC.h"
 #import "ChatUser.h"
 
-@interface GroupInfoVC ()
+@interface ChatGroupInfoVC ()
 
 @end
 
-@implementation GroupInfoVC
+@implementation ChatGroupInfoVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -261,7 +261,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"GroupMembers"]) {
-        GroupMembersVC *vc = (GroupMembersVC *)[segue destinationViewController];
+        ChatGroupMembersVC *vc = (ChatGroupMembersVC *)[segue destinationViewController];
         vc.group = self.group;
     }
     else if ([[segue identifier] isEqualToString:@"ChangeGroupName"]) {

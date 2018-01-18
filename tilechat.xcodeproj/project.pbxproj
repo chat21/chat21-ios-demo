@@ -72,7 +72,7 @@
 		B2B5034420053D27007CC120 /* QBPlasticPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502C220053D27007CC120 /* QBPlasticPopupMenu.m */; };
 		B2B5034520053D27007CC120 /* QBPopupMenuOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502C520053D27007CC120 /* QBPopupMenuOverlayView.m */; };
 		B2B5034620053D27007CC120 /* QBPopupMenuPagenatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502C620053D27007CC120 /* QBPopupMenuPagenatorView.m */; };
-		B2B5034720053D27007CC120 /* GroupMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502C820053D27007CC120 /* GroupMembersVC.m */; };
+		B2B5034720053D27007CC120 /* ChatGroupMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502C820053D27007CC120 /* ChatGroupMembersVC.m */; };
 		B2B5034820053D27007CC120 /* notification_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2B502C920053D27007CC120 /* notification_view.xib */; };
 		B2B5034920053D27007CC120 /* ChatConversationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502CB20053D27007CC120 /* ChatConversationsVC.m */; };
 		B2B5034A20053D27007CC120 /* newnotif.caf in Resources */ = {isa = PBXBuildFile; fileRef = B2B502CD20053D27007CC120 /* newnotif.caf */; };
@@ -84,7 +84,7 @@
 		B2B5035020053D27007CC120 /* NotConnectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502DC20053D27007CC120 /* NotConnectedVC.m */; };
 		B2B5035120053D27007CC120 /* status_title_ios11.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2B502DF20053D27007CC120 /* status_title_ios11.xib */; };
 		B2B5035220053D27007CC120 /* NotificationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502E020053D27007CC120 /* NotificationAlertView.m */; };
-		B2B5035320053D27007CC120 /* GroupInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502E120053D27007CC120 /* GroupInfoVC.m */; };
+		B2B5035320053D27007CC120 /* ChatGroupInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B502E120053D27007CC120 /* ChatGroupInfoVC.m */; };
 		B2B503732006269F007CC120 /* ChatMessageComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B5036D200624BA007CC120 /* ChatMessageComponents.m */; };
 		B2B50374200626A1007CC120 /* ChatCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B5036F200624BB007CC120 /* ChatCustomView.m */; };
 		B2B50375200626A5007CC120 /* CellConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B50371200624BC007CC120 /* CellConfigurator.m */; };
@@ -223,7 +223,7 @@
 		B2B502B320053D27007CC120 /* chat_double_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_double_check.png; sourceTree = "<group>"; };
 		B2B502B520053D27007CC120 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		B2B502B620053D27007CC120 /* group-conversation-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-conversation-avatar.png"; sourceTree = "<group>"; };
-		B2B502B720053D27007CC120 /* GroupInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInfoVC.h; sourceTree = "<group>"; };
+		B2B502B720053D27007CC120 /* ChatGroupInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupInfoVC.h; sourceTree = "<group>"; };
 		B2B502B820053D27007CC120 /* ChatSelectUserLocalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectUserLocalVC.m; sourceTree = "<group>"; };
 		B2B502B920053D27007CC120 /* NotificationAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationAlertView.h; sourceTree = "<group>"; };
 		B2B502BA20053D27007CC120 /* ChatUIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUIManager.m; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 		B2B502C520053D27007CC120 /* QBPopupMenuOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuOverlayView.m; sourceTree = "<group>"; };
 		B2B502C620053D27007CC120 /* QBPopupMenuPagenatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuPagenatorView.m; sourceTree = "<group>"; };
 		B2B502C720053D27007CC120 /* QBPopupMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuItem.h; sourceTree = "<group>"; };
-		B2B502C820053D27007CC120 /* GroupMembersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMembersVC.m; sourceTree = "<group>"; };
+		B2B502C820053D27007CC120 /* ChatGroupMembersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMembersVC.m; sourceTree = "<group>"; };
 		B2B502C920053D27007CC120 /* notification_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = notification_view.xib; sourceTree = "<group>"; };
 		B2B502CA20053D27007CC120 /* NotConnectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotConnectedVC.h; sourceTree = "<group>"; };
 		B2B502CB20053D27007CC120 /* ChatConversationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversationsVC.m; sourceTree = "<group>"; };
@@ -259,11 +259,11 @@
 		B2B502DA20053D27007CC120 /* UIView+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Property.h"; sourceTree = "<group>"; };
 		B2B502DB20053D27007CC120 /* NotificationAlertVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertVC.m; sourceTree = "<group>"; };
 		B2B502DC20053D27007CC120 /* NotConnectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotConnectedVC.m; sourceTree = "<group>"; };
-		B2B502DD20053D27007CC120 /* GroupMembersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMembersVC.h; sourceTree = "<group>"; };
+		B2B502DD20053D27007CC120 /* ChatGroupMembersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMembersVC.h; sourceTree = "<group>"; };
 		B2B502DE20053D27007CC120 /* ChatUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUIManager.h; sourceTree = "<group>"; };
 		B2B502DF20053D27007CC120 /* status_title_ios11.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = status_title_ios11.xib; sourceTree = "<group>"; };
 		B2B502E020053D27007CC120 /* NotificationAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertView.m; sourceTree = "<group>"; };
-		B2B502E120053D27007CC120 /* GroupInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupInfoVC.m; sourceTree = "<group>"; };
+		B2B502E120053D27007CC120 /* ChatGroupInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupInfoVC.m; sourceTree = "<group>"; };
 		B2B502E220053D27007CC120 /* ChatSelectUserLocalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectUserLocalVC.h; sourceTree = "<group>"; };
 		B2B502E320053D27007CC120 /* ChatConversationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsVC.h; sourceTree = "<group>"; };
 		B2B5036D200624BA007CC120 /* ChatMessageComponents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageComponents.m; sourceTree = "<group>"; };
@@ -682,10 +682,10 @@
 				B2B5029520053D27007CC120 /* ChatTitleVC.m */,
 				B2B502DE20053D27007CC120 /* ChatUIManager.h */,
 				B2B502BA20053D27007CC120 /* ChatUIManager.m */,
-				B2B502B720053D27007CC120 /* GroupInfoVC.h */,
-				B2B502E120053D27007CC120 /* GroupInfoVC.m */,
-				B2B502DD20053D27007CC120 /* GroupMembersVC.h */,
-				B2B502C820053D27007CC120 /* GroupMembersVC.m */,
+				B2B502B720053D27007CC120 /* ChatGroupInfoVC.h */,
+				B2B502E120053D27007CC120 /* ChatGroupInfoVC.m */,
+				B2B502DD20053D27007CC120 /* ChatGroupMembersVC.h */,
+				B2B502C820053D27007CC120 /* ChatGroupMembersVC.m */,
 				B2B502CA20053D27007CC120 /* NotConnectedVC.h */,
 				B2B502DC20053D27007CC120 /* NotConnectedVC.m */,
 				B2B502C920053D27007CC120 /* notification_view.xib */,
@@ -1107,12 +1107,12 @@
 				B2C7CB9D1FDAFD1400F2EFFE /* HelloVC.m in Sources */,
 				B2DB07A81FD3E37B0062E8D0 /* HelpCategoryStepTVC.m in Sources */,
 				B2B5034920053D27007CC120 /* ChatConversationsVC.m in Sources */,
-				B2B5035320053D27007CC120 /* GroupInfoVC.m in Sources */,
+				B2B5035320053D27007CC120 /* ChatGroupInfoVC.m in Sources */,
 				B2B503F720062781007CC120 /* ChatUtil.m in Sources */,
 				B2B503FF20062781007CC120 /* ChatConversationsHandler.m in Sources */,
 				B24AD7B61F86134800A526E9 /* HelpCategory.m in Sources */,
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
-				B2B5034720053D27007CC120 /* GroupMembersVC.m in Sources */,
+				B2B5034720053D27007CC120 /* ChatGroupMembersVC.m in Sources */,
 				B2B5040220062781007CC120 /* ChatContactsDB.m in Sources */,
 				BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */,
 				B2B5035020053D27007CC120 /* NotConnectedVC.m in Sources */,

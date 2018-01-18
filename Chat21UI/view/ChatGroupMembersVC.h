@@ -1,5 +1,5 @@
 //
-//  GroupMembersVC.h
+//  ChatGroupMembersVC.h
 //  Smart21
 //
 //  Created by Andrea Sponziello on 05/05/15.
@@ -12,10 +12,10 @@
 @class ChatGroup;
 @class ChatImageCache;
 
-@interface GroupMembersVC : UITableViewController <ChatModalCallerDelegate>
+@interface ChatGroupMembersVC : UITableViewController <ChatModalCallerDelegate>
 
 @property (strong, nonatomic) ChatGroup *group;
-@property (strong, nonatomic) NSMutableArray *members_array;
+//@property (strong, nonatomic) NSMutableArray *members_array;
 - (IBAction)addMember:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addMemberButton;
 

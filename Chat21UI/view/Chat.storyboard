@@ -794,7 +794,7 @@
         <!--Info gruppo-->
         <scene sceneID="102-rg-dg6">
             <objects>
-                <tableViewController title="Info gruppo" id="AwH-i1-wi5" customClass="GroupInfoVC" sceneMemberID="viewController">
+                <tableViewController title="Info gruppo" id="AwH-i1-wi5" customClass="ChatGroupInfoVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yhe-gW-eVP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -997,10 +997,10 @@
             </objects>
             <point key="canvasLocation" x="-9864" y="1078"/>
         </scene>
-        <!--Group MembersVC-->
+        <!--Chat Group MembersVC-->
         <scene sceneID="CyY-G4-pwM">
             <objects>
-                <tableViewController id="Pnw-n7-YYL" customClass="GroupMembersVC" sceneMemberID="viewController">
+                <tableViewController id="Pnw-n7-YYL" customClass="ChatGroupMembersVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IGl-lA-CF5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
