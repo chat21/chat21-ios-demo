@@ -46,6 +46,9 @@
     NSString *conversationId = snapshot.value[MSG_FIELD_CONVERSATION_ID];
     NSString *type = snapshot.value[MSG_FIELD_TYPE];
     NSString *channel_type = snapshot.value[MSG_FIELD_CHANNEL_TYPE];
+    if (!channel_type) {
+        channel_type = MSG_CHANNEL_TYPE_DIRECT;
+    }
     NSString *text = snapshot.value[MSG_FIELD_TEXT];
     NSString *sender = snapshot.value[MSG_FIELD_SENDER];
     NSString *senderFullname = snapshot.value[MSG_FIELD_SENDER_FULLNAME];

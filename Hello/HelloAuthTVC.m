@@ -128,7 +128,8 @@
 
 -(void)firebaseLogin:(NSString *)email password:(NSString *)password {
     
-    HelloApplicationContext *context = [HelloApplicationContext getSharedInstance];
+    HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HelloApplicationContext *context = appDelegate.applicationContext;
     
     __weak HelloAuthTVC *weakSelf = self;
     
@@ -147,34 +148,54 @@
             signedUser.username = fir_user.email;
             signedUser.email = email;
             signedUser.password = password;
-            [context signin:signedUser];
             
             // store user info for next login.
-            // REMOVE ON PRODUCTION. HERE UST TO ACCELERATE DEVELOPMENT
+            // REMOVE ON PRODUCTION. HERE JUST TO ACCELERATE DEVELOPMENT
             NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
+            
             [userPreferences setObject:password forKey:@"stored_password"];
             [userPreferences setObject:email forKey:@"stored_username"];
             [userPreferences synchronize];
             
-            [HelloChatUtil initChat];
-            ChatManager *chat = [ChatManager getInstance];
-            [chat createContactFor:chat.loggedUser withCompletionBlock:^(NSError *error) {
-                if (error) {
-                    NSLog(@"Error in contact creation after login. User: %@, Error: %@", chat.loggedUser.fullname, error);
+            ChatManager *chatm = [ChatManager getInstance];
+            [chatm getContactLocalDB:signedUser.userid withCompletion:^(ChatUser *user) {
+                if (user) {
+                    signedUser.firstName = user.firstname;
+                    signedUser.lastName = user.lastname;
+                    [context signin:signedUser];
+                    [self initChatAndCloseView:weakSelf];
                 }
                 else {
-                    NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
+                    [chatm getUserInfoRemote:signedUser.userid withCompletion:^(ChatUser *user) {
+                        signedUser.firstName = user.firstname;
+                        signedUser.lastName = user.lastname;
+                        [context signin:signedUser];
+                        [self initChatAndCloseView:weakSelf];
+                    }];
                 }
             }];
             
-            [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
-                HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
-                [app startPushNotifications];
-            }];
+//            [chat createContactFor:chat.loggedUser withCompletionBlock:^(NSError *error) {
+//                if (error) {
+//                    NSLog(@"Error in contact creation after login. User: %@, Error: %@", chat.loggedUser.fullname, error);
+//                }
+//                else {
+//                    NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
+//                }
+//            }];
+            
+            
         }
     }];
 }
 
+-(void)initChatAndCloseView:(HelloAuthTVC *)weakSelf {
+    [HelloChatUtil initChat];
+    [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
+        HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
+        [app startPushNotifications];
+    }];
+}
 -(void)showAlert:(NSString *)msg {
     UIAlertController * view =   [UIAlertController
                                   alertControllerWithTitle:nil

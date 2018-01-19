@@ -298,7 +298,6 @@
 		B2B503DB20062781007CC120 /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
 		B2B503DC20062781007CC120 /* FirebaseCustomAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCustomAuthHelper.h; sourceTree = "<group>"; };
 		B2B503DD20062781007CC120 /* ChatConversationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationHandler.h; sourceTree = "<group>"; };
-		B2B503DE20062781007CC120 /* DEPRECATED_ChatConversationSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_ChatConversationSubscriber.h; sourceTree = "<group>"; };
 		B2B503DF20062781007CC120 /* ChatGroupsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsHandler.m; sourceTree = "<group>"; };
 		B2B503E020062781007CC120 /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
 		B2B503E120062781007CC120 /* ChatContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsDB.m; sourceTree = "<group>"; };
@@ -306,12 +305,10 @@
 		B2B503E320062781007CC120 /* ChatDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDB.m; sourceTree = "<group>"; };
 		B2B503E420062781007CC120 /* ChatConnectionStatusHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConnectionStatusHandler.h; sourceTree = "<group>"; };
 		B2B503E520062781007CC120 /* ChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
-		B2B503E620062781007CC120 /* DEPRECATED_SHPConversationsViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_SHPConversationsViewDelegate.h; sourceTree = "<group>"; };
 		B2B503E720062781007CC120 /* ChatGroupsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsDB.m; sourceTree = "<group>"; };
 		B2B503E820062781007CC120 /* ChatConversationsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsHandler.h; sourceTree = "<group>"; };
 		B2B503E920062781007CC120 /* ChatGroupsSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsSubscriber.h; sourceTree = "<group>"; };
 		B2B503EA20062781007CC120 /* ChatConversationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversationHandler.m; sourceTree = "<group>"; };
-		B2B503EB20062781007CC120 /* DEPRECATED_SHPChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPRECATED_SHPChatDelegate.h; sourceTree = "<group>"; };
 		B2B503EC20062781007CC120 /* FirebaseCustomAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCustomAuthHelper.m; sourceTree = "<group>"; };
 		B2B503ED20062781007CC120 /* ChatContactsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContactsDB.h; sourceTree = "<group>"; };
 		B2B503EE20062781007CC120 /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
@@ -642,9 +639,6 @@
 				B2B503E020062781007CC120 /* ChatPresenceHandler.m */,
 				B2B503DB20062781007CC120 /* ChatPresenceViewDelegate.h */,
 				B2B503F220062781007CC120 /* ChatSynchDelegate.h */,
-				B2B503DE20062781007CC120 /* DEPRECATED_ChatConversationSubscriber.h */,
-				B2B503EB20062781007CC120 /* DEPRECATED_SHPChatDelegate.h */,
-				B2B503E620062781007CC120 /* DEPRECATED_SHPConversationsViewDelegate.h */,
 				B2B503DC20062781007CC120 /* FirebaseCustomAuthHelper.h */,
 				B2B503EC20062781007CC120 /* FirebaseCustomAuthHelper.m */,
 			);

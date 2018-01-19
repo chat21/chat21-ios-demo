@@ -28,10 +28,10 @@
     chatUser.firstname = app.applicationContext.loggedUser.firstName;
     chatUser.lastname = app.applicationContext.loggedUser.lastName;
     
-    ChatManager *chat = [ChatManager getInstance];
-    [chat startWithUser:chatUser];
+    ChatManager *chatm = [ChatManager getInstance];
+    [chatm startWithUser:chatUser];
     NSLog(@"Updates user from local contacts synch...");
-    [chat getContactLocalDB:chatUser.userId withCompletion:^(ChatUser *user) {
+    [chatm getContactLocalDB:chatUser.userId withCompletion:^(ChatUser *user) {
         NSLog(@"user found: %@, user_id: %@, user.firstname: %@", user, user.userId, user.firstname);
         if (user && user.userId && ![user.firstname isEqualToString:@""]) {
             chatUser.firstname = user.firstname;

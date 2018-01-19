@@ -102,8 +102,8 @@
     
     // LOGOUT FIREBASE...
     //START SIGNOUT
-    ChatManager *chat = [ChatManager getInstance];
-    [chat dispose];
+    ChatManager *chatm = [ChatManager getInstance];
+    [chatm dispose];
     //signout firebase
     NSError *signOutError;
     BOOL status = [[FIRAuth auth] signOut:&signOutError];

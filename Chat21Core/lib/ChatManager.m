@@ -817,7 +817,26 @@ static ChatManager *sharedInstance = nil;
 -(void)getContactLocalDB:(NSString *)userid withCompletion:(void(^)(ChatUser *user))callback {
     ChatContactsDB *db = [ChatContactsDB getSharedInstance];
     [db getContactByIdSyncronized:userid completion:^(ChatUser *user) {
-        callback(user);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(user);
+        });
+    }];
+}
+
+-(void)getUserInfoRemote:(NSString *)userid withCompletion:(void(^)(ChatUser *user))callback {
+    NSLog(@"Get remote contact.");
+    FIRDatabaseReference *rootRef = [[FIRDatabase database] reference];
+    FIRDatabaseReference *userInfoRef = [[rootRef child: [ChatUtil contactsPath]] child:userid];
+    
+    [userInfoRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        ChatUser *user = [ChatContactsSynchronizer contactFromSnapshotFactory:snapshot];
+        if (user) {
+            NSLog(@"FIREBASE CONTACT, id: %@ firstname: %@ fullname: %@",user.userId, user.firstname, user.fullname);
+            callback(user);
+//          [self insertOrUpdateContactOnDB:contact];
+        }
+    } withCancelBlock:^(NSError *error) {
+         NSLog(@"%@", error.description);
     }];
 }
 

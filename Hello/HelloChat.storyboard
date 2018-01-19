@@ -328,11 +328,11 @@
             </objects>
             <point key="canvasLocation" x="1045.5999999999999" y="2259.2203898050975"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="yqs-RY-Bic">
             <objects>
                 <navigationController storyboardIdentifier="profile-vc" id="b3G-x0-wR9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="ic_linear_profile.png" id="m2c-dg-lIh"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ic_linear_profile.png" id="m2c-dg-lIh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8yb-ys-t6B">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
