@@ -87,11 +87,8 @@ static ChatManager *sharedInstance = nil;
         NSLog(@"Conversation Handler not found. Creating & initializing a new one with recipient-id %@", recipient.userId);
         handler = [[ChatConversationHandler alloc] initWithRecipient:recipient.userId recipientFullName:recipient.fullname];
         [self addConversationHandler:handler];
-        NSLog(@"Restoring DB archived conversations.");
         [handler restoreMessagesFromDB];
-        NSLog(@"Archived messages count %lu", (unsigned long)handler.messages.count);
-        NSLog(@"Connecting handler to firebase.");
-        [handler connect];
+        NSLog(@"Restored messages count %lu", (unsigned long)handler.messages.count);
     }
     return handler;
 }

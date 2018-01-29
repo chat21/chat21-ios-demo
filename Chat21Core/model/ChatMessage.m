@@ -57,13 +57,13 @@
     NSString *lang = snapshot.value[MSG_FIELD_LANG];
     NSNumber *timestamp = snapshot.value[MSG_FIELD_TIMESTAMP];
     NSMutableDictionary *attributes = snapshot.value[MSG_FIELD_ATTRIBUTES];
-    NSLog(@"snapshot. %@", [snapshot.value[MSG_FIELD_ATTRIBUTES] class]);
-    NSLog(@"DECODED ATTRIBUTES (%@): %@", text, attributes);
+//    NSLog(@"snapshot. %@", [snapshot.value[MSG_FIELD_ATTRIBUTES] class]);
+//    NSLog(@"DECODED ATTRIBUTES (%@): %@", text, attributes);
     
     ChatMessage *message = [[ChatMessage alloc] init];
     
     message.attributes = attributes;
-    NSLog(@"MESSAGE.ATTRIBUTES.. %@", message.attributes);
+//    NSLog(@"MESSAGE.ATTRIBUTES.. %@", message.attributes);
     message.key = snapshot.key;
     message.ref = snapshot.ref;
     message.messageId = snapshot.key;
@@ -72,12 +72,16 @@
     message.lang = lang;
     message.mtype = type;
     message.channel_type = channel_type;
-    NSLog(@"DECODED TYPE %@", message.mtype);
+//    NSLog(@"DECODED TYPE %@", message.mtype);
     message.sender = sender;
     message.senderFullname = senderFullname;
     message.date = [NSDate dateWithTimeIntervalSince1970:timestamp.doubleValue/1000];
-    NSLog(@"Message date %@", message.date);
-    message.status = [(NSNumber *)snapshot.value[MSG_FIELD_STATUS] intValue];
+//    NSLog(@"Message date %@", message.date);
+    int status = [(NSNumber *)snapshot.value[MSG_FIELD_STATUS] intValue];
+    if (status < 100) {
+        status = 100;
+    }
+    message.status = status;
     message.recipient = recipient;
 //    message.recipientGroupId = recipientGroupId;
     return message;
