@@ -105,6 +105,8 @@
 "change fullname" = "Change Full name";
 "change password" = "Change Password";
 "settingsLegalSection" = "Legal";
+"Remove this member?" = "Remove this member?";
+"Remove" = "Remove";
 
 // Help
 "help wizard title" = "Synthesize your problem";

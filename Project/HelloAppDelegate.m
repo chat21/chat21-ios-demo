@@ -26,14 +26,15 @@
 
 @implementation HelloAppDelegate
 
-static NSString *NOTIFICATION_TYPE_KEY = @"t"; //type
-static NSString *NOTIFICATION_TYPE_CHAT_KEY = @"chat";
+static NSString *NOTIFICATION_KEY_TYPE = @"t"; //type
+static NSString *NOTIFICATION_KEY_TYPE_CHAT = @"chat";
 
 
-static NSString *NOTIFICATION_ALERT_KEY = @"alert";
-static NSString *NOTIFICATION_CATEGORY_KEY = @"category";
-static NSString *NOTIFICATION_APS_KEY = @"aps";
-static NSString *NOTIFICATION_BADGE_KEY = @"badge";
+static NSString *NOTIFICATION_KEY_ALERT = @"alert";
+static NSString *NOTIFICATION_KEY_CATEGORY = @"category";
+static NSString *NOTIFICATION_KEY_APS = @"aps";
+static NSString *NOTIFICATION_KEY_BADGE = @"badge";
+static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -265,22 +266,21 @@ static NSString *NOTIFICATION_BADGE_KEY = @"badge";
 // #notificationsworkflow
 -(void)processRemoteNotification:(NSDictionary*)userInfo {
     NSLog(@"REMOTE NOTIFICATION: %@", userInfo);
-    NSDictionary *aps = [userInfo objectForKey:NOTIFICATION_APS_KEY];
+    NSDictionary *aps = [userInfo objectForKey:NOTIFICATION_KEY_APS];
     NSLog(@"aps: %@", aps);
-    NSString *alert = [aps objectForKey:NOTIFICATION_ALERT_KEY];
+    NSString *alert = [aps objectForKey:NOTIFICATION_KEY_ALERT];
     NSLog(@"alert: %@", alert);
-    NSString *category = [aps objectForKey:NOTIFICATION_CATEGORY_KEY];
+    NSString *category = [aps objectForKey:NOTIFICATION_KEY_CATEGORY];
     NSLog(@"category: %@", category);
     
-    if ([category isEqualToString:@"OPEN_MESSAGE_LIST_ACTIVITY"]) {
+    if ([category isEqualToString:NOTIFICATION_VALUE_NEW_MESSAGE]) {
         NSString *senderid = [userInfo objectForKey:@"sender"];
         NSString *sender_fullname = [userInfo objectForKey:@"sender_fullname"];
-//        NSString *groupid = [userInfo objectForKey:@"group_id"];
         NSString *recipientid = [userInfo objectForKey:@"recipient"];
         NSString *recipient_fullname = [userInfo objectForKey:@"recipient_fullname"];
         NSString *channel_type = [userInfo objectForKey:@"channel_type"];
         
-        NSString *badge = [[userInfo objectForKey:NOTIFICATION_APS_KEY] objectForKey:NOTIFICATION_BADGE_KEY];
+        NSString *badge = [[userInfo objectForKey:NOTIFICATION_KEY_APS] objectForKey:NOTIFICATION_KEY_BADGE];
         NSLog(@"==>Sender: %@", senderid);
         NSLog(@"==>Badge: %@", badge);
         
