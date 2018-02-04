@@ -43,24 +43,18 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     HelloApplicationContext *context = [HelloApplicationContext getSharedInstance];
     self.applicationContext = context;
     NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *plistDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
-    self.applicationContext.plistDictionary=plistDictionary;
-        
-    // chat config
-    NSString *tenant = [plistDictionary objectForKey:@"chat-app-id"];
-//    NSString *tenant = [settings_config objectForKey:@"tenantName"];
-//    self.applicationContext.tenant = tenant;
-    [self initUser];
-    NSLog(@"SAVED LOGGED USER: %@", self.applicationContext.loggedUser);
+    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
+    self.applicationContext.settings = settings;
     
-    NSLog(@"initialize chat on tenant: %@", tenant);
+    [self initUser];
+    // chat config
     [FIRApp configure];
-//    [ChatManager configureWithAppId:tenant]; // user:loggedUser];
     [ChatManager configure];
     // initial chat signin
     if ((context.loggedUser)) {
-        [HelloChatUtil initChat]; // initialize logged user so I can get chat-history from DB, regardless of a real Firebase successfull authentication/connection
-        // always authenticates on firebase
+        // initialize logged user so I can get chat-history from DB, using offline mode, regardless of a real Firebase successfull authentication/connection
+        [HelloChatUtil initChat];
+        // always authenticates on firebase on app's startup
         [HelloChatUtil firebaseAuthEmail:context.loggedUser.email password:context.loggedUser.password completion:^(FIRUser *fir_user, NSError *error) {
             if (error) {
                 NSLog(@"Firebase authentication error. %@", error);
@@ -75,7 +69,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 //    [self configTabBar];
 //
     // adding chat controller
-    int chat_tab_index = 1; //[HelloApplicationContext tabIndexByName:@"ChatController"];
+    NSInteger chat_tab_index = [ChatUIManager getInstance].tabBarIndex;
     
     if (chat_tab_index >= 0) {
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
@@ -90,7 +84,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         // setting icon & name of the chat's tabbar item
         UITabBar *tabBar = tabController.tabBar;
         UITabBarItem *tabChat = tabBar.items[chat_tab_index];
-//        UITabBarItem *tab in tabBar.items
         [tabChat setImage:[[UIImage imageNamed:@"ic_linear_chat"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
         [tabChat setSelectedImage:[[UIImage imageNamed:@"ic_linear_chat"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
         tabChat.title = @"Chat";

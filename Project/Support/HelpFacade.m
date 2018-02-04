@@ -33,7 +33,7 @@ static HelpFacade *sharedInstance = nil;
         sharedInstance = [[super alloc] init];
         HelloAppDelegate *appDelegate = (HelloAppDelegate *)[[UIApplication sharedApplication] delegate];
         HelloApplicationContext *applicationContext = appDelegate.applicationContext;
-        BOOL support_enabled = [[applicationContext.plistDictionary valueForKey:@"chat-support"] boolValue];
+        BOOL support_enabled = [[applicationContext.settings valueForKey:@"chat-support"] boolValue];
         sharedInstance.supportEnabled = support_enabled;
     }
     return sharedInstance;
@@ -96,7 +96,7 @@ static HelpFacade *sharedInstance = nil;
 }
 
 -(void)sendMessage:(NSString *)text toRecipient:(ChatUser *)recipient attributes:(NSDictionary *)attributes {
-    int chat_tab_index = [HelloApplicationContext tabIndexByName:@"ChatController"];
+    NSInteger chat_tab_index = [ChatUIManager getInstance].tabBarIndex; //[HelloApplicationContext tabIndexByName:@"ChatController"];
     // move to the converstations tab
     if (chat_tab_index >= 0) {
         [ChatUIManager moveToConversationViewWithUser:recipient orGroup:nil sendMessage:text attributes:attributes];

@@ -10,7 +10,7 @@
 		92F6C2F0BF9B790EC16ED3B9 /* libPods-tilechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */; };
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21459BF1FFF7F1F0048535E /* Chat-Info.plist */; };
-		B21760C31FE9C88900C83215 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B21760C21FE9C88900C83215 /* MBProgressHUD.m */; };
+		B2147D6F20275BE600376336 /* ChatProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2147D6D20275BE600376336 /* ChatProgressView.m */; };
 		B21760D01FEC31BE00C83215 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21760CF1FEC31BE00C83215 /* GoogleService-Info.plist */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
@@ -156,8 +156,8 @@
 		B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21459BF1FFF7F1F0048535E /* Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; sourceTree = "<group>"; };
-		B21760C11FE9C88900C83215 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Project/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
-		B21760C21FE9C88900C83215 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Project/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
+		B2147D6D20275BE600376336 /* ChatProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProgressView.m; sourceTree = "<group>"; };
+		B2147D6E20275BE600376336 /* ChatProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProgressView.h; sourceTree = "<group>"; };
 		B21760CF1FEC31BE00C83215 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
@@ -561,6 +561,8 @@
 		B2B5036C20062494007CC120 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				B2147D6E20275BE600376336 /* ChatProgressView.h */,
+				B2147D6D20275BE600376336 /* ChatProgressView.m */,
 				B2B5036E200624BA007CC120 /* CellConfigurator.h */,
 				B2B50371200624BC007CC120 /* CellConfigurator.m */,
 				B2B50372200624BC007CC120 /* ChatCustomView.h */,
@@ -785,8 +787,6 @@
 		BFBFD4911AEA591100657874 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				B21760C11FE9C88900C83215 /* MBProgressHUD.h */,
-				B21760C21FE9C88900C83215 /* MBProgressHUD.m */,
 				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
 				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
 				BFBFD5371AEA7C3700657874 /* SHPImageCache.h */,
@@ -1051,6 +1051,7 @@
 				B2B503FC20062781007CC120 /* ChatUser.m in Sources */,
 				B2B5040120062781007CC120 /* ChatPresenceHandler.m in Sources */,
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
+				B2147D6F20275BE600376336 /* ChatProgressView.m in Sources */,
 				B2B5034520053D27007CC120 /* QBPopupMenuOverlayView.m in Sources */,
 				B2B5040520062781007CC120 /* ChatGroupsDB.m in Sources */,
 				B2B503FE20062781007CC120 /* ChatGroup.m in Sources */,
@@ -1080,7 +1081,6 @@
 				BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */,
 				BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */,
 				B2B503F520062781007CC120 /* ChatImageWrapper.m in Sources */,
-				B21760C31FE9C88900C83215 /* MBProgressHUD.m in Sources */,
 				B24AD7C41F8670C400A526E9 /* HelpDescriptionStepTVC.m in Sources */,
 				BFBFD53C1AEA7C4800657874 /* SHPCaching.m in Sources */,
 				B2B5034E20053D27007CC120 /* ChatStatusTitle.m in Sources */,

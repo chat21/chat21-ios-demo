@@ -30,7 +30,7 @@
     NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
     self.versionLabel.text = [NSString stringWithFormat:@"ver. %@ build %@", version, build];
     HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
-    self.appNameLabel.text = [app.applicationContext.plistDictionary objectForKey:@"app-name"];
+    self.appNameLabel.text = [app.applicationContext.settings objectForKey:@"app-name"];
     
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }

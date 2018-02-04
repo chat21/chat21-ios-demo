@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BFBFD3671AEA544F00657874"
-               BuildableName = "Tile Chat.app"
+               BuildableName = "Chat21.app"
                BlueprintName = "tilechat"
                ReferencedContainer = "container:tilechat.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFBFD3671AEA544F00657874"
-            BuildableName = "Tile Chat.app"
+            BuildableName = "Chat21.app"
             BlueprintName = "tilechat"
             ReferencedContainer = "container:tilechat.xcodeproj">
          </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFBFD3671AEA544F00657874"
-            BuildableName = "Tile Chat.app"
+            BuildableName = "Chat21.app"
             BlueprintName = "tilechat"
             ReferencedContainer = "container:tilechat.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFBFD3671AEA544F00657874"
-            BuildableName = "Tile Chat.app"
+            BuildableName = "Chat21.app"
             BlueprintName = "tilechat"
             ReferencedContainer = "container:tilechat.xcodeproj">
          </BuildableReference>

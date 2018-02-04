@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
-    self.appName.text = [app.applicationContext.plistDictionary objectForKey:@"app-name"];
+    self.appName.text = [app.applicationContext.settings objectForKey:@"app-name"];
     
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }

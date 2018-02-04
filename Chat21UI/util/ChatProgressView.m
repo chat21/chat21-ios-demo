@@ -1,10 +1,10 @@
 //
-// MBProgressHUD.m
+// ChatProgressView.m
 // Version 0.5
 // Created by Matej Bukovinski on 2.4.09.
 //
 
-#import "MBProgressHUD.h"
+#import "ChatProgressView.h"
 
 
 #if __has_feature(objc_arc)
@@ -23,7 +23,7 @@ static const CGFloat kLabelFontSize = 16.f;
 static const CGFloat kDetailsLabelFontSize = 12.f;
 
 
-@interface MBProgressHUD ()
+@interface ChatProgressView ()
 
 - (void)setupLabels;
 - (void)registerForKVO;
@@ -53,7 +53,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 @end
 
 
-@implementation MBProgressHUD {
+@implementation ChatProgressView {
 	BOOL useAnimation;
 	SEL methodForExecution;
 	id targetForExecution;
@@ -98,15 +98,15 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 #pragma mark - Class methods
 
-+ (MBProgressHUD *)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
-	MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
++ (ChatProgressView *)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
+	ChatProgressView *hud = [[ChatProgressView alloc] initWithView:view];
 	[view addSubview:hud];
 	[hud show:animated];
 	return MB_AUTORELEASE(hud);
 }
 
 + (BOOL)hideHUDForView:(UIView *)view animated:(BOOL)animated {
-	MBProgressHUD *hud = [MBProgressHUD HUDForView:view];
+	ChatProgressView *hud = [ChatProgressView HUDForView:view];
 	if (hud != nil) {
 		hud.removeFromSuperViewOnHide = YES;
 		[hud hide:animated];
@@ -117,20 +117,20 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 + (NSUInteger)hideAllHUDsForView:(UIView *)view animated:(BOOL)animated {
 	NSArray *huds = [self allHUDsForView:view];
-	for (MBProgressHUD *hud in huds) {
+	for (ChatProgressView *hud in huds) {
 		hud.removeFromSuperViewOnHide = YES;
 		[hud hide:animated];
 	}
 	return [huds count];
 }
 
-+ (MBProgressHUD *)HUDForView:(UIView *)view {
-	MBProgressHUD *hud = nil;
++ (ChatProgressView *)HUDForView:(UIView *)view {
+	ChatProgressView *hud = nil;
 	NSArray *subviews = view.subviews;
-	Class hudClass = [MBProgressHUD class];
+	Class hudClass = [ChatProgressView class];
 	for (UIView *aView in subviews) {
 		if ([aView isKindOfClass:hudClass]) {
-			hud = (MBProgressHUD *)aView;
+			hud = (ChatProgressView *)aView;
 		}
 	}
 	return hud;
@@ -139,7 +139,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 + (NSArray *)allHUDsForView:(UIView *)view {
 	NSMutableArray *huds = [NSMutableArray array];
 	NSArray *subviews = view.subviews;
-	Class hudClass = [MBProgressHUD class];
+	Class hudClass = [ChatProgressView class];
 	for (UIView *aView in subviews) {
 		if ([aView isKindOfClass:hudClass]) {
 			[huds addObject:aView];
@@ -154,8 +154,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	self = [super initWithFrame:frame];
 	if (self) {
 		// Set default values for properties
-		self.animationType = MBProgressHUDAnimationFade;
-		self.mode = MBProgressHUDModeIndeterminate;
+		self.animationType = ChatProgressViewAnimationFade;
+		self.mode = ChatProgressViewModeIndeterminate;
 		self.labelText = nil;
 		self.detailsLabelText = nil;
 		self.opacity = 0.8f;
@@ -283,7 +283,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 - (void)showUsingAnimation:(BOOL)animated {
 	self.alpha = 0.0f;
-	if (animated && animationType == MBProgressHUDAnimationZoom) {
+	if (animated && animationType == ChatProgressViewAnimationZoom) {
 		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
 	}
 	self.showStarted = [NSDate date];
@@ -292,7 +292,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.20];
 		self.alpha = 1.0f;
-		if (animationType == MBProgressHUDAnimationZoom) {
+		if (animationType == ChatProgressViewAnimationZoom) {
 			self.transform = rotationTransform;
 		}
 		[UIView commitAnimations];
@@ -311,7 +311,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 		// 0.02 prevents the hud from passing through touches during the animation the hud will get completely hidden
 		// in the done method
-		if (animationType == MBProgressHUDAnimationZoom) {
+		if (animationType == ChatProgressViewAnimationZoom) {
 			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
 		}
 		self.alpha = 0.02f;
@@ -375,7 +375,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
-	 completionBlock:(MBProgressHUDCompletionBlock)completion {
+	 completionBlock:(ChatProgressViewCompletionBlock)completion {
 	
 	self.completionBlock = completion;
 	dispatch_async(queue, ^(void) {
@@ -443,7 +443,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	BOOL isActivityIndicator = [indicator isKindOfClass:[UIActivityIndicatorView class]];
 	BOOL isRoundIndicator = [indicator isKindOfClass:[MBRoundProgressView class]];
 	
-	if (mode == MBProgressHUDModeIndeterminate &&  !isActivityIndicator) {
+	if (mode == ChatProgressViewModeIndeterminate &&  !isActivityIndicator) {
 		// Update to indeterminate indicator
 		[indicator removeFromSuperview];
 		self.indicator = MB_AUTORELEASE([[UIActivityIndicatorView alloc]
@@ -451,23 +451,23 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[(UIActivityIndicatorView *)indicator startAnimating];
 		[self addSubview:indicator];
 	}
-	else if (mode == MBProgressHUDModeDeterminate || mode == MBProgressHUDModeAnnularDeterminate) {
+	else if (mode == ChatProgressViewModeDeterminate || mode == ChatProgressViewModeAnnularDeterminate) {
 		if (!isRoundIndicator) {
 			// Update to determinante indicator
 			[indicator removeFromSuperview];
 			self.indicator = MB_AUTORELEASE([[MBRoundProgressView alloc] init]);
 			[self addSubview:indicator];
 		}
-		if (mode == MBProgressHUDModeAnnularDeterminate) {
+		if (mode == ChatProgressViewModeAnnularDeterminate) {
 			[(MBRoundProgressView *)indicator setAnnular:YES];
 		}
 	} 
-	else if (mode == MBProgressHUDModeCustomView && customView != indicator) {
+	else if (mode == ChatProgressViewModeCustomView && customView != indicator) {
 		// Update custom view indicator
 		[indicator removeFromSuperview];
 		self.indicator = customView;
 		[self addSubview:indicator];
-	} else if (mode == MBProgressHUDModeText) {
+	} else if (mode == ChatProgressViewModeText) {
 		[indicator removeFromSuperview];
 		self.indicator = nil;
 	}

@@ -1,5 +1,5 @@
 //
-//  MBProgressHUD.h
+//  ChatProgressView.h
 //  Version 0.5
 //  Created by Matej Bukovinski on 2.4.09.
 //
@@ -30,28 +30,28 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@protocol MBProgressHUDDelegate;
+@protocol ChatProgressViewDelegate;
 
 
 typedef enum {
 	/** Progress is shown using an UIActivityIndicatorView. This is the default. */
-	MBProgressHUDModeIndeterminate,
+	ChatProgressViewModeIndeterminate,
 	/** Progress is shown using a round, pie-chart like, progress view. */
-	MBProgressHUDModeDeterminate,
+	ChatProgressViewModeDeterminate,
 	/** Progress is shown using a ring-shaped progress view. */
-	MBProgressHUDModeAnnularDeterminate,
+	ChatProgressViewModeAnnularDeterminate,
 	/** Shows a custom view */
-	MBProgressHUDModeCustomView,
+	ChatProgressViewModeCustomView,
 	/** Shows only labels */
-	MBProgressHUDModeText
-} MBProgressHUDMode;
+	ChatProgressViewModeText
+} ChatProgressViewMode;
 
 typedef enum {
 	/** Opacity animation */
-	MBProgressHUDAnimationFade,
+	ChatProgressViewAnimationFade,
 	/** Opacity + scale animation */
-	MBProgressHUDAnimationZoom
-} MBProgressHUDAnimation;
+	ChatProgressViewAnimationZoom
+} ChatProgressViewAnimation;
 
 
 #ifndef MB_STRONG
@@ -73,7 +73,7 @@ typedef enum {
 #endif
 
 #if NS_BLOCKS_AVAILABLE
-typedef void (^MBProgressHUDCompletionBlock)();
+typedef void (^ChatProgressViewCompletionBlock)();
 #endif
 
 
@@ -83,22 +83,22 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * Displays a simple HUD window containing a progress indicator and two optional labels for short messages.
  *
  * This is a simple drop-in class for displaying a progress HUD view similar to Apple's private UIProgressHUD class.
- * The MBProgressHUD window spans over the entire space given to it by the initWithFrame constructor and catches all
+ * The ChatProgressView window spans over the entire space given to it by the initWithFrame constructor and catches all
  * user input on this region, thereby preventing the user operations on components below the view. The HUD itself is
  * drawn centered as a rounded semi-transparent view which resizes depending on the user specified content.
  *
  * This view supports four modes of operation:
- * - MBProgressHUDModeIndeterminate - shows a UIActivityIndicatorView
- * - MBProgressHUDModeDeterminate - shows a custom round progress indicator
- * - MBProgressHUDModeAnnularDeterminate - shows a custom annular progress indicator
- * - MBProgressHUDModeCustomView - shows an arbitrary, user specified view (@see customView)
+ * - ChatProgressViewModeIndeterminate - shows a UIActivityIndicatorView
+ * - ChatProgressViewModeDeterminate - shows a custom round progress indicator
+ * - ChatProgressViewModeAnnularDeterminate - shows a custom annular progress indicator
+ * - ChatProgressViewModeCustomView - shows an arbitrary, user specified view (@see customView)
  *
  * All three modes can have optional labels assigned:
  * - If the labelText property is set and non-empty then a label containing the provided content is placed below the
  *   indicator view.
  * - If also the detailsLabelText property is set then another label is placed below the first label.
  */
-@interface MBProgressHUD : UIView
+@interface ChatProgressView : UIView
 
 /**
  * Creates a new HUD, adds it to provided view and shows it. The counterpart to this method is hideHUDForView:animated:.
@@ -111,7 +111,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * @see hideHUDForView:animated:
  * @see animationType
  */
-+ (MBProgressHUD *)showHUDAddedTo:(UIView *)view animated:(BOOL)animated;
++ (ChatProgressView *)showHUDAddedTo:(UIView *)view animated:(BOOL)animated;
 
 /**
  * Finds the top-most HUD subview and hides it. The counterpart to this method is showHUDAddedTo:animated:.
@@ -145,13 +145,13 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * @param view The view that is going to be searched.
  * @return A reference to the last HUD subview discovered.
  */
-+ (MBProgressHUD *)HUDForView:(UIView *)view;
++ (ChatProgressView *)HUDForView:(UIView *)view;
 
 /**
  * Finds all HUD subviews and returns them.
  *
  * @param view The view that is going to be searched.
- * @return All found HUD views (array of MBProgressHUD objects).
+ * @return All found HUD views (array of ChatProgressView objects).
  */
 + (NSArray *)allHUDsForView:(UIView *)view;
 
@@ -236,7 +236,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  *
  * @see showAnimated:whileExecutingBlock:onQueue:completion:
  */
-- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(MBProgressHUDCompletionBlock)completion;
+- (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(ChatProgressViewCompletionBlock)completion;
 
 /**
  * Shows the HUD while a block is executing on the specified dispatch queue, then hides the HUD.
@@ -257,31 +257,31 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * @see completionBlock
  */
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
-		  completionBlock:(MBProgressHUDCompletionBlock)completion;
+		  completionBlock:(ChatProgressViewCompletionBlock)completion;
 
 /**
  * A block that gets called after the HUD was completely hiden.
  */
-@property (copy) MBProgressHUDCompletionBlock completionBlock;
+@property (copy) ChatProgressViewCompletionBlock completionBlock;
 
 #endif
 
 /** 
- * MBProgressHUD operation mode. The default is MBProgressHUDModeIndeterminate.
+ * ChatProgressView operation mode. The default is ChatProgressViewModeIndeterminate.
  *
- * @see MBProgressHUDMode
+ * @see ChatProgressViewMode
  */
-@property (assign) MBProgressHUDMode mode;
+@property (assign) ChatProgressViewMode mode;
 
 /**
  * The animation type that should be used when the HUD is shown and hidden. 
  *
- * @see MBProgressHUDAnimation
+ * @see ChatProgressViewAnimation
  */
-@property (assign) MBProgressHUDAnimation animationType;
+@property (assign) ChatProgressViewAnimation animationType;
 
 /**
- * The UIView (e.g., a UIImageView) to be shown when the HUD is in MBProgressHUDModeCustomView.
+ * The UIView (e.g., a UIImageView) to be shown when the HUD is in ChatProgressViewModeCustomView.
  * For best results use a 37 by 37 pixel view (so the bounds match the built in indicator bounds). 
  */
 @property (MB_STRONG) UIView *customView;
@@ -289,9 +289,9 @@ typedef void (^MBProgressHUDCompletionBlock)();
 /** 
  * The HUD delegate object. 
  *
- * @see MBProgressHUDDelegate
+ * @see ChatProgressViewDelegate
  */
-@property (MB_WEAK) id<MBProgressHUDDelegate> delegate;
+@property (MB_WEAK) id<ChatProgressViewDelegate> delegate;
 
 /** 
  * An optional short message to be displayed below the activity indicator. The HUD is automatically resized to fit
@@ -400,14 +400,14 @@ typedef void (^MBProgressHUDCompletionBlock)();
 @end
 
 
-@protocol MBProgressHUDDelegate <NSObject>
+@protocol ChatProgressViewDelegate <NSObject>
 
 @optional
 
 /** 
  * Called after the HUD was fully hidden from the screen. 
  */
-- (void)hudWasHidden:(MBProgressHUD *)hud;
+- (void)hudWasHidden:(ChatProgressView *)hud;
 
 @end
 

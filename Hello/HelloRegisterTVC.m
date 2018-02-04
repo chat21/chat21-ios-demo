@@ -7,7 +7,7 @@
 //
 
 #import "HelloRegisterTVC.h"
-#import "MBProgressHUD.h"
+#import "ChatProgressView.h"
 #import "HelloApplicationContext.h"
 #import "HelloUser.h"
 #import "ChatUser.h"
@@ -18,7 +18,7 @@
 @import Firebase;
 
 @interface HelloRegisterTVC () {
-    MBProgressHUD *HUD;
+    ChatProgressView *HUD;
 }
 @end
 
@@ -207,12 +207,12 @@
 
 -(void)showWaiting:(NSString *)label {
     if (!HUD) {
-        HUD = [[MBProgressHUD alloc] initWithWindow:self.view.window];
+        HUD = [[ChatProgressView alloc] initWithWindow:self.view.window];
         [self.view.window addSubview:HUD];
     }
     HUD.center = self.view.center;
     HUD.labelText = label;
-    HUD.animationType = MBProgressHUDAnimationZoom;
+    HUD.animationType = ChatProgressViewAnimationZoom;
     [HUD show:YES];
 }
 
