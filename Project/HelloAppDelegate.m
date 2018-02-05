@@ -20,6 +20,7 @@
 #import "ChatUIManager.h"
 #import "ChatGroup.h"
 #import "ChatMessage.h"
+#import "ChatAuth.h"
 
 #import <sys/utsname.h>
 @import Firebase;
@@ -42,8 +43,8 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     
     HelloApplicationContext *context = [HelloApplicationContext getSharedInstance];
     self.applicationContext = context;
-    NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:plistCatPath];
+    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
     self.applicationContext.settings = settings;
     
     [self initUser];
@@ -55,12 +56,13 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         // initialize logged user so I can get chat-history from DB, using offline mode, regardless of a real Firebase successfull authentication/connection
         [HelloChatUtil initChat];
         // always authenticates on firebase on app's startup
-        [HelloChatUtil firebaseAuthEmail:context.loggedUser.email password:context.loggedUser.password completion:^(FIRUser *fir_user, NSError *error) {
+//        [HelloChatUtil firebaseAuthEmail:context.loggedUser.email password:context.loggedUser.password completion:^(FIRUser *fir_user, NSError *error) {
+        [ChatAuth authWithEmail:context.loggedUser.email password:context.loggedUser.password completion:^(ChatUser *user, NSError *error) {
             if (error) {
-                NSLog(@"Firebase authentication error. %@", error);
+                NSLog(@"Authentication error. %@", error);
             }
             else {
-                NSLog(@"Firebase authentication success.");
+                NSLog(@"Authentication success.");
             }
         }];
     }

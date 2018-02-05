@@ -61,23 +61,23 @@
     // plug the show image view
 }
 
-+(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback {
-    [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRUser *user, NSError *error) {
-        if (error) {
-            NSLog(@"Firebase Auth error for email %@/%@: %@", email, password, error);
-            callback(nil, error);
-        }
-        else {
-            NSLog(@"Firebase Auth success. email: %@, emailverified: %d, userid: %@", user.email, user.emailVerified, user.uid);
-            callback(user, nil);
-        }
-//        if (!user.emailVerified) {
-//            NSLog(@"Email non verificata. Invio email verifica...");
-//                [user sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
-//                NSLog(@"Email verifica inviata.");
+//+(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback {
+//    [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRUser *user, NSError *error) {
+//        if (error) {
+//            NSLog(@"Firebase Auth error for email %@/%@: %@", email, password, error);
+//            callback(nil, error);
 //        }
-    }];
-}
+//        else {
+//            NSLog(@"Firebase Auth success. email: %@, emailverified: %d, userid: %@", user.email, user.emailVerified, user.uid);
+//            callback(user, nil);
+//        }
+////        if (!user.emailVerified) {
+////            NSLog(@"Email non verificata. Invio email verifica...");
+////                [user sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
+////                NSLog(@"Email verifica inviata.");
+////        }
+//    }];
+//}
 
 
 @end
