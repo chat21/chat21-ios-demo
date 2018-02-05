@@ -72,7 +72,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 //
     // adding chat controller
     NSInteger chat_tab_index = [ChatUIManager getInstance].tabBarIndex;
-    
     if (chat_tab_index >= 0) {
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         UITabBarController *tabController = (UITabBarController *)window.rootViewController;
@@ -111,75 +110,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     return YES;
 }
 
-//-(void)testFirebase {
-//
-//    // TEST SCRITTURA FIREBASE
-//    FIRDatabaseReference *_ref1 = [[FIRDatabase database] reference];
-//    [[_ref1 child:@"apps/mobichat/users/andrea_leo/messages/A"] setValue:@{@"testo": @"successo scrittura"} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//        if (error) {
-//            NSLog(@"Error saving testo: %@", error);
-//        }
-//        else {
-//            NSLog(@"testo SAVED!");
-//        }
-//    }];
-//
-////    [[FIRAuth auth] createUserWithEmail:@"andrea.sponziello@frontiere21.it"
-////                               password:@"123456"
-////                             completion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
-////                                 NSLog(@"Utente creato: andrea.sponziello@gmail.com/pallino");
-////                             }];
-////
-////    [[FIRAuth auth] signInWithEmail:@"andrea.sponziello@frontiere21.it"
-////                           password:@"123456"
-////                         completion:^(FIRUser *user, NSError *error) {
-////                             NSLog(@"Autenticato: %@ - %@/emailverified: %d", error, user.email, user.emailVerified);
-////                             if (!user.emailVerified) {
-////                                 NSLog(@"Email non verificata. Invio email verifica...");
-////                                 [user sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
-////                                     NSLog(@"Email verifica inviata.");
-////                                 }];
-////                             }
-////                             // TEST CONNECTION
-////                             FIRDatabaseReference *_ref = [[FIRDatabase database] reference];
-////                             //                             FIRUser *currentUser = [FIRAuth auth].currentUser;
-////                             [[_ref child:@"yesmister3"] setValue:@"andrea" withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-////
-////                                 NSLog(@"completato! %@", ref);
-////
-////                             }];
-////
-////                             [[_ref child:@"test"] setValue:@{@"username": @"Lampatu"}];
-////                             [[_ref child:@"test2"] setValue:@{@"valore": @"Andrea"}];
-////                             [[_ref child:@"NADAL"] setValue:@{@"Vince": @"Wimbledon"}];
-////
-////                             [[_ref child:@"test"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-////                                 NSLog(@"snapshot: %@", snapshot);
-////                             } withCancelBlock:^(NSError * _Nonnull error) {
-////                                 NSLog(@"error: %@", error.localizedDescription);
-////                             }];
-////
-////                             [[_ref child:@"test10"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-////                                 NSLog(@"snapshot: %@", snapshot);
-////                             } withCancelBlock:^(NSError * _Nonnull error) {
-////                                 NSLog(@"error: %@", error.localizedDescription);
-////                             }];
-////
-////                             [[_ref child:@"yesmister"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-////                                 NSLog(@"snapshot: %@", snapshot);
-////                             } withCancelBlock:^(NSError * _Nonnull error) {
-////                                 NSLog(@"error: %@", error.localizedDescription);
-////                             }];
-////
-////                         }];
-////
-////    [[FIRAuth auth]
-////     addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
-////         NSLog(@"Firebase autenticatooooo! auth: %@ user: %@", auth, user);
-////     }];
-//}
-
-
 -(ChatUser *)chatUserBy:(HelloUser *)hello_user {
     if (!hello_user) {
         return nil;
@@ -192,29 +122,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     return user;
 }
 
-
 -(void)startPushNotifications {
-    
-    // SE DA ATTIVARE ALLA PARTENZA COMMENTARE QUESTO CODICE
-    //    NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
-    //    NSString *advice = [userPreferences objectForKey:@"PUSH_ADVICE_SHOWN"];
-    //    if (advice == nil) {
-    //        return;
-    //    }
-    
-    // START NOTIFICATION
-    // ORIGINALE < IOS9
-    //    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-    //                                                    UIUserNotificationTypeBadge |
-    //                                                    UIUserNotificationTypeSound);
-    //    UIUserNotificationSettings *user_settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-    //                                                                                  categories:nil];
-    //    [application registerUserNotificationSettings:user_settings];
-    //    [application registerForRemoteNotifications];
-    
-    // DA FIREBASE TUTORIAL
-    // https://firebase.google.com/docs/cloud-messaging/ios/client
-    
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
         UIUserNotificationType allNotificationTypes =
         (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
@@ -260,13 +168,9 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 
 // #notificationsworkflow
 -(void)processRemoteNotification:(NSDictionary*)userInfo {
-    NSLog(@"REMOTE NOTIFICATION: %@", userInfo);
     NSDictionary *aps = [userInfo objectForKey:NOTIFICATION_KEY_APS];
-    NSLog(@"aps: %@", aps);
-    NSString *alert = [aps objectForKey:NOTIFICATION_KEY_ALERT];
-    NSLog(@"alert: %@", alert);
+//    NSString *alert = [aps objectForKey:NOTIFICATION_KEY_ALERT];
     NSString *category = [aps objectForKey:NOTIFICATION_KEY_CATEGORY];
-    NSLog(@"category: %@", category);
     
     if ([category isEqualToString:NOTIFICATION_VALUE_NEW_MESSAGE]) {
         NSString *senderid = [userInfo objectForKey:@"sender"];
@@ -274,17 +178,12 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         NSString *recipientid = [userInfo objectForKey:@"recipient"];
         NSString *recipient_fullname = [userInfo objectForKey:@"recipient_fullname"];
         NSString *channel_type = [userInfo objectForKey:@"channel_type"];
+//        NSString *badge = [[userInfo objectForKey:NOTIFICATION_KEY_APS] objectForKey:NOTIFICATION_KEY_BADGE];
         
-        NSString *badge = [[userInfo objectForKey:NOTIFICATION_KEY_APS] objectForKey:NOTIFICATION_KEY_BADGE];
-        NSLog(@"==>Sender: %@", senderid);
-        NSLog(@"==>Badge: %@", badge);
-        
-//        if (groupid) {
         if ([channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
             ChatGroup *group = [[ChatGroup alloc] init];
             group.name = recipient_fullname;
             group.groupId = recipientid;
-//            [ChatUIManager moveToConversationViewWithGroup:groupid];
             [ChatUIManager moveToConversationViewWithGroup:group];
         }
         else {

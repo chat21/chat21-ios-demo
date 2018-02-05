@@ -118,6 +118,8 @@
 		B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */; };
 		B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */; };
 		B2F7C23C20289E6700E9F77D /* ChatAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F7C23B20289E6700E9F77D /* ChatAuth.m */; };
+		B2F7C3222028EB9300E9F77D /* Chat.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2F7C3242028EB9300E9F77D /* Chat.strings */; };
+		B2F7C3292028F13A00E9F77D /* ChatLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F7C3282028F13A00E9F77D /* ChatLocal.m */; };
 		BFBBC2C01B1ED7E30028EA4F /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2BF1B1ED7E30028EA4F /* settings.plist */; };
 		BFBBC2E71B1EDCC90028EA4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2E91B1EDCC90028EA4F /* Localizable.strings */; };
 		BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */; };
@@ -332,6 +334,11 @@
 		B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-mobichat.png"; sourceTree = "<group>"; };
 		B2F7C23A20289E6700E9F77D /* ChatAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatAuth.h; sourceTree = "<group>"; };
 		B2F7C23B20289E6700E9F77D /* ChatAuth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatAuth.m; sourceTree = "<group>"; };
+		B2F7C3232028EB9300E9F77D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Chat.strings; sourceTree = "<group>"; };
+		B2F7C3252028EB9900E9F77D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Chat.strings; sourceTree = "<group>"; };
+		B2F7C3262028EFCA00E9F77D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Chat.strings; sourceTree = "<group>"; };
+		B2F7C3272028F13A00E9F77D /* ChatLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatLocal.h; sourceTree = "<group>"; };
+		B2F7C3282028F13A00E9F77D /* ChatLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatLocal.m; sourceTree = "<group>"; };
 		BFBBC2BF1B1ED7E30028EA4F /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		BFBBC2EA1B1EDCD60028EA4F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFBBC2EB1B1EDCD80028EA4F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -572,6 +579,8 @@
 				B2B5036F200624BB007CC120 /* ChatCustomView.m */,
 				B2B50370200624BB007CC120 /* ChatMessageComponents.h */,
 				B2B5036D200624BA007CC120 /* ChatMessageComponents.m */,
+				B2F7C3272028F13A00E9F77D /* ChatLocal.h */,
+				B2F7C3282028F13A00E9F77D /* ChatLocal.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -579,6 +588,7 @@
 		B2B503C020062781007CC120 /* Chat21Core */ = {
 			isa = PBXGroup;
 			children = (
+				B2F7C3242028EB9300E9F77D /* Chat.strings */,
 				B2B504852007C3D6007CC120 /* DB */,
 				B2B503C120062781007CC120 /* util */,
 				B2B503CE20062781007CC120 /* model */,
@@ -978,6 +988,7 @@
 				B2B5034A20053D27007CC120 /* newnotif.caf in Resources */,
 				B23AE8EA1F278E8800BEB4B8 /* ic_linear_chat@3x.png in Resources */,
 				BFBBC2C01B1ED7E30028EA4F /* settings.plist in Resources */,
+				B2F7C3222028EB9300E9F77D /* Chat.strings in Resources */,
 				B2B5033D20053D27007CC120 /* avatar.png in Resources */,
 				B23AE8E91F278E8800BEB4B8 /* ic_linear_chat@2x.png in Resources */,
 				B2B5033920053D27007CC120 /* chat_failed.png in Resources */,
@@ -1091,6 +1102,7 @@
 				B2B5034E20053D27007CC120 /* ChatStatusTitle.m in Sources */,
 				B2B5033F20053D27007CC120 /* ChatSelectUserLocalVC.m in Sources */,
 				B2B50375200626A5007CC120 /* CellConfigurator.m in Sources */,
+				B2F7C3292028F13A00E9F77D /* ChatLocal.m in Sources */,
 				B2B5040020062781007CC120 /* ChatGroupsHandler.m in Sources */,
 				B2B5034420053D27007CC120 /* QBPlasticPopupMenu.m in Sources */,
 				B2B50374200626A1007CC120 /* ChatCustomView.m in Sources */,
@@ -1125,6 +1137,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B2F7C3242028EB9300E9F77D /* Chat.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2F7C3232028EB9300E9F77D /* en */,
+				B2F7C3252028EB9900E9F77D /* it */,
+				B2F7C3262028EFCA00E9F77D /* Base */,
+			);
+			name = Chat.strings;
+			sourceTree = "<group>";
+		};
 		BFBBC2E91B1EDCC90028EA4F /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

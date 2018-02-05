@@ -14,7 +14,7 @@
 @interface HelloChatUtil : NSObject
 
 +(void)initChat;
-//+(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback;
++(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback;
 //+(NSInteger)chatTabBarIndex;
 //+(void)moveToConversationViewWithUser:(ChatUser *)user;
 //+(void)moveToConversationViewWithUser:(ChatUser *)user sendMessage:(NSString *)message;
