@@ -11,7 +11,6 @@
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21459BF1FFF7F1F0048535E /* Chat-Info.plist */; };
 		B2147D6F20275BE600376336 /* ChatProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2147D6D20275BE600376336 /* ChatProgressView.m */; };
-		B21760D01FEC31BE00C83215 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21760CF1FEC31BE00C83215 /* GoogleService-Info.plist */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
@@ -27,6 +26,7 @@
 		B23AE8F21F278E8800BEB4B8 /* ic_linear_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8E61F278E8800BEB4B8 /* ic_linear_profile@2x.png */; };
 		B23AE8F31F278E8800BEB4B8 /* ic_linear_profile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8E71F278E8800BEB4B8 /* ic_linear_profile@3x.png */; };
 		B23AE8F81F28F54500BEB4B8 /* user-profile-man.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8F71F28F54500BEB4B8 /* user-profile-man.jpg */; };
+		B244170E202A2384001E95F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B244170D202A2384001E95F8 /* GoogleService-Info.plist */; };
 		B24AD7B61F86134800A526E9 /* HelpCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AD7B51F86134800A526E9 /* HelpCategory.m */; };
 		B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AD7B81F86249C00A526E9 /* HelpFacade.m */; };
 		B24AD7C11F86392700A526E9 /* Help-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7C01F86392700A526E9 /* Help-Info.plist */; };
@@ -161,7 +161,6 @@
 		B21459BF1FFF7F1F0048535E /* Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; sourceTree = "<group>"; };
 		B2147D6D20275BE600376336 /* ChatProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProgressView.m; sourceTree = "<group>"; };
 		B2147D6E20275BE600376336 /* ChatProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProgressView.h; sourceTree = "<group>"; };
-		B21760CF1FEC31BE00C83215 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B23A81291F95D31E001344C0 /* HelloChatUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloChatUtil.h; sourceTree = "<group>"; };
@@ -179,6 +178,7 @@
 		B23AE8E61F278E8800BEB4B8 /* ic_linear_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_profile@2x.png"; sourceTree = "<group>"; };
 		B23AE8E71F278E8800BEB4B8 /* ic_linear_profile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_profile@3x.png"; sourceTree = "<group>"; };
 		B23AE8F71F28F54500BEB4B8 /* user-profile-man.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-profile-man.jpg"; sourceTree = "<group>"; };
+		B244170D202A2384001E95F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2493C231FFB92B80066FA84 /* Tile Chat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tile Chat.entitlements"; sourceTree = "<group>"; };
 		B24AD7B41F86134800A526E9 /* HelpCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCategory.h; sourceTree = "<group>"; };
 		B24AD7B51F86134800A526E9 /* HelpCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategory.m; sourceTree = "<group>"; };
@@ -476,6 +476,8 @@
 		B2B5028F20053D27007CC120 /* Chat21UI */ = {
 			isa = PBXGroup;
 			children = (
+				B2B502DE20053D27007CC120 /* ChatUIManager.h */,
+				B2B502BA20053D27007CC120 /* ChatUIManager.m */,
 				B2B5040D20068B84007CC120 /* view */,
 				B2B5036C20062494007CC120 /* util */,
 				B2B5029B20053D27007CC120 /* images */,
@@ -689,8 +691,6 @@
 				B2B502D720053D27007CC120 /* ChatStatusTitle.m */,
 				B2B502CF20053D27007CC120 /* ChatTitleVC.h */,
 				B2B5029520053D27007CC120 /* ChatTitleVC.m */,
-				B2B502DE20053D27007CC120 /* ChatUIManager.h */,
-				B2B502BA20053D27007CC120 /* ChatUIManager.m */,
 				B2B502B720053D27007CC120 /* ChatGroupInfoVC.h */,
 				B2B502E120053D27007CC120 /* ChatGroupInfoVC.m */,
 				B2B502DD20053D27007CC120 /* ChatGroupMembersVC.h */,
@@ -787,7 +787,7 @@
 		BFBFD36B1AEA544F00657874 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B21760CF1FEC31BE00C83215 /* GoogleService-Info.plist */,
+				B244170D202A2384001E95F8 /* GoogleService-Info.plist */,
 				BFBFD5251AEA5EC200657874 /* Info.plist */,
 				BFBBC2BF1B1ED7E30028EA4F /* settings.plist */,
 				BFBFD4E21AEA59D100657874 /* main.m */,
@@ -957,6 +957,7 @@
 				B2B5032B20053D27007CC120 /* icon_light_watch.png in Resources */,
 				B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */,
 				B2B5032C20053D27007CC120 /* icon_light_chat@2x.png in Resources */,
+				B244170E202A2384001E95F8 /* GoogleService-Info.plist in Resources */,
 				B2B5032820053D27007CC120 /* icon_light_home@2x.png in Resources */,
 				B2B5033B20053D27007CC120 /* ic_linear_support_gray_01.png in Resources */,
 				B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */,
@@ -977,7 +978,6 @@
 				B23AE8F31F278E8800BEB4B8 /* ic_linear_profile@3x.png in Resources */,
 				B2B5033120053D27007CC120 /* icon_light_altro@2x.png in Resources */,
 				B2B5032D20053D27007CC120 /* icon_light_profile.png in Resources */,
-				B21760D01FEC31BE00C83215 /* GoogleService-Info.plist in Resources */,
 				B2B5033020053D27007CC120 /* icon_light_cerca@2x.png in Resources */,
 				B2B5034D20053D27007CC120 /* Chat.storyboard in Resources */,
 				B23AE8F11F278E8800BEB4B8 /* ic_linear_profile.png in Resources */,

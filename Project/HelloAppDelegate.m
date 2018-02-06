@@ -77,17 +77,11 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         UITabBarController *tabController = (UITabBarController *)window.rootViewController;
         NSMutableArray *controllers = [[tabController viewControllers] mutableCopy];
         UINavigationController *conversationsNC = [[ChatUIManager getInstance] getConversationsViewController];
+        conversationsNC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Chat" image:[UIImage imageNamed:@"ic_linear_chat"] selectedImage:[UIImage imageNamed:@"ic_linear_chat"]];
         controllers[1] = conversationsNC;
         [tabController setViewControllers:controllers];
         ChatConversationsVC *conversationsVC = conversationsNC.viewControllers[0];
         [conversationsVC loadViewIfNeeded];
-        
-        // setting icon & name of the chat's tabbar item
-        UITabBar *tabBar = tabController.tabBar;
-        UITabBarItem *tabChat = tabBar.items[chat_tab_index];
-        [tabChat setImage:[[UIImage imageNamed:@"ic_linear_chat"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
-        [tabChat setSelectedImage:[[UIImage imageNamed:@"ic_linear_chat"] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
-        tabChat.title = @"Chat";
     } else {
         NSLog(@"ChatController doesn't exist.");
     }
@@ -98,7 +92,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"REMOTE NOTIFICATION STARTED THE APPLICATION!");
-        [HelloChatUtil initChat];
+//        [HelloChatUtil initChat];
         [self processRemoteNotification:userInfo];
     }
     
