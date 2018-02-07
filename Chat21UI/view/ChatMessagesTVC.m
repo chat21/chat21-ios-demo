@@ -431,9 +431,12 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 
 
 -(void)scrollToLastMessage:(BOOL)animated {
+    [self.view layoutIfNeeded];
+    NSInteger section = 0;
     NSArray *messages = self.conversationHandler.messages;
-    if (messages && messages.count > 0) {
-        NSIndexPath* ipath = [NSIndexPath indexPathForRow: messages.count-1 inSection: 0];
+    if (messages && messages.count > 0 && messages.count <= [self.tableView numberOfRowsInSection:section]) {
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow: messages.count-1 inSection:section];
+        NSLog(@"self.tableView %@", self.tableView);
         [self.tableView
          scrollToRowAtIndexPath:ipath
          atScrollPosition: UITableViewScrollPositionTop
