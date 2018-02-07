@@ -426,7 +426,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
