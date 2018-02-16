@@ -24,10 +24,10 @@ This demo shows the following features:
 
 Before you do anything else, you shoud change the Bundle Identifier, and assign an appropriate Team.
 
-Select **chat21** in the **Project Navigator**, and then select the **chat21** target. In the **General tab** change **Bundle Identifier** to use your own domain name, in reverse-domain-notation - for example **it.mycompany.chat21**.
+Select **chat21** in the **Project Navigator**, and then select the **chat21** target. In the **General tab** change **Bundle Identifier** to use your own domain name, in reverse-domain-notation - for example **it.mycompany.mychat**.
 Then, from the **Team** menu, select the team associated with your developer account like so:
 
-<img width="1103" alt="xcode-conf" src="https://user-images.githubusercontent.com/32564846/34435195-089a5bea-ec8c-11e7-91af-b2bb15253849.png">
+<img width="1103" alt="xcode-conf" src="https://user-images.githubusercontent.com/32564846/36319768-44454388-1344-11e8-9033-c2290fa018fa.png">
 
 
 1. Create a new project on [firebase](https://firebase.google.com) site
