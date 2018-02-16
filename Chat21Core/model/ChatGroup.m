@@ -11,6 +11,8 @@
 #import "ChatUser.h"
 #import "ChatContactsDB.h"
 
+@import Firebase;
+
 @implementation ChatGroup
 
 -(NSString *)iconUrl {

@@ -24,7 +24,7 @@ This demo shows the following features:
 
 Before you do anything else, you shoud change the Bundle Identifier, and assign an appropriate Team.
 
-Select **tilechat** in the **Project Navigator**, and then select the **tilechat** target. In the **General tab** change **Bundle Identifier** to use your own domain name, in reverse-domain-notation - for example **it.frontiere21.tilechat**.
+Select **chat21** in the **Project Navigator**, and then select the **chat21** target. In the **General tab** change **Bundle Identifier** to use your own domain name, in reverse-domain-notation - for example **it.mycompany.chat21**.
 Then, from the **Team** menu, select the team associated with your developer account like so:
 
 <img width="1103" alt="xcode-conf" src="https://user-images.githubusercontent.com/32564846/34435195-089a5bea-ec8c-11e7-91af-b2bb15253849.png">
@@ -36,7 +36,7 @@ Then, from the **Team** menu, select the team associated with your developer acc
 5. Run "pod install" in the Xcode project folder.
 6. Install the Firebase cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). Follow the included instructions. This will setup your backend.
 
-Now you can launch the project with the new created file "tilechat.xcworkspace".
+Now you can launch the project with the new created file "chat21.xcworkspace".
 
 More detailed instructions will be available soon.
 

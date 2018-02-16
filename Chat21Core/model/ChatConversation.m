@@ -12,6 +12,7 @@
 #import "ChatUtil.h"
 #import "ChatMessage.h"
 #import "ChatLocal.h"
+@import Firebase;
 
 @implementation ChatConversation
 
