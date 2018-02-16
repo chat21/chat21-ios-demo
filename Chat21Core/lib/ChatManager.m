@@ -473,10 +473,14 @@ static ChatManager *sharedInstance = nil;
         NSLog(@"contact setValue callback. %@", contact_dict);
         if (error) {
             NSLog(@"Command: \"Create Contact %@/%@ on Firebase\" failed with error: %@",user.userId, user.fullname, error);
-            completionBlock(error);
+            if (completionBlock != nil) {
+                completionBlock(error);
+            }
         } else {
             NSLog(@"Command: \"Create Contact %@/%@ on Firebase\" was successfull.",user.userId, user.fullname);
-            completionBlock(nil);
+            if (completionBlock != nil) {
+                completionBlock(nil);
+            }
         }
     }];
 }
