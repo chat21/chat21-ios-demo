@@ -12,7 +12,7 @@
 @interface HelloAuth : NSObject
 
 +(HelloUser *)restoreSavedUser;
-+(void)saveLoggedUser:(HelloUser *)user;
-+(void)deleteLoggedUser;
++(void)saveSignedinUser:(HelloUser *)user;
++(void)deleteSignedinUser;
 
 @end

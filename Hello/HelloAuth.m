@@ -40,7 +40,7 @@ static NSString *SIGNED_USER_EMAIL = @"email";
     return nil;
 }
 
-+(void)saveLoggedUser:(HelloUser *)user {
++(void)saveSignedinUser:(HelloUser *)user {
     // store user
     NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
 //    [userPreferences setObject:user.username forKey:SIGNED_USER_USERNAME];
@@ -55,7 +55,7 @@ static NSString *SIGNED_USER_EMAIL = @"email";
     [keychain setObject:user.username forKey:(__bridge NSString *)kSecAttrAccount];
 }
 
-+(void)deleteLoggedUser {
++(void)deleteSignedinUser {
     NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
     [userPreferences removeObjectForKey:SIGNED_USER_USERID];
 //    [userPreferences removeObjectForKey:SIGNED_USER_USERNAME];

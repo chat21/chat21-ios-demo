@@ -6,7 +6,7 @@
 
 #import "HelloAppDelegate.h"
 #import "HelloApplicationContext.h"
-#import "SHPCaching.h"
+//#import "SHPCaching.h"
 #import "HelloUser.h"
 #import "HelloAuth.h"
 #import "ChatManager.h"

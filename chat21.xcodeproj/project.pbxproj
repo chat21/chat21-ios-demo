@@ -140,11 +140,6 @@
 		BFBFD5121AEA5D8500657874 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFD5111AEA5D8500657874 /* CoreGraphics.framework */; };
 		BFBFD5161AEA5DA000657874 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFD5151AEA5DA000657874 /* Social.framework */; };
 		BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */; };
-		BFBFD5391AEA7C3700657874 /* SHPImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5381AEA7C3700657874 /* SHPImageCache.m */; };
-		BFBFD53C1AEA7C4800657874 /* SHPCaching.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD53B1AEA7C4800657874 /* SHPCaching.m */; };
-		BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5411AEA7C6C00657874 /* SHPImageUtil.m */; };
-		BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */; };
-		BFBFD55D1AEA80A400657874 /* SHPStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */; };
 		BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD55F1AEA80CC00657874 /* HelloAuth.m */; };
 		BFF3C62E1B283219001EC667 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF3C62D1B283219001EC667 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C7AB7530B72B2835F211EF13 /* libPods-chat21.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DA4A62DE45D34EDB0DF5E7 /* libPods-chat21.a */; };
@@ -366,16 +361,6 @@
 		BFBFD5251AEA5EC200657874 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloApplicationContext.h; sourceTree = "<group>"; };
 		BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloApplicationContext.m; sourceTree = "<group>"; };
-		BFBFD5371AEA7C3700657874 /* SHPImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageCache.h; sourceTree = "<group>"; };
-		BFBFD5381AEA7C3700657874 /* SHPImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageCache.m; sourceTree = "<group>"; };
-		BFBFD53A1AEA7C4800657874 /* SHPCaching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPCaching.h; sourceTree = "<group>"; };
-		BFBFD53B1AEA7C4800657874 /* SHPCaching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPCaching.m; sourceTree = "<group>"; };
-		BFBFD5401AEA7C6C00657874 /* SHPImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageUtil.h; sourceTree = "<group>"; };
-		BFBFD5411AEA7C6C00657874 /* SHPImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageUtil.m; sourceTree = "<group>"; };
-		BFBFD5461AEA7D2800657874 /* SHPImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPImageDownloader.h; sourceTree = "<group>"; };
-		BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPImageDownloader.m; sourceTree = "<group>"; };
-		BFBFD55B1AEA80A400657874 /* SHPStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPStringUtil.h; sourceTree = "<group>"; };
-		BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPStringUtil.m; sourceTree = "<group>"; };
 		BFBFD55E1AEA80CC00657874 /* HelloAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloAuth.h; sourceTree = "<group>"; };
 		BFBFD55F1AEA80CC00657874 /* HelloAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloAuth.m; sourceTree = "<group>"; };
 		BFBFD5821AEA897900657874 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -781,7 +766,8 @@
 				BFBFD3911AEA54DA00657874 /* HelloAppDelegate.h */,
 				BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */,
 				B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */,
-				BFBFD4911AEA591100657874 /* Util */,
+				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
+				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
 				BFBFD36B1AEA544F00657874 /* Supporting Files */,
 			);
 			path = Project;
@@ -800,25 +786,6 @@
 				B21459BF1FFF7F1F0048535E /* Chat-Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BFBFD4911AEA591100657874 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
-				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
-				BFBFD5371AEA7C3700657874 /* SHPImageCache.h */,
-				BFBFD5381AEA7C3700657874 /* SHPImageCache.m */,
-				BFBFD53A1AEA7C4800657874 /* SHPCaching.h */,
-				BFBFD53B1AEA7C4800657874 /* SHPCaching.m */,
-				BFBFD5401AEA7C6C00657874 /* SHPImageUtil.h */,
-				BFBFD5411AEA7C6C00657874 /* SHPImageUtil.m */,
-				BFBFD5461AEA7D2800657874 /* SHPImageDownloader.h */,
-				BFBFD5471AEA7D2800657874 /* SHPImageDownloader.m */,
-				BFBFD55B1AEA80A400657874 /* SHPStringUtil.h */,
-				BFBFD55C1AEA80A400657874 /* SHPStringUtil.m */,
-			);
-			name = Util;
 			sourceTree = "<group>";
 		};
 		BFBFD4F01AEA5B5600657874 /* Frameworks */ = {
@@ -1066,7 +1033,6 @@
 			files = (
 				B290B3B0202DBD0E008CBC07 /* ChatPresenceHandler.m in Sources */,
 				BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */,
-				BFBFD55D1AEA80A400657874 /* SHPStringUtil.m in Sources */,
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
 				BFBFD4E31AEA59D100657874 /* main.m in Sources */,
 				B290B3AB202DBD0E008CBC07 /* ChatUser.m in Sources */,
@@ -1085,7 +1051,6 @@
 				BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */,
 				B290B3DA202DBD0F008CBC07 /* QBPopupMenuItem.m in Sources */,
 				B290B3AC202DBD0E008CBC07 /* ChatMessage.m in Sources */,
-				BFBFD5481AEA7D2800657874 /* SHPImageDownloader.m in Sources */,
 				B290B3AF202DBD0E008CBC07 /* ChatGroupsHandler.m in Sources */,
 				B290B3A9202DBD0E008CBC07 /* ChatUploadsController.m in Sources */,
 				B290B3F1202DBD0F008CBC07 /* NotificationAlertVC.m in Sources */,
@@ -1101,13 +1066,11 @@
 				B290B3A7202DBD0E008CBC07 /* ChatUpload.m in Sources */,
 				B290B3DC202DBD0F008CBC07 /* QBPopupMenuOverlayView.m in Sources */,
 				B290B3E1202DBD0F008CBC07 /* ChatMessagesVC.m in Sources */,
-				BFBFD53C1AEA7C4800657874 /* SHPCaching.m in Sources */,
 				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
 				B290B3E6202DBD0F008CBC07 /* UIView+Property.m in Sources */,
 				B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */,
 				B290B3B4202DBD0E008CBC07 /* FirebaseCustomAuthHelper.m in Sources */,
 				B290B3DD202DBD0F008CBC07 /* QBPopupMenuPagenatorView.m in Sources */,
-				BFBFD5391AEA7C3700657874 /* SHPImageCache.m in Sources */,
 				B290B3AE202DBD0E008CBC07 /* ChatConversationsHandler.m in Sources */,
 				B290B3E2202DBD0F008CBC07 /* ChatCreateGroupVC.m in Sources */,
 				B290B3BC202DBD0E008CBC07 /* CellConfigurator.m in Sources */,
@@ -1134,7 +1097,6 @@
 				B290B3B3202DBD0E008CBC07 /* ChatConversationHandler.m in Sources */,
 				B290B3BB202DBD0E008CBC07 /* ChatMessageComponents.m in Sources */,
 				B290B3A6202DBD0E008CBC07 /* ChatUtil.m in Sources */,
-				BFBFD5421AEA7C6C00657874 /* SHPImageUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
