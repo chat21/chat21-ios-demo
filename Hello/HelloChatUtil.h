@@ -15,11 +15,5 @@
 
 +(void)initChat;
 +(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback;
-//+(NSInteger)chatTabBarIndex;
-//+(void)moveToConversationViewWithUser:(ChatUser *)user;
-//+(void)moveToConversationViewWithUser:(ChatUser *)user sendMessage:(NSString *)message;
-//+(void)moveToConversationViewWithGroup:(NSString *)groupid;
-//+(void)moveToConversationViewWithGroup:(NSString *)groupid sendMessage:(NSString *)message;
-//+(void)moveToConversationViewWithUser:(ChatUser *)user orGroup:(NSString *)groupid sendMessage:(NSString *)message attributes:(NSDictionary *)attributes;
 
 @end

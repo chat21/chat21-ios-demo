@@ -409,6 +409,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B21A82CF2069414A0068A2F9 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				B290B39E202DBD0E008CBC07 /* status_title_ios11.xib */,
+				B290B38C202DBD0E008CBC07 /* notification_view.xib */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
 		B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,7 +470,7 @@
 				B290B30B202DBD0E008CBC07 /* util */,
 				B290B31A202DBD0E008CBC07 /* model */,
 				B290B325202DBD0E008CBC07 /* lib */,
-				B290B33B202DBD0E008CBC07 /* DB */,
+				B290B33B202DBD0E008CBC07 /* db */,
 			);
 			path = Chat21Core;
 			sourceTree = "<group>";
@@ -469,18 +478,18 @@
 		B290B30B202DBD0E008CBC07 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				B290B313202DBD0E008CBC07 /* ChatImageWrapper.h */,
 				B290B30C202DBD0E008CBC07 /* ChatImageWrapper.m */,
+				B290B312202DBD0E008CBC07 /* ChatStringUtil.h */,
 				B290B30D202DBD0E008CBC07 /* ChatStringUtil.m */,
 				B290B30E202DBD0E008CBC07 /* ChatImageCache.h */,
-				B290B30F202DBD0E008CBC07 /* ChatUploadsController.h */,
-				B290B310202DBD0E008CBC07 /* ChatUtil.m */,
-				B290B311202DBD0E008CBC07 /* ChatUpload.m */,
-				B290B312202DBD0E008CBC07 /* ChatStringUtil.h */,
-				B290B313202DBD0E008CBC07 /* ChatImageWrapper.h */,
 				B290B314202DBD0E008CBC07 /* ChatImageCache.m */,
-				B290B315202DBD0E008CBC07 /* ChatUpload.h */,
-				B290B316202DBD0E008CBC07 /* ChatUtil.h */,
+				B290B30F202DBD0E008CBC07 /* ChatUploadsController.h */,
 				B290B317202DBD0E008CBC07 /* ChatUploadsController.m */,
+				B290B316202DBD0E008CBC07 /* ChatUtil.h */,
+				B290B310202DBD0E008CBC07 /* ChatUtil.m */,
+				B290B315202DBD0E008CBC07 /* ChatUpload.h */,
+				B290B311202DBD0E008CBC07 /* ChatUpload.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -488,16 +497,16 @@
 		B290B31A202DBD0E008CBC07 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				B290B31B202DBD0E008CBC07 /* ChatConversation.m */,
 				B290B31C202DBD0E008CBC07 /* ChatEventType.h */,
+				B290B320202DBD0E008CBC07 /* ChatConversation.h */,
+				B290B31B202DBD0E008CBC07 /* ChatConversation.m */,
 				B290B31D202DBD0E008CBC07 /* ChatMessage.h */,
+				B290B322202DBD0E008CBC07 /* ChatMessage.m */,
+				B290B324202DBD0E008CBC07 /* ChatUser.h */,
 				B290B31E202DBD0E008CBC07 /* ChatUser.m */,
 				B290B31F202DBD0E008CBC07 /* ChatGroup.h */,
-				B290B320202DBD0E008CBC07 /* ChatConversation.h */,
-				B290B321202DBD0E008CBC07 /* New Group */,
-				B290B322202DBD0E008CBC07 /* ChatMessage.m */,
 				B290B323202DBD0E008CBC07 /* ChatGroup.m */,
-				B290B324202DBD0E008CBC07 /* ChatUser.h */,
+				B290B321202DBD0E008CBC07 /* New Group */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -537,29 +546,30 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		B290B33B202DBD0E008CBC07 /* DB */ = {
+		B290B33B202DBD0E008CBC07 /* db */ = {
 			isa = PBXGroup;
 			children = (
-				B290B33C202DBD0E008CBC07 /* ChatGroupsDB.h */,
 				B290B33D202DBD0E008CBC07 /* ChatContactsDB.h */,
-				B290B33E202DBD0E008CBC07 /* ChatDB.m */,
-				B290B33F202DBD0E008CBC07 /* ChatGroupsDB.m */,
 				B290B340202DBD0E008CBC07 /* ChatContactsDB.m */,
+				B290B33C202DBD0E008CBC07 /* ChatGroupsDB.h */,
+				B290B33F202DBD0E008CBC07 /* ChatGroupsDB.m */,
 				B290B341202DBD0E008CBC07 /* ChatDB.h */,
+				B290B33E202DBD0E008CBC07 /* ChatDB.m */,
 			);
-			path = DB;
+			path = db;
 			sourceTree = "<group>";
 		};
 		B290B342202DBD0E008CBC07 /* Chat21UI */ = {
 			isa = PBXGroup;
 			children = (
+				B290B3A2202DBD0E008CBC07 /* ChatUIManager.h */,
+				B290B36A202DBD0E008CBC07 /* ChatUIManager.m */,
 				B290B343202DBD0E008CBC07 /* util */,
 				B290B34E202DBD0E008CBC07 /* images */,
-				B290B36A202DBD0E008CBC07 /* ChatUIManager.m */,
 				B290B36B202DBD0E008CBC07 /* QBPopupMenu */,
 				B290B378202DBD0E008CBC07 /* sounds */,
 				B290B37B202DBD0E008CBC07 /* view */,
-				B290B3A2202DBD0E008CBC07 /* ChatUIManager.h */,
+				B21A82CF2069414A0068A2F9 /* xibs */,
 			);
 			path = Chat21UI;
 			sourceTree = "<group>";
@@ -567,16 +577,16 @@
 		B290B343202DBD0E008CBC07 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				B290B34A202DBD0E008CBC07 /* ChatCustomView.h */,
 				B290B344202DBD0E008CBC07 /* ChatCustomView.m */,
+				B290B349202DBD0E008CBC07 /* ChatMessageComponents.h */,
 				B290B345202DBD0E008CBC07 /* ChatMessageComponents.m */,
+				B290B34D202DBD0E008CBC07 /* CellConfigurator.h */,
 				B290B346202DBD0E008CBC07 /* CellConfigurator.m */,
 				B290B347202DBD0E008CBC07 /* ChatLocal.h */,
-				B290B348202DBD0E008CBC07 /* ChatProgressView.h */,
-				B290B349202DBD0E008CBC07 /* ChatMessageComponents.h */,
-				B290B34A202DBD0E008CBC07 /* ChatCustomView.h */,
-				B290B34B202DBD0E008CBC07 /* ChatProgressView.m */,
 				B290B34C202DBD0E008CBC07 /* ChatLocal.m */,
-				B290B34D202DBD0E008CBC07 /* CellConfigurator.h */,
+				B290B348202DBD0E008CBC07 /* ChatProgressView.h */,
+				B290B34B202DBD0E008CBC07 /* ChatProgressView.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -667,44 +677,42 @@
 		B290B37B202DBD0E008CBC07 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B290B391202DBD0E008CBC07 /* Chat.storyboard */,
+				B290B395202DBD0E008CBC07 /* ChatMessagesTVC.h */,
 				B290B37C202DBD0E008CBC07 /* ChatMessagesTVC.m */,
+				B290B394202DBD0E008CBC07 /* ChatMessagesVC.h */,
 				B290B37D202DBD0E008CBC07 /* ChatMessagesVC.m */,
+				B290B387202DBD0E008CBC07 /* ChatStatusTitle.h */,
+				B290B397202DBD0E008CBC07 /* ChatStatusTitle.m */,
+				B290B393202DBD0E008CBC07 /* ChatCreateGroupVC.h */,
 				B290B37E202DBD0E008CBC07 /* ChatCreateGroupVC.m */,
+				B290B392202DBD0E008CBC07 /* ChatChangeGroupNameVC.h */,
 				B290B37F202DBD0E008CBC07 /* ChatChangeGroupNameVC.m */,
+				B290B390202DBD0E008CBC07 /* ChatMiniBrowserVC.h */,
 				B290B380202DBD0E008CBC07 /* ChatMiniBrowserVC.m */,
 				B290B381202DBD0E008CBC07 /* ChatMessageCell.h */,
-				B290B382202DBD0E008CBC07 /* ChatTitleVC.m */,
-				B290B383202DBD0E008CBC07 /* NotificationAlertVC.h */,
-				B290B384202DBD0E008CBC07 /* UIView+Property.m */,
-				B290B385202DBD0E008CBC07 /* ChatGroupInfoVC.h */,
-				B290B386202DBD0E008CBC07 /* ChatSelectGroupMembersLocal.m */,
-				B290B387202DBD0E008CBC07 /* ChatStatusTitle.h */,
-				B290B388202DBD0E008CBC07 /* ChatSelectGroupLocalTVC.m */,
-				B290B389202DBD0E008CBC07 /* ChatSelectUserLocalVC.m */,
-				B290B38A202DBD0E008CBC07 /* NotificationAlertView.h */,
-				B290B38B202DBD0E008CBC07 /* ChatGroupMembersVC.m */,
-				B290B38C202DBD0E008CBC07 /* notification_view.xib */,
-				B290B38D202DBD0E008CBC07 /* ChatConversationsVC.m */,
-				B290B38E202DBD0E008CBC07 /* ChatTitleVC.h */,
 				B290B38F202DBD0E008CBC07 /* ChatMessageCell.m */,
-				B290B390202DBD0E008CBC07 /* ChatMiniBrowserVC.h */,
-				B290B391202DBD0E008CBC07 /* Chat.storyboard */,
-				B290B392202DBD0E008CBC07 /* ChatChangeGroupNameVC.h */,
-				B290B393202DBD0E008CBC07 /* ChatCreateGroupVC.h */,
-				B290B394202DBD0E008CBC07 /* ChatMessagesVC.h */,
-				B290B395202DBD0E008CBC07 /* ChatMessagesTVC.h */,
-				B290B396202DBD0E008CBC07 /* ChatSelectGroupLocalTVC.h */,
-				B290B397202DBD0E008CBC07 /* ChatStatusTitle.m */,
-				B290B398202DBD0E008CBC07 /* ChatSelectGroupMembersLocal.h */,
-				B290B399202DBD0E008CBC07 /* ChatModalCallerDelegate.h */,
+				B290B38E202DBD0E008CBC07 /* ChatTitleVC.h */,
+				B290B382202DBD0E008CBC07 /* ChatTitleVC.m */,
+				B290B385202DBD0E008CBC07 /* ChatGroupInfoVC.h */,
 				B290B39A202DBD0E008CBC07 /* ChatGroupInfoVC.m */,
-				B290B39B202DBD0E008CBC07 /* UIView+Property.h */,
-				B290B39C202DBD0E008CBC07 /* NotificationAlertVC.m */,
-				B290B39D202DBD0E008CBC07 /* ChatGroupMembersVC.h */,
-				B290B39E202DBD0E008CBC07 /* status_title_ios11.xib */,
-				B290B39F202DBD0E008CBC07 /* NotificationAlertView.m */,
+				B290B398202DBD0E008CBC07 /* ChatSelectGroupMembersLocal.h */,
+				B290B386202DBD0E008CBC07 /* ChatSelectGroupMembersLocal.m */,
+				B290B396202DBD0E008CBC07 /* ChatSelectGroupLocalTVC.h */,
+				B290B388202DBD0E008CBC07 /* ChatSelectGroupLocalTVC.m */,
 				B290B3A0202DBD0E008CBC07 /* ChatSelectUserLocalVC.h */,
+				B290B389202DBD0E008CBC07 /* ChatSelectUserLocalVC.m */,
+				B290B39D202DBD0E008CBC07 /* ChatGroupMembersVC.h */,
+				B290B38B202DBD0E008CBC07 /* ChatGroupMembersVC.m */,
 				B290B3A1202DBD0E008CBC07 /* ChatConversationsVC.h */,
+				B290B38D202DBD0E008CBC07 /* ChatConversationsVC.m */,
+				B290B399202DBD0E008CBC07 /* ChatModalCallerDelegate.h */,
+				B290B39B202DBD0E008CBC07 /* UIView+Property.h */,
+				B290B384202DBD0E008CBC07 /* UIView+Property.m */,
+				B290B383202DBD0E008CBC07 /* NotificationAlertVC.h */,
+				B290B39C202DBD0E008CBC07 /* NotificationAlertVC.m */,
+				B290B38A202DBD0E008CBC07 /* NotificationAlertView.h */,
+				B290B39F202DBD0E008CBC07 /* NotificationAlertView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -731,6 +739,8 @@
 				B23A812A1F95D31E001344C0 /* HelloChatUtil.m */,
 				BFBFD55E1AEA80CC00657874 /* HelloAuth.h */,
 				BFBFD55F1AEA80CC00657874 /* HelloAuth.m */,
+				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
+				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
 			);
 			path = Hello;
 			sourceTree = "<group>";
@@ -766,8 +776,6 @@
 				BFBFD3911AEA54DA00657874 /* HelloAppDelegate.h */,
 				BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */,
 				B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */,
-				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
-				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
 				BFBFD36B1AEA544F00657874 /* Supporting Files */,
 			);
 			path = Project;

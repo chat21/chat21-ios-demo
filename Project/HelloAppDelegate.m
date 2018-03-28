@@ -53,10 +53,9 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     [ChatManager configure];
     // initial chat signin
     if ((context.loggedUser)) {
-        // initialize logged user so I can get chat-history from DB, using offline mode, regardless of a real Firebase successfull authentication/connection
+        // initialize signed-in user so I can get chat-history from DB, using offline mode, regardless of a real remote (Firebase) successfull authentication&connection
         [HelloChatUtil initChat];
-        // always authenticates on firebase on app's startup
-//        [HelloChatUtil firebaseAuthEmail:context.loggedUser.email password:context.loggedUser.password completion:^(FIRUser *fir_user, NSError *error) {
+        // now I can try to authenticate. Always authenticate on on app's startup
         [ChatAuth authWithEmail:context.loggedUser.email password:context.loggedUser.password completion:^(ChatUser *user, NSError *error) {
             if (error) {
                 NSLog(@"Authentication error. %@", error);
@@ -67,9 +66,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         }];
     }
     
-//    [self buildTabBar];
-//    [self configTabBar];
-//
     // adding chat controller
     NSInteger chat_tab_index = [ChatUIManager getInstance].tabBarIndex;
     if (chat_tab_index >= 0) {
@@ -92,7 +88,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"REMOTE NOTIFICATION STARTED THE APPLICATION!");
-//        [HelloChatUtil initChat];
         [self processRemoteNotification:userInfo];
     }
     
@@ -112,7 +107,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     user.userId = hello_user.username;
     user.fullname = hello_user.fullName;
     user.email = hello_user.email;
-//    user.password = hello_user.password;
     return user;
 }
 
@@ -156,7 +150,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         [self processRemoteNotification:userInfo];
     }
     else {
-        NSLog(@"APPLICATION IS RUNNING IN FOREGROUND! IGNORED.");
+        NSLog(@"APPLICATION IS RUNNING IN FOREGROUND! NOTIFICATION IGNORED.");
     }
 }
 
@@ -175,16 +169,17 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 //        NSString *badge = [[userInfo objectForKey:NOTIFICATION_KEY_APS] objectForKey:NOTIFICATION_KEY_BADGE];
         
         if ([channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
+            // GROUP MESSAGE
             ChatGroup *group = [[ChatGroup alloc] init];
             group.name = recipient_fullname;
             group.groupId = recipientid;
             [ChatUIManager moveToConversationViewWithGroup:group];
         }
         else {
+            // DIRECT MESSAGE
             NSString *trimmedSender = [senderid stringByTrimmingCharactersInSet:
                                        [NSCharacterSet whitespaceCharacterSet]];
             if (trimmedSender.length > 0) {
-                // DIRECT
                 ChatUser *user = [[ChatUser alloc] init];
                 user.userId = senderid;
                 user.fullname = sender_fullname;
@@ -199,30 +194,27 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     
     NSLog(@"Application successfully registered to APN with devToken %@", devToken);
-    //    [[FIRInstanceID instanceID] setAPNSToken:devToken type:FIRMessagingAPNSTokenTypeProd];
-    //    NSString *FCMToken = [FIRMessaging messaging].FCMToken;
-    //    NSLog(@"[FIRMessaging messaging].FCMToken: %@", [FIRMessaging messaging].FCMToken);
-    //    NSString *FCMToken = [FIRInstanceID instanceID].token;
-    NSString *FCMToken = [FIRMessaging messaging].FCMToken;
-    NSLog(@"FCMToken: %@", FCMToken);
-    [FIRMessaging messaging].APNSToken = devToken;
-    NSLog(@"[FIRMessaging messaging].APNSToken: %@", [FIRMessaging messaging].APNSToken);
-    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-    if (loggedUser) {
-        NSString *user_path = [ChatUtil userPath:loggedUser.userId];
-        NSLog(@"Writing instanceId (FCMToken) %@ on path: %@", FCMToken, user_path);
-        [[[[[FIRDatabase database] reference] child:user_path] child:@"instanceId"] setValue:FCMToken withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-            if (error) {
-                NSLog(@"Error saving instanceId (FCMToken) on user_path %@: %@", error, user_path);
-            }
-            else {
-                NSLog(@"instanceId (FCMToken) %@ saved", FCMToken);
-            }
-        }];
-    }
-    else {
-        NSLog(@"No user is signed in for push notifications token.");
-    }
+    [[ChatManager getInstance] registerForNotifications:devToken];
+//    NSString *FCMToken = [FIRMessaging messaging].FCMToken;
+//    NSLog(@"FCMToken: %@", FCMToken);
+//    [FIRMessaging messaging].APNSToken = devToken;
+//    NSLog(@"[FIRMessaging messaging].APNSToken: %@", [FIRMessaging messaging].APNSToken);
+//    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+//    if (loggedUser) {
+//        NSString *user_path = [ChatUtil userPath:loggedUser.userId];
+//        NSLog(@"Writing instanceId (FCMToken) %@ on path: %@", FCMToken, user_path);
+//        [[[[[FIRDatabase database] reference] child:user_path] child:@"instanceId"] setValue:FCMToken withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+//            if (error) {
+//                NSLog(@"Error saving instanceId (FCMToken) on user_path %@: %@", error, user_path);
+//            }
+//            else {
+//                NSLog(@"instanceId (FCMToken) %@ saved", FCMToken);
+//            }
+//        }];
+//    }
+//    else {
+//        NSLog(@"No user is signed in for push notifications token.");
+//    }
 }
 
 // #notificationsworkflow
@@ -245,127 +237,9 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 }
 // [END refresh_token]
 
-//-(void)buildTabBar {
-//    NSLog(@"Building tabbar...");
-//    NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
-//    NSArray *tabBarMenuItems = [tabBarDictionary objectForKey:@"Menu"];
-//    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-//    // Adding tabbar controllers (using StoryboardID)
-//    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-//    UIStoryboard *storyboard;// = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
-//    UIViewController *vc = [[UIViewController alloc] init];
-//    for (NSDictionary *tabBarConfig in tabBarMenuItems) {
-//        NSString *StoryboardControllerID = [tabBarConfig objectForKey:@"StoryboardControllerID"];
-//        NSString *sbname = [tabBarConfig objectForKey:@"StoryboardName"];
-//        NSLog(@"found storyboard: %@", sbname);
-//        if(sbname) {
-//            storyboard = [UIStoryboard storyboardWithName:sbname bundle: nil];
-//        }
-//        else {
-//            storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
-//        }
-//        vc = [storyboard instantiateViewControllerWithIdentifier:StoryboardControllerID];
-//        NSLog(@"Adding controller %@:%@", StoryboardControllerID, vc);
-//        [controllers addObject:vc];
-//    }
-//    [tabController setViewControllers:controllers];
-//
-//    // configuring tabbar buttons
-//    UITabBar *tabBar = tabController.tabBar;
-//    int i=0;
-//    for(UITabBarItem *tab in tabBar.items) {
-//        NSDictionary *tabBarItemConfig = [tabBarMenuItems objectAtIndex:i];
-//        //        NSLog(@"tabBarItemConfig %@, %@", tabBarItemConfig[@"title"], tabBarItemConfig[@"StoryboardControllerID"]);
-//        NSString *title = tabBarItemConfig[@"title"];
-//        tab.title = NSLocalizedString(title, nil);
-//        //        [tab setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaLTStd-Roman" size:10.0f], NSFontAttributeName,  [UIColor whiteColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
-//
-//        [tab setImage:[[UIImage imageNamed:tabBarItemConfig[@"icon"]] imageWithRenderingMode:UIImageRenderingModeAutomatic]];//UIImageRenderingModeAlwaysOriginal
-//        [tab setSelectedImage:[[UIImage imageNamed:tabBarItemConfig[@"icon"]] imageWithRenderingMode:UIImageRenderingModeAutomatic]];
-//        //UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
-//        i++;
-//    }
-//}
-
-//-(void)configTabBar {
-//    //----------------------------------------------------------------------------//
-//    //CONFIG TABBAR
-//    //----------------------------------------------------------------------------//
-//    // http://stackoverflow.com/questions/18795117/change-tab-bar-tint-color-ios-7
-//    //http://www.appcoda.com/ios-programming-how-to-customize-tab-bar-background-appearance/
-//
-//    if ([[UITabBar class] respondsToSelector:@selector(appearance)]) {
-//        NSDictionary *tabBarDictionary = [self.applicationContext.plistDictionary objectForKey:@"TabBar"];
-//        UIColor *tintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"tintColor"]];
-//        [[UITabBar appearance] setTintColor: tintColor]; //set button active
-//
-//        UIColor *barTintColor = [SHPImageUtil colorWithHexString:[tabBarDictionary valueForKey:@"barTintColor"]];
-//        [[UITabBar appearance] setBarTintColor:barTintColor]; //set background tabbar
-//        [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : tintColor }
-//                                                 forState:UIControlStateSelected];
-//    }
-//}
-
-//-(NSDictionary *)checkItemTabTagIn:(NSArray *)arrayTabbar itemTabTag:(int)tag{
-//    for (NSDictionary *itemTab in arrayTabbar){
-//        if(tag == [itemTab[@"tag"] intValue]){
-//            return itemTab;
-//        }
-//    }
-//    return nil;
-//}
-
-// #notificationworkflow
-//-(void)sendDeviceTokenToProvider:(NSString *)devToken {
-//    NSLog(@"Registering Token to Provider");
-//    SHPSendTokenDC *tokenDC = [[SHPSendTokenDC alloc] init];
-//    NSString *langID = [[NSLocale preferredLanguages] objectAtIndex:0];
-//    if (self.applicationContext.loggedUser) {
-//        [tokenDC sendToken:devToken withUser:self.applicationContext.loggedUser lang:langID completionHandler:^(NSError *error) {
-//            if (!error) {
-//                NSLog(@"Successfully registered DEVICE to Provider WITH USER.");
-//                //                self.registeredToProvider = YES;
-//            }
-//            else {
-//                NSLog(@"Error while registering devToken to Provider!");
-//                // If there is an error in registration it is not a big issue.
-//                // This method is always called every time the application goes in background
-//                // and newly became active (see: ApplicationDidBecomeActive)
-//            }
-//        }];
-//    }
-//    else {
-//        [tokenDC sendToken:devToken lang:langID completionHandler:^(NSError *error) {
-//            if (!error) {
-//                NSLog(@"Successfully registered DEVICE to Provider WITHOUT USER.");
-//                //                self.registeredToProvider = YES;
-//            }
-//            else {
-//                NSLog(@"Error while registering devToken to Provider!");
-//            }
-//        }];
-//    }
-//
-//}
-
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"Tab selected.");
 }
-
-//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-//    NSLog(@"VIEW CONTROLLER: %@", viewController);
-//    NSLog(@"SELECTED VIEW CONTROLLER:%@", tabBarController.selectedViewController);
-//    NSLog(@"SELECTED INDEX: %d", (int)tabBarController.selectedIndex);
-//
-//    //return viewController != tabBarController.selectedViewController;
-//    if(TAB_NOTIFICATIONS_INDEX>=0){
-//        UIViewController *notificationsViewController = [tabBarController.viewControllers objectAtIndex:TAB_NOTIFICATIONS_INDEX];
-//        if ( (viewController == notificationsViewController) &&  (viewController == tabBarController.selectedViewController) ) {
-//            return false;
-//        }
-//    }
-//    return true;
-//}
 
 -(void)initUser {
     HelloUser *user = [HelloAuth restoreSavedUser];
