@@ -757,8 +757,9 @@ static ChatManager *sharedInstance = nil;
         return;
     }
     NSString *user_path = [ChatUtil userPath:user.userId];
-    NSLog(@"Removing instanceId (FCMToken) on path: %@", user_path);
-    [[[[[FIRDatabase database] reference] child:user_path] child:@"instanceId"] removeValueWithCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    NSString *FCMToken = [FIRMessaging messaging].FCMToken;
+    NSLog(@"Removing instanceId (FCMToken: %@) on path: %@",FCMToken, user_path);
+    [[[[[[FIRDatabase database] reference] child:user_path] child:@"instances"] child:FCMToken] removeValueWithCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"Error removing instanceId (FCMToken) on user_path %@: %@", error, user_path);
         }
@@ -766,6 +767,14 @@ static ChatManager *sharedInstance = nil;
             NSLog(@"instanceId (FCMToken) removed");
         }
     }];
+//    [[[[[FIRDatabase database] reference] child:user_path] child:@"instanceId"] removeValueWithCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+//        if (error) {
+//            NSLog(@"Error removing instanceId (FCMToken) on user_path %@: %@", error, user_path);
+//        }
+//        else {
+//            NSLog(@"instanceId (FCMToken) removed");
+//        }
+//    }];
 }
 
 -(void)loadGroup:(NSString *)group_id completion:(void (^)(ChatGroup* group, BOOL error))callback {
@@ -824,11 +833,17 @@ static ChatManager *sharedInstance = nil;
 -(void)registerForNotifications:(NSData *)devToken {
     NSString *FCMToken = [FIRMessaging messaging].FCMToken;
     NSLog(@"FCMToken: %@", FCMToken);
+    if (FCMToken == nil) {
+        NSLog(@"ERROR: FCMToken is nil");
+        return;
+    }
     [FIRMessaging messaging].APNSToken = devToken;
     NSLog(@"[FIRMessaging messaging].APNSToken: %@", [FIRMessaging messaging].APNSToken);
     ChatUser *loggedUser = self.loggedUser;
     if (loggedUser) {
+        NSLog(@"userId: %@ ", loggedUser.userId);
         NSString *user_path = [ChatUtil userPath:loggedUser.userId];
+        NSLog(@"userPath: %@", user_path);
         NSLog(@"Writing instanceId (FCMToken) %@ on path: %@", FCMToken, user_path);
         
         NSMutableDictionary *device_data = [[NSMutableDictionary alloc] init];

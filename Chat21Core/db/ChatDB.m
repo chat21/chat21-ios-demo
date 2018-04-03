@@ -170,9 +170,19 @@ static ChatDB *sharedInstance = nil;
         sqlite3_bind_text(statement, 10, [message.channel_type UTF8String], -1, SQLITE_TRANSIENT);
         // convert attributes dictionary to JSON
         NSString * jsonAttributesAsString = nil;
-        if (message.attributes) {
+//        NSLog(@"message.attributes: %@",message.attributes);
+//        NSLog(@"message class: %@", NSStringFromClass([message class]));
+//        NSLog(@"message.attributes class: %@", NSStringFromClass([message.attributes class]));
+//        NSLog(@"message.attributes value: %@", message.attributes);
+//        NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:message.attributes]);
+//        for(id key in message.attributes) {
+//            NSLog(@"key=%@ value=%@", key, [message.attributes objectForKey:key]);
+//        }
+        NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:message.attributes]);
+        if (message.attributes && [message.attributes isKindOfClass:[NSDictionary class]]) {
             NSError * err;
             NSData * jsonData = [NSJSONSerialization dataWithJSONObject:message.attributes options:0 error:&err];
+            NSLog(@"Error: %@", err);
             jsonAttributesAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         }
         sqlite3_bind_text(statement, 11, [jsonAttributesAsString UTF8String], -1, SQLITE_TRANSIENT);
