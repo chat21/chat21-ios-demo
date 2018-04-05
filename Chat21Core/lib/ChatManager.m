@@ -82,7 +82,7 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(void)addConversationHandler:(ChatConversationHandler *)handler {
-    NSLog(@"Adding handler with key: %@", handler.conversationId);
+//    NSLog(@"Adding handler with key: %@", handler.conversationId);
     [self.handlers setObject:handler forKey:handler.conversationId];
 }
 
@@ -107,7 +107,7 @@ static ChatManager *sharedInstance = nil;
         handler = [[ChatConversationHandler alloc] initWithRecipient:recipient.userId recipientFullName:recipient.fullname];
         [self addConversationHandler:handler];
         [handler restoreMessagesFromDB];
-        NSLog(@"Restored messages count %lu", (unsigned long)handler.messages.count);
+        NSLog(@"Restored messages count: %lu", (unsigned long)handler.messages.count);
     }
     return handler;
 }
@@ -738,7 +738,7 @@ static ChatManager *sharedInstance = nil;
 }
 
 -(void)updateConversationIsNew:(FIRDatabaseReference *)conversationRef is_new:(int)is_new {
-    NSLog(@"Updating conversation ref %@ is_new? %d", conversationRef, is_new);
+//    NSLog(@"Updating conversation ref %@ is_new? %d", conversationRef, is_new);
     NSDictionary *conversation_dict = @{
                                         CONV_IS_NEW_KEY: [NSNumber numberWithBool:is_new]
                                         };

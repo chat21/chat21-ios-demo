@@ -31,6 +31,7 @@
 #import "ChatPresenceHandler.h"
 #import "ChatContactsDB.h"
 #import "ChatLocal.h"
+#import <DBChooser/DBChooser.h>
 
 @interface ChatMessagesVC (){
     SystemSoundID soundID;
@@ -48,7 +49,7 @@
     
     [self customizeTitle];
     
-    NSLog(@"self.recipient.fullname: %@", self.recipient.fullname);
+//    NSLog(@"self.recipient.fullname: %@", self.recipient.fullname);
     keyboardShow = NO;
     
     self.me = [ChatManager getInstance].loggedUser;
@@ -516,43 +517,108 @@
 }
 
 - (IBAction)addContentAction:(id)sender {
-    //    UIAlertController * view=   [UIAlertController
-    //                                 alertControllerWithTitle:nil
-    //                                 message:@"Allega"
-    //                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    //
-    //    UIAlertAction* documenti = [UIAlertAction
-    //                           actionWithTitle:@"Documenti"
-    //                           style:UIAlertActionStyleDefault
-    //                           handler:^(UIAlertAction * action)
-    //                           {
-    //                               NSLog(@"Documenti");
-    //                               UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
-    //                               UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
-    //                               DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
-    //                               navigatorVC.selectionMode = YES;
-    //                               navigatorVC.selectionDelegate = self;
-    //                               [self.navigationController presentViewController:nc animated:YES completion:nil];
-    //                           }];
-    ////    UIAlertAction* dropbox = [UIAlertAction
-    ////                           actionWithTitle:@"Dropbox"
-    ////                           style:UIAlertActionStyleDefault
-    ////                           handler:^(UIAlertAction * action)
-    ////                           {
-    ////                               NSLog(@"Open dropbox");
-    ////                               [self openDropbox];
-    ////                           }];
-    //    UIAlertAction* cancel = [UIAlertAction
-    //                             actionWithTitle:NSLocalizedString(@"CancelLKey", nil)
-    //                             style:UIAlertActionStyleCancel
-    //                             handler:^(UIAlertAction * action)
-    //                             {
-    //                                 NSLog(@"cancel");
-    //                             }];
-    //    [view addAction:documenti];
-    ////    [view addAction:dropbox];
-    //    [view addAction:cancel];
-    //    [self presentViewController:view animated:YES completion:nil];
+        UIAlertController * view=   [UIAlertController
+                                     alertControllerWithTitle:nil
+                                     message:@"Allega"
+                                     preferredStyle:UIAlertControllerStyleActionSheet];
+    
+//        UIAlertAction* documenti = [UIAlertAction
+//                               actionWithTitle:@"Documenti"
+//                               style:UIAlertActionStyleDefault
+//                               handler:^(UIAlertAction * action)
+//                               {
+//                                   NSLog(@"Documenti");
+//                                   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
+//                                   UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
+//                                   DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
+//                                   navigatorVC.selectionMode = YES;
+//                                   navigatorVC.selectionDelegate = self;
+//                                   [self.navigationController presentViewController:nc animated:YES completion:nil];
+//                               }];
+        UIAlertAction* dropbox = [UIAlertAction
+                               actionWithTitle:@"Dropbox"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   NSLog(@"Open dropbox");
+                                   [self openDropbox];
+                               }];
+        UIAlertAction* cancel = [UIAlertAction
+                                 actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                                 style:UIAlertActionStyleCancel
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     NSLog(@"cancel");
+                                 }];
+//        [view addAction:documenti];
+        [view addAction:dropbox];
+        [view addAction:cancel];
+        [self presentViewController:view animated:YES completion:nil];
+}
+
+-(void)openDropbox {
+    [[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypePreview
+                                    fromViewController:self completion:^(NSArray *results)
+     {
+         if ([results count]) {
+             // Process results from Chooser
+             DBChooserResult *r = results[0];
+             //             NSLog(@"r.name %@", r.name);
+             //             NSLog(@"r.link %@", r.link);
+             //             NSLog(@"r.size %lld", r.size);
+             //             NSLog(@"r.iconURL %@", r.iconURL);
+             NSDictionary *thumbs = r.thumbnails;
+             //             if (thumbs) {
+             //                 NSArray*keys=[thumbs allKeys];
+             //                 for (NSObject *k in keys) {
+             //                     NSLog(@"r.thumb[%@]: %@", k, thumbs[k]);
+             //                 }
+             //                 NSLog(@"r.thumbs.64x64px %@", thumbs[@"64x64"]);
+             //                 NSLog(@"r.thumbs.200x200px %@", thumbs[@"200x200"]);
+             //                 NSLog(@"r.thumbs.640x480px %@", thumbs[@"640x480"]);
+             //             } else {
+             //                 NSLog(@"No r.thumbs");
+             //             }
+             [self sendDropboxMessage:r.name link:[r.link absoluteString] size:[NSNumber numberWithLongLong:r.size] iconURL:[r.iconURL absoluteString] thumbs:thumbs];
+         } else {
+             // User canceled the action
+             NSLog(@"Action canceled");
+         }
+     }];
+}
+
+-(void)sendDropboxMessage:(NSString *)name link:(NSString *)link size:(NSNumber *)size iconURL:(NSString *)iconURL thumbs:(NSDictionary *)thumbs {
+    
+    // check: if in a group, are you still a member?
+    if (self.group) {
+        if ([self.group isMember:self.me.userId]) {
+        } else {
+            [self hideBottomView:YES];
+            [self.messageTextField resignFirstResponder];
+            return;
+        }
+    }
+    
+    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+    NSLog(@"dropbox.link: %@", link);
+    NSLog(@"dropbox.size: %@", size);
+    NSLog(@"dropbox.iconurl: %@", iconURL);
+    
+    [attributes setValue:link forKey:@"link"];
+    [attributes setValue:size forKey:@"size"];
+    [attributes setValue:iconURL forKey:@"iconURL"];
+    if (thumbs) {
+        NSArray*keys=[thumbs allKeys];
+        for (NSString *k in keys) {
+            NSURL *turl = (NSURL *)thumbs[k];
+            [attributes setValue:[turl absoluteString] forKey:k];
+        }
+    }
+    NSString *text = [NSString stringWithFormat:@"%@ %@", name, link];
+    [self.conversationHandler sendTextMessage:text subtype:MSG_TYPE_DROPBOX attributes:attributes completion:^(ChatMessage *message, NSError *error) {
+        NSLog(@"Message %@ successfully sent. ID: %@", message.text, message.messageId);
+    }];
+//    [self.conversationHandler sendMessageWithText:text type:MSG_TYPE_DROPBOX attributes:attributes];
 }
 
 -(void)dismissKeyboardFromTableView:(BOOL)activated {
@@ -704,7 +770,7 @@
     NSString *trimmed_text = [text stringByTrimmingCharactersInSet:
                               [NSCharacterSet whitespaceCharacterSet]];
     if(trimmed_text.length > 0) {
-        [self.conversationHandler sendTextMessage:text attributes:attributes completion:^(ChatMessage *message, NSError *error) {
+        [self.conversationHandler sendTextMessage:text subtype:nil attributes:attributes completion:^(ChatMessage *message, NSError *error) {
             NSLog(@"Message %@ successfully sent. ID: %@", message.text, message.messageId);
         }];
         self.messageTextField.text = @"";
@@ -885,14 +951,6 @@ static float messageTime = 0.5;
         return;
     }
     [self groupConfigurationChanged:group];
-//    if ([group isMember:self.me.userId]) {
-//        [self.conversationHandler connect];
-//        [self groupConfigurationChanged:group];
-//    }
-//    else {
-//        [self.conversationHandler dispose];
-//        [self groupConfigurationChanged:group];
-//    }
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

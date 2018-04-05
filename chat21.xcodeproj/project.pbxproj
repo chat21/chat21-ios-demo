@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21459BF1FFF7F1F0048535E /* Chat-Info.plist */; };
+		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
+		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
+		B21A82DC207613F60068A2F9 /* ChatInfoMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
@@ -110,6 +113,7 @@
 		B290B3F1202DBD0F008CBC07 /* NotificationAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B290B39C202DBD0E008CBC07 /* NotificationAlertVC.m */; };
 		B290B3F2202DBD0F008CBC07 /* status_title_ios11.xib in Resources */ = {isa = PBXBuildFile; fileRef = B290B39E202DBD0E008CBC07 /* status_title_ios11.xib */; };
 		B290B3F3202DBD0F008CBC07 /* NotificationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B290B39F202DBD0E008CBC07 /* NotificationAlertView.m */; };
+		B299D9E0207667AE005531A4 /* ChatInfoMessageAttributesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B299D9DF207667AE005531A4 /* ChatInfoMessageAttributesTVC.m */; };
 		B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */; };
 		B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */; };
 		B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC94611F1FCE04000DDF52 /* HelloMyProfileTVC.m */; };
@@ -154,6 +158,10 @@
 		B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21459BF1FFF7F1F0048535E /* Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; sourceTree = "<group>"; };
+		B21A82D32075219A0068A2F9 /* DBChooser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBChooser.framework; sourceTree = "<group>"; };
+		B21A82D42075219B0068A2F9 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
+		B21A82DA207613F60068A2F9 /* ChatInfoMessageTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageTVC.h; sourceTree = "<group>"; };
+		B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageTVC.m; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B23A81291F95D31E001344C0 /* HelloChatUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloChatUtil.h; sourceTree = "<group>"; };
@@ -319,6 +327,8 @@
 		B290B3A0202DBD0E008CBC07 /* ChatSelectUserLocalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectUserLocalVC.h; sourceTree = "<group>"; };
 		B290B3A1202DBD0E008CBC07 /* ChatConversationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsVC.h; sourceTree = "<group>"; };
 		B290B3A2202DBD0E008CBC07 /* ChatUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUIManager.h; sourceTree = "<group>"; };
+		B299D9DE207667AE005531A4 /* ChatInfoMessageAttributesTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageAttributesTVC.h; sourceTree = "<group>"; };
+		B299D9DF207667AE005531A4 /* ChatInfoMessageAttributesTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageAttributesTVC.m; sourceTree = "<group>"; };
 		B2A4C0511FE7D7A600AED2EE /* HelloUserProfileTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloUserProfileTVC.h; sourceTree = "<group>"; };
 		B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloUserProfileTVC.m; sourceTree = "<group>"; };
 		B2ABAE7E202228C200D6265A /* Chat21.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chat21.entitlements; sourceTree = "<group>"; };
@@ -383,6 +393,7 @@
 				BFBFD5101AEA5D7700657874 /* Foundation.framework in Frameworks */,
 				BFBFD50E1AEA5D6B00657874 /* UIKit.framework in Frameworks */,
 				BFBFD5081AEA5D4F00657874 /* QuartzCore.framework in Frameworks */,
+				B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */,
 				BFBFD5041AEA5D3800657874 /* ImageIO.framework in Frameworks */,
 				BFBFD5021AEA5D2B00657874 /* CoreImage.framework in Frameworks */,
 				BFBFD5001AEA5D1C00657874 /* Accelerate.framework in Frameworks */,
@@ -409,13 +420,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B21A82CF2069414A0068A2F9 /* xibs */ = {
+		B21A82CF2069414A0068A2F9 /* xib */ = {
 			isa = PBXGroup;
 			children = (
 				B290B39E202DBD0E008CBC07 /* status_title_ios11.xib */,
 				B290B38C202DBD0E008CBC07 /* notification_view.xib */,
 			);
-			path = xibs;
+			path = xib;
 			sourceTree = "<group>";
 		};
 		B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */ = {
@@ -562,6 +573,7 @@
 		B290B342202DBD0E008CBC07 /* Chat21UI */ = {
 			isa = PBXGroup;
 			children = (
+				B290B391202DBD0E008CBC07 /* Chat.storyboard */,
 				B290B3A2202DBD0E008CBC07 /* ChatUIManager.h */,
 				B290B36A202DBD0E008CBC07 /* ChatUIManager.m */,
 				B290B343202DBD0E008CBC07 /* util */,
@@ -569,7 +581,7 @@
 				B290B36B202DBD0E008CBC07 /* QBPopupMenu */,
 				B290B378202DBD0E008CBC07 /* sounds */,
 				B290B37B202DBD0E008CBC07 /* view */,
-				B21A82CF2069414A0068A2F9 /* xibs */,
+				B21A82CF2069414A0068A2F9 /* xib */,
 			);
 			path = Chat21UI;
 			sourceTree = "<group>";
@@ -677,7 +689,6 @@
 		B290B37B202DBD0E008CBC07 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				B290B391202DBD0E008CBC07 /* Chat.storyboard */,
 				B290B395202DBD0E008CBC07 /* ChatMessagesTVC.h */,
 				B290B37C202DBD0E008CBC07 /* ChatMessagesTVC.m */,
 				B290B394202DBD0E008CBC07 /* ChatMessagesVC.h */,
@@ -713,6 +724,10 @@
 				B290B39C202DBD0E008CBC07 /* NotificationAlertVC.m */,
 				B290B38A202DBD0E008CBC07 /* NotificationAlertView.h */,
 				B290B39F202DBD0E008CBC07 /* NotificationAlertView.m */,
+				B21A82DA207613F60068A2F9 /* ChatInfoMessageTVC.h */,
+				B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */,
+				B299D9DE207667AE005531A4 /* ChatInfoMessageAttributesTVC.h */,
+				B299D9DF207667AE005531A4 /* ChatInfoMessageAttributesTVC.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -799,6 +814,8 @@
 		BFBFD4F01AEA5B5600657874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B21A82D42075219B0068A2F9 /* DBChooser.bundle */,
+				B21A82D32075219A0068A2F9 /* DBChooser.framework */,
 				DC03C60C1BBBDEAD003C2BA9 /* libicucore.tbd */,
 				DC03C60A1BBBDE96003C2BA9 /* libc++.tbd */,
 				BFF3C62D1B283219001EC667 /* StoreKit.framework */,
@@ -966,6 +983,7 @@
 				B290B3C4202DBD0F008CBC07 /* icon_light_chat@2x.png in Resources */,
 				B23AE8F11F278E8800BEB4B8 /* ic_linear_profile.png in Resources */,
 				B23AE8F21F278E8800BEB4B8 /* ic_linear_profile@2x.png in Resources */,
+				B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */,
 				B290B3DE202DBD0F008CBC07 /* newnotif.caf in Resources */,
 				B23AE8EE1F278E8800BEB4B8 /* ic_linear_home.png in Resources */,
 				B23AE8EA1F278E8800BEB4B8 /* ic_linear_chat@3x.png in Resources */,
@@ -1050,6 +1068,7 @@
 				BFBFD4D71AEA598000657874 /* HelloUser.m in Sources */,
 				B290B3E3202DBD0F008CBC07 /* ChatChangeGroupNameVC.m in Sources */,
 				B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */,
+				B21A82DC207613F60068A2F9 /* ChatInfoMessageTVC.m in Sources */,
 				B290B3E0202DBD0F008CBC07 /* ChatMessagesTVC.m in Sources */,
 				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
 				B290B3B5202DBD0E008CBC07 /* ChatManager.m in Sources */,
@@ -1076,6 +1095,7 @@
 				B290B3E1202DBD0F008CBC07 /* ChatMessagesVC.m in Sources */,
 				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
 				B290B3E6202DBD0F008CBC07 /* UIView+Property.m in Sources */,
+				B299D9E0207667AE005531A4 /* ChatInfoMessageAttributesTVC.m in Sources */,
 				B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */,
 				B290B3B4202DBD0E008CBC07 /* FirebaseCustomAuthHelper.m in Sources */,
 				B290B3DD202DBD0F008CBC07 /* QBPopupMenuPagenatorView.m in Sources */,

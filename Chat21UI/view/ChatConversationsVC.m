@@ -412,7 +412,7 @@
         //add code here for when you hit delete
         NSString *title = [ChatLocal translate:@"DeleteConversationTitle"];
         NSString *msg = [ChatLocal translate:@"DeleteConversationMessage"];
-        NSString *cancel = [ChatLocal translate:@"CancelLKey"];
+        NSString *cancel = [ChatLocal translate:@"Cancel"];
         
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:cancel otherButtonTitles:@"OK", nil];
         self.removingConversationAtIndexPath = indexPath;
@@ -518,15 +518,12 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"CHAT_SEGUE"]) {
-        NSLog(@"Preparing chat_segue...");
         ChatMessagesVC *vc = (ChatMessagesVC *)[segue destinationViewController];
-        
-        NSLog(@"vc %@", vc);
         // conversationsHandler will update status of new conversations (they come with is_new = true) with is_new = false (because the conversation is open and so new messages are all read)
         self.conversationsHandler.currentOpenConversationId = self.selectedConversationId;
-        NSLog(@"self.selectedConversationId = %@", self.selectedConversationId);
-        NSLog(@"self.conversationsHandler.currentOpenConversationId = %@", self.selectedConversationId);
-        NSLog(@"self.selectedRecipient: %@", self.selectedRecipientId);
+//        NSLog(@"self.selectedConversationId = %@", self.selectedConversationId);
+//        NSLog(@"self.conversationsHandler.currentOpenConversationId = %@", self.selectedConversationId);
+//        NSLog(@"self.selectedRecipient: %@", self.selectedRecipientId);
         if (self.selectedRecipientId) {
             ChatUser *recipient = [[ChatUser alloc] init:self.selectedRecipientId fullname:self.selectedRecipientFullname];
             vc.recipient = recipient;
@@ -536,9 +533,8 @@
         }
         if (self.selectedGroupId) {
             vc.group = [[ChatManager getInstance] groupById:self.selectedGroupId];
-            NSLog(@"INFO GROUP OK: %@", vc.group.name);
             if (!vc.group) {
-                NSLog(@"INFO X GRUPPO %@ NON TROVATE. PROBABILMENTE GRUPPI NON ANCORA SINCRONIZZATI. CARICO INFO GRUPPO DIRETTAMENTE DA VISTA MESSAGGI (CON ID GRUPPO)", self.selectedGroupId);
+//                NSLog(@"INFO X GRUPPO %@ NON TROVATE. PROBABILMENTE GRUPPI NON ANCORA SINCRONIZZATI. CARICO INFO GRUPPO DIRETTAMENTE DA VISTA MESSAGGI (CON ID GRUPPO)", self.selectedGroupId);
                 ChatGroup *emptyGroup = [[ChatGroup alloc] init];
                 emptyGroup.name = self.selectedGroupName;
                 emptyGroup.members = nil; // signals no group metadata

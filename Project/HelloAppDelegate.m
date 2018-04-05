@@ -21,6 +21,7 @@
 #import "ChatGroup.h"
 #import "ChatMessage.h"
 #import "ChatAuth.h"
+#import <DBChooser/DBChooser.h>
 
 #import <sys/utsname.h>
 @import Firebase;
@@ -297,25 +298,25 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     NSLog(@"App >> applicationDidReceiveMemoryWarning. Caches empting...");
 }
 
-//-(BOOL)application:(UIApplication *)application
-//           openURL:(NSURL *)url
-// sourceApplication:(NSString *)sourceApplication
-//        annotation:(id)annotation{
-//    NSLog(@"AppDelegate openURL");
-//    //    if ([[DBSession sharedSession] handleOpenURL:url]) {
-//    //        if ([[DBSession sharedSession] isLinked]) {
-//    //            NSLog(@"App linked successfully!");
-//    //            // At this point you can start making API calls
-//    //        }
-//    //        return YES;
-//    //    }
-//    if ([[DBChooser defaultChooser] handleOpenURL:url]) {
-//        // This was a Chooser response and handleOpenURL automatically ran the
-//        // completion block
-//        NSLog(@"DBChooser openURL");
-//        return YES;
-//    }
-//    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
-//}
+-(BOOL)application:(UIApplication *)application
+           openURL:(NSURL *)url
+ sourceApplication:(NSString *)sourceApplication
+        annotation:(id)annotation{
+    NSLog(@"AppDelegate openURL");
+    //    if ([[DBSession sharedSession] handleOpenURL:url]) {
+    //        if ([[DBSession sharedSession] isLinked]) {
+    //            NSLog(@"App linked successfully!");
+    //            // At this point you can start making API calls
+    //        }
+    //        return YES;
+    //    }
+    if ([[DBChooser defaultChooser] handleOpenURL:url]) {
+        // This was a Chooser response and handleOpenURL automatically ran the
+        // completion block
+        NSLog(@"DBChooser openURL");
+        return YES;
+    }
+    return NO;
+}
 
 @end

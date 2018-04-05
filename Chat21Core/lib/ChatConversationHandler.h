@@ -54,7 +54,7 @@
 -(void)dispose;
 //- (void)sendMessage:(NSString *)text;
 //-(void)sendMessageWithText:(NSString *)text type:(NSString *)type attributes:(NSDictionary *)attributes;
--(void)sendTextMessage:(NSString *)text attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback;
+-(void)sendTextMessage:(NSString *)text subtype:(NSString *)subtype attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback;
 -(void)restoreMessagesFromDB;
 +(NSMutableDictionary *)firebaseMessageFor:(ChatMessage *)message;
 

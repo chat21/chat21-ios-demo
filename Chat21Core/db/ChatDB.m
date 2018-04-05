@@ -1,6 +1,5 @@
 //
 //  ChatDB.m
-//  Soleto
 //
 //  Created by Andrea Sponziello on 05/12/14.
 //
@@ -66,10 +65,6 @@ static ChatDB *sharedInstance = nil;
     // **** TESTING ONLY ****
     // if you add another table or change an existing one you must (for the moment) drop the DB
 //    [self drop_database];
-    
-//    if ([filemgr fileExistsAtPath: databasePath ] == NO) {
-//        NSLog(@"Database %@ not exists. Creating...", databasePath);
-//        const char *dbpath = [databasePath UTF8String];
     const char *dbpath = [databasePath UTF8String];
     
     if ([filemgr fileExistsAtPath: databasePath ] == NO) {
@@ -80,7 +75,7 @@ static ChatDB *sharedInstance = nil;
             char *errMsg;
             if (self.logQuery) {NSLog(@"**** CREATING TABLE MESSAGES...");}
             const char *sql_stmt_messages =
-            "create table if not exists messages (messageId text primary key, conversationId text, text_body text, sender text, sender_fullname text, recipient text, status integer, timestamp real, type text, channel_type text, attributes text)";
+            "create table if not exists messages (messageId text primary key, conversationId text, text_body text, sender text, recipient text, status integer, timestamp real, type text, channel_type text, snapshot text)";
             if (sqlite3_exec(database, sql_stmt_messages, NULL, NULL, &errMsg) != SQLITE_OK) {
                 isSuccess = NO;
                 if (self.logQuery) {NSLog(@"Failed to create table messages");}
@@ -90,7 +85,6 @@ static ChatDB *sharedInstance = nil;
             }
             if (self.logQuery) {NSLog(@"**** CREATING TABLE CONVERSATIONS...");}
             const char *sql_stmt_conversations =
-//            "create table if not exists conversations (conversationId text primary key, user text, sender text, sender_fullname, recipient text, last_message_text text, convers_with text, convers_with_fullname text, group_id text, group_name text, is_new integer, timestamp real, status integer, type text, channel_type text)";
             "create table if not exists conversations (conversationId text primary key, user text, sender text, sender_fullname, recipient text, recipient_fullname text, last_message_text text, convers_with text, convers_with_fullname text, is_new integer, timestamp real, status integer, channel_type text)";
             if (sqlite3_exec(database, sql_stmt_conversations, NULL, NULL, &errMsg) != SQLITE_OK) {
                 isSuccess = NO;
@@ -154,38 +148,23 @@ static ChatDB *sharedInstance = nil;
     const char *dbpath = [databasePath UTF8String];
     double timestamp = (double)[message.date timeIntervalSince1970]; // NSTimeInterval is a (double)
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into messages (messageId, conversationId, sender, sender_fullname,  recipient, text_body, status, timestamp, type, channel_type, attributes) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
+        NSString *insertSQL = [NSString stringWithFormat:@"insert into messages (messageId, conversationId, sender, recipient, text_body, status, timestamp, type, channel_type, snapshot) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"];
         if (self.logQuery) {NSLog(@"**** QUERY:%@", insertSQL);}
         sqlite3_prepare(database, [insertSQL UTF8String], -1, &statement, NULL);
         
         sqlite3_bind_text(statement, 1, [message.messageId UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [message.conversationId UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [message.sender UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 4, [message.senderFullname UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 5, [message.recipient UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 6, [message.text UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_int(statement, 7, message.status);
-        sqlite3_bind_double(statement, 8, timestamp);
-        sqlite3_bind_text(statement, 9, [message.mtype UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 10, [message.channel_type UTF8String], -1, SQLITE_TRANSIENT);
-        // convert attributes dictionary to JSON
-        NSString * jsonAttributesAsString = nil;
-//        NSLog(@"message.attributes: %@",message.attributes);
-//        NSLog(@"message class: %@", NSStringFromClass([message class]));
-//        NSLog(@"message.attributes class: %@", NSStringFromClass([message.attributes class]));
-//        NSLog(@"message.attributes value: %@", message.attributes);
-//        NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:message.attributes]);
-//        for(id key in message.attributes) {
-//            NSLog(@"key=%@ value=%@", key, [message.attributes objectForKey:key]);
-//        }
-        NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:message.attributes]);
-        if (message.attributes && [message.attributes isKindOfClass:[NSDictionary class]]) {
-            NSError * err;
-            NSData * jsonData = [NSJSONSerialization dataWithJSONObject:message.attributes options:0 error:&err];
-            NSLog(@"Error: %@", err);
-            jsonAttributesAsString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-        sqlite3_bind_text(statement, 11, [jsonAttributesAsString UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 4, [message.recipient UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 5, [message.text UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(statement, 6, message.status);
+        sqlite3_bind_double(statement, 7, timestamp);
+        sqlite3_bind_text(statement, 8, [message.mtype UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 9, [message.channel_type UTF8String], -1, SQLITE_TRANSIENT);
+        NSString *snapshotAsJSONString = message.snapshotAsJSONString;
+        sqlite3_bind_text(statement, 10, [snapshotAsJSONString UTF8String], -1, SQLITE_TRANSIENT);
+//        NSString *attributesAsJSONString = message.attributesAsJSONString;
+//        sqlite3_bind_text(statement, 11, [attributesAsJSONString UTF8String], -1, SQLITE_TRANSIENT);
         if (sqlite3_step(statement) == SQLITE_DONE) {
             sqlite3_reset(statement);
             return YES;
@@ -218,7 +197,7 @@ static ChatDB *sharedInstance = nil;
     return NO;
 }
 
-static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversationId, sender, sender_fullname, recipient, text_body, status, timestamp, type, channel_type, attributes from messages ";
+static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversationId, sender, recipient, text_body, status, timestamp, type, channel_type, snapshot from messages ";
 
 -(NSArray*)getAllMessages {
     NSMutableArray *messages = [[NSMutableArray alloc] init];
@@ -311,65 +290,89 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
         sender = [[NSString alloc] initWithUTF8String:_sender];
     }
     
-    //NSString *senderFullname = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-    const char* _senderFullname = (const char *) sqlite3_column_text(statement, 3);
-    NSString *senderFullname = nil;
-    if (_senderFullname) {
-        senderFullname = [[NSString alloc] initWithUTF8String:_senderFullname];
-    }
+//    const char* _senderFullname = (const char *) sqlite3_column_text(statement, 3);
+//    NSString *senderFullname = nil;
+//    if (_senderFullname) {
+//        senderFullname = [[NSString alloc] initWithUTF8String:_senderFullname];
+//    }
     
     
     // group's messages have no recipient
     NSString *recipient = nil;
-    const char *recipient_chars = (const char *) sqlite3_column_text(statement, 4);
+    const char *recipient_chars = (const char *) sqlite3_column_text(statement, 3);
     if (recipient_chars != NULL) {
-        recipient = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+        recipient = [[NSString alloc] initWithUTF8String:recipient_chars];
     }
-    NSString *text = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
-    int status = sqlite3_column_int(statement, 6);
-    double timestamp = sqlite3_column_double(statement, 7);
+    
+    NSString *text = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+    
+    int status = sqlite3_column_int(statement, 5);
+    
+    double timestamp = sqlite3_column_double(statement, 6);
     
     NSString *type = nil;
-    const char *type_chars = (const char *) sqlite3_column_text(statement, 8);
+    const char *type_chars = (const char *) sqlite3_column_text(statement, 7);
     if (type_chars != NULL) {
-        type = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 8)];
+        type = [[NSString alloc] initWithUTF8String:type_chars];
     }
     
     NSString *channel_type = nil;
-    const char *channel_type_chars = (const char *) sqlite3_column_text(statement, 9);
+    const char *channel_type_chars = (const char *) sqlite3_column_text(statement, 8);
     if (channel_type_chars != NULL) {
-        channel_type = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)];
+        channel_type = [[NSString alloc] initWithUTF8String:channel_type_chars];
     }
     
-    NSString *attributes_json = nil;
-    const char *attributes_json_chars = (const char *) sqlite3_column_text(statement, 10);
-    if (attributes_json_chars != NULL) {
-        attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 10)];
+    
+    NSMutableDictionary *snapshot = nil;
+    const char *snapshot_json_chars = (const char *) sqlite3_column_text(statement, 9);
+    if (snapshot_json_chars != NULL) {
+        NSString *snapshot_json = nil;
+        snapshot_json = [[NSString alloc] initWithUTF8String:snapshot_json_chars];
+        NSLog(@"snapshot_json: %@", snapshot_json);
+        if (snapshot_json) {
+            NSData *jsonData = [snapshot_json dataUsingEncoding:NSUTF8StringEncoding];
+            NSError* error;
+            snapshot = [NSJSONSerialization
+                        JSONObjectWithData:jsonData
+                        options:kNilOptions
+                        error:&error];
+        }
     }
-    //NSString *attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)];
-    NSMutableDictionary *attributes = nil;
-    NSLog(@"attributes_json: %@", attributes_json);
-    if (attributes_json) {
-        NSData *jsonData = [attributes_json dataUsingEncoding:NSUTF8StringEncoding];
-        NSError* error;
-        attributes = [NSJSONSerialization
-                                 JSONObjectWithData:jsonData
-                                 options:kNilOptions
-                                 error:&error];
-    }
-//    NSLog(@"MESSAGE DECODED:\nmessageId:%@\nconversationid:%@\nsender:%@\nrecipient:%@\ntext:%@\nstatus:%d\ntimestamp:%f\ntype:%@\nchannel_type:%@", messageId, conversationId, sender, recipient, text, status, timestamp, type, channel_type);
+    
+    
+//    NSString *attributes_json = nil;
+//    const char *attributes_json_chars = (const char *) sqlite3_column_text(statement, 11);
+//    if (attributes_json_chars != NULL) {
+//        attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 11)];
+//    }
+//    //NSString *attributes_json = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 9)];
+//    NSMutableDictionary *attributes = nil;
+//    NSLog(@"attributes_json: %@", attributes_json);
+//    if (attributes_json) {
+//        NSData *jsonData = [attributes_json dataUsingEncoding:NSUTF8StringEncoding];
+//        NSError* error;
+//        attributes = [NSJSONSerialization
+//                                 JSONObjectWithData:jsonData
+//                                 options:kNilOptions
+//                                 error:&error];
+//    }
+    
     ChatMessage *message = [[ChatMessage alloc] init];
     message.messageId = messageId;
     message.conversationId = conversationId;
     message.sender = sender;
-    message.senderFullname = senderFullname;
+    message.senderFullname = snapshot[MSG_FIELD_SENDER_FULLNAME];
     message.recipient = recipient;
     message.text = text;
     message.mtype = type;
     message.channel_type = channel_type;
-    message.attributes = attributes;
+    message.attributes = snapshot[MSG_FIELD_ATTRIBUTES];//attributes;
+    message.snapshot = snapshot;
+    message.subtype = snapshot[MSG_FIELD_SUBTYPE];
+    message.recipientFullName = snapshot[MSG_FIELD_RECIPIENT_FULLNAME];
     message.status = status;
     message.date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    message.lang = snapshot[MSG_FIELD_LANG];
     message.archived = YES;
     return message;
 }
@@ -393,12 +396,9 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     return NO;
 }
 
-
-
-
-
-// CONVERSATIONS
-
+// ***********************
+// **** CONVERSATIONS ****
+// ***********************
 
 -(BOOL)insertOrUpdateConversation:(ChatConversation *)conversation {
 //    NSLog(@"insertOrUpdateConversation: %@ user: %@", conversation.conversationId, conversation.user);

@@ -19,6 +19,7 @@ static int const MSG_STATUS_SEEN = 300;
 // firebase fields
 static NSString* const MSG_FIELD_CONVERSATION_ID = @"conversationId";
 static NSString* const MSG_FIELD_TYPE = @"type";
+static NSString* const MSG_FIELD_SUBTYPE = @"subtype";
 static NSString* const MSG_FIELD_CHANNEL_TYPE = @"channel_type";
 static NSString* const MSG_CHANNEL_TYPE_DIRECT = @"direct";
 static NSString* const MSG_CHANNEL_TYPE_GROUP = @"group";
@@ -64,7 +65,12 @@ static NSString* const MSG_DROPBOX_ICONURL = @"dropbox_iconURL";
 @property (nonatomic, assign) BOOL archived;
 @property (nonatomic, assign) int status; // firebase
 @property (nonatomic, strong) NSString *mtype; // firebase
+@property (nonatomic, strong) NSString *subtype; // firebase
+
+@property (nonatomic, strong) NSDictionary *snapshot;
+@property (nonatomic, strong) NSString *snapshotAsJSONString;
 @property (nonatomic, strong) NSDictionary *attributes; // firebase
+@property (nonatomic, strong) NSString *attributesAsJSONString;
 
 @property (nonatomic, assign) BOOL isDirect;
 

@@ -16,6 +16,7 @@
 #import "ChatMiniBrowserVC.h"
 #import "ChatUser.h"
 #import "ChatLocal.h"
+#import "ChatInfoMessageTVC.h"
 
 @interface ChatMessagesTVC ()
 
@@ -51,13 +52,14 @@ static NSString *COPY_LINK_KEY = @"Copy link";
     //    //        QBPopupMenuItem *item2 = [QBPopupMenuItem itemWithImage:[UIImage imageNamed:@"image"] target:self action:@selector(action:)];
     //    self.popupMenu = [[QBPopupMenu alloc] initWithItems:@[itemCopy]];
     
-    QBPopupMenuItem *item_copy = [QBPopupMenuItem itemWithTitle:@"Copia" target:self action:@selector(copy_action:)];
-    QBPopupMenuItem *item_resend = [QBPopupMenuItem itemWithTitle:@"Copia" target:self action:@selector(resend_action:)];
-    QBPopupMenuItem *item_delete = [QBPopupMenuItem itemWithTitle:@"Copia" target:self action:@selector(delete_action:)];
+    QBPopupMenuItem *item_copy = [QBPopupMenuItem itemWithTitle:NSLocalizedString(@"copy", nil) target:self action:@selector(copy_action:)];
+    QBPopupMenuItem *item_info = [QBPopupMenuItem itemWithTitle:NSLocalizedString(@"info", nil) target:self action:@selector(info_action:)];
+//    QBPopupMenuItem *item_resend = [QBPopupMenuItem itemWithTitle:@"Copia" target:self action:@selector(resend_action:)];
+//    QBPopupMenuItem *item_delete = [QBPopupMenuItem itemWithTitle:@"Copia" target:self action:@selector(delete_action:)];
     
     //    QBPopupMenuItem *item5 = [QBPopupMenuItem itemWithImage:[UIImage imageNamed:@"clip"] target:self action:@selector(action)];
     //    QBPopupMenuItem *item6 = [QBPopupMenuItem itemWithTitle:@"Delete" image:[UIImage imageNamed:@"trash"] target:self action:@selector(action)];
-    NSArray *items = @[item_copy];
+    NSArray *items = @[item_copy, item_info];
     
     QBPopupMenu *popupMenu = [[QBPopupMenu alloc] initWithItems:items];
     popupMenu.highlightedColor = [[UIColor colorWithRed:0 green:0.478 blue:1.0 alpha:1.0] colorWithAlphaComponent:0.8];
@@ -78,6 +80,11 @@ static NSString *COPY_LINK_KEY = @"Copy link";
     NSLog(@"Text copied!");
 }
 
+-(void)info_action:(id)sender {
+    NSLog(@"Message info action!");
+    [self performSegueWithIdentifier:@"info" sender:self];
+}
+
 static NSString *MATCH_TYPE_URL = @"URL";
 static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 
@@ -96,6 +103,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     
     
     ChatMessage *message = [self.conversationHandler.messages objectAtIndex:indexPath.row];
+    self.selectedMessage = message;
     [self printMessage:message];
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
     
@@ -409,7 +417,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
                            }];
     
     UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:[ChatLocal translate:@"CancelLKey"]
+                             actionWithTitle:[ChatLocal translate:@"Cancel"]
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -435,12 +443,10 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     NSArray *messages = self.conversationHandler.messages;
     if (messages && messages.count > 0 && messages.count <= [self.tableView numberOfRowsInSection:section]) {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: messages.count-1 inSection:section];
-        NSLog(@"self.tableView %@", self.tableView);
         [self.tableView
          scrollToRowAtIndexPath:ipath
          atScrollPosition: UITableViewScrollPositionTop
          animated:animated];
-        NSLog(@"SCROLL OK!");
     }
 }
 
@@ -464,7 +470,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     if (messages) {
         rows_count = messages.count;
     }
-    NSLog(@">>> ROWS IN SECTION %ld = %ld", (long)section, (long)rows_count);
+//    NSLog(@">>> ROWS IN SECTION %ld = %ld", (long)section, (long)rows_count);
     return rows_count;
 }
 
@@ -772,6 +778,10 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         vc.hiddenToolBar = YES;
         vc.titlePage = @"";
         vc.urlPage = self.selectedHighlightLink;
+    }
+    else if ([segue.identifier isEqualToString:@"info"]) {
+        ChatInfoMessageTVC *vc = (ChatInfoMessageTVC *)[segue destinationViewController];
+        vc.message = self.selectedMessage;
     }
 }
 

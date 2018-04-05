@@ -80,8 +80,8 @@
 -(void)restoreMessagesFromDB {
     NSLog(@"RESTORING ALL MESSAGES FOR CONVERSATION %@", self.conversationId);
     NSArray *inverted_messages = [[[ChatDB getSharedInstance] getAllMessagesForConversation:self.conversationId start:0 count:40] mutableCopy];
-    NSLog(@"DB MESSAGES NUMBER: %lu", (unsigned long) inverted_messages.count);
-    NSLog(@"Last 40 messages restored...");
+//    NSLog(@"DB MESSAGES NUMBER: %lu", (unsigned long) inverted_messages.count);
+    NSLog(@"Restoring last 40 messages...");
     NSEnumerator *enumerator = [inverted_messages reverseObjectEnumerator];
     for (id element in enumerator) {
         [self.messages addObject:element];
@@ -132,7 +132,7 @@
         return;
     }
     
-    NSLog(@"Setting up references' connections with firebase using token: %@", self.firebaseToken);
+//    NSLog(@"Setting up references' connections with firebase using token: %@", self.firebaseToken);
     if (self.messages_ref_handle) {
         NSLog(@"Trying to re-open messages_ref_handle %ld while already open. Returning.", self.messages_ref_handle);
         return;
@@ -169,7 +169,7 @@
         // updates status only of messages not sent by me
         // HO RICEVUTO UN MESSAGGIO NUOVO
 //        NSLog(@"self.senderId: %@", self.senderId);
-        if (message.status < MSG_STATUS_RECEIVED && ![message.sender isEqualToString:self.senderId]) { // CONTROLLO "message.status < MSG_STATUS_RECEIVED" IN MODO DA EVITARE IL COSTO DI RI-AGGIORNARE CONTINUAMENTE LO STATO DI MESSAGGI CHE HANNO GIA LO STATO RECEIVED (MAGARI E' LA SINCRONIZZAZIONE DI UN NUOVO DISPOSITIVO CHE NON DEVE PIU' COMUNICARE NULLA AL MITTENTE MA SOLO SCARICARE I MESSAGGI NELLO STATO IN CUI SI TROVANO).
+        if (message.status < MSG_STATUS_RECEIVED && ![message.sender isEqualToString:self.senderId]) { // CONTROLLING... "message.status < MSG_STATUS_RECEIVED" IN MODO DA EVITARE IL COSTO DI RI-AGGIORNARE CONTINUAMENTE LO STATO DI MESSAGGI CHE HANNO GIA LO STATO RECEIVED (MAGARI E' LA SINCRONIZZAZIONE DI UN NUOVO DISPOSITIVO CHE NON DEVE PIU' COMUNICARE NULLA AL MITTENTE MA SOLO SCARICARE I MESSAGGI NELLO STATO IN CUI SI TROVANO).
             // NOT RECEIVED = NEW!
 //            NSLog(@"NEW MESSAGE!!!!! %@ group %@", message.text, message.recipientGroupId);
 //            if (!message.recipientGroupId) {
@@ -227,6 +227,7 @@
 }
 
 -(BOOL)isValidMessageSnapshot:(FIRDataSnapshot *)snapshot {
+    // TODO VALIDATE ALSO THE OPTIONAL "ATTRIBUTES" SECTION. IF EXISTS MUST BE A "DICTIONARY"
     if (snapshot.value[MSG_FIELD_TYPE] == nil) {
         NSLog(@"MSG:TYPE is mandatory. Discarding message.");
         return NO;
@@ -300,12 +301,15 @@
 
 //-(void)sendMessage:(NSString *)text image:(UIImage *)image binary:(NSData *)data type:(NSString *)type attributes:(NSDictionary *)attributes {
 
--(void)sendTextMessage:(NSString *)text attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
+-(void)sendTextMessage:(NSString *)text subtype:(NSString *)subtype attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
     ChatMessage *message = [self newBaseMessage];
     if (text) {
         message.text = text;
     }
     message.mtype = MSG_TYPE_TEXT;
+    if (subtype) {
+        message.subtype = subtype;
+    }
     message.attributes = attributes;
 //    if (self.groupId) {
     if ([self.channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
@@ -400,21 +404,15 @@
 +(NSMutableDictionary *)firebaseMessageFor:(ChatMessage *)message {
     // firebase message dictionary
     NSMutableDictionary *message_dict = [[NSMutableDictionary alloc] init];
-//    NSNumber *msg_timestamp = [NSNumber numberWithDouble:[message.date timeIntervalSince1970]];
     // always
-//    [message_dict setObject:message.conversationId forKey:MSG_FIELD_CONVERSATION_ID];
     [message_dict setObject:message.text forKey:MSG_FIELD_TEXT];
     [message_dict setObject:message.channel_type forKey:MSG_FIELD_CHANNEL_TYPE];
-//    [message_dict setObject:[FIRServerValue timestamp] forKey:MSG_FIELD_TIMESTAMP];
-//    [message_dict setObject:[NSNumber numberWithInt:message.status] forKey:MSG_FIELD_STATUS];
-    
-//    if (message.sender) {
-//        NSString *sanitezed_sender = [message.sender stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-//        [message_dict setObject:sanitezed_sender forKey:MSG_FIELD_SENDER];
-//    }
-    
     if (message.senderFullname) {
         [message_dict setObject:message.senderFullname forKey:MSG_FIELD_SENDER_FULLNAME];
+    }
+    
+    if (message.subtype) {
+        [message_dict setObject:message.subtype forKey:MSG_FIELD_SUBTYPE];
     }
     
     if (message.recipientFullName) {
@@ -432,17 +430,6 @@
     if (message.lang) {
         [message_dict setObject:message.lang forKey:MSG_FIELD_LANG];
     }
-    
-    // only if one-to-one
-//    if (message.recipient) {
-//        NSString *sanitezed_recipient = [message.recipient stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-//        [message_dict setValue:sanitezed_recipient forKey:MSG_FIELD_RECIPIENT];
-//    }
-    
-    // only if group
-//    if (message.recipientGroupId) {
-//        [message_dict setValue:message.recipientGroupId forKey:MSG_FIELD_RECIPIENT_GROUP_ID];
-//    }
     return message_dict;
 }
 

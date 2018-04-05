@@ -28,6 +28,38 @@
     }
 }
 
+//- (NSDictionary *) asDictionary {
+//    NSDictionary *dict = [[NSMutableDictionary alloc] init];
+//    dict[]
+//}
+
+-(NSString *)snapshotAsJSONString {
+    NSString * json = nil;
+    if (self.snapshot && [self.snapshot isKindOfClass:[NSDictionary class]]) {
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:self.snapshot options:0 error:&err];
+        if (err) {
+            NSLog(@"Error: %@", err);
+        }
+        json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return json;
+}
+
+-(NSString *)attributesAsJSONString {
+    NSString * json = nil;
+//    NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:self.attributes]);
+    if (self.attributes && [self.attributes isKindOfClass:[NSDictionary class]]) {
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:self.attributes options:0 error:&err];
+        if (err) {
+            NSLog(@"Error: %@", err);
+        }
+        json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return json;
+}
+
 -(NSString *)dateFormattedForListView {
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     [timeFormat setDateFormat:@"HH:mm"];
@@ -45,6 +77,7 @@
 +(ChatMessage *)messageFromSnapshotFactory:(FIRDataSnapshot *)snapshot {
     NSString *conversationId = snapshot.value[MSG_FIELD_CONVERSATION_ID];
     NSString *type = snapshot.value[MSG_FIELD_TYPE];
+    NSString *subtype = snapshot.value[MSG_FIELD_SUBTYPE];
     NSString *channel_type = snapshot.value[MSG_FIELD_CHANNEL_TYPE];
     if (!channel_type) {
         channel_type = MSG_CHANNEL_TYPE_DIRECT;
@@ -53,17 +86,18 @@
     NSString *sender = snapshot.value[MSG_FIELD_SENDER];
     NSString *senderFullname = snapshot.value[MSG_FIELD_SENDER_FULLNAME];
     NSString *recipient = snapshot.value[MSG_FIELD_RECIPIENT];
-//    NSString *recipientGroupId = snapshot.value[MSG_FIELD_RECIPIENT_GROUP_ID];
+    NSString *recipientFullname = snapshot.value[MSG_FIELD_RECIPIENT_FULLNAME];
     NSString *lang = snapshot.value[MSG_FIELD_LANG];
     NSNumber *timestamp = snapshot.value[MSG_FIELD_TIMESTAMP];
-    NSMutableDictionary *attributes = snapshot.value[MSG_FIELD_ATTRIBUTES];
-//    NSLog(@"snapshot. %@", [snapshot.value[MSG_FIELD_ATTRIBUTES] class]);
-//    NSLog(@"DECODED ATTRIBUTES (%@): %@", text, attributes);
+    NSDictionary *attributes = (NSDictionary *) snapshot.value[MSG_FIELD_ATTRIBUTES];
     
     ChatMessage *message = [[ChatMessage alloc] init];
     
+    message.snapshot = (NSDictionary *) snapshot.value;
+//    for(id key in message.snapshotAsDictionary) {
+//        NSLog(@"key=%@ value=%@", key, [message.asDictionary objectForKey:key]);
+//    }
     message.attributes = attributes;
-//    NSLog(@"MESSAGE.ATTRIBUTES.. %@", message.attributes);
     message.key = snapshot.key;
     message.ref = snapshot.ref;
     message.messageId = snapshot.key;
@@ -71,19 +105,18 @@
     message.text = text;
     message.lang = lang;
     message.mtype = type;
+    message.subtype = subtype;
     message.channel_type = channel_type;
-//    NSLog(@"DECODED TYPE %@", message.mtype);
     message.sender = sender;
     message.senderFullname = senderFullname;
     message.date = [NSDate dateWithTimeIntervalSince1970:timestamp.doubleValue/1000];
-//    NSLog(@"Message date %@", message.date);
     int status = [(NSNumber *)snapshot.value[MSG_FIELD_STATUS] intValue];
     if (status < 100) {
         status = 100;
     }
     message.status = status;
     message.recipient = recipient;
-//    message.recipientGroupId = recipientGroupId;
+    message.recipientFullName = recipientFullname;
     return message;
 }
 

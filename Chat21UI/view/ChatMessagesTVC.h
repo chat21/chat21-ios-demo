@@ -10,6 +10,7 @@
 #import "QBPopupMenu.h"
 
 @class ChatMessagesVC;
+@class ChatMessage;
 @class ChatConversationHandler;
 @class QBPopupMenu;
 
@@ -28,6 +29,7 @@
 
 @property (strong, nonatomic) QBPopupMenu *popupMenu;
 @property (strong, nonatomic) NSString *selectedText;
+@property (strong, nonatomic) ChatMessage *selectedMessage;
 
 - (void)reloadDataTableView;
 - (void)reloadDataTableViewOnIndex:(NSInteger)index;
