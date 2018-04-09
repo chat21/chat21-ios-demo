@@ -39,16 +39,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"property-cell" forIndexPath:indexPath];
-    NSLog(@"row %ld allkeys %lu", (long)indexPath.row, (unsigned long)allKeys.count);
     NSString *key = allKeys[indexPath.row];
-    NSLog(@"key: %@", key);
     id value = self.attributes[key];
     UILabel *key_label = [cell viewWithTag:10];
     UILabel *value_label = [cell viewWithTag:20];
-    
     key_label.text = key;
     value_label.text = [[NSString alloc] initWithFormat:@"%@", value];
-    
     return cell;
 }
 

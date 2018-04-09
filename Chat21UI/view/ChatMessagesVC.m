@@ -519,30 +519,32 @@
 - (IBAction)addContentAction:(id)sender {
         UIAlertController * view=   [UIAlertController
                                      alertControllerWithTitle:nil
-                                     message:@"Allega"
+                                     message:NSLocalizedString(@"Attach", nil)
                                      preferredStyle:UIAlertControllerStyleActionSheet];
-    
-//        UIAlertAction* documenti = [UIAlertAction
-//                               actionWithTitle:@"Documenti"
-//                               style:UIAlertActionStyleDefault
-//                               handler:^(UIAlertAction * action)
-//                               {
-//                                   NSLog(@"Documenti");
-//                                   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DocNavigator" bundle:nil];
-//                                   UINavigationController *nc = [sb instantiateViewControllerWithIdentifier:@"NavigatorController"];
-//                                   DocNavigatorTVC *navigatorVC = (DocNavigatorTVC *)[[nc viewControllers] objectAtIndex:0];
-//                                   navigatorVC.selectionMode = YES;
-//                                   navigatorVC.selectionDelegate = self;
-//                                   [self.navigationController presentViewController:nc animated:YES completion:nil];
-//                               }];
         UIAlertAction* dropbox = [UIAlertAction
-                               actionWithTitle:@"Dropbox"
+                               actionWithTitle:NSLocalizedString(@"Dropbox", nil)
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
                                    NSLog(@"Open dropbox");
                                    [self openDropbox];
                                }];
+        UIAlertAction* photo = [UIAlertAction
+                              actionWithTitle:NSLocalizedString(@"Photo", nil)
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  NSLog(@"Open photo");
+                                  [self takePhoto];
+                              }];
+        UIAlertAction* photo_from_library = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"Photo from library", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                NSLog(@"Open photo");
+                                [self chooseExisting];
+                            }];
         UIAlertAction* cancel = [UIAlertAction
                                  actionWithTitle:NSLocalizedString(@"Cancel", nil)
                                  style:UIAlertActionStyleCancel
@@ -551,9 +553,11 @@
                                      NSLog(@"cancel");
                                  }];
 //        [view addAction:documenti];
-        [view addAction:dropbox];
-        [view addAction:cancel];
-        [self presentViewController:view animated:YES completion:nil];
+    [view addAction:photo];
+    [view addAction:photo_from_library];
+    [view addAction:dropbox];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
 }
 
 -(void)openDropbox {
@@ -563,11 +567,9 @@
          if ([results count]) {
              // Process results from Chooser
              DBChooserResult *r = results[0];
-             //             NSLog(@"r.name %@", r.name);
-             //             NSLog(@"r.link %@", r.link);
-             //             NSLog(@"r.size %lld", r.size);
-             //             NSLog(@"r.iconURL %@", r.iconURL);
+             // properties: r.name, r.link, r.size, r.iconURL
              NSDictionary *thumbs = r.thumbnails;
+             // ** MEMO THUMBS **
              //             if (thumbs) {
              //                 NSArray*keys=[thumbs allKeys];
              //                 for (NSObject *k in keys) {
@@ -579,9 +581,9 @@
              //             } else {
              //                 NSLog(@"No r.thumbs");
              //             }
+             // ** END MEMO **
              [self sendDropboxMessage:r.name link:[r.link absoluteString] size:[NSNumber numberWithLongLong:r.size] iconURL:[r.iconURL absoluteString] thumbs:thumbs];
          } else {
-             // User canceled the action
              NSLog(@"Action canceled");
          }
      }];
@@ -777,39 +779,6 @@
     }
 }
 
-//-(void)sendDropboxMessage:(NSString *)name link:(NSString *)link size:(NSNumber *)size iconURL:(NSString *)iconURL thumbs:(NSDictionary *)thumbs {
-//
-//    // check: if in a group, are you still a member?
-//    if (self.group) {
-//        if ([self.group isMember:self.me.userId]) {
-//        } else {
-//            [self hideBottomView:YES];
-//            [self.messageTextField resignFirstResponder];
-//            return;
-//        }
-//    }
-//
-//    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-//    NSLog(@"dropbox.link: %@", link);
-//    NSLog(@"dropbox.size: %@", size);
-//    NSLog(@"dropbox.iconurl: %@", iconURL);
-//
-//    [attributes setValue:link forKey:@"link"];
-//    [attributes setValue:size forKey:@"size"];
-//    [attributes setValue:iconURL forKey:@"iconURL"];
-//    if (thumbs) {
-//        NSArray*keys=[thumbs allKeys];
-//        for (NSString *k in keys) {
-//            NSURL *turl = (NSURL *)thumbs[k];
-//            [attributes setValue:[turl absoluteString] forKey:k];
-//        }
-//    }
-//    NSString *text = [NSString stringWithFormat:@"%@ %@", name, link];
-//    [self.conversationHandler sendTextMessage:text attributes:attributes completion:^(ChatMessage *message, NSError *error) {
-//        NSLog(@"Dropbox message %@ successfully sent. ID: %@", message.text, message.messageId);
-//    }];
-//}
-
 -(void)messageUpdated:(ChatMessage *)message {
     [containerTVC reloadDataTableView];
 }
@@ -989,16 +958,15 @@ static float messageTime = 0.5;
     self.imagePickerController.delegate = self;
     self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     // enable to crop
-    self.imagePickerController.allowsEditing = YES;
+//    self.imagePickerController.allowsEditing = YES;
 }
 
 -(void)initializePhotoLibrary {
     NSLog(@"initializePhotoLibrary...");
     self.photoLibraryController = [[UIImagePickerController alloc] init];
     self.photoLibraryController.delegate = self;
-    self.photoLibraryController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;// SavedPhotosAlbum;// SavedPhotosAlbum;
-    self.photoLibraryController.allowsEditing = YES;
-    //self.photoLibraryController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.photoLibraryController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;// SavedPhotosAlbum;
+//    self.photoLibraryController.allowsEditing = YES;
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -1007,6 +975,117 @@ static float messageTime = 0.5;
 }
 
 -(void)afterPickerCompletion:(UIImagePickerController *)picker withInfo:(NSDictionary *)info {
+    UIImage *bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    for(id i in info.allKeys) {
+        NSLog(@"k: %@, v: %@ [class:%@]", i, info[i], NSStringFromClass([info[i] class]));
+    }
+    NSURL *imageUrl = [info objectForKey:@"UIImagePickerControllerImageURL"];
+    NSString *imageFileName = [imageUrl lastPathComponent];
+    NSLog(@"IMAGE: %@", bigImage);
+    NSLog(@"IMAGE NAME: %@", imageFileName);
+    // enable to crop
+    // self.scaledImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    //NSLog(@"edited image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
+//    if (!self.bigImage) {
+//        self.bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//        NSLog(@"original image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
+//    }
+    // end
+
+    self.scaledImage = bigImage;
+//    self.scaledImage = [SHPImageUtil scaleImage:self.bigImage toSize:CGSizeMake(self.applicationContext.settings.uploadImageSize, self.applicationContext.settings.uploadImageSize)];
+//    NSLog(@"SCALED IMAGE w:%f h:%f", self.scaledImage.size.width, self.scaledImage.size.height);
+
+    // save image in photos
+//    if (picker == self.imagePickerController) {
+//        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
+//                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
+//    }
+
+    NSLog(@"image: %@", self.scaledImage);
+//    UIImage *imageEXIFAdjusted = [ChatImageUtil adjustEXIF:self.scaledImage];
+    
+    // ATTENZIONE SEZIONE METADATA LOCALE, GESTIRE COME ATTACHMENT EMAIL, MIME TYPE
+    // 0. save image locally, 1. local conversation media library, 2. to recover failed image sending
+    NSString * uuid = [[NSUUID UUID] UUIDString];
+    NSString *file_name = [[NSString alloc] initWithFormat:@"%@.png", uuid];
+    [self saveImageToConversationMediaFolderAsPNG:self.scaledImage imageFileName:file_name];
+    // aggiungi a messaggio campi: media:true, document: true, link: true. in modo da filtrare nella media gallery
+    // 1. NSString *messageId = [create new placeholder-message (local only), type:type, +image-metadata (size, NO-URL, localfilename (the one from media library, not intended to be sent)]
+    // 2. upload image
+    // ADD COMPLETION CALLBACK, UUID-FILE-NAME IN MEDIA LIBRARY
+    [self updalodImage:self.scaledImage fileName:imageFileName];
+    // 3. completion callback:
+    // error?
+    // 3.1: update placeholder-message with status: error
+    // success?
+    // 3.1: update placeholder-message metadata > src
+    // 3.2: send message
+}
+
+-(void)saveImageToConversationMediaFolderAsPNG:(UIImage *)image imageFileName:(NSString *)imageFileName {
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSLog(@"Document path URL: %@", urlPath);
+    // path: chatConversationsMedia/{conv-id}/media/{image-name}
+    NSString *mediaPath = [[[urlPath.path stringByAppendingPathComponent:@"chatConversationsMedia"] stringByAppendingPathComponent:self.recipient.userId] stringByAppendingPathComponent:@"media"];
+    NSError *error;
+    if (![filemgr fileExistsAtPath:mediaPath]) {
+        [filemgr createDirectoryAtPath:mediaPath withIntermediateDirectories:YES attributes:nil error:&error];
+        NSLog(@"error creating mediaPath folder: %@", error);
+    }
+    NSString *imagePath = [mediaPath stringByAppendingPathComponent:imageFileName];
+    NSLog(@"Image path: %@", imagePath);
+    [UIImagePNGRepresentation(image) writeToFile:imagePath options:NSDataWritingAtomic error:&error];
+    NSLog(@"error saving image: %@", error);
+    // test
+    
+    if ([filemgr fileExistsAtPath: imagePath ] == NO) {
+        NSLog(@"Image not saved.");
+    }
+    else {
+        NSLog(@"Image saved.");
+    }
+    NSArray *directoryList = [filemgr contentsOfDirectoryAtPath:mediaPath error:nil];
+    for (id file in directoryList) {
+        NSLog(@"file: %@", file);
+    }
+}
+
+-(void)updalodImage:(UIImage *)image fileName:(NSString *)fileName {
+    NSData *data = UIImagePNGRepresentation(image);
+    // Get a reference to the storage service using the default Firebase App
+    FIRStorage *storage = [FIRStorage storage];
+    // Create a root reference
+    FIRStorageReference *storageRef = [storage reference];
+//    NSData *data = [NSData dataWithContentsOfFile:@"rivers.jpg"];
+    NSString * uuid = [[NSUUID UUID] UUIDString];
+    NSString *file_path = [[NSString alloc] initWithFormat:@"images/%@.png", uuid];
+    NSLog(@"image remote file path: %@", file_path);
+    // Create a reference to the file you want to upload
+    FIRStorageReference *riversRef = [storageRef child:file_path];
+    // Create file metadata including the content type
+    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
+    metadata.contentType = @"image/png";
+    // Upload the file to the path
+    FIRStorageUploadTask *uploadTask = [riversRef putData:data
+                                                 metadata:metadata
+                                               completion:^(FIRStorageMetadata *metadata,
+                                                            NSError *error) {
+                                                   if (error != nil) {
+                                                       NSLog(@"an error occurred!");
+                                                   } else {
+                                                       NSLog(@"Metadata contains file metadata such as size, content-type, and download URL");
+                                                       NSURL *downloadURL = metadata.downloadURL;
+                                                       NSLog(@"Download url: %@", downloadURL);
+                                                   }
+                                               }];
+    FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
+                                                      NSLog(@"uploading %@", snapshot);
+                                                      NSLog(@"completion: %f, %lld", snapshot.progress.fractionCompleted, snapshot.progress.completedUnitCount);
+                                                      
+                                                  }];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
