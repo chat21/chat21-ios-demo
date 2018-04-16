@@ -200,14 +200,14 @@ static ChatDB *sharedInstance = nil;
     return NO;
 }
 
--(BOOL)updateMessage:(NSString *)messageId status:(int)status text:(NSString *)text imageURL:(NSString *)imageURL {
+-(BOOL)updateMessage:(NSString *)messageId status:(int)status text:(NSString *)text snapshotAsJSONString:(NSString *)snapshotAsJSONString {
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
-        NSString *updateSQL = @"UPDATE messages SET status = ?, imageURL = ?, text = ? WHERE messageId = ?";
+        NSString *updateSQL = @"UPDATE messages SET status = ?, snapshot = ?, text_body = ? WHERE messageId = ?";
         if (self.logQuery) {NSLog(@"**** QUERY:%@", updateSQL);}
         sqlite3_prepare(database, [updateSQL UTF8String], -1, &statement, NULL);
         sqlite3_bind_int(statement, 1, status);
-        sqlite3_bind_text(statement, 2, [imageURL UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [snapshotAsJSONString UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 3, [text UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 4, [messageId UTF8String], -1, SQLITE_TRANSIENT);
         if (sqlite3_step(statement) == SQLITE_DONE) {

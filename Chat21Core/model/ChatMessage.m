@@ -190,6 +190,10 @@
         [message_dict setObject:self.attributes forKey:MSG_FIELD_ATTRIBUTES];
     }
     
+    if (self.imageURL) {
+        [message_dict setObject:self.imageURL forKey:MSG_FIELD_IMAGE_URL];
+    }
+    
     if (self.metadata) {
         [message_dict setObject:@(self.metadata.width) forKey:MSG_FIELD_IMAGE_WIDTH];
         [message_dict setObject:@(self.metadata.height) forKey:MSG_FIELD_IMAGE_HEIGHT];
