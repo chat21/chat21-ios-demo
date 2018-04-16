@@ -7,6 +7,7 @@
 //
 
 #import "ChatMessage.h"
+#import "ChatMessageMetadata.h"
 
 @implementation ChatMessage
 
@@ -33,6 +34,48 @@
 //    dict[]
 //}
 
+-(NSDictionary *)snapshot {
+    if (!_snapshot) {
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+//        @property (nonatomic, strong) NSString *messageId; // firebase-key
+//        @property (nonatomic, strong) NSString *text; // firebase
+//        @property (nonatomic, strong) NSString *sender; // firebase
+//        @property (nonatomic, strong) NSString *senderFullname; // firebase
+//        @property (nonatomic, strong) NSString *recipient; // firebase
+//        @property (nonatomic, strong) NSString *recipientFullName; // firebase
+//        @property (nonatomic, strong) NSString *channel_type; // firebase
+//        @property (nonatomic, strong) NSString *lang; // firebase
+//        @property (nonatomic, strong) NSDate *date; // firebase (converted to timestamp)
+        
+//        @property (nonatomic, assign) int status; // firebase
+//        @property (nonatomic, strong) NSString *mtype; // firebase
+//        @property (nonatomic, strong) NSString *subtype; // firebase
+//        @property (strong, nonatomic) NSString *imageURL; // firebase
+//        @property (strong, nonatomic) NSString *imageFilename; // firebase - used to save image locally
+//        @property (nonatomic, strong) ChatMessageMetadata *metadata; // firebase
+//        @property (nonatomic, strong) NSDictionary *attributes; // firebase
+        data[MSG_FIELD_SENDER] = self.sender;
+        data[MSG_FIELD_SENDER_FULLNAME] = self.senderFullname;
+        data[MSG_FIELD_RECIPIENT] = self.recipient;
+        data[MSG_FIELD_RECIPIENT_FULLNAME] = self.recipientFullName;
+        data[MSG_FIELD_CHANNEL_TYPE] = self.channel_type;
+        data[MSG_FIELD_LANG] = self.lang;
+        NSLog(@"time original: %@", self.date);
+        long long milliseconds = (long long)([self.date timeIntervalSince1970] * 1000.0);
+        NSLog(@"time converted millis: %lld", milliseconds);
+        data[MSG_FIELD_TIMESTAMP] = @(milliseconds);
+        data[MSG_FIELD_STATUS] = @(self.status);
+        data[MSG_FIELD_TYPE] = self.mtype;
+        data[MSG_FIELD_SUBTYPE] = self.subtype;
+        data[MSG_FIELD_IMAGE_URL] = self.imageURL;
+        data[MSG_FIELD_IMAGE_FILENAME] = self.imageFilename;
+        data[MSG_FIELD_METADATA] = self.metadata.asDictionary;
+        data[MSG_FIELD_ATTRIBUTES] = self.attributes;
+        _snapshot = data;
+    }
+    return _snapshot;
+}
+
 -(NSString *)snapshotAsJSONString {
     NSString * json = nil;
     if (self.snapshot && [self.snapshot isKindOfClass:[NSDictionary class]]) {
@@ -46,19 +89,19 @@
     return json;
 }
 
--(NSString *)attributesAsJSONString {
-    NSString * json = nil;
-//    NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:self.attributes]);
-    if (self.attributes && [self.attributes isKindOfClass:[NSDictionary class]]) {
-        NSError * err;
-        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:self.attributes options:0 error:&err];
-        if (err) {
-            NSLog(@"Error: %@", err);
-        }
-        json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    return json;
-}
+//-(NSString *)attributesAsJSONString {
+//    NSString * json = nil;
+////    NSLog(@"valid json? %d", [NSJSONSerialization isValidJSONObject:self.attributes]);
+//    if (self.attributes && [self.attributes isKindOfClass:[NSDictionary class]]) {
+//        NSError * err;
+//        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:self.attributes options:0 error:&err];
+//        if (err) {
+//            NSLog(@"Error: %@", err);
+//        }
+//        json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    }
+//    return json;
+//}
 
 -(NSString *)dateFormattedForListView {
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
@@ -94,11 +137,9 @@
     ChatMessage *message = [[ChatMessage alloc] init];
     
     message.snapshot = (NSDictionary *) snapshot.value;
-//    for(id key in message.snapshotAsDictionary) {
-//        NSLog(@"key=%@ value=%@", key, [message.asDictionary objectForKey:key]);
-//    }
     message.attributes = attributes;
-    message.key = snapshot.key;
+    message.metadata = [ChatMessageMetadata fromSnapshotFactory:snapshot];
+//    message.key = snapshot.key;
     message.ref = snapshot.ref;
     message.messageId = snapshot.key;
     message.conversationId = conversationId;
@@ -106,6 +147,9 @@
     message.lang = lang;
     message.mtype = type;
     message.subtype = subtype;
+    if ([message.mtype isEqualToString:MSG_TYPE_IMAGE]) {
+        message.media = YES;
+    }
     message.channel_type = channel_type;
     message.sender = sender;
     message.senderFullname = senderFullname;
@@ -118,6 +162,43 @@
     message.recipient = recipient;
     message.recipientFullName = recipientFullname;
     return message;
+}
+
+-(NSMutableDictionary *)asFirebaseMessage {
+    // firebase message dictionary
+    NSMutableDictionary *message_dict = [[NSMutableDictionary alloc] init];
+    // always
+    [message_dict setObject:self.text forKey:MSG_FIELD_TEXT];
+    [message_dict setObject:self.channel_type forKey:MSG_FIELD_CHANNEL_TYPE];
+    if (self.senderFullname) {
+        [message_dict setObject:self.senderFullname forKey:MSG_FIELD_SENDER_FULLNAME];
+    }
+    
+    if (self.subtype) {
+        [message_dict setObject:self.subtype forKey:MSG_FIELD_SUBTYPE];
+    }
+    
+    if (self.recipientFullName) {
+        [message_dict setObject:self.recipientFullName forKey:MSG_FIELD_RECIPIENT_FULLNAME];
+    }
+    
+    if (self.mtype) {
+        [message_dict setObject:self.mtype forKey:MSG_FIELD_TYPE];
+    }
+    
+    if (self.attributes) {
+        [message_dict setObject:self.attributes forKey:MSG_FIELD_ATTRIBUTES];
+    }
+    
+    if (self.metadata) {
+        [message_dict setObject:@(self.metadata.width) forKey:MSG_FIELD_IMAGE_WIDTH];
+        [message_dict setObject:@(self.metadata.height) forKey:MSG_FIELD_IMAGE_HEIGHT];
+    }
+    
+    if (self.lang) {
+        [message_dict setObject:self.lang forKey:MSG_FIELD_LANG];
+    }
+    return message_dict;
 }
 
 -(BOOL)isDirect {

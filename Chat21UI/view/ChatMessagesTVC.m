@@ -531,7 +531,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         message = (ChatMessage *)[messages objectAtIndex:indexPath.row];
         [self analyzeMessageText:message forIndexPath:indexPath];
         
-//        NSLog(@"type: %@ text: %@", message.mtype, message.text);
+        NSLog(@"type: %@ text: %@", message.mtype, message.text);
         if ([message.mtype isEqualToString:MSG_TYPE_INFO]) {
             NSLog(@"MSG_TYPE_INFO");
             cell = [tableView dequeueReusableCellWithIdentifier:cellMessageInfo forIndexPath:indexPath];
@@ -604,9 +604,10 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         UIImageView *status_image_view = (UIImageView *)[cell viewWithTag:22];
         switch (message.status) {
             case MSG_STATUS_SENDING:
-                //                NSLog(@"SENDING!!!!!!!!!!");
                 status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-                //message_view.textColor = [UIColor lightGrayColor];
+                break;
+            case MSG_STATUS_UPLOADING:
+                status_image_view.image = [UIImage imageNamed:@"chat_watch"];
                 break;
             case MSG_STATUS_SENT:
                 //                NSLog(@"SENT!!!!!!!!!!");
@@ -648,8 +649,11 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 -(void)attributedString:(UILabel *)label text:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath {
     // consider use of: https://github.com/TTTAttributedLabel/TTTAttributedLabel
 //    NSLog(@"string text: %@", message.text);
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:message.text];
+    NSString *text = message.text;
+    if (!text) {
+        text = @"";
+    }
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
 //    NSLog(@"attributedString.string.length: %lu", (unsigned long)attributedString.string.length);
     [attributedString addAttributes:@{NSFontAttributeName: label.font} range:NSMakeRange(0, attributedString.string.length)];
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
@@ -673,19 +677,22 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 
 -(void)analyzeMessageText:(ChatMessage *)message forIndexPath:(NSIndexPath *)indexPath {
     // TEST URLs
-//    NSLog(@"CREATING COMPONENTS[%ld], TEXT: %@", (long)indexPath.row, message.text);
+    NSLog(@"Text: %@", message.text);
+    NSString *text = message.text;
+    if (!text) {
+        text = @""; // TEST CAN'T BE NIL!!!!
+    }
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
     if (components) {
-//        NSLog(@"COMPONENTS[%ld] ALREADY CREATED. %@",indexPath.row, components.text);
+        // COMPONENTS ALREADY CREATED
         return;
     }
     components = [[ChatMessageComponents alloc] init];
-    components.text = message.text;
+    components.text = text;
 //    NSLog(@"CREATED componenst[%lu].text=%@", indexPath.row, components.text);
     // HTTP URLs
     NSError *error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))" options:NSRegularExpressionCaseInsensitive error:&error];
-    NSString *text = message.text; //@"andrea qui: http://www.google.com e qui: http://libero.it/dico?io?4&pippo=pluto%2S fine";
     NSArray *arrayOfAllMatches = [regex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
     if (arrayOfAllMatches) {
         components.urlsMatches = arrayOfAllMatches;
@@ -696,9 +703,9 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     NSError *error_chat;
     NSRegularExpression *regex_chat = [NSRegularExpression regularExpressionWithPattern:@"(chat://)([a-zA-Z0-9_])+" options:NSRegularExpressionCaseInsensitive error:&error_chat];
     
-    NSString *_text = message.text; //@"andrea qui: chat:antonio e qui: chat:mario_fino0 fine";
+//    NSString *_text = message.text; //@"andrea qui: chat:antonio e qui: chat:mario_fino0 fine";
 //    NSLog(@"analizzo il testo: %@", _text);
-    NSArray *_arrayOfAllMatches = [regex_chat matchesInString:_text options:0 range:NSMakeRange(0, [_text length])];
+    NSArray *_arrayOfAllMatches = [regex_chat matchesInString:text options:0 range:NSMakeRange(0, [text length])];
 //    NSLog(@"match trovati: %@", _arrayOfAllMatches);
     if (_arrayOfAllMatches) {
         components.chatLinkMatches = _arrayOfAllMatches;

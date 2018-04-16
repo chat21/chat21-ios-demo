@@ -15,6 +15,7 @@
 #import "ChatGroup.h"
 #import "ChatUser.h"
 #import <libkern/OSAtomic.h>
+#import "ChatMessageMetadata.h"
 
 @implementation ChatConversationHandler
 
@@ -180,7 +181,7 @@
             }
         }
         // updates or insert new messages
-        // Note: we always got the last message sent. So this check is necessary to avoid this notified as new (...playing sound etc.)
+        // Note: we always get the last message sent. So this check is necessary to avoid this message notified as "new" (...playing sound etc.)
         ChatMessage *message_archived = [[ChatDB getSharedInstance] getMessageById:message.messageId];
         if (!message_archived) {
             [self insertMessageInMemory:message]; // memory
@@ -301,53 +302,164 @@
 
 //-(void)sendMessage:(NSString *)text image:(UIImage *)image binary:(NSData *)data type:(NSString *)type attributes:(NSDictionary *)attributes {
 
+-(void)appendImagePlaceholderMessageWithFilename:(NSString *)imageFilename metadata:(ChatMessageMetadata *)metadata attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
+    // TODO: validate metadata > specialize for image: ChatMessageImageMetadata to simplify validation
+    ChatMessage *message = [self newBaseMessage];
+    message.status = MSG_STATUS_UPLOADING;
+    message.text = [[NSString alloc] initWithFormat:@"Uploading image: %@...", imageFilename];
+    message.imageFilename = imageFilename;
+    message.mtype = MSG_TYPE_IMAGE;
+    message.metadata = metadata;
+    message.attributes = attributes;
+    message.recipient = self.recipientId;
+    message.recipientFullName = self.recipientFullname;
+    message.channel_type = self.channel_type;
+    message.messageId = [self createLocalMessage:message];
+    [self notifyEvent:ChatEventMessageAdded message:message];
+    callback(message, nil);
+}
+
+-(void)sendImagePlaceholderMessage:(ChatMessage *)message completion:(void (^)(ChatMessage *, NSError *))callback {
+    [[ChatDB getSharedInstance] updateMessage:message.messageId status:MSG_STATUS_SENDING text:message.text imageURL:message.imageURL];
+    [self updateMessageInMemory:message.messageId status:MSG_STATUS_SENDING text:message.text imageURL:message.imageURL];
+    [self notifyEvent:ChatEventMessageChanged message:message];
+    [self sendMessage:message completion:^(ChatMessage *message, NSError *error) {
+        callback(message, error);
+    }];
+}
+
+-(void)sendTextMessage:(NSString *)text completion:(void(^)(ChatMessage *message, NSError *error)) callback {
+    [self sendTextMessage:text
+                  subtype:nil
+               attributes:nil
+               completion:^(ChatMessage *m, NSError *error) {
+                   callback(m, error);
+               }
+     ];
+}
+
 -(void)sendTextMessage:(NSString *)text subtype:(NSString *)subtype attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
+    [self sendMessageType:MSG_TYPE_TEXT
+                  subtype:nil
+                     text:text
+                 imageURL:nil
+                 metadata:nil
+               attributes:attributes
+               completion:^(ChatMessage *m, NSError *error) {
+                   callback(m, error);
+               }
+    ];
+}
+
+-(void)sendMessageType:(NSString *)type subtype:(NSString *)subtype text:(NSString *)text imageURL:(NSString *)imageURL metadata:(ChatMessageMetadata *)metadata attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
     ChatMessage *message = [self newBaseMessage];
     if (text) {
         message.text = text;
     }
-    message.mtype = MSG_TYPE_TEXT;
+    if (imageURL) {
+        message.imageURL = imageURL;
+    }
+    message.mtype = type;
     if (subtype) {
         message.subtype = subtype;
     }
+    if (metadata) {
+        message.metadata = metadata;
+    }
     message.attributes = attributes;
-//    if (self.groupId) {
+    message.recipient = self.recipientId;
+    message.recipientFullName = self.recipientFullname;
+    message.channel_type = self.channel_type;
+    [self createLocalMessage:message];
+    [self sendMessage:message completion:^(ChatMessage *message, NSError *error) {
+        callback(message, error);
+    }];
+}
+
+-(void)sendMessage:(ChatMessage *)message completion:(void(^)(ChatMessage *message, NSError *error)) callback {
     if ([self.channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
         NSLog(@"SENDING MESSAGE IN GROUP MODE. User: %@", [FIRAuth auth].currentUser.uid);
-//        message.recipientGroupId = self.groupId;
-        message.channel_type = MSG_CHANNEL_TYPE_GROUP;
-        message.recipient = self.recipientId;
-        message.recipientFullName = self.recipientFullname;
-        [self sendMessageToGroup:message completion:^(ChatMessage *m, NSError *error){
+        [self sendMessageToGroup:message completion:^(ChatMessage *m, NSError *error) {
             callback(m, error);
         }];
     } else {
         NSLog(@"SENDING MESSAGE DIRECT MODE. User: %@", [FIRAuth auth].currentUser.uid);
-        message.channel_type = MSG_CHANNEL_TYPE_DIRECT;
-        message.recipient = self.recipientId;
-        message.recipientFullName = self.recipientFullname;
-        [self sendDirect:message completion:^(ChatMessage *m, NSError *error){
+        [self sendDirect:message completion:^(ChatMessage *m, NSError *error) {
             callback(m, error);
         }];
     }
 }
 
-//-(void)sendMessage:(NSString *)text {
-//    [self sendMessageWithText:text type:MSG_TYPE_TEXT attributes:nil];
+//-(void)sendTextMessage:(NSString *)text subtype:(NSString *)subtype attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
+//    ChatMessage *message = [self newBaseMessage];
+//    if (text) {
+//        message.text = text;
+//    }
+//    message.mtype = MSG_TYPE_TEXT;
+//    if (subtype) {
+//        message.subtype = subtype;
+//    }
+//    message.attributes = attributes;
+////    if (self.groupId) {
+//    if ([self.channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
+//        NSLog(@"SENDING MESSAGE IN GROUP MODE. User: %@", [FIRAuth auth].currentUser.uid);
+////        message.recipientGroupId = self.groupId;
+//        message.channel_type = MSG_CHANNEL_TYPE_GROUP;
+//        message.recipient = self.recipientId;
+//        message.recipientFullName = self.recipientFullname;
+//
+//        FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
+//        message.messageId = messageRef.key;
+//        // save message locally
+//        [self insertMessageInMemory:message];
+//        [self insertMessageOnDBIfNotExists:message];
+//        [self notifyEvent:ChatEventMessageAdded message:message];
+//        [self sendMessageToGroup:message completion:^(ChatMessage *m, NSError *error){
+//            callback(m, error);
+//        }];
+//    } else {
+//        NSLog(@"SENDING MESSAGE DIRECT MODE. User: %@", [FIRAuth auth].currentUser.uid);
+//        message.channel_type = MSG_CHANNEL_TYPE_DIRECT;
+//        message.recipient = self.recipientId;
+//        message.recipientFullName = self.recipientFullname;
+//
+//        FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
+//        message.messageId = messageRef.key;
+//        // save message locally
+//        [self insertMessageInMemory:message];
+//        [self insertMessageOnDBIfNotExists:message];
+//        [self notifyEvent:ChatEventMessageAdded message:message];
+//        [self sendDirect:message completion:^(ChatMessage *m, NSError *error){
+//            callback(m, error);
+//        }];
+//    }
 //}
 
--(void)sendDirect:(ChatMessage *)message completion:(void(^)(ChatMessage *message, NSError *error))callback {
-    // create firebase reference
+
+-(NSString *)createLocalMessage:(ChatMessage *)message {
     FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
     message.messageId = messageRef.key;
-    
     // save message locally
     [self insertMessageInMemory:message];
     [self insertMessageOnDBIfNotExists:message];
     [self notifyEvent:ChatEventMessageAdded message:message];
+    return message.messageId;
+}
+
+-(void)sendDirect:(ChatMessage *)message completion:(void(^)(ChatMessage *message, NSError *error))callback {
+    // create firebase reference
+    FIRDatabaseReference *messageRef = [self.messagesRef child:message.messageId];
+//    FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
+//    message.messageId = messageRef.key;
+    
+//    // save message locally
+//    [self insertMessageInMemory:message];
+//    [self insertMessageOnDBIfNotExists:message];
+//    [self notifyEvent:ChatEventMessageAdded message:message];
     
     // save message to firebase
-    NSMutableDictionary *message_dict = [ChatConversationHandler firebaseMessageFor:message];
+//    NSMutableDictionary *message_dict = [ChatConversationHandler firebaseMessageFor:message];
+    NSMutableDictionary *message_dict = [message asFirebaseMessage];
     NSLog(@"Sending message to Firebase: %@ %@ %d", message.text, message.messageId, message.status);
     [messageRef setValue:message_dict withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
         NSLog(@"messageRef.setValue callback. %@", message_dict);
@@ -373,13 +485,13 @@
 -(void)sendMessageToGroup:(ChatMessage *)message completion:(void(^)(ChatMessage *message, NSError *error))callback {
     // create firebase reference
     FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
-    message.messageId = messageRef.key;
-    // save message locally
-    [self insertMessageInMemory:message];
-    [self insertMessageOnDBIfNotExists:message];
-    [self notifyEvent:ChatEventMessageAdded message:message];
+//    message.messageId = messageRef.key;
+//    // save message locally
+//    [self insertMessageInMemory:message];
+//    [self insertMessageOnDBIfNotExists:message];
+//    [self notifyEvent:ChatEventMessageAdded message:message];
     // save message to firebase
-    NSMutableDictionary *message_dict = [ChatConversationHandler firebaseMessageFor:message];
+    NSMutableDictionary *message_dict = [message asFirebaseMessage];
     NSLog(@"(Group) Sending message to Firebase:(%@) %@ %@ %d dict: %@",messageRef, message.text, message.messageId, message.status, message_dict);
     [messageRef setValue:message_dict withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
         NSLog(@"messageRef.setValue callback. %@", message_dict);
@@ -401,47 +513,69 @@
     }];
 }
 
-+(NSMutableDictionary *)firebaseMessageFor:(ChatMessage *)message {
-    // firebase message dictionary
-    NSMutableDictionary *message_dict = [[NSMutableDictionary alloc] init];
-    // always
-    [message_dict setObject:message.text forKey:MSG_FIELD_TEXT];
-    [message_dict setObject:message.channel_type forKey:MSG_FIELD_CHANNEL_TYPE];
-    if (message.senderFullname) {
-        [message_dict setObject:message.senderFullname forKey:MSG_FIELD_SENDER_FULLNAME];
-    }
-    
-    if (message.subtype) {
-        [message_dict setObject:message.subtype forKey:MSG_FIELD_SUBTYPE];
-    }
-    
-    if (message.recipientFullName) {
-        [message_dict setObject:message.recipientFullName forKey:MSG_FIELD_RECIPIENT_FULLNAME];
-    }
-    
-    if (message.mtype) {
-        [message_dict setObject:message.mtype forKey:MSG_FIELD_TYPE];
-    }
-    
-    if (message.attributes) {
-        [message_dict setObject:message.attributes forKey:MSG_FIELD_ATTRIBUTES];
-    }
-    
-    if (message.lang) {
-        [message_dict setObject:message.lang forKey:MSG_FIELD_LANG];
-    }
-    return message_dict;
-}
+//+(NSMutableDictionary *)firebaseMessageFor:(ChatMessage *)message {
+//    // firebase message dictionary
+//    NSMutableDictionary *message_dict = [[NSMutableDictionary alloc] init];
+//    // always
+//    [message_dict setObject:message.text forKey:MSG_FIELD_TEXT];
+//    [message_dict setObject:message.channel_type forKey:MSG_FIELD_CHANNEL_TYPE];
+//    if (message.senderFullname) {
+//        [message_dict setObject:message.senderFullname forKey:MSG_FIELD_SENDER_FULLNAME];
+//    }
+//
+//    if (message.subtype) {
+//        [message_dict setObject:message.subtype forKey:MSG_FIELD_SUBTYPE];
+//    }
+//
+//    if (message.recipientFullName) {
+//        [message_dict setObject:message.recipientFullName forKey:MSG_FIELD_RECIPIENT_FULLNAME];
+//    }
+//
+//    if (message.mtype) {
+//        [message_dict setObject:message.mtype forKey:MSG_FIELD_TYPE];
+//    }
+//
+//    if (message.attributes) {
+//        [message_dict setObject:message.attributes forKey:MSG_FIELD_ATTRIBUTES];
+//    }
+//
+//    if (message.imageMetadata) {
+//        [message_dict setObject:message.imageMetadata forKey:MSG_FIELD_ATTRIBUTES];
+//    }
+//
+//    if (message.lang) {
+//        [message_dict setObject:message.lang forKey:MSG_FIELD_LANG];
+//    }
+//    return message_dict;
+//}
 
 // Updates a just-sent memory-message with the new status: MSG_STATUS_FAILED or MSG_STATUS_SENT
 -(void)updateMessageStatusInMemory:(NSString *)messageId withStatus:(int)status {
+    ChatMessage *message = [self findMessageInMemoryById:messageId];
+    message.status = status;
+//    for (ChatMessage* msg in self.messages) {
+//        if([msg.messageId isEqualToString: messageId]) {
+//            NSLog(@"message found, updating status %d", status);
+//            msg.status = status;
+//            break;
+//        }
+//    }
+}
+
+-(void)updateMessageInMemory:(NSString *)messageId status:(int)status text:(NSString *)text imageURL:(NSString *)imageURL {
+    ChatMessage *m = [self findMessageInMemoryById:messageId];
+    m.status = status;
+    m.text = text;
+    m.imageURL = imageURL;
+}
+
+-(ChatMessage *)findMessageInMemoryById:(NSString *)messageId {
     for (ChatMessage* msg in self.messages) {
         if([msg.messageId isEqualToString: messageId]) {
-            NSLog(@"message found, updating status %d", status);
-            msg.status = status;
-            break;
+            return msg;
         }
     }
+    return nil;
 }
 
 -(void)updateMessageStatusOnDB:(NSString *)messageId withStatus:(int)status {
@@ -550,6 +684,41 @@
     for (NSNumber *event_key in self.eventObservers) {
         NSMutableDictionary *eventCallbacks = [self.eventObservers objectForKey:event_key];
         [eventCallbacks removeAllObjects];
+    }
+}
+
+-(NSString *)mediaPathFolder {
+    // path: chatConversationsMedia/{recipient-id}/media/{image-name}
+    NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *mediaPath = [[[urlPath.path stringByAppendingPathComponent:@"chatConversationsMedia"] stringByAppendingPathComponent:self.recipientId] stringByAppendingPathComponent:@"media"];
+    return mediaPath;
+}
+
+-(void)saveImageToConversationMediaFolderAsPNG:(UIImage *)image imageFileName:(NSString *)imageFileName {
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    NSString *mediaPath = [self mediaPathFolder];
+    if (![filemgr fileExistsAtPath:mediaPath]) {
+        NSError *error;
+        [filemgr createDirectoryAtPath:mediaPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"error creating mediaPath folder (%@): %@",mediaPath, error);
+        }
+    }
+    NSString *imagePath = [mediaPath stringByAppendingPathComponent:imageFileName];
+    NSLog(@"Image path: %@", imagePath);
+    NSError *error;
+    [UIImagePNGRepresentation(image) writeToFile:imagePath options:NSDataWritingAtomic error:&error];
+    NSLog(@"error saving image to media path (%@): %@",imagePath, error);
+    // test
+    if ([filemgr fileExistsAtPath: imagePath ] == NO) {
+        NSLog(@"Error. Image not saved.");
+    }
+    else {
+        NSLog(@"Image saved to gallery.");
+    }
+    NSArray *directoryList = [filemgr contentsOfDirectoryAtPath:mediaPath error:nil];
+    for (id file in directoryList) {
+        NSLog(@"file: %@", file);
     }
 }
 

@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81B60948902262F929222CC3 /* libPods-Chat21Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3F9FEBB307E687684A0C5C /* libPods-Chat21Tests.a */; };
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21459BF1FFF7F1F0048535E /* Chat-Info.plist */; };
 		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
 		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
 		B21A82DC207613F60068A2F9 /* ChatInfoMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
+		B238ECF3207C8F1700D50285 /* ChatMessageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B238ECF2207C8F1700D50285 /* ChatMessageMetadata.m */; };
+		B238ED072084A4D500D50285 /* ChatMessagesPersistenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B238ECF72084A35500D50285 /* ChatMessagesPersistenceTests.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
 		B23AE8E91F278E8800BEB4B8 /* ic_linear_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DD1F278E8800BEB4B8 /* ic_linear_chat@2x.png */; };
@@ -152,9 +155,21 @@
 		DC03C60D1BBBDEAD003C2BA9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DC03C60C1BBBDEAD003C2BA9 /* libicucore.tbd */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B238ED022084A4C500D50285 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFBFD3601AEA544F00657874 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFBFD3671AEA544F00657874;
+			remoteInfo = chat21;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		232B931F565A7F1599BEFA8D /* Pods-chat21.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat21.release.xcconfig"; path = "Pods/Target Support Files/Pods-chat21/Pods-chat21.release.xcconfig"; sourceTree = "<group>"; };
+		5E3F9FEBB307E687684A0C5C /* libPods-Chat21Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chat21Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7690495BB7EF884D26A310B3 /* Pods-chat21.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat21.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chat21/Pods-chat21.debug.xcconfig"; sourceTree = "<group>"; };
+		84A0EA038608C975FB39C0A2 /* Pods-Chat21Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat21Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat21Tests/Pods-Chat21Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tilechat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -165,6 +180,11 @@
 		B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageTVC.m; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
+		B238ECF1207C8F1700D50285 /* ChatMessageMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageMetadata.h; sourceTree = "<group>"; };
+		B238ECF2207C8F1700D50285 /* ChatMessageMetadata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageMetadata.m; sourceTree = "<group>"; };
+		B238ECF72084A35500D50285 /* ChatMessagesPersistenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessagesPersistenceTests.m; sourceTree = "<group>"; };
+		B238ECFD2084A4C500D50285 /* Chat21Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Chat21Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B238ED012084A4C500D50285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B23A81291F95D31E001344C0 /* HelloChatUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloChatUtil.h; sourceTree = "<group>"; };
 		B23A812A1F95D31E001344C0 /* HelloChatUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloChatUtil.m; sourceTree = "<group>"; };
 		B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_linear_chat.png; sourceTree = "<group>"; };
@@ -378,12 +398,21 @@
 		BFBFD55F1AEA80CC00657874 /* HelloAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloAuth.m; sourceTree = "<group>"; };
 		BFBFD5821AEA897900657874 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BFF3C62D1B283219001EC667 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		DA7B95ED043479CB25A11F50 /* Pods-Chat21Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat21Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat21Tests/Pods-Chat21Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DC03C60A1BBBDE96003C2BA9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		DC03C60C1BBBDEAD003C2BA9 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		FDD612B329931ED325C32E70 /* libPods-mobichat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobichat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B238ECFA2084A4C500D50285 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81B60948902262F929222CC3 /* libPods-Chat21Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFBFD3651AEA544F00657874 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,6 +448,8 @@
 			children = (
 				7690495BB7EF884D26A310B3 /* Pods-chat21.debug.xcconfig */,
 				232B931F565A7F1599BEFA8D /* Pods-chat21.release.xcconfig */,
+				84A0EA038608C975FB39C0A2 /* Pods-Chat21Tests.debug.xcconfig */,
+				DA7B95ED043479CB25A11F50 /* Pods-Chat21Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -430,6 +461,15 @@
 				B290B38C202DBD0E008CBC07 /* notification_view.xib */,
 			);
 			path = xib;
+			sourceTree = "<group>";
+		};
+		B238ECFE2084A4C500D50285 /* Chat21Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B238ECF72084A35500D50285 /* ChatMessagesPersistenceTests.m */,
+				B238ED012084A4C500D50285 /* Info.plist */,
+			);
+			path = Chat21Tests;
 			sourceTree = "<group>";
 		};
 		B23AE8DB1F278E8800BEB4B8 /* icone-tabbar */ = {
@@ -556,6 +596,8 @@
 				B290B339202DBD0E008CBC07 /* ChatSynchDelegate.h */,
 				B290B328202DBD0E008CBC07 /* FirebaseCustomAuthHelper.h */,
 				B290B333202DBD0E008CBC07 /* FirebaseCustomAuthHelper.m */,
+				B238ECF1207C8F1700D50285 /* ChatMessageMetadata.h */,
+				B238ECF2207C8F1700D50285 /* ChatMessageMetadata.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -775,6 +817,7 @@
 				B24AD7B11F8612A400A526E9 /* Support */,
 				B2CE2F391F19314E002E2150 /* Hello */,
 				BFBFD36A1AEA544F00657874 /* Project */,
+				B238ECFE2084A4C500D50285 /* Chat21Tests */,
 				BFBFD4F01AEA5B5600657874 /* Frameworks */,
 				BFBFD3691AEA544F00657874 /* Products */,
 				B00A65ADB298B8C6F4F9F7C6 /* Pods */,
@@ -786,6 +829,7 @@
 			isa = PBXGroup;
 			children = (
 				BFBFD3681AEA544F00657874 /* Chat21.app */,
+				B238ECFD2084A4C500D50285 /* Chat21Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -842,6 +886,7 @@
 				FDD612B329931ED325C32E70 /* libPods-mobichat.a */,
 				A2D2941F61479EF4B982DE6D /* libPods-tilechat.a */,
 				B3DA4A62DE45D34EDB0DF5E7 /* libPods-chat21.a */,
+				5E3F9FEBB307E687684A0C5C /* libPods-Chat21Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -849,6 +894,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B238ECFC2084A4C500D50285 /* Chat21Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B238ED042084A4C500D50285 /* Build configuration list for PBXNativeTarget "Chat21Tests" */;
+			buildPhases = (
+				28328254293A1601CD130F14 /* [CP] Check Pods Manifest.lock */,
+				B238ECF92084A4C500D50285 /* Sources */,
+				B238ECFA2084A4C500D50285 /* Frameworks */,
+				B238ECFB2084A4C500D50285 /* Resources */,
+				17B1E036DA99043837A5A825 /* [CP] Embed Pods Frameworks */,
+				399EDBEA5D0AB9B9C783502D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B238ED032084A4C500D50285 /* PBXTargetDependency */,
+			);
+			name = Chat21Tests;
+			productName = Chat21Tests;
+			productReference = B238ECFD2084A4C500D50285 /* Chat21Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BFBFD3671AEA544F00657874 /* chat21 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFBFD38B1AEA544F00657874 /* Build configuration list for PBXNativeTarget "chat21" */;
@@ -878,6 +944,12 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Frontiere21;
 				TargetAttributes = {
+					B238ECFC2084A4C500D50285 = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = T6S5PWWJAJ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BFBFD3671AEA544F00657874;
+					};
 					BFBFD3671AEA544F00657874 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = T6S5PWWJAJ;
@@ -938,11 +1010,19 @@
 			projectRoot = "";
 			targets = (
 				BFBFD3671AEA544F00657874 /* chat21 */,
+				B238ECFC2084A4C500D50285 /* Chat21Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B238ECFB2084A4C500D50285 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFBFD3661AEA544F00657874 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1007,6 +1087,54 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		17B1E036DA99043837A5A825 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat21Tests/Pods-Chat21Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		28328254293A1601CD130F14 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Chat21Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		399EDBEA5D0AB9B9C783502D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat21Tests/Pods-Chat21Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4810B83EC3613E87A7BAB60B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1058,6 +1186,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B238ECF92084A4C500D50285 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B238ED072084A4D500D50285 /* ChatMessagesPersistenceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFBFD3641AEA544F00657874 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1083,6 +1219,7 @@
 				B299D9E32078A861005531A4 /* ChatImageUtil.m in Sources */,
 				BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */,
 				B290B3DA202DBD0F008CBC07 /* QBPopupMenuItem.m in Sources */,
+				B238ECF3207C8F1700D50285 /* ChatMessageMetadata.m in Sources */,
 				B290B3AC202DBD0E008CBC07 /* ChatMessage.m in Sources */,
 				B290B3AF202DBD0E008CBC07 /* ChatGroupsHandler.m in Sources */,
 				B290B3A9202DBD0E008CBC07 /* ChatUploadsController.m in Sources */,
@@ -1136,6 +1273,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B238ED032084A4C500D50285 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFBFD3671AEA544F00657874 /* chat21 */;
+			targetProxy = B238ED022084A4C500D50285 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B290B309202DBD0E008CBC07 /* Chat.strings */ = {
 			isa = PBXVariantGroup;
@@ -1160,6 +1305,81 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B238ED052084A4C500D50285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A0EA038608C975FB39C0A2 /* Pods-Chat21Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T6S5PWWJAJ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Chat21Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.frontiere21.Chat21Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chat21.app/Chat21";
+			};
+			name = Debug;
+		};
+		B238ED062084A4C500D50285 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA7B95ED043479CB25A11F50 /* Pods-Chat21Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T6S5PWWJAJ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Chat21Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.frontiere21.Chat21Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chat21.app/Chat21";
+			};
+			name = Release;
+		};
 		BFBFD3891AEA544F00657874 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1323,6 +1543,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B238ED042084A4C500D50285 /* Build configuration list for PBXNativeTarget "Chat21Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B238ED052084A4C500D50285 /* Debug */,
+				B238ED062084A4C500D50285 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFBFD3631AEA544F00657874 /* Build configuration list for PBXProject "chat21" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

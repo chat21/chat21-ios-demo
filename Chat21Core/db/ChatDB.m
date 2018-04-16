@@ -26,7 +26,7 @@ static ChatDB *sharedInstance = nil;
 +(ChatDB*)getSharedInstance {
     if (!sharedInstance) {
         sharedInstance = [[super alloc] init];
-        sharedInstance.logQuery = NO;
+        sharedInstance.logQuery = YES;
     }
     return sharedInstance;
 }
@@ -74,8 +74,9 @@ static ChatDB *sharedInstance = nil;
         if (result == SQLITE_OK) {
             char *errMsg;
             if (self.logQuery) {NSLog(@"**** CREATING TABLE MESSAGES...");}
+            // added > media:BOOL, document:BOOL, link:BOOL
             const char *sql_stmt_messages =
-            "create table if not exists messages (messageId text primary key, conversationId text, text_body text, sender text, recipient text, status integer, timestamp real, type text, channel_type text, snapshot text)";
+            "create table if not exists messages (messageId text primary key, conversationId text, text_body text, sender text, recipient text, status integer, timestamp real, type text, channel_type text, snapshot text, media integer, document integer, link integer)";
             if (sqlite3_exec(database, sql_stmt_messages, NULL, NULL, &errMsg) != SQLITE_OK) {
                 isSuccess = NO;
                 if (self.logQuery) {NSLog(@"Failed to create table messages");}
@@ -163,8 +164,10 @@ static ChatDB *sharedInstance = nil;
         sqlite3_bind_text(statement, 9, [message.channel_type UTF8String], -1, SQLITE_TRANSIENT);
         NSString *snapshotAsJSONString = message.snapshotAsJSONString;
         sqlite3_bind_text(statement, 10, [snapshotAsJSONString UTF8String], -1, SQLITE_TRANSIENT);
-//        NSString *attributesAsJSONString = message.attributesAsJSONString;
-//        sqlite3_bind_text(statement, 11, [attributesAsJSONString UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(statement, 11, message.media);
+        sqlite3_bind_int(statement, 12, message.document);
+        sqlite3_bind_int(statement, 13, message.link);
+        
         if (sqlite3_step(statement) == SQLITE_DONE) {
             sqlite3_reset(statement);
             return YES;
@@ -190,6 +193,29 @@ static ChatDB *sharedInstance = nil;
             return YES;
         }
         else {
+            sqlite3_reset(statement);
+            return NO;
+        }
+    }
+    return NO;
+}
+
+-(BOOL)updateMessage:(NSString *)messageId status:(int)status text:(NSString *)text imageURL:(NSString *)imageURL {
+    const char *dbpath = [databasePath UTF8String];
+    if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
+        NSString *updateSQL = @"UPDATE messages SET status = ?, imageURL = ?, text = ? WHERE messageId = ?";
+        if (self.logQuery) {NSLog(@"**** QUERY:%@", updateSQL);}
+        sqlite3_prepare(database, [updateSQL UTF8String], -1, &statement, NULL);
+        sqlite3_bind_int(statement, 1, status);
+        sqlite3_bind_text(statement, 2, [imageURL UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [text UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 4, [messageId UTF8String], -1, SQLITE_TRANSIENT);
+        if (sqlite3_step(statement) == SQLITE_DONE) {
+            sqlite3_reset(statement);
+            return YES;
+        }
+        else {
+            if (self.logQuery) {NSLog(@"Update message status/imageURL, database error %d: %s", sqlite3_errcode(database), sqlite3_errmsg(database));}
             sqlite3_reset(statement);
             return NO;
         }
@@ -304,7 +330,11 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
         recipient = [[NSString alloc] initWithUTF8String:recipient_chars];
     }
     
-    NSString *text = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+    NSString *text = nil;
+    const char *text_chars = (const char *) sqlite3_column_text(statement, 4);
+    if (text_chars != NULL) {
+        text = [[NSString alloc] initWithUTF8String:text_chars];
+    }
     
     int status = sqlite3_column_int(statement, 5);
     
@@ -361,19 +391,23 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.messageId = messageId;
     message.conversationId = conversationId;
     message.sender = sender;
-    message.senderFullname = snapshot[MSG_FIELD_SENDER_FULLNAME];
     message.recipient = recipient;
     message.text = text;
     message.mtype = type;
     message.channel_type = channel_type;
-    message.attributes = snapshot[MSG_FIELD_ATTRIBUTES];//attributes;
-    message.snapshot = snapshot;
-    message.subtype = snapshot[MSG_FIELD_SUBTYPE];
-    message.recipientFullName = snapshot[MSG_FIELD_RECIPIENT_FULLNAME];
     message.status = status;
     message.date = [NSDate dateWithTimeIntervalSince1970:timestamp];
-    message.lang = snapshot[MSG_FIELD_LANG];
     message.archived = YES;
+    message.snapshot = snapshot;
+    
+    message.subtype = snapshot[MSG_FIELD_SUBTYPE];
+    message.senderFullname = snapshot[MSG_FIELD_SENDER_FULLNAME];
+    message.recipientFullName = snapshot[MSG_FIELD_RECIPIENT_FULLNAME];
+    message.lang = snapshot[MSG_FIELD_LANG];
+    message.attributes = snapshot[MSG_FIELD_ATTRIBUTES];
+    message.imageURL = snapshot[MSG_FIELD_IMAGE_URL];
+    message.imageFilename = snapshot[MSG_FIELD_IMAGE_FILENAME];
+    
     return message;
 }
 

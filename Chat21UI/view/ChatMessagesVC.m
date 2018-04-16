@@ -32,6 +32,7 @@
 #import "ChatContactsDB.h"
 #import "ChatLocal.h"
 #import <DBChooser/DBChooser.h>
+#import "ChatMessageMetadata.h"
 
 @interface ChatMessagesVC (){
     SystemSoundID soundID;
@@ -979,80 +980,48 @@ static float messageTime = 0.5;
     for(id i in info.allKeys) {
         NSLog(@"k: %@, v: %@ [class:%@]", i, info[i], NSStringFromClass([info[i] class]));
     }
-    NSURL *imageUrl = [info objectForKey:@"UIImagePickerControllerImageURL"];
-    NSString *imageFileName = [imageUrl lastPathComponent];
+    NSURL *local_image_url = [info objectForKey:@"UIImagePickerControllerImageURL"];
+    NSString *imageFileName = [local_image_url lastPathComponent];
     NSLog(@"IMAGE: %@", bigImage);
     NSLog(@"IMAGE NAME: %@", imageFileName);
-    // enable to crop
-    // self.scaledImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    //NSLog(@"edited image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
-//    if (!self.bigImage) {
-//        self.bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-//        NSLog(@"original image w:%f h:%f", self.bigImage.size.width, self.bigImage.size.height);
-//    }
-    // end
-
     self.scaledImage = bigImage;
 //    self.scaledImage = [SHPImageUtil scaleImage:self.bigImage toSize:CGSizeMake(self.applicationContext.settings.uploadImageSize, self.applicationContext.settings.uploadImageSize)];
-//    NSLog(@"SCALED IMAGE w:%f h:%f", self.scaledImage.size.width, self.scaledImage.size.height);
-
     // save image in photos
 //    if (picker == self.imagePickerController) {
 //        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
 //                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
 //    }
-
     NSLog(@"image: %@", self.scaledImage);
 //    UIImage *imageEXIFAdjusted = [ChatImageUtil adjustEXIF:self.scaledImage];
-    
-    // ATTENZIONE SEZIONE METADATA LOCALE, GESTIRE COME ATTACHMENT EMAIL, MIME TYPE
     // 0. save image locally, 1. local conversation media library, 2. to recover failed image sending
     NSString * uuid = [[NSUUID UUID] UUIDString];
-    NSString *file_name = [[NSString alloc] initWithFormat:@"%@.png", uuid];
-    [self saveImageToConversationMediaFolderAsPNG:self.scaledImage imageFileName:file_name];
-    // aggiungi a messaggio campi: media:true, document: true, link: true. in modo da filtrare nella media gallery
-    // 1. NSString *messageId = [create new placeholder-message (local only), type:type, +image-metadata (size, NO-URL, localfilename (the one from media library, not intended to be sent)]
-    // 2. upload image
-    // ADD COMPLETION CALLBACK, UUID-FILE-NAME IN MEDIA LIBRARY
-    [self updalodImage:self.scaledImage fileName:imageFileName];
-    // 3. completion callback:
-    // error?
-    // 3.1: update placeholder-message with status: error
-    // success?
-    // 3.1: update placeholder-message metadata > src
-    // 3.2: send message
-}
-
--(void)saveImageToConversationMediaFolderAsPNG:(UIImage *)image imageFileName:(NSString *)imageFileName {
-    NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSLog(@"Document path URL: %@", urlPath);
-    // path: chatConversationsMedia/{conv-id}/media/{image-name}
-    NSString *mediaPath = [[[urlPath.path stringByAppendingPathComponent:@"chatConversationsMedia"] stringByAppendingPathComponent:self.recipient.userId] stringByAppendingPathComponent:@"media"];
-    NSError *error;
-    if (![filemgr fileExistsAtPath:mediaPath]) {
-        [filemgr createDirectoryAtPath:mediaPath withIntermediateDirectories:YES attributes:nil error:&error];
-        NSLog(@"error creating mediaPath folder: %@", error);
-    }
-    NSString *imagePath = [mediaPath stringByAppendingPathComponent:imageFileName];
-    NSLog(@"Image path: %@", imagePath);
-    [UIImagePNGRepresentation(image) writeToFile:imagePath options:NSDataWritingAtomic error:&error];
-    NSLog(@"error saving image: %@", error);
-    // test
+    NSString *image_file_name = [[NSString alloc] initWithFormat:@"%@.png", uuid];
+    [self.conversationHandler saveImageToConversationMediaFolderAsPNG:self.scaledImage imageFileName:image_file_name];
+    ChatMessageMetadata *imageMetadata = [[ChatMessageMetadata alloc] init];
+    imageMetadata.width = self.scaledImage.size.width;
+    imageMetadata.height = self.scaledImage.size.height;
+    [self.conversationHandler appendImagePlaceholderMessageWithFilename:image_file_name metadata:imageMetadata attributes:nil completion:^(ChatMessage *message, NSError *error) {
+        NSLog(@"Image placeholder message created and appended.");
+        [self updalodImage:self.scaledImage fileName:imageFileName completion:^(NSURL *downloadURL, NSError *error) {
+            NSLog(@"Image uploaded. Download url: %@", downloadURL);
+            if (error) {
+                // TODO update placeholder-message with status: error
+                NSLog(@"Error during image upload.");
+            }
+            NSString *image_text = [[NSString alloc] initWithFormat:@"Image: %@", downloadURL.absoluteString];
+            message.imageURL = downloadURL.absoluteString;
+            message.text = image_text;
+            message.status = MSG_STATUS_SENDING;
+            [self.conversationHandler sendImagePlaceholderMessage:message completion:^(ChatMessage *m, NSError *e) {
+                NSLog(@"Image message successfully sent.");
+            }];
+        }];
+    }];
     
-    if ([filemgr fileExistsAtPath: imagePath ] == NO) {
-        NSLog(@"Image not saved.");
-    }
-    else {
-        NSLog(@"Image saved.");
-    }
-    NSArray *directoryList = [filemgr contentsOfDirectoryAtPath:mediaPath error:nil];
-    for (id file in directoryList) {
-        NSLog(@"file: %@", file);
-    }
+    
 }
 
--(void)updalodImage:(UIImage *)image fileName:(NSString *)fileName {
+-(void)updalodImage:(UIImage *)image fileName:(NSString *)fileName completion:(void(^)(NSURL *downloadURL, NSError *error)) callback {
     NSData *data = UIImagePNGRepresentation(image);
     // Get a reference to the storage service using the default Firebase App
     FIRStorage *storage = [FIRStorage storage];
@@ -1074,10 +1043,12 @@ static float messageTime = 0.5;
                                                             NSError *error) {
                                                    if (error != nil) {
                                                        NSLog(@"an error occurred!");
+                                                       callback(nil, error);
                                                    } else {
                                                        NSLog(@"Metadata contains file metadata such as size, content-type, and download URL");
                                                        NSURL *downloadURL = metadata.downloadURL;
                                                        NSLog(@"Download url: %@", downloadURL);
+                                                       callback(downloadURL, nil);
                                                    }
                                                }];
     FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
