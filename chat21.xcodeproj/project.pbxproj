@@ -127,6 +127,9 @@
 		B2DB07A81FD3E37B0062E8D0 /* HelpCategoryStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DB07A71FD3E37B0062E8D0 /* HelpCategoryStepTVC.m */; };
 		B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */; };
 		B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */; };
+		B2FD132F2085E6920068C0AF /* ChatTextMessageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD132E2085E6920068C0AF /* ChatTextMessageLeftCell.m */; };
+		B2FD1332208723BB0068C0AF /* ChatTextMessageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD1331208723BB0068C0AF /* ChatTextMessageRightCell.m */; };
+		B2FD1335208738760068C0AF /* ChatInfoMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD1334208738760068C0AF /* ChatInfoMessageCell.m */; };
 		BFBBC2C01B1ED7E30028EA4F /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2BF1B1ED7E30028EA4F /* settings.plist */; };
 		BFBBC2E71B1EDCC90028EA4F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFBBC2E91B1EDCC90028EA4F /* Localizable.strings */; };
 		BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBFD3921AEA54DA00657874 /* HelloAppDelegate.m */; };
@@ -366,6 +369,12 @@
 		B2DB07A71FD3E37B0062E8D0 /* HelpCategoryStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategoryStepTVC.m; sourceTree = "<group>"; };
 		B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		B2F2AA1C1FB4300300E6C7E3 /* app-icon-mobichat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-mobichat.png"; sourceTree = "<group>"; };
+		B2FD132D2085E6920068C0AF /* ChatTextMessageLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatTextMessageLeftCell.h; sourceTree = "<group>"; };
+		B2FD132E2085E6920068C0AF /* ChatTextMessageLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatTextMessageLeftCell.m; sourceTree = "<group>"; };
+		B2FD1330208723BB0068C0AF /* ChatTextMessageRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatTextMessageRightCell.h; sourceTree = "<group>"; };
+		B2FD1331208723BB0068C0AF /* ChatTextMessageRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatTextMessageRightCell.m; sourceTree = "<group>"; };
+		B2FD1333208738760068C0AF /* ChatInfoMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageCell.h; sourceTree = "<group>"; };
+		B2FD1334208738760068C0AF /* ChatInfoMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageCell.m; sourceTree = "<group>"; };
 		B3DA4A62DE45D34EDB0DF5E7 /* libPods-chat21.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chat21.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBBC2BF1B1ED7E30028EA4F /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		BFBBC2EA1B1EDCD60028EA4F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -748,8 +757,6 @@
 				B290B37F202DBD0E008CBC07 /* ChatChangeGroupNameVC.m */,
 				B290B390202DBD0E008CBC07 /* ChatMiniBrowserVC.h */,
 				B290B380202DBD0E008CBC07 /* ChatMiniBrowserVC.m */,
-				B290B381202DBD0E008CBC07 /* ChatMessageCell.h */,
-				B290B38F202DBD0E008CBC07 /* ChatMessageCell.m */,
 				B290B38E202DBD0E008CBC07 /* ChatTitleVC.h */,
 				B290B382202DBD0E008CBC07 /* ChatTitleVC.m */,
 				B290B385202DBD0E008CBC07 /* ChatGroupInfoVC.h */,
@@ -775,6 +782,14 @@
 				B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */,
 				B299D9DE207667AE005531A4 /* ChatInfoMessageAttributesTVC.h */,
 				B299D9DF207667AE005531A4 /* ChatInfoMessageAttributesTVC.m */,
+				B290B381202DBD0E008CBC07 /* ChatMessageCell.h */,
+				B290B38F202DBD0E008CBC07 /* ChatMessageCell.m */,
+				B2FD132D2085E6920068C0AF /* ChatTextMessageLeftCell.h */,
+				B2FD132E2085E6920068C0AF /* ChatTextMessageLeftCell.m */,
+				B2FD1330208723BB0068C0AF /* ChatTextMessageRightCell.h */,
+				B2FD1331208723BB0068C0AF /* ChatTextMessageRightCell.m */,
+				B2FD1333208738760068C0AF /* ChatInfoMessageCell.h */,
+				B2FD1334208738760068C0AF /* ChatInfoMessageCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1203,6 +1218,7 @@
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
 				BFBFD4E31AEA59D100657874 /* main.m in Sources */,
 				B290B3AB202DBD0E008CBC07 /* ChatUser.m in Sources */,
+				B2FD1335208738760068C0AF /* ChatInfoMessageCell.m in Sources */,
 				B290B3B6202DBD0E008CBC07 /* ChatConnectionStatusHandler.m in Sources */,
 				B290B3BD202DBD0E008CBC07 /* ChatProgressView.m in Sources */,
 				B290B3E4202DBD0F008CBC07 /* ChatMiniBrowserVC.m in Sources */,
@@ -1243,10 +1259,12 @@
 				B290B3B4202DBD0E008CBC07 /* FirebaseCustomAuthHelper.m in Sources */,
 				B290B3DD202DBD0F008CBC07 /* QBPopupMenuPagenatorView.m in Sources */,
 				B290B3AE202DBD0E008CBC07 /* ChatConversationsHandler.m in Sources */,
+				B2FD1332208723BB0068C0AF /* ChatTextMessageRightCell.m in Sources */,
 				B290B3E2202DBD0F008CBC07 /* ChatCreateGroupVC.m in Sources */,
 				B290B3BC202DBD0E008CBC07 /* CellConfigurator.m in Sources */,
 				B290B3A5202DBD0E008CBC07 /* ChatStringUtil.m in Sources */,
 				B290B3AD202DBD0E008CBC07 /* ChatGroup.m in Sources */,
+				B2FD132F2085E6920068C0AF /* ChatTextMessageLeftCell.m in Sources */,
 				B290B3A8202DBD0E008CBC07 /* ChatImageCache.m in Sources */,
 				B290B3D7202DBD0F008CBC07 /* ChatUIManager.m in Sources */,
 				B290B3D9202DBD0F008CBC07 /* QBPopupMenuItemView.m in Sources */,
