@@ -86,6 +86,8 @@ static NSString* const MSG_METADATA_IMAGE_HEIGHT = @"height";
 @property (nonatomic, assign) BOOL document; // decode by mtype (if type == DOCUMENT, document = YES)
 @property (nonatomic, assign) BOOL link; // decode by mtype & content (if type == text && text contains a link, link = YES)
 @property (nonatomic, assign) BOOL isDirect; // decoded by channel_type
+@property (nonatomic, assign) BOOL typeText; // decoded by mtype
+@property (nonatomic, assign) BOOL typeImage; // decoded by mtype
 
 @property (nonatomic, strong) NSDictionary *snapshot;
 @property (nonatomic, strong) NSString *snapshotAsJSONString;
@@ -101,5 +103,7 @@ static NSString* const MSG_METADATA_IMAGE_HEIGHT = @"height";
 +(ChatMessage *)messageFromSnapshotFactory:(FIRDataSnapshot *)snapshot;
 -(NSMutableDictionary *)asFirebaseMessage;
 //+(ChatMessage *)messageFromSnapshotFactoryTEST:(FDataSnapshot *)snapshot;
++(NSString *)imageTextPlaceholder:(NSString *)imageURL;
+-(void)setCorrectText:(ChatMessage *)message text:(NSString *)text;
 
 @end

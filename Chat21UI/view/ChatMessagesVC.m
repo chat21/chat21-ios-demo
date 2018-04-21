@@ -1008,8 +1008,9 @@ static float messageTime = 0.5;
                 // TODO update placeholder-message with status: error
                 NSLog(@"Error during image upload.");
             }
-            NSString *image_text = [[NSString alloc] initWithFormat:@"Image: %@", downloadURL.absoluteString];
-            message.imageURL = downloadURL.absoluteString;
+            NSString *image_text = [ChatMessage imageTextPlaceholder:downloadURL.absoluteString]; //[[NSString alloc] initWithFormat:@"Image: %@", downloadURL.absoluteString];
+//            message.imageURL = downloadURL.absoluteString;
+            message.metadata.url = downloadURL.absoluteString;
             message.text = image_text;
             message.status = MSG_STATUS_SENDING;
             [self.conversationHandler sendImagePlaceholderMessage:message completion:^(ChatMessage *m, NSError *e) {

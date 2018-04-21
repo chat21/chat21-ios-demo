@@ -366,27 +366,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     // test end
 }
 
-//-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    if (actionSheet == self.linkMenu) {
-//        NSLog(@"Link menu!");
-//        NSString *option = [actionSheet buttonTitleAtIndex:buttonIndex];
-//        if ([option isEqualToString:NSLocalizedString(COPY_LINK_KEY, nil)]) {
-//            NSLog(@"Copy link");
-//            UIPasteboard *generalPasteboard = [UIPasteboard generalPasteboard];
-//            generalPasteboard.string = self.selectedHighlightLink;
-//            NSLog(@"Link copied!");
-//        }
-//        else if ([option isEqualToString:NSLocalizedString(OPEN_LINK_KEY, nil)]) {
-//            NSLog(@"Open link in browser");
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.selectedHighlightLink]];
-//        }
-//        else {
-//            NSLog(@"MENU DISMISSED!");
-//        }
-//        [self unhighlightTappedLink];
-//    }
-//}
-
 -(void)setupMenuForSelectedLink {
     //    NSLog(@"self.linkMenu %@", self.linkMenu);
     //    NSLog(@"title: %@", self.selectedHighlightLink);
@@ -517,7 +496,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     NSArray *messages = self.conversationHandler.messages;
     if (messages && messages.count > 0) {
         message = (ChatMessage *)[messages objectAtIndex:indexPath.row];
-        [self analyzeMessageText:message forIndexPath:indexPath];
+        [self analyzeMessageText:message];
         
         NSLog(@"type: %@ text: %@", message.mtype, message.text);
         if ([message.mtype isEqualToString:MSG_TYPE_INFO]) {
@@ -527,13 +506,13 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             return cell;
         }
         else if ([self isOutgoing:message]) {
-            if ([message.mtype isEqualToString:MSG_TYPE_TEXT]) {
+            if ([message.mtype isEqualToString:MSG_TYPE_IMAGE]) {
                 ChatTextMessageRightCell *cell = [tableView dequeueReusableCellWithIdentifier:cellMessageRight forIndexPath:indexPath];
                 NSLog(@"cell class: %@", NSStringFromClass([cell class]));
                 [cell configure:message messages:messages indexPath:indexPath viewController:self rowComponents:self.rowComponents];
                 return cell;
             }
-            else if ([message.mtype isEqualToString:MSG_TYPE_IMAGE]) {
+            else { //if ([message.mtype isEqualToString:MSG_TYPE_TEXT]) {
                 ChatTextMessageRightCell *cell = [tableView dequeueReusableCellWithIdentifier:cellMessageRight forIndexPath:indexPath];
                 NSLog(@"cell class: %@", NSStringFromClass([cell class]));
                 [cell configure:message messages:messages indexPath:indexPath viewController:self rowComponents:self.rowComponents];
@@ -541,13 +520,13 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             }
         }
         else {
-            if ([message.mtype isEqualToString:MSG_TYPE_TEXT]) {
+            if ([message.mtype isEqualToString:MSG_TYPE_IMAGE]) {
                 ChatTextMessageLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:cellMessageLeft forIndexPath:indexPath];
                 NSLog(@"cell class: %@", NSStringFromClass([cell class]));
                 [cell configure:message messages:messages indexPath:indexPath viewController:self rowComponents:self.rowComponents];
                 return cell;
             }
-            else if ([message.mtype isEqualToString:MSG_TYPE_IMAGE]) {
+            else {//if ([message.mtype isEqualToString:MSG_TYPE_TEXT]) {
                 ChatTextMessageLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:cellMessageLeft forIndexPath:indexPath];
                 NSLog(@"cell class: %@", NSStringFromClass([cell class]));
                 [cell configure:message messages:messages indexPath:indexPath viewController:self rowComponents:self.rowComponents];
@@ -558,185 +537,11 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     return [tableView dequeueReusableCellWithIdentifier:noMessagesCell forIndexPath:indexPath];
 }
 
-//-(void)configureTextMessageRightCell:(ChatTextMessageRightCell *)cell message:(ChatMessage *)message messages:(NSArray *)messages indexPath:(NSIndexPath *)indexPath {
-//    NSString *dateChat;
-//    NSDate *dateToday = [NSDate date];
-//    int numberDaysPrevChat = 0;
-//    int numberDaysNextChat = 0;
-//    ChatMessage *previousMessage;
-//    ChatMessage *nextMessage;
-//    UIView *sfondoBox = (UIView *)[cell viewWithTag:50];
-//    sfondoBox.layer.masksToBounds = YES;
-//    sfondoBox.layer.cornerRadius = 8.0;
-//
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//    UILabel *labelMessage = (UILabel *)[cell viewWithTag:10];
-//
-//    UIGestureRecognizer *longTapGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnCell:)];
-//    UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnCell:)];
-//    [labelMessage addGestureRecognizer:longTapGestureRecognizer];
-//    [labelMessage addGestureRecognizer:tapGestureRecognizer];
-//    labelMessage.userInteractionEnabled = YES;
-//
-//    [self attributedString:labelMessage text:message indexPath:indexPath];
-//
-//    UILabel *labelTime = (UILabel *)[cell viewWithTag:40];
-//    labelTime.text = [message dateFormattedForListView];
-//
-//    UILabel *labelNameUser = (UILabel *)[cell viewWithTag:20];
-//    NSString *text_name_user = [self displayUserOfMessage:message];
-//    labelNameUser.text = text_name_user;
-//
-//    UILabel *labelDay = (UILabel *)[cell viewWithTag:30];
-//    if(indexPath.row>0){
-//        previousMessage = (ChatMessage *)[messages objectAtIndex:(indexPath.row-1)];
-//        if(messages.count > (indexPath.row+1)){
-//            nextMessage = (ChatMessage *)[messages objectAtIndex:(indexPath.row+1)];
-//            numberDaysNextChat = (int)[ChatUtil daysBetweenDate:message.date andDate:nextMessage.date];
-//        }
-//        numberDaysPrevChat = (int)[ChatUtil daysBetweenDate:previousMessage.date andDate:message.date];
-//        dateChat = [self formatDateMessage:numberDaysPrevChat message:message row:indexPath.row];
-//    }else{
-//        numberDaysPrevChat = (int)[ChatUtil daysBetweenDate:message.date andDate:dateToday];
-//        dateChat = [self formatDateMessage:numberDaysPrevChat message:message row:indexPath.row];
-//    }
-//    if(numberDaysPrevChat>0){
-//        labelDay.text = dateChat;
-//    }else{
-//        labelDay.text = @"";
-//    }
-//
-//    //-----------------------------------------------------------//
-//    //START STATE MESSAGE
-//    //-----------------------------------------------------------//
-//
-//    UIImageView *status_image_view = (UIImageView *)[cell viewWithTag:22];
-//    switch (message.status) {
-//        case MSG_STATUS_SENDING:
-//            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-//            break;
-//        case MSG_STATUS_UPLOADING:
-//            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-//            break;
-//        case MSG_STATUS_SENT:
-//            status_image_view.image = [UIImage imageNamed:@"chat_check"];
-//            break;
-//        case MSG_STATUS_RETURN_RECEIPT:
-//            status_image_view.image = [UIImage imageNamed:@"chat_double_check"];
-//            break;
-//        case MSG_STATUS_FAILED:
-//            status_image_view.image = [UIImage imageNamed:@"chat_failed"];
-//            break;
-//        default:
-//            break;
-//    }
-//}
-//
-//-(void)configureTextMessageLeftCell:(ChatTextMessageLeftCell *)cell message:(ChatMessage *)message messages:(NSArray *)messages indexPath:(NSIndexPath *)indexPath {
-//    NSString *dateChat;
-//    NSDate *dateToday = [NSDate date];
-//    int numberDaysPrevChat = 0;
-//    int numberDaysNextChat = 0;
-//    ChatMessage *previousMessage;
-//    ChatMessage *nextMessage;
-//    UIView *sfondoBox = (UIView *)[cell viewWithTag:50];
-//    sfondoBox.layer.masksToBounds = YES;
-//    sfondoBox.layer.cornerRadius = 8.0;
-//
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//    UILabel *labelMessage = (UILabel *)[cell viewWithTag:10];
-//
-//    UIGestureRecognizer *longTapGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapOnCell:)];
-//    UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnCell:)];
-//    [labelMessage addGestureRecognizer:longTapGestureRecognizer];
-//    [labelMessage addGestureRecognizer:tapGestureRecognizer];
-//    labelMessage.userInteractionEnabled = YES;
-//
-//    [self attributedString:labelMessage text:message indexPath:indexPath];
-//
-//    UILabel *labelTime = (UILabel *)[cell viewWithTag:40];
-//    labelTime.text = [message dateFormattedForListView];
-//
-//    UILabel *labelNameUser = (UILabel *)[cell viewWithTag:20];
-//    NSString *text_name_user = [self displayUserOfMessage:message];
-//    labelNameUser.text = text_name_user;
-//
-//    UILabel *labelDay = (UILabel *)[cell viewWithTag:30];
-//    if(indexPath.row>0){
-//        previousMessage = (ChatMessage *)[messages objectAtIndex:(indexPath.row-1)];
-//        if(messages.count > (indexPath.row+1)){
-//            nextMessage = (ChatMessage *)[messages objectAtIndex:(indexPath.row+1)];
-//            numberDaysNextChat = (int)[ChatUtil daysBetweenDate:message.date andDate:nextMessage.date];
-//        }
-//        numberDaysPrevChat = (int)[ChatUtil daysBetweenDate:previousMessage.date andDate:message.date];
-//        dateChat = [self formatDateMessage:numberDaysPrevChat message:message row:indexPath.row];
-//    }else{
-//        numberDaysPrevChat = (int)[ChatUtil daysBetweenDate:message.date andDate:dateToday];
-//        dateChat = [self formatDateMessage:numberDaysPrevChat message:message row:indexPath.row];
-//    }
-//    if(numberDaysPrevChat>0){
-//        labelDay.text = dateChat;
-//    }else{
-//        labelDay.text = @"";
-//    }
-//
-//    //-----------------------------------------------------------//
-//    //START STATE MESSAGE
-//    //-----------------------------------------------------------//
-//
-//    UIImageView *status_image_view = (UIImageView *)[cell viewWithTag:22];
-//    switch (message.status) {
-//        case MSG_STATUS_SENDING:
-//            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-//            break;
-//        case MSG_STATUS_UPLOADING:
-//            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-//            break;
-//        case MSG_STATUS_SENT:
-//            status_image_view.image = [UIImage imageNamed:@"chat_check"];
-//            break;
-//        case MSG_STATUS_RETURN_RECEIPT:
-//            status_image_view.image = [UIImage imageNamed:@"chat_double_check"];
-//            break;
-//        case MSG_STATUS_FAILED:
-//            status_image_view.image = [UIImage imageNamed:@"chat_failed"];
-//            break;
-//        default:
-//            break;
-//    }
-//}
-
 -(BOOL)isOutgoing:(ChatMessage *)message {
     return [message.sender isEqualToString:self.vc.senderId];
 }
 
-//-(void)attributedString:(UILabel *)label text:(ChatMessage *)message indexPath:(NSIndexPath *)indexPath {
-//    // consider use of: https://github.com/TTTAttributedLabel/TTTAttributedLabel
-//    NSString *text = message.text;
-//    if (!text) {
-//        text = @"";
-//    }
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
-//    [attributedString addAttributes:@{NSFontAttributeName: label.font} range:NSMakeRange(0, attributedString.string.length)];
-//    ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
-//    NSArray *urlMatches = components.urlsMatches;
-//    if (urlMatches) {
-//        for (NSTextCheckingResult *match in urlMatches) {
-//            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:match.range];
-//        }
-//    }
-//    NSArray *chatLinkMatches = components.chatLinkMatches;
-//    if (chatLinkMatches) {
-//        for (NSTextCheckingResult *match in chatLinkMatches) {
-//            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor brownColor] range:match.range];
-//        }
-//    }
-//    label.attributedText = attributedString;
-//}
-
--(void)analyzeMessageText:(ChatMessage *)message forIndexPath:(NSIndexPath *)indexPath {
+-(void)analyzeMessageText:(ChatMessage *)message {
     // TEST URLs
     NSLog(@"Text: %@", message.text);
     NSString *text = message.text;
@@ -781,51 +586,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     
     [self.rowComponents setObject:components forKey:message.messageId];
 }
-
-//-(NSString *)displayUserOfMessage:(ChatMessage *)m {
-//    NSString *displayName;
-//
-//    // use fullname if available
-//    if (m.senderFullname) {
-//        NSString *trimmedFullname = [m.senderFullname stringByTrimmingCharactersInSet:
-//                                     [NSCharacterSet whitespaceCharacterSet]];
-//        if (trimmedFullname.length > 0 && ![trimmedFullname isEqualToString:@"(null)"]) {
-//            displayName = trimmedFullname;
-//        }
-//    }
-//
-//    // if fullname not available use username instead
-//    if (!displayName) {
-//        displayName = m.sender;
-//    }
-//
-//    return displayName;
-//}
-
-//-(NSString*)formatDateMessage:(int)numberDaysBetweenChats message:(ChatMessage*)message row:(CGFloat)row {
-//    NSString *dateChat;
-//    if(numberDaysBetweenChats>0 || row==0){
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        NSDate *today;
-//        today = [NSDate date];
-//        int days = (int)[ChatUtil daysBetweenDate:message.date andDate:today];
-//        if(days==0){
-//            dateChat = [ChatLocal translate:@"today"];
-//        }
-//        else if(days==1){
-//            dateChat = [ChatLocal translate:@"yesterday"];
-//        }
-//        else if(days<8){
-//            [dateFormatter setDateFormat:@"EEEE"];
-//            dateChat = [dateFormatter stringFromDate:message.date];
-//        }
-//        else{
-//            [dateFormatter setDateFormat:@"dd MMM"];
-//            dateChat = [dateFormatter stringFromDate:message.date];
-//        }
-//    }
-//    return dateChat;
-//}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepareForSegue: %@",segue.identifier);

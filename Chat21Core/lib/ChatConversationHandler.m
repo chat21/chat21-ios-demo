@@ -253,42 +253,10 @@
     return YES;
 }
 
-//-(void) initFirebaseWithRef:(FIRDatabaseReference *)ref token:(NSString *)token {
-//    self.authHelper = [[FirebaseCustomAuthHelper alloc] initWithFirebaseRef:ref token:token];
-//    NSLog(@"ok111");
-//    [self.authHelper authenticate:^(NSError *error, FAuthData *authData) {
-//        NSLog(@"authData: %@", authData);
-//        if (error != nil) {
-//            NSLog(@"There was an error authenticating.");
-//        } else {
-//            NSLog(@"authentication success %@", authData);
-//        }
-//    }];
-//}
-
-//-(void)sendReadNotificationForMessage:(ChatMessage *)message {
-//    double now = [[NSDate alloc] init].timeIntervalSince1970;
-//    if (now - self.lastSentReadNotificationTime < 10) {
-//        NSLog(@"TOO EARLY TO SEND A NOTIFICATION FOR THIS MESSAGE: %@", message.text);
-//        return;
-//    }
-//    NSLog(@"SENDING READ NOTIFICATION TO: %@ FOR MESSAGE: %@", message.sender, message.text);
-//    // PARSE NOTIFICATION
-//    ParseChatNotification *notification = [[ParseChatNotification alloc] init];
-//    notification.senderUser = self.user.userId; //[self.user.username stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-//    notification.senderUserFullname = self.user.fullname;
-//    notification.toUser = message.sender;
-//    notification.alert = [[NSString alloc] initWithFormat:@"%@ ha ricevuto il messaggio", message.recipient];
-//    notification.conversationId = message.conversationId;
-//    notification.badge = @"-1";
-//    ChatParsePushService *push_service = [[ChatParsePushService alloc] init];
-//    [push_service sendNotification:notification];
-//    // END PARSE NOTIFICATION
-//    self.lastSentReadNotificationTime = now;
-//}
-
 -(ChatMessage *)newBaseMessage {
     ChatMessage *message = [[ChatMessage alloc] init];
+    FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
+    message.messageId = messageRef.key;
     message.sender = self.senderId;
     message.senderFullname = self.user.fullname;
     NSDate *now = [[NSDate alloc] init];
@@ -321,7 +289,7 @@
 
 -(void)sendImagePlaceholderMessage:(ChatMessage *)message completion:(void (^)(ChatMessage *, NSError *))callback {
     [[ChatDB getSharedInstance] updateMessage:message.messageId status:MSG_STATUS_SENDING text:message.text snapshotAsJSONString:message.snapshotAsJSONString];
-    [self updateMessageInMemory:message.messageId status:MSG_STATUS_SENDING text:message.text imageURL:message.imageURL];
+    [self updateMessageInMemory:message.messageId status:MSG_STATUS_SENDING text:message.text imageURL:message.metadata.url];
     [self notifyEvent:ChatEventMessageChanged message:message];
     [self sendMessage:message completion:^(ChatMessage *message, NSError *error) {
         callback(message, error);
@@ -353,11 +321,12 @@
 
 -(void)sendMessageType:(NSString *)type subtype:(NSString *)subtype text:(NSString *)text imageURL:(NSString *)imageURL metadata:(ChatMessageMetadata *)metadata attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
     ChatMessage *message = [self newBaseMessage];
+    NSLog(@"Created base message type: %@ with id: %@", message.mtype, message.messageId);
     if (text) {
         message.text = text;
     }
     if (imageURL) {
-        message.imageURL = imageURL;
+        message.metadata.url = imageURL;
     }
     message.mtype = type;
     if (subtype) {
@@ -371,6 +340,7 @@
     message.recipientFullName = self.recipientFullname;
     message.channel_type = self.channel_type;
     [self createLocalMessage:message];
+    NSLog(@"Sending message type: %@ with id: %@", message.mtype, message.messageId);
     [self sendMessage:message completion:^(ChatMessage *message, NSError *error) {
         callback(message, error);
     }];
@@ -437,8 +407,8 @@
 
 
 -(NSString *)createLocalMessage:(ChatMessage *)message {
-    FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
-    message.messageId = messageRef.key;
+//    FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
+//    message.messageId = messageRef.key;
     // save message locally
     [self insertMessageInMemory:message];
     [self insertMessageOnDBIfNotExists:message];
@@ -484,7 +454,8 @@
 
 -(void)sendMessageToGroup:(ChatMessage *)message completion:(void(^)(ChatMessage *message, NSError *error))callback {
     // create firebase reference
-    FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
+    FIRDatabaseReference *messageRef = [self.messagesRef child:message.messageId];
+//    FIRDatabaseReference *messageRef = [self.messagesRef childByAutoId]; // CHILD'S AUTOGEN UNIQUE ID
 //    message.messageId = messageRef.key;
 //    // save message locally
 //    [self insertMessageInMemory:message];
@@ -566,7 +537,8 @@
     ChatMessage *m = [self findMessageInMemoryById:messageId];
     m.status = status;
     m.text = text;
-    m.imageURL = imageURL;
+    m.metadata.url = imageURL;
+//    m.imageURL = imageURL;
 }
 
 -(ChatMessage *)findMessageInMemoryById:(NSString *)messageId {

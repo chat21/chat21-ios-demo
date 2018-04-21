@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         // initialization
+        self.metadata = [[ChatMessageMetadata alloc] init];
     }
     return self;
 }
@@ -27,6 +28,18 @@
     else {
         return _conversationId;
     }
+}
+
+//@synthesize imageURL = _imageURL;
+
+// imageURL custom getter
+- (NSString *) imageURL {
+    return self.metadata.url;
+}
+
+-(void)setImageURL:(NSString *)url
+{
+    self.metadata.url = url;
 }
 
 //- (NSDictionary *) asDictionary {
@@ -67,7 +80,7 @@
         data[MSG_FIELD_STATUS] = @(self.status);
         data[MSG_FIELD_TYPE] = self.mtype;
         data[MSG_FIELD_SUBTYPE] = self.subtype;
-        data[MSG_FIELD_IMAGE_URL] = self.imageURL;
+//        data[MSG_FIELD_IMAGE_URL] = self.imageURL;
         data[MSG_FIELD_IMAGE_FILENAME] = self.imageFilename;
         data[MSG_FIELD_METADATA] = self.metadata.asDictionary;
         data[MSG_FIELD_ATTRIBUTES] = self.attributes;
@@ -139,13 +152,14 @@
     message.snapshot = (NSDictionary *) snapshot.value;
     message.attributes = attributes;
     message.metadata = [ChatMessageMetadata fromSnapshotFactory:snapshot];
-//    message.key = snapshot.key;
     message.ref = snapshot.ref;
     message.messageId = snapshot.key;
     message.conversationId = conversationId;
-    message.text = text;
-    message.lang = lang;
     message.mtype = type;
+//    [message setCorrectText:message text:text];
+    message.text = text;
+    
+    message.lang = lang;
     message.subtype = subtype;
     if ([message.mtype isEqualToString:MSG_TYPE_IMAGE]) {
         message.media = YES;
@@ -162,6 +176,21 @@
     message.recipient = recipient;
     message.recipientFullName = recipientFullname;
     return message;
+}
+
+-(void)setCorrectText:(ChatMessage *)message text:(NSString *)text {
+    // text validation
+    if (!text) { // never nil
+        message.text = @"";
+    }
+    if (text) { // always space-trimmed
+        message.text = [message.text stringByTrimmingCharactersInSet:
+                                   [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+    // always show a placeholder url for an image
+    if (message.typeImage && message.text.length == 0) {
+        message.text = [ChatMessage imageTextPlaceholder:message.metadata.url];
+    }
 }
 
 -(NSMutableDictionary *)asFirebaseMessage {
@@ -190,13 +219,14 @@
         [message_dict setObject:self.attributes forKey:MSG_FIELD_ATTRIBUTES];
     }
     
-    if (self.imageURL) {
-        [message_dict setObject:self.imageURL forKey:MSG_FIELD_IMAGE_URL];
-    }
+//    if (self.imageURL) {
+//        [message_dict setObject:self.imageURL forKey:MSG_FIELD_IMAGE_URL];
+//    }
     
     if (self.metadata) {
-        [message_dict setObject:@(self.metadata.width) forKey:MSG_FIELD_IMAGE_WIDTH];
-        [message_dict setObject:@(self.metadata.height) forKey:MSG_FIELD_IMAGE_HEIGHT];
+        [message_dict setObject:self.metadata.asDictionary forKey:MSG_FIELD_METADATA];
+//        [message_dict setObject:@(self.metadata.width) forKey:MSG_FIELD_IMAGE_WIDTH];
+//        [message_dict setObject:@(self.metadata.height) forKey:MSG_FIELD_IMAGE_HEIGHT];
     }
     
     if (self.lang) {
@@ -207,6 +237,18 @@
 
 -(BOOL)isDirect {
     return [self.channel_type isEqualToString:MSG_CHANNEL_TYPE_DIRECT] ? YES : NO;
+}
+
+-(BOOL)typeText {
+    return [self.mtype isEqualToString:MSG_TYPE_TEXT] ? YES : NO;
+}
+
+-(BOOL)typeImage {
+    return [self.mtype isEqualToString:MSG_TYPE_IMAGE] ? YES : NO;
+}
+
++(NSString *)imageTextPlaceholder:(NSString *)imageURL {
+    return [[NSString alloc] initWithFormat:@"Image: %@", imageURL];
 }
 
 @end

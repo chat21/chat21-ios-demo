@@ -405,7 +405,8 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.recipientFullName = snapshot[MSG_FIELD_RECIPIENT_FULLNAME];
     message.lang = snapshot[MSG_FIELD_LANG];
     message.attributes = snapshot[MSG_FIELD_ATTRIBUTES];
-    message.imageURL = snapshot[MSG_FIELD_IMAGE_URL];
+//    message.imageURL = snapshot[MSG_FIELD_IMAGE_URL];
+    message.metadata = snapshot[MSG_FIELD_METADATA];
     message.imageFilename = snapshot[MSG_FIELD_IMAGE_FILENAME];
     
     return message;

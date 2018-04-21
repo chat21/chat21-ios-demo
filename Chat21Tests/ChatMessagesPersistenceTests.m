@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "ChatMessage.h"
 #import "ChatDB.h"
+#import "ChatMessageMetadata.h"
 
 @interface ChatMessagesPersistenceTests : XCTestCase
 
@@ -75,7 +76,8 @@
     message.mtype = MSG_TYPE_IMAGE;
     message.subtype = @"test subtype";
     message.channel_type = MSG_CHANNEL_TYPE_DIRECT;
-    message.imageURL = @"http://testimageurl";
+//    message.imageURL = @"http://testimageurl";
+    message.metadata.url = @"http://testimageurl";
     message.imageFilename = @"image-test-filename.png";
     // save
     ChatDB *db = [ChatDB getSharedInstance];
@@ -88,17 +90,15 @@
     XCTAssertTrue([message_from_db.recipient isEqualToString:message.recipient]);
     XCTAssertTrue([message_from_db.recipientFullName isEqualToString:message.recipientFullName]);
     XCTAssertTrue([message_from_db.text isEqualToString:message.text]);
-    //    XCTAssertTrue([message_from_db.date timeIntervalSinceDate:message.date] == 0.000000);
     XCTAssertTrue(message_from_db.date.timeIntervalSince1970 == message.date.timeIntervalSince1970);
     XCTAssertTrue(message_from_db.status == message.status);
     XCTAssertTrue([message_from_db.conversationId isEqualToString:message.conversationId]);
     XCTAssertTrue([message_from_db.lang isEqualToString:message.lang]);
-    NSLog(@"message_from_db.imageURL %@", message_from_db.imageURL);
     XCTAssertTrue(message_from_db.archived == true);
     XCTAssertTrue([message_from_db.mtype isEqualToString:message.mtype]);
     XCTAssertTrue([message_from_db.subtype isEqualToString:message.subtype]);
     XCTAssertTrue([message_from_db.channel_type isEqualToString:message.channel_type]);
-    XCTAssertTrue([message_from_db.imageURL isEqualToString:message.imageURL]);
+    XCTAssertTrue([message_from_db.metadata.url isEqualToString:message.metadata.url]);
     XCTAssertTrue([message_from_db.imageFilename isEqualToString:message.imageFilename]);
 }
 
