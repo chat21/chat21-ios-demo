@@ -97,10 +97,15 @@ static NSString* const MSG_METADATA_IMAGE_HEIGHT = @"height";
 @property (strong, nonatomic) UIImage *image; // only for rendering
 
 
-
+-(UIImage *)imageFromMediaFolder;
 -(NSString *)dateFormattedForListView;
 -(void)updateStatusOnFirebase:(int)status;
-+(ChatMessage *)messageFromSnapshotFactory:(FIRDataSnapshot *)snapshot;
+-(BOOL)imageExistsInMediaFolder;
+-(NSString *)imagePathFromMediaFolder;
+-(UIImage *)imagePlaceholder;
+-(NSString *)mediaFolderPath;
+-(NSError *)createMediaFolderPathIfNotExists;
++(ChatMessage *)messageFromfirebaseSnapshotFactory:(FIRDataSnapshot *)snapshot;
 -(NSMutableDictionary *)asFirebaseMessage;
 //+(ChatMessage *)messageFromSnapshotFactoryTEST:(FDataSnapshot *)snapshot;
 +(NSString *)imageTextPlaceholder:(NSString *)imageURL;

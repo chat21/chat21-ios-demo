@@ -13,9 +13,10 @@
 
 @property (assign, nonatomic) NSInteger width;
 @property (assign, nonatomic) NSInteger height;
-@property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSString *src;
+@property (strong, nonatomic) NSMutableDictionary *propertiesDictionary;
 
 -(NSDictionary *)asDictionary;
-+(ChatMessageMetadata *)fromSnapshotFactory:(FIRDataSnapshot *)snapshot;
++(ChatMessageMetadata *)fromDictionaryFactory:(NSDictionary *)metadata;
 
 @end

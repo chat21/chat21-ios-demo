@@ -50,9 +50,9 @@
     UILabel *labelTime = self.timeLabel;//(UILabel *)[cell viewWithTag:40];
     labelTime.text = [message dateFormattedForListView];
     
-    //    UILabel *labelNameUser = self.user//(UILabel *)[cell viewWithTag:20];
-    //    NSString *text_name_user = [self displayUserOfMessage:message];
-    //    labelNameUser.text = text_name_user;
+//    UILabel *labelNameUser = self.usernameLabel;
+    NSString *text_name_user = [self displayUserOfMessage:message];
+    self.usernameLabel.text = text_name_user;
     
     UILabel *labelDay = self.dateLabel;//(UILabel *)[cell viewWithTag:30];
     if(indexPath.row>0){

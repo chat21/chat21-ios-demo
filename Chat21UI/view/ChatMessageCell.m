@@ -11,6 +11,7 @@
 #import "ChatMessageComponents.h"
 #import "ChatUtil.h"
 #import "ChatLocal.h"
+#import "ChatMessageMetadata.h"
 
 @implementation ChatMessageCell
 
@@ -81,6 +82,40 @@
         }
     }
     label.attributedText = attributedString;
+}
+
++(void)setStatusImage:(ChatMessage *)message statusImage:(UIImageView *)status_image_view {
+    NSLog(@"status: message.text: %@", message.text);
+    switch (message.status) {
+        case MSG_STATUS_SENDING:
+            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
+            break;
+        case MSG_STATUS_UPLOADING:
+            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
+            break;
+        case MSG_STATUS_SENT:
+            status_image_view.image = [UIImage imageNamed:@"chat_check"];
+            break;
+        case MSG_STATUS_RETURN_RECEIPT:
+            status_image_view.image = [UIImage imageNamed:@"chat_double_check"];
+            break;
+        case MSG_STATUS_FAILED:
+            status_image_view.image = [UIImage imageNamed:@"chat_failed"];
+            break;
+        default:
+            break;
+    }
+}
+
++(CGSize)computeImageSize:(ChatMessage *)message {
+    float max_width = 200;
+    float max_height = 200;
+    float imageview_scale_w = max_width / message.metadata.width; //image.size.width;
+    float imageview_height = message.metadata.width * imageview_scale_w;
+    if (imageview_height > max_height) {
+        imageview_height = 200;
+    }
+    return CGSizeMake(max_width, imageview_height);
 }
 
 @end

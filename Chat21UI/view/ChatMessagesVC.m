@@ -33,6 +33,7 @@
 #import "ChatLocal.h"
 #import <DBChooser/DBChooser.h>
 #import "ChatMessageMetadata.h"
+#import "ChatImageUtil.h"
 
 @interface ChatMessagesVC (){
     SystemSoundID soundID;
@@ -252,7 +253,6 @@
 
 
 -(void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"VIEW WILL DISAPPEAR... %@", self);
     [super viewWillDisappear:animated];
     [self dismissKeyboard];
     [self removeUnreadBadge];
@@ -260,7 +260,6 @@
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
     if (self.isMovingFromParentViewController) {
-        NSLog(@"isMovingFromParentViewController: OK");
         [self resetTitleView];
         self.tabBarController.tabBar.hidden=NO;
         [self removeSubscribers];
@@ -408,7 +407,6 @@
 }
 
 -(void)removeUnreadBadge {
-    NSLog(@"Removing unread label... %@", self.unreadLabel);
     [self.unreadLabel removeFromSuperview];
 }
 
@@ -438,7 +436,6 @@
 }
 
 -(void)resetTitleView {
-    NSLog(@"RESETTING TITLE VIEW");
     self.usernameButton = nil;
     self.statusLabel = nil;
     self.activityIndicator = nil;
@@ -781,13 +778,17 @@
 }
 
 -(void)messageUpdated:(ChatMessage *)message {
-    [containerTVC reloadDataTableView];
+    [containerTVC messageUpdated:message];
+//    [containerTVC reloadDataTableView];
 }
 
 -(void)messageDeleted:(ChatMessage *)message {
-    [containerTVC reloadDataTableView];
+    // TODO never delete a message.
+    // Place a placeholder message with text: "this message was removed", message.status = removed.
+    [containerTVC messageDeleted:message];
 }
 
+// TODO (move from VC to TVC like messageDeleted and messageUpdated)
 -(void)messageReceived:(ChatMessage *)message {
     if (!self.messagesArriving) { // self.messagesArriving = YES => bulk messages update
         [self startNewMessageTimer];
@@ -863,7 +864,7 @@ static float messageTime = 0.5;
 }
 
 -(void)dealloc {
-    NSLog(@"Deallocating MessagesViewController.");
+    NSLog(@"DEALLOCATING: MessagesViewController.");
 }
 
 //EXTRA
@@ -977,87 +978,47 @@ static float messageTime = 0.5;
 
 -(void)afterPickerCompletion:(UIImagePickerController *)picker withInfo:(NSDictionary *)info {
     UIImage *bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    for(id i in info.allKeys) {
-        NSLog(@"k: %@, v: %@ [class:%@]", i, info[i], NSStringFromClass([info[i] class]));
-    }
+//    for(id i in info.allKeys) {
+//        NSLog(@"k: %@, v: %@ [class:%@]", i, info[i], NSStringFromClass([info[i] class]));
+//    }
     NSURL *local_image_url = [info objectForKey:@"UIImagePickerControllerImageURL"];
-    NSString *imageFileName = [local_image_url lastPathComponent];
-    NSLog(@"IMAGE: %@", bigImage);
-    NSLog(@"IMAGE NAME: %@", imageFileName);
+    NSString *image_original_file_name = [local_image_url lastPathComponent];
+//    NSLog(@"IMAGE: %@", bigImage);
+    NSLog(@"image_original_file_name: %@", image_original_file_name);
     self.scaledImage = bigImage;
-//    self.scaledImage = [SHPImageUtil scaleImage:self.bigImage toSize:CGSizeMake(self.applicationContext.settings.uploadImageSize, self.applicationContext.settings.uploadImageSize)];
     // save image in photos
 //    if (picker == self.imagePickerController) {
 //        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
 //                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
 //    }
     NSLog(@"image: %@", self.scaledImage);
-//    UIImage *imageEXIFAdjusted = [ChatImageUtil adjustEXIF:self.scaledImage];
-    // 0. save image locally, 1. local conversation media library, 2. to recover failed image sending
-    NSString * uuid = [[NSUUID UUID] UUIDString];
-    NSString *image_file_name = [[NSString alloc] initWithFormat:@"%@.png", uuid];
-    [self.conversationHandler saveImageToConversationMediaFolderAsPNG:self.scaledImage imageFileName:image_file_name];
-    ChatMessageMetadata *imageMetadata = [[ChatMessageMetadata alloc] init];
-    imageMetadata.width = self.scaledImage.size.width;
-    imageMetadata.height = self.scaledImage.size.height;
-    [self.conversationHandler appendImagePlaceholderMessageWithFilename:image_file_name metadata:imageMetadata attributes:nil completion:^(ChatMessage *message, NSError *error) {
+    self.scaledImage = [ChatImageUtil adjustEXIF:self.scaledImage];
+    [self.conversationHandler appendImagePlaceholderMessageWithImage:self.scaledImage attributes:nil completion:^(ChatMessage *message, NSError *error) {
         NSLog(@"Image placeholder message created and appended.");
-        [self updalodImage:self.scaledImage fileName:imageFileName completion:^(NSURL *downloadURL, NSError *error) {
+        // save image to cache
+        [[ChatImageCache getSharedInstance] addImage:self.scaledImage withKey:message.messageId];
+        [self.conversationHandler uploadImage:self.scaledImage fileName:message.imageFilename completion:^(NSURL *downloadURL, NSError *error) {
             NSLog(@"Image uploaded. Download url: %@", downloadURL);
             if (error) {
-                // TODO update placeholder-message with status: error
                 NSLog(@"Error during image upload.");
+                message.status = MSG_STATUS_FAILED;
+                [self.conversationHandler updateMessageStatus:MSG_STATUS_FAILED forMessage:message];
             }
-            NSString *image_text = [ChatMessage imageTextPlaceholder:downloadURL.absoluteString]; //[[NSString alloc] initWithFormat:@"Image: %@", downloadURL.absoluteString];
-//            message.imageURL = downloadURL.absoluteString;
-            message.metadata.url = downloadURL.absoluteString;
-            message.text = image_text;
-            message.status = MSG_STATUS_SENDING;
-            [self.conversationHandler sendImagePlaceholderMessage:message completion:^(ChatMessage *m, NSError *e) {
-                NSLog(@"Image message successfully sent.");
-            }];
+            else {
+                NSString *image_text = [ChatMessage imageTextPlaceholder:downloadURL.absoluteString];
+                message.metadata.src = downloadURL.absoluteString;
+                message.text = image_text;
+                message.status = MSG_STATUS_SENDING;
+                [self.conversationHandler sendImagePlaceholderMessage:message completion:^(ChatMessage *m, NSError *e) {
+                    NSLog(@"Image message successfully sent.");
+                }];
+            }
+        } progressCallback:^(double fraction) {
+            NSLog(@"progress: %f", fraction);
         }];
     }];
     
     
-}
-
--(void)updalodImage:(UIImage *)image fileName:(NSString *)fileName completion:(void(^)(NSURL *downloadURL, NSError *error)) callback {
-    NSData *data = UIImagePNGRepresentation(image);
-    // Get a reference to the storage service using the default Firebase App
-    FIRStorage *storage = [FIRStorage storage];
-    // Create a root reference
-    FIRStorageReference *storageRef = [storage reference];
-//    NSData *data = [NSData dataWithContentsOfFile:@"rivers.jpg"];
-    NSString * uuid = [[NSUUID UUID] UUIDString];
-    NSString *file_path = [[NSString alloc] initWithFormat:@"images/%@.png", uuid];
-    NSLog(@"image remote file path: %@", file_path);
-    // Create a reference to the file you want to upload
-    FIRStorageReference *riversRef = [storageRef child:file_path];
-    // Create file metadata including the content type
-    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
-    metadata.contentType = @"image/png";
-    // Upload the file to the path
-    FIRStorageUploadTask *uploadTask = [riversRef putData:data
-                                                 metadata:metadata
-                                               completion:^(FIRStorageMetadata *metadata,
-                                                            NSError *error) {
-                                                   if (error != nil) {
-                                                       NSLog(@"an error occurred!");
-                                                       callback(nil, error);
-                                                   } else {
-                                                       NSLog(@"Metadata contains file metadata such as size, content-type, and download URL");
-                                                       NSURL *downloadURL = metadata.downloadURL;
-                                                       NSLog(@"Download url: %@", downloadURL);
-                                                       callback(downloadURL, nil);
-                                                   }
-                                               }];
-    FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
-                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                      NSLog(@"uploading %@", snapshot);
-                                                      NSLog(@"completion: %f, %lld", snapshot.progress.fractionCompleted, snapshot.progress.completedUnitCount);
-                                                      
-                                                  }];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo

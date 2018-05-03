@@ -8,6 +8,7 @@
 
 #import "ChatMessage.h"
 #import "ChatMessageMetadata.h"
+#import "ChatConversationHandler.h"
 
 @implementation ChatMessage
 
@@ -34,58 +35,79 @@
 
 // imageURL custom getter
 - (NSString *) imageURL {
-    return self.metadata.url;
+    return self.metadata.src;
+}
+
+- (NSString *)imageFilename {
+    return [[NSString alloc] initWithFormat:@"%@.png", self.messageId];
+}
+
+-(BOOL)imageExistsInMediaFolder {
+    NSString *filePath = [self imagePathFromMediaFolder];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    return fileExists;
 }
 
 -(void)setImageURL:(NSString *)url
 {
-    self.metadata.url = url;
+    self.metadata.src = url;
 }
 
-//- (NSDictionary *) asDictionary {
+-(NSString *)mediaFolderPath {
+    return [ChatConversationHandler mediaFolderPathOfRecipient:self.recipient];
+}
+
+-(NSError *)createMediaFolderPathIfNotExists {
+    NSError * error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:self.mediaFolderPath
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    return error;
+}
+
+-(NSString *)imagePathFromMediaFolder {
+    NSString *mediaFolderPath = [ChatConversationHandler mediaFolderPathOfRecipient:self.recipient];
+//    NSLog(@"mediaFolderPath: %@",mediaFolderPath);
+    NSString *imagePath = [mediaFolderPath stringByAppendingPathComponent:self.imageFilename];
+//    NSLog(@"imagePath: %@",imagePath);
+    return imagePath;
+}
+
+-(UIImage *)imageFromMediaFolder {
+    NSString *imagePath = [self imagePathFromMediaFolder];
+//    NSLog(@"imagePath: %@", imagePath);
+    UIImage *image = [UIImage imageNamed:imagePath];
+    return image;
 //    NSDictionary *dict = [[NSMutableDictionary alloc] init];
 //    dict[]
-//}
+}
+
+-(UIImage *)imagePlaceholder {
+    UIImage *placeholder_image = [UIImage imageNamed:@"no_image_message_placeholder"];
+    return placeholder_image;
+}
 
 -(NSDictionary *)snapshot {
-    if (!_snapshot) {
-        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-//        @property (nonatomic, strong) NSString *messageId; // firebase-key
-//        @property (nonatomic, strong) NSString *text; // firebase
-//        @property (nonatomic, strong) NSString *sender; // firebase
-//        @property (nonatomic, strong) NSString *senderFullname; // firebase
-//        @property (nonatomic, strong) NSString *recipient; // firebase
-//        @property (nonatomic, strong) NSString *recipientFullName; // firebase
-//        @property (nonatomic, strong) NSString *channel_type; // firebase
-//        @property (nonatomic, strong) NSString *lang; // firebase
-//        @property (nonatomic, strong) NSDate *date; // firebase (converted to timestamp)
-        
-//        @property (nonatomic, assign) int status; // firebase
-//        @property (nonatomic, strong) NSString *mtype; // firebase
-//        @property (nonatomic, strong) NSString *subtype; // firebase
-//        @property (strong, nonatomic) NSString *imageURL; // firebase
-//        @property (strong, nonatomic) NSString *imageFilename; // firebase - used to save image locally
-//        @property (nonatomic, strong) ChatMessageMetadata *metadata; // firebase
-//        @property (nonatomic, strong) NSDictionary *attributes; // firebase
-        data[MSG_FIELD_SENDER] = self.sender;
-        data[MSG_FIELD_SENDER_FULLNAME] = self.senderFullname;
-        data[MSG_FIELD_RECIPIENT] = self.recipient;
-        data[MSG_FIELD_RECIPIENT_FULLNAME] = self.recipientFullName;
-        data[MSG_FIELD_CHANNEL_TYPE] = self.channel_type;
-        data[MSG_FIELD_LANG] = self.lang;
-        NSLog(@"time original: %@", self.date);
-        long long milliseconds = (long long)([self.date timeIntervalSince1970] * 1000.0);
-        NSLog(@"time converted millis: %lld", milliseconds);
-        data[MSG_FIELD_TIMESTAMP] = @(milliseconds);
-        data[MSG_FIELD_STATUS] = @(self.status);
-        data[MSG_FIELD_TYPE] = self.mtype;
-        data[MSG_FIELD_SUBTYPE] = self.subtype;
-//        data[MSG_FIELD_IMAGE_URL] = self.imageURL;
-        data[MSG_FIELD_IMAGE_FILENAME] = self.imageFilename;
-        data[MSG_FIELD_METADATA] = self.metadata.asDictionary;
-        data[MSG_FIELD_ATTRIBUTES] = self.attributes;
-        _snapshot = data;
-    }
+//    if (!_snapshot) {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    data[MSG_FIELD_SENDER] = self.sender;
+    data[MSG_FIELD_SENDER_FULLNAME] = self.senderFullname;
+    data[MSG_FIELD_RECIPIENT] = self.recipient;
+    data[MSG_FIELD_RECIPIENT_FULLNAME] = self.recipientFullName;
+    data[MSG_FIELD_CHANNEL_TYPE] = self.channel_type;
+    data[MSG_FIELD_LANG] = self.lang;
+//    NSLog(@"time original: %@", self.date);
+    long long milliseconds = (long long)([self.date timeIntervalSince1970] * 1000.0);
+//    NSLog(@"time converted millis: %lld", milliseconds);
+    data[MSG_FIELD_TIMESTAMP] = @(milliseconds);
+    data[MSG_FIELD_STATUS] = @(self.status);
+    data[MSG_FIELD_TYPE] = self.mtype;
+    data[MSG_FIELD_SUBTYPE] = self.subtype;
+    data[MSG_FIELD_METADATA] = self.metadata.asDictionary;
+    data[MSG_FIELD_ATTRIBUTES] = self.attributes;
+    _snapshot = data;
+//    }
     return _snapshot;
 }
 
@@ -130,7 +152,7 @@
     [self.ref updateChildValues:message_dict];
 }
 
-+(ChatMessage *)messageFromSnapshotFactory:(FIRDataSnapshot *)snapshot {
++(ChatMessage *)messageFromfirebaseSnapshotFactory:(FIRDataSnapshot *)snapshot {
     NSString *conversationId = snapshot.value[MSG_FIELD_CONVERSATION_ID];
     NSString *type = snapshot.value[MSG_FIELD_TYPE];
     NSString *subtype = snapshot.value[MSG_FIELD_SUBTYPE];
@@ -151,13 +173,20 @@
     
     message.snapshot = (NSDictionary *) snapshot.value;
     message.attributes = attributes;
-    message.metadata = [ChatMessageMetadata fromSnapshotFactory:snapshot];
+    message.metadata = [ChatMessageMetadata fromDictionaryFactory:snapshot.value[MSG_FIELD_METADATA]];
     message.ref = snapshot.ref;
     message.messageId = snapshot.key;
     message.conversationId = conversationId;
     message.mtype = type;
-//    [message setCorrectText:message text:text];
-    message.text = text;
+    // patch for misplaced subtype field.
+    if (message.attributes && message.attributes[MSG_FIELD_SUBTYPE]) {
+        message.subtype = message.attributes[MSG_FIELD_SUBTYPE];
+        if ([message.subtype isEqualToString:MSG_TYPE_INFO]) {
+            message.mtype = MSG_TYPE_INFO;
+        }
+    }
+    [message setCorrectText:message text:text];
+//    message.text = text;
     
     message.lang = lang;
     message.subtype = subtype;
@@ -179,17 +208,19 @@
 }
 
 -(void)setCorrectText:(ChatMessage *)message text:(NSString *)text {
+    NSLog(@"setting text for: %@", message.text);
     // text validation
     if (!text) { // never nil
-        message.text = @"";
+        text = @"";
     }
     if (text) { // always space-trimmed
-        message.text = [message.text stringByTrimmingCharactersInSet:
+        text = [text stringByTrimmingCharactersInSet:
                                    [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
+    message.text = text;
     // always show a placeholder url for an image
     if (message.typeImage && message.text.length == 0) {
-        message.text = [ChatMessage imageTextPlaceholder:message.metadata.url];
+        message.text = [ChatMessage imageTextPlaceholder:message.metadata.src];
     }
 }
 
@@ -219,14 +250,8 @@
         [message_dict setObject:self.attributes forKey:MSG_FIELD_ATTRIBUTES];
     }
     
-//    if (self.imageURL) {
-//        [message_dict setObject:self.imageURL forKey:MSG_FIELD_IMAGE_URL];
-//    }
-    
     if (self.metadata) {
         [message_dict setObject:self.metadata.asDictionary forKey:MSG_FIELD_METADATA];
-//        [message_dict setObject:@(self.metadata.width) forKey:MSG_FIELD_IMAGE_WIDTH];
-//        [message_dict setObject:@(self.metadata.height) forKey:MSG_FIELD_IMAGE_HEIGHT];
     }
     
     if (self.lang) {

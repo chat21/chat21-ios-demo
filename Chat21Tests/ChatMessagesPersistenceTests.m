@@ -77,7 +77,7 @@
     message.subtype = @"test subtype";
     message.channel_type = MSG_CHANNEL_TYPE_DIRECT;
 //    message.imageURL = @"http://testimageurl";
-    message.metadata.url = @"http://testimageurl";
+    message.metadata.src = @"http://testimageurl";
     message.imageFilename = @"image-test-filename.png";
     // save
     ChatDB *db = [ChatDB getSharedInstance];
@@ -98,7 +98,7 @@
     XCTAssertTrue([message_from_db.mtype isEqualToString:message.mtype]);
     XCTAssertTrue([message_from_db.subtype isEqualToString:message.subtype]);
     XCTAssertTrue([message_from_db.channel_type isEqualToString:message.channel_type]);
-    XCTAssertTrue([message_from_db.metadata.url isEqualToString:message.metadata.url]);
+    XCTAssertTrue([message_from_db.metadata.src isEqualToString:message.metadata.src]);
     XCTAssertTrue([message_from_db.imageFilename isEqualToString:message.imageFilename]);
 }
 

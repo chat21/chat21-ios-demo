@@ -13,8 +13,8 @@
 
 -(NSDictionary *)asDictionary {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    if (self.url) {
-        [dict setObject:self.url forKey:MSG_METADATA_ATTACHMENT_SRC];
+    if (self.src) {
+        [dict setObject:self.src forKey:MSG_METADATA_ATTACHMENT_SRC];
     }
     if (self.width) {
         [dict setObject:@(self.width) forKey:MSG_METADATA_IMAGE_WIDTH];
@@ -25,16 +25,16 @@
     return dict;
 }
 
-+(ChatMessageMetadata *)fromSnapshotFactory:(FIRDataSnapshot *)snapshot {
-    NSDictionary *metadata = snapshot.value[MSG_FIELD_METADATA];
++(ChatMessageMetadata *)fromDictionaryFactory:(NSDictionary *)metadata {
     if (!metadata) {
         return nil;
     } else if (![metadata isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
+    NSLog(@"metadata: %@", metadata);
     ChatMessageMetadata *metadata_obj = [[ChatMessageMetadata alloc] init];
-    NSString *url = metadata[MSG_METADATA_ATTACHMENT_SRC];
-    metadata_obj.url = url;
+    NSString *src = metadata[MSG_METADATA_ATTACHMENT_SRC];
+    metadata_obj.src = src;
     if (metadata[MSG_METADATA_IMAGE_HEIGHT]) {
         metadata_obj.height = (NSInteger) metadata[MSG_METADATA_IMAGE_HEIGHT];
     }

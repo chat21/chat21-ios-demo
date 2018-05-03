@@ -13,6 +13,7 @@
 @class ChatMessage;
 @class ChatConversationHandler;
 @class QBPopupMenu;
+@class ChatImageCache;
 
 @interface ChatMessagesTVC : UITableViewController<UIActionSheetDelegate,QBPopupMenuDelegate>{
     
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) UILabel *selectedHighlightLabel;
 @property (assign, nonatomic) NSRange selectedHighlightRange;
 @property (strong, nonatomic) NSString *selectedHighlightLink;
+@property (strong, nonatomic) ChatImageCache *imageCache;
 //@property (strong, nonatomic) UIActionSheet *linkMenu;
 
 @property (strong, nonatomic) QBPopupMenu *popupMenu;
@@ -34,5 +36,11 @@
 - (void)reloadDataTableView;
 - (void)reloadDataTableViewOnIndex:(NSInteger)index;
 - (void)scrollToLastMessage:(BOOL)animated;
+
+// events
+-(void)messageUpdated:(ChatMessage *)message;
+-(void)messageDeleted:(ChatMessage *)message;
+// TODO messageReceived (move from VC to TVC)
+//-(void)messageReceived:(ChatMessage *)message;
 
 @end

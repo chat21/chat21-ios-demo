@@ -13,6 +13,9 @@
 		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
 		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
 		B21A82DC207613F60068A2F9 /* ChatInfoMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */; };
+		B2212E29208BD6D100DE455C /* ChatImageMessageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E28208BD6D100DE455C /* ChatImageMessageRightCell.m */; };
+		B2212E2D208F7AD300DE455C /* no_image_message_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B2212E2C208F7AD300DE455C /* no_image_message_placeholder.png */; };
+		B2212E30209B78DF00DE455C /* ChatImageMessageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E2F209B78DF00DE455C /* ChatImageMessageLeftCell.m */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B238ECF3207C8F1700D50285 /* ChatMessageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B238ECF2207C8F1700D50285 /* ChatMessageMetadata.m */; };
 		B238ED072084A4D500D50285 /* ChatMessagesPersistenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B238ECF72084A35500D50285 /* ChatMessagesPersistenceTests.m */; };
@@ -181,6 +184,11 @@
 		B21A82D42075219B0068A2F9 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
 		B21A82DA207613F60068A2F9 /* ChatInfoMessageTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageTVC.h; sourceTree = "<group>"; };
 		B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageTVC.m; sourceTree = "<group>"; };
+		B2212E27208BD6D100DE455C /* ChatImageMessageRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageRightCell.h; sourceTree = "<group>"; };
+		B2212E28208BD6D100DE455C /* ChatImageMessageRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageRightCell.m; sourceTree = "<group>"; };
+		B2212E2C208F7AD300DE455C /* no_image_message_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image_message_placeholder.png; sourceTree = "<group>"; };
+		B2212E2E209B78DF00DE455C /* ChatImageMessageLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageLeftCell.h; sourceTree = "<group>"; };
+		B2212E2F209B78DF00DE455C /* ChatImageMessageLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageLeftCell.m; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B238ECF1207C8F1700D50285 /* ChatMessageMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageMetadata.h; sourceTree = "<group>"; };
@@ -664,7 +672,7 @@
 			children = (
 				B290B34F202DBD0E008CBC07 /* tabicons */,
 				B290B35E202DBD0E008CBC07 /* icons */,
-				B290B367202DBD0E008CBC07 /* avatars */,
+				B290B367202DBD0E008CBC07 /* general */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -705,13 +713,14 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
-		B290B367202DBD0E008CBC07 /* avatars */ = {
+		B290B367202DBD0E008CBC07 /* general */ = {
 			isa = PBXGroup;
 			children = (
+				B2212E2C208F7AD300DE455C /* no_image_message_placeholder.png */,
 				B290B368202DBD0E008CBC07 /* avatar.png */,
 				B290B369202DBD0E008CBC07 /* group-conversation-avatar.png */,
 			);
-			path = avatars;
+			path = general;
 			sourceTree = "<group>";
 		};
 		B290B36B202DBD0E008CBC07 /* QBPopupMenu */ = {
@@ -788,6 +797,10 @@
 				B2FD132E2085E6920068C0AF /* ChatTextMessageLeftCell.m */,
 				B2FD1330208723BB0068C0AF /* ChatTextMessageRightCell.h */,
 				B2FD1331208723BB0068C0AF /* ChatTextMessageRightCell.m */,
+				B2212E27208BD6D100DE455C /* ChatImageMessageRightCell.h */,
+				B2212E28208BD6D100DE455C /* ChatImageMessageRightCell.m */,
+				B2212E2E209B78DF00DE455C /* ChatImageMessageLeftCell.h */,
+				B2212E2F209B78DF00DE455C /* ChatImageMessageLeftCell.m */,
 				B2FD1333208738760068C0AF /* ChatInfoMessageCell.h */,
 				B2FD1334208738760068C0AF /* ChatInfoMessageCell.m */,
 			);
@@ -1092,6 +1105,7 @@
 				B290B3CA202DBD0F008CBC07 /* icon_light_foto.png in Resources */,
 				B290B3A3202DBD0E008CBC07 /* Chat.strings in Resources */,
 				B290B3C9202DBD0F008CBC07 /* icon_light_altro@2x.png in Resources */,
+				B2212E2D208F7AD300DE455C /* no_image_message_placeholder.png in Resources */,
 				B24AD7C11F86392700A526E9 /* Help-Info.plist in Resources */,
 				B23AE8EB1F278E8800BEB4B8 /* ic_linear_file.png in Resources */,
 				B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */,
@@ -1254,9 +1268,11 @@
 				B290B3E1202DBD0F008CBC07 /* ChatMessagesVC.m in Sources */,
 				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
 				B290B3E6202DBD0F008CBC07 /* UIView+Property.m in Sources */,
+				B2212E30209B78DF00DE455C /* ChatImageMessageLeftCell.m in Sources */,
 				B299D9E0207667AE005531A4 /* ChatInfoMessageAttributesTVC.m in Sources */,
 				B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */,
 				B290B3B4202DBD0E008CBC07 /* FirebaseCustomAuthHelper.m in Sources */,
+				B2212E29208BD6D100DE455C /* ChatImageMessageRightCell.m in Sources */,
 				B290B3DD202DBD0F008CBC07 /* QBPopupMenuPagenatorView.m in Sources */,
 				B290B3AE202DBD0E008CBC07 /* ChatConversationsHandler.m in Sources */,
 				B2FD1332208723BB0068C0AF /* ChatTextMessageRightCell.m in Sources */,

@@ -90,7 +90,7 @@
     
     // set as status:"failed" all the messages in status: "sending"
     for (ChatMessage *m in self.messages) {
-        if (m.status == MSG_STATUS_SENDING) {
+        if (m.status == MSG_STATUS_SENDING || m.status == MSG_STATUS_UPLOADING) {
             m.status = MSG_STATUS_FAILED;
         }
     }
@@ -161,7 +161,7 @@
         } else {
 //            NSLog(@"Snapshot valid.");
         }
-        ChatMessage *message = [ChatMessage messageFromSnapshotFactory:snapshot];
+        ChatMessage *message = [ChatMessage messageFromfirebaseSnapshotFactory:snapshot];
         message.conversationId = self.conversationId; // DB query is based on this attribute!!! (conversationID = Recipient)
         
         // IMPORTANT (REPEATED)! This callback is called ALSO (and NOT ONLY) for newly locally created messages not still sent (called also with network off!).
@@ -172,8 +172,6 @@
 //        NSLog(@"self.senderId: %@", self.senderId);
         if (message.status < MSG_STATUS_RECEIVED && ![message.sender isEqualToString:self.senderId]) { // CONTROLLING... "message.status < MSG_STATUS_RECEIVED" IN MODO DA EVITARE IL COSTO DI RI-AGGIORNARE CONTINUAMENTE LO STATO DI MESSAGGI CHE HANNO GIA LO STATO RECEIVED (MAGARI E' LA SINCRONIZZAZIONE DI UN NUOVO DISPOSITIVO CHE NON DEVE PIU' COMUNICARE NULLA AL MITTENTE MA SOLO SCARICARE I MESSAGGI NELLO STATO IN CUI SI TROVANO).
             // NOT RECEIVED = NEW!
-//            NSLog(@"NEW MESSAGE!!!!! %@ group %@", message.text, message.recipientGroupId);
-//            if (!message.recipientGroupId) {
             if (message.isDirect) {
                 [message updateStatusOnFirebase:MSG_STATUS_RECEIVED]; // firebase
             } else {
@@ -206,13 +204,12 @@
         } else {
 //            NSLog(@"Snapshot valid.");
         }
-        ChatMessage *message = [ChatMessage messageFromSnapshotFactory:snapshot];
+        ChatMessage *message = [ChatMessage messageFromfirebaseSnapshotFactory:snapshot];
         if (message.status == MSG_STATUS_SENDING) {
             NSLog(@"Queed message updated. Data saved successfully.");
             int status = MSG_STATUS_SENT;
             [self updateMessageStatusInMemory:message.messageId withStatus:status];
             [self updateMessageStatusOnDB:message.messageId withStatus:status];
-//            [self finishedReceivingMessage:message];
             [self notifyEvent:ChatEventMessageChanged message:message];
         } else if (message.status == MSG_STATUS_RETURN_RECEIPT) {
             NSLog(@"Message update: return receipt.");
@@ -270,14 +267,23 @@
 
 //-(void)sendMessage:(NSString *)text image:(UIImage *)image binary:(NSData *)data type:(NSString *)type attributes:(NSDictionary *)attributes {
 
--(void)appendImagePlaceholderMessageWithFilename:(NSString *)imageFilename metadata:(ChatMessageMetadata *)metadata attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
+-(void)appendImagePlaceholderMessageWithImage:(UIImage *)image attributes:(NSDictionary *)attributes completion:(void(^)(ChatMessage *message, NSError *error)) callback {
     // TODO: validate metadata > specialize for image: ChatMessageImageMetadata to simplify validation
     ChatMessage *message = [self newBaseMessage];
+    
+    // save image
+//    NSString * uuid = [[NSUUID UUID] UUIDString];
+    NSString *image_file_name = message.imageFilename;
+    [self saveImageToRecipientMediaFolderAsPNG:image imageFileName:image_file_name];
+    ChatMessageMetadata *imageMetadata = [[ChatMessageMetadata alloc] init];
+    imageMetadata.width = image.size.width;
+    imageMetadata.height = image.size.height;
+    
     message.status = MSG_STATUS_UPLOADING;
-    message.text = [[NSString alloc] initWithFormat:@"Uploading image: %@...", imageFilename];
-    message.imageFilename = imageFilename;
+    message.text = [[NSString alloc] initWithFormat:@"Uploading image: %@...", image_file_name];
+//    message.imageFilename = imageFilename;
     message.mtype = MSG_TYPE_IMAGE;
-    message.metadata = metadata;
+    message.metadata = imageMetadata;
     message.attributes = attributes;
     message.recipient = self.recipientId;
     message.recipientFullName = self.recipientFullname;
@@ -289,7 +295,7 @@
 
 -(void)sendImagePlaceholderMessage:(ChatMessage *)message completion:(void (^)(ChatMessage *, NSError *))callback {
     [[ChatDB getSharedInstance] updateMessage:message.messageId status:MSG_STATUS_SENDING text:message.text snapshotAsJSONString:message.snapshotAsJSONString];
-    [self updateMessageInMemory:message.messageId status:MSG_STATUS_SENDING text:message.text imageURL:message.metadata.url];
+    [self updateMessageInMemory:message.messageId status:MSG_STATUS_SENDING text:message.text imageURL:message.metadata.src];
     [self notifyEvent:ChatEventMessageChanged message:message];
     [self sendMessage:message completion:^(ChatMessage *message, NSError *error) {
         callback(message, error);
@@ -326,7 +332,7 @@
         message.text = text;
     }
     if (imageURL) {
-        message.metadata.url = imageURL;
+        message.metadata.src = imageURL;
     }
     message.mtype = type;
     if (subtype) {
@@ -436,20 +442,28 @@
         if (error) {
             NSLog(@"Data could not be saved because of an occurred error: %@", error);
             int status = MSG_STATUS_FAILED;
-            [self updateMessageStatusInMemory:ref.key withStatus:status];
-            [self updateMessageStatusOnDB:message.messageId withStatus:status];
-            [self notifyEvent:ChatEventMessageChanged message:message];
+//            [self updateMessageStatusInMemory:ref.key withStatus:status];
+//            [self updateMessageStatusOnDB:message.messageId withStatus:status];
+//            [self notifyEvent:ChatEventMessageChanged message:message];
+            [self updateMessageStatus:status forMessage:message];
             callback(message, error);
         } else {
             NSLog(@"Data saved successfully. Updating status & reloading tableView.");
             int status = MSG_STATUS_SENT;
             NSAssert([ref.key isEqualToString:message.messageId], @"REF.KEY %@ different by MESSAGE.ID %@",ref.key, message.messageId);
-            [self updateMessageStatusInMemory:message.messageId withStatus:status];
-            [self updateMessageStatusOnDB:message.messageId withStatus:status];
-            [self notifyEvent:ChatEventMessageChanged message:message];
+//            [self updateMessageStatusInMemory:message.messageId withStatus:status];
+//            [self updateMessageStatusOnDB:message.messageId withStatus:status];
+//            [self notifyEvent:ChatEventMessageChanged message:message];
+            [self updateMessageStatus:status forMessage:message];
             callback(message, error);
         }
     }];
+}
+
+-(void)updateMessageStatus:(int)status forMessage:(ChatMessage *)message {
+    [self updateMessageStatusInMemory:message.messageId withStatus:status];
+    [self updateMessageStatusOnDB:message.messageId withStatus:status];
+    [self notifyEvent:ChatEventMessageChanged message:message];
 }
 
 -(void)sendMessageToGroup:(ChatMessage *)message completion:(void(^)(ChatMessage *message, NSError *error))callback {
@@ -537,7 +551,7 @@
     ChatMessage *m = [self findMessageInMemoryById:messageId];
     m.status = status;
     m.text = text;
-    m.metadata.url = imageURL;
+    m.metadata.src = imageURL;
 //    m.imageURL = imageURL;
 }
 
@@ -583,6 +597,44 @@
                                            }];
         [self.messages insertObject:message atIndex:newIndex];
     }
+}
+
+-(void)uploadImage:(UIImage *)image fileName:(NSString *)fileName completion:(void(^)(NSURL *downloadURL, NSError *error))callback progressCallback:(void(^)(double fraction))progressCallback {
+    NSData *data = UIImagePNGRepresentation(image);
+    // Get a reference to the storage service using the default Firebase App
+    FIRStorage *storage = [FIRStorage storage];
+    // Create a root reference
+    FIRStorageReference *storageRef = [storage reference];
+    //    NSData *data = [NSData dataWithContentsOfFile:@"rivers.jpg"];
+    NSString * uuid = [[NSUUID UUID] UUIDString];
+    NSString *file_path = [[NSString alloc] initWithFormat:@"images/%@.png", uuid];
+    NSLog(@"image remote file path: %@", file_path);
+    // Create a reference to the file you want to upload
+    FIRStorageReference *riversRef = [storageRef child:file_path];
+    // Create file metadata including the content type
+    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
+    metadata.contentType = @"image/png";
+    // Upload the file to the path
+    FIRStorageUploadTask *uploadTask = [riversRef putData:data
+                                                 metadata:metadata
+                                               completion:^(FIRStorageMetadata *metadata,
+                                                            NSError *error) {
+                                                   if (error != nil) {
+                                                       NSLog(@"an error occurred!");
+                                                       callback(nil, error);
+                                                   } else {
+                                                       NSLog(@"Metadata contains file metadata such as size, content-type, and download URL");
+                                                       NSURL *downloadURL = metadata.downloadURL;
+                                                       NSLog(@"Download url: %@", downloadURL);
+                                                       callback(downloadURL, nil);
+                                                   }
+                                               }];
+    FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
+//                                                      NSLog(@"uploading %@", snapshot);
+//                                                      NSLog(@"completion: %f, %lld", snapshot.progress.fractionCompleted, snapshot.progress.completedUnitCount);
+                                                      progressCallback(snapshot.progress.fractionCompleted);
+                                                  }];
 }
 
 //-(void)finishedReceivingMessage:(ChatMessage *)message {
@@ -659,16 +711,20 @@
     }
 }
 
--(NSString *)mediaPathFolder {
++(NSString *)mediaFolderPathOfRecipient:(NSString *)recipiendId {
     // path: chatConversationsMedia/{recipient-id}/media/{image-name}
     NSURL *urlPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSString *mediaPath = [[[urlPath.path stringByAppendingPathComponent:@"chatConversationsMedia"] stringByAppendingPathComponent:self.recipientId] stringByAppendingPathComponent:@"media"];
+    NSString *mediaPath = [[[urlPath.path stringByAppendingPathComponent:@"chatConversationsMedia"] stringByAppendingPathComponent:recipiendId] stringByAppendingPathComponent:@"media"];
     return mediaPath;
 }
 
--(void)saveImageToConversationMediaFolderAsPNG:(UIImage *)image imageFileName:(NSString *)imageFileName {
+-(NSString *)mediaFolderPath {
+    return [ChatConversationHandler mediaFolderPathOfRecipient:self.recipientId];
+}
+
+-(void)saveImageToRecipientMediaFolderAsPNG:(UIImage *)image imageFileName:(NSString *)imageFileName {
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSString *mediaPath = [self mediaPathFolder];
+    NSString *mediaPath = [self mediaFolderPath];
     if (![filemgr fileExistsAtPath:mediaPath]) {
         NSError *error;
         [filemgr createDirectoryAtPath:mediaPath withIntermediateDirectories:YES attributes:nil error:&error];

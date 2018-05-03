@@ -31,7 +31,7 @@
     int numberDaysNextChat = 0;
     ChatMessage *previousMessage;
     ChatMessage *nextMessage;
-    UIView *backBox = self.messageBackgroundView;//(UIView *)[cell viewWithTag:50];
+    UIView *backBox = self.messageBackgroundView;
     backBox.layer.masksToBounds = YES;
     backBox.layer.cornerRadius = 8.0;
     
@@ -73,30 +73,8 @@
         labelDay.text = @"";
     }
     
-    //-----------------------------------------------------------//
-    //START STATE MESSAGE
-    //-----------------------------------------------------------//
-    
-    UIImageView *status_image_view = self.statusImageView;//(UIImageView *)[cell viewWithTag:22];
-    switch (message.status) {
-        case MSG_STATUS_SENDING:
-            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-            break;
-        case MSG_STATUS_UPLOADING:
-            status_image_view.image = [UIImage imageNamed:@"chat_watch"];
-            break;
-        case MSG_STATUS_SENT:
-            status_image_view.image = [UIImage imageNamed:@"chat_check"];
-            break;
-        case MSG_STATUS_RETURN_RECEIPT:
-            status_image_view.image = [UIImage imageNamed:@"chat_double_check"];
-            break;
-        case MSG_STATUS_FAILED:
-            status_image_view.image = [UIImage imageNamed:@"chat_failed"];
-            break;
-        default:
-            break;
-    }
+    UIImageView *status_image_view = self.statusImageView;
+    [ChatMessageCell setStatusImage:message statusImage:status_image_view];
 }
 
 @end

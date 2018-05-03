@@ -206,7 +206,7 @@
 //        // do nothing
 //    }
     else if (loggedUser && [loggedUserId isEqualToString:self.me.userId]) {
-        NSLog(@"**** You are logged in with the same user. Do nothing.");
+//        NSLog(@"**** You are logged in with the same user. Do nothing.");
     }
 }
 

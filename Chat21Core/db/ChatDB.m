@@ -10,6 +10,7 @@
 #import "ChatConversation.h"
 #import "ChatGroup.h"
 #import "ChatUser.h"
+#import "ChatMessageMetadata.h"
 
 static ChatDB *sharedInstance = nil;
 //static sqlite3 *database = nil;
@@ -202,6 +203,7 @@ static ChatDB *sharedInstance = nil;
 
 -(BOOL)updateMessage:(NSString *)messageId status:(int)status text:(NSString *)text snapshotAsJSONString:(NSString *)snapshotAsJSONString {
     const char *dbpath = [databasePath UTF8String];
+    NSLog(@"snapshot: %@", snapshotAsJSONString);
     if (sqlite3_open(dbpath, &database) == SQLITE_OK) {
         NSString *updateSQL = @"UPDATE messages SET status = ?, snapshot = ?, text_body = ? WHERE messageId = ?";
         if (self.logQuery) {NSLog(@"**** QUERY:%@", updateSQL);}
@@ -393,6 +395,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.sender = sender;
     message.recipient = recipient;
     message.text = text;
+    NSLog(@"Restoring message: %@", text);
     message.mtype = type;
     message.channel_type = channel_type;
     message.status = status;
@@ -406,8 +409,9 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.lang = snapshot[MSG_FIELD_LANG];
     message.attributes = snapshot[MSG_FIELD_ATTRIBUTES];
 //    message.imageURL = snapshot[MSG_FIELD_IMAGE_URL];
-    message.metadata = snapshot[MSG_FIELD_METADATA];
-    message.imageFilename = snapshot[MSG_FIELD_IMAGE_FILENAME];
+    NSDictionary *metadata = snapshot[MSG_FIELD_METADATA];
+    message.metadata = [ChatMessageMetadata fromDictionaryFactory:metadata];
+//    message.imageFilename = snapshot[MSG_FIELD_IMAGE_FILENAME];
     
     return message;
 }
