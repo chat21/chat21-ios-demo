@@ -31,7 +31,7 @@
     } else if (![metadata isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    NSLog(@"metadata: %@", metadata);
+//    NSLog(@"metadata: %@", metadata);
     ChatMessageMetadata *metadata_obj = [[ChatMessageMetadata alloc] init];
     NSString *src = metadata[MSG_METADATA_ATTACHMENT_SRC];
     metadata_obj.src = src;

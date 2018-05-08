@@ -16,19 +16,25 @@
 #import "ChatUser.h"
 #import <libkern/OSAtomic.h>
 #import "ChatMessageMetadata.h"
+#import "ChatImageDownloadManager.h"
 
 @implementation ChatConversationHandler
 
 -(id)init {
     if (self = [super init]) {
-        self.lastEventHandle = 1;
+        [self basicInit];
     }
     return self;
 }
 
+-(void)basicInit {
+    self.lastEventHandle = 1;
+    self.imageDownloader = [[ChatImageDownloadManager alloc] init];
+}
+
 -(id)initWithRecipient:(NSString *)recipientId recipientFullName:(NSString *)recipientFullName {
     if (self = [super init]) {
-        self.lastEventHandle = 1;
+        [self basicInit];
         self.channel_type = MSG_CHANNEL_TYPE_DIRECT;
         self.recipientId = recipientId;
         self.recipientFullname = recipientFullName;
@@ -42,8 +48,7 @@
 
 -(id)initWithGroupId:(NSString *)groupId groupName:(NSString *)groupName {
     if (self = [super init]) {
-        self.lastEventHandle = 1;
-//        self.groupId = groupId;
+        [self basicInit];
         self.channel_type = MSG_CHANNEL_TYPE_GROUP;
         self.recipientId = groupId;
         self.recipientFullname = groupName;

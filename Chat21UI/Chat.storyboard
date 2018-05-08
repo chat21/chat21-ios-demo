@@ -1628,6 +1628,7 @@
                     <connections>
                         <segue destination="tTE-Br-Nic" kind="show" identifier="webView" id="Hq6-YQ-YT8"/>
                         <segue destination="YFz-Q1-5xd" kind="show" identifier="info" id="XrK-ce-lum"/>
+                        <segue destination="dvz-Xm-ewE" kind="show" identifier="imageView" id="aXX-cO-E2C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWc-oH-eL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2185,7 +2186,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhz-AA-Js0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7367" y="-662"/>
+            <point key="canvasLocation" x="-6697" y="-685"/>
         </scene>
         <!--Chat Info Message AttributesTVC-->
         <scene sceneID="Vbi-rd-b16">
@@ -2237,7 +2238,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KuG-Jz-Sfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6580" y="-663.41829085457277"/>
+            <point key="canvasLocation" x="-5910" y="-686"/>
         </scene>
         <!--Chat Mini BrowserVC-->
         <scene sceneID="Kr8-MP-cHl">
@@ -2275,7 +2276,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXC-vo-U3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7367" y="-67"/>
+            <point key="canvasLocation" x="-5911" y="-91"/>
+        </scene>
+        <!--Chat Image BrowserVC-->
+        <scene sceneID="47U-nM-E7k">
+            <objects>
+                <viewController id="dvz-Xm-ewE" customClass="ChatImageBrowserVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MkD-gV-bvq">
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="559"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADe-h1-BrP">
+                                <rect key="frame" x="0.0" y="20" width="383" height="539"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ADe-h1-BrP" firstAttribute="leading" secondItem="MkD-gV-bvq" secondAttribute="leadingMargin" constant="-16" id="AAU-TS-dQq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ADe-h1-BrP" secondAttribute="trailing" constant="-16" id="Sl3-19-JcX"/>
+                            <constraint firstItem="ADe-h1-BrP" firstAttribute="top" secondItem="ADQ-0e-3b7" secondAttribute="top" id="ZdA-gu-0pH"/>
+                            <constraint firstItem="ADQ-0e-3b7" firstAttribute="bottom" secondItem="ADe-h1-BrP" secondAttribute="bottom" id="skS-Eu-wNJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ADQ-0e-3b7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="chV-Bw-4Lb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="aBD-yk-PHz"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="ADe-h1-BrP" id="tiF-yH-hRL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMc-HM-E18" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5911.1999999999998" y="570.76461769115451"/>
         </scene>
     </scenes>
     <resources>

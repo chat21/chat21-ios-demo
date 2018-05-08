@@ -993,6 +993,7 @@ static float messageTime = 0.5;
 //    }
     NSLog(@"image: %@", self.scaledImage);
     self.scaledImage = [ChatImageUtil adjustEXIF:self.scaledImage];
+    self.scaledImage = [ChatImageUtil scaleImage:self.scaledImage toSize:CGSizeMake(600, 600)];
     [self.conversationHandler appendImagePlaceholderMessageWithImage:self.scaledImage attributes:nil completion:^(ChatMessage *message, NSError *error) {
         NSLog(@"Image placeholder message created and appended.");
         // save image to cache

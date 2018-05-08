@@ -85,7 +85,7 @@
 }
 
 +(void)setStatusImage:(ChatMessage *)message statusImage:(UIImageView *)status_image_view {
-    NSLog(@"status: message.text: %@", message.text);
+//    NSLog(@"status: message.text: %@", message.text);
     switch (message.status) {
         case MSG_STATUS_SENDING:
             status_image_view.image = [UIImage imageNamed:@"chat_watch"];

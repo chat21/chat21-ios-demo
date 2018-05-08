@@ -16,6 +16,10 @@
 		B2212E29208BD6D100DE455C /* ChatImageMessageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E28208BD6D100DE455C /* ChatImageMessageRightCell.m */; };
 		B2212E2D208F7AD300DE455C /* no_image_message_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B2212E2C208F7AD300DE455C /* no_image_message_placeholder.png */; };
 		B2212E30209B78DF00DE455C /* ChatImageMessageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E2F209B78DF00DE455C /* ChatImageMessageLeftCell.m */; };
+		B2212E33209C5BFB00DE455C /* ChatImageBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E32209C5BFB00DE455C /* ChatImageBrowserVC.m */; };
+		B2212E36209F1AC400DE455C /* ChatImageMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E35209F1AC400DE455C /* ChatImageMessageCell.m */; };
+		B2212E39209F76EA00DE455C /* ChatImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E38209F76EA00DE455C /* ChatImageDownloadManager.m */; };
+		B2212E3C20A0DD8000DE455C /* ChatNYTPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B2212E3B20A0DD8000DE455C /* ChatNYTPhoto.m */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B238ECF3207C8F1700D50285 /* ChatMessageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B238ECF2207C8F1700D50285 /* ChatMessageMetadata.m */; };
 		B238ED072084A4D500D50285 /* ChatMessagesPersistenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B238ECF72084A35500D50285 /* ChatMessagesPersistenceTests.m */; };
@@ -189,6 +193,14 @@
 		B2212E2C208F7AD300DE455C /* no_image_message_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image_message_placeholder.png; sourceTree = "<group>"; };
 		B2212E2E209B78DF00DE455C /* ChatImageMessageLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageLeftCell.h; sourceTree = "<group>"; };
 		B2212E2F209B78DF00DE455C /* ChatImageMessageLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageLeftCell.m; sourceTree = "<group>"; };
+		B2212E31209C5BFB00DE455C /* ChatImageBrowserVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageBrowserVC.h; sourceTree = "<group>"; };
+		B2212E32209C5BFB00DE455C /* ChatImageBrowserVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageBrowserVC.m; sourceTree = "<group>"; };
+		B2212E34209F1AC400DE455C /* ChatImageMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageCell.h; sourceTree = "<group>"; };
+		B2212E35209F1AC400DE455C /* ChatImageMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageCell.m; sourceTree = "<group>"; };
+		B2212E37209F76EA00DE455C /* ChatImageDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageDownloadManager.h; sourceTree = "<group>"; };
+		B2212E38209F76EA00DE455C /* ChatImageDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageDownloadManager.m; sourceTree = "<group>"; };
+		B2212E3A20A0DD8000DE455C /* ChatNYTPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatNYTPhoto.h; sourceTree = "<group>"; };
+		B2212E3B20A0DD8000DE455C /* ChatNYTPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatNYTPhoto.m; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B238ECF1207C8F1700D50285 /* ChatMessageMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageMetadata.h; sourceTree = "<group>"; };
@@ -615,6 +627,8 @@
 				B290B333202DBD0E008CBC07 /* FirebaseCustomAuthHelper.m */,
 				B238ECF1207C8F1700D50285 /* ChatMessageMetadata.h */,
 				B238ECF2207C8F1700D50285 /* ChatMessageMetadata.m */,
+				B2212E37209F76EA00DE455C /* ChatImageDownloadManager.h */,
+				B2212E38209F76EA00DE455C /* ChatImageDownloadManager.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -766,6 +780,8 @@
 				B290B37F202DBD0E008CBC07 /* ChatChangeGroupNameVC.m */,
 				B290B390202DBD0E008CBC07 /* ChatMiniBrowserVC.h */,
 				B290B380202DBD0E008CBC07 /* ChatMiniBrowserVC.m */,
+				B2212E31209C5BFB00DE455C /* ChatImageBrowserVC.h */,
+				B2212E32209C5BFB00DE455C /* ChatImageBrowserVC.m */,
 				B290B38E202DBD0E008CBC07 /* ChatTitleVC.h */,
 				B290B382202DBD0E008CBC07 /* ChatTitleVC.m */,
 				B290B385202DBD0E008CBC07 /* ChatGroupInfoVC.h */,
@@ -793,6 +809,8 @@
 				B299D9DF207667AE005531A4 /* ChatInfoMessageAttributesTVC.m */,
 				B290B381202DBD0E008CBC07 /* ChatMessageCell.h */,
 				B290B38F202DBD0E008CBC07 /* ChatMessageCell.m */,
+				B2212E34209F1AC400DE455C /* ChatImageMessageCell.h */,
+				B2212E35209F1AC400DE455C /* ChatImageMessageCell.m */,
 				B2FD132D2085E6920068C0AF /* ChatTextMessageLeftCell.h */,
 				B2FD132E2085E6920068C0AF /* ChatTextMessageLeftCell.m */,
 				B2FD1330208723BB0068C0AF /* ChatTextMessageRightCell.h */,
@@ -803,6 +821,8 @@
 				B2212E2F209B78DF00DE455C /* ChatImageMessageLeftCell.m */,
 				B2FD1333208738760068C0AF /* ChatInfoMessageCell.h */,
 				B2FD1334208738760068C0AF /* ChatInfoMessageCell.m */,
+				B2212E3A20A0DD8000DE455C /* ChatNYTPhoto.h */,
+				B2212E3B20A0DD8000DE455C /* ChatNYTPhoto.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1203,9 +1223,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-chat21/Pods-chat21-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/NYTPhotoViewer/NYTPhotoViewer.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1238,6 +1261,7 @@
 				B290B3E4202DBD0F008CBC07 /* ChatMiniBrowserVC.m in Sources */,
 				BFBFD4D71AEA598000657874 /* HelloUser.m in Sources */,
 				B290B3E3202DBD0F008CBC07 /* ChatChangeGroupNameVC.m in Sources */,
+				B2212E3C20A0DD8000DE455C /* ChatNYTPhoto.m in Sources */,
 				B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */,
 				B21A82DC207613F60068A2F9 /* ChatInfoMessageTVC.m in Sources */,
 				B290B3E0202DBD0F008CBC07 /* ChatMessagesTVC.m in Sources */,
@@ -1254,6 +1278,7 @@
 				B290B3AF202DBD0E008CBC07 /* ChatGroupsHandler.m in Sources */,
 				B290B3A9202DBD0E008CBC07 /* ChatUploadsController.m in Sources */,
 				B290B3F1202DBD0F008CBC07 /* NotificationAlertVC.m in Sources */,
+				B2212E33209C5BFB00DE455C /* ChatImageBrowserVC.m in Sources */,
 				B290B3E7202DBD0F008CBC07 /* ChatSelectGroupMembersLocal.m in Sources */,
 				B290B3B7202DBD0E008CBC07 /* ChatDB.m in Sources */,
 				B290B3B9202DBD0E008CBC07 /* ChatContactsDB.m in Sources */,
@@ -1279,6 +1304,7 @@
 				B290B3E2202DBD0F008CBC07 /* ChatCreateGroupVC.m in Sources */,
 				B290B3BC202DBD0E008CBC07 /* CellConfigurator.m in Sources */,
 				B290B3A5202DBD0E008CBC07 /* ChatStringUtil.m in Sources */,
+				B2212E39209F76EA00DE455C /* ChatImageDownloadManager.m in Sources */,
 				B290B3AD202DBD0E008CBC07 /* ChatGroup.m in Sources */,
 				B2FD132F2085E6920068C0AF /* ChatTextMessageLeftCell.m in Sources */,
 				B290B3A8202DBD0E008CBC07 /* ChatImageCache.m in Sources */,
@@ -1301,6 +1327,7 @@
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
 				B290B3B3202DBD0E008CBC07 /* ChatConversationHandler.m in Sources */,
 				B290B3BB202DBD0E008CBC07 /* ChatMessageComponents.m in Sources */,
+				B2212E36209F1AC400DE455C /* ChatImageMessageCell.m in Sources */,
 				B290B3A6202DBD0E008CBC07 /* ChatUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

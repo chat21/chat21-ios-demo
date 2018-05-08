@@ -5,7 +5,7 @@ target 'chat21' do
   # use_frameworks!
 
   # Pods for chat21
-  
+  pod 'NYTPhotoViewer'
   pod 'KeychainItemWrapper'
   pod 'Firebase/Core'
   pod 'Firebase/Database'

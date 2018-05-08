@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>122</string>
+	<string>126</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -72,6 +72,8 @@
 	<string>Permetti l'accesso ai servizi di localizzazione per avere il meglio dalla App</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Permetti l'accesso ai servizi di localizzazione per avere il meglio dalla App</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save images to camera roll</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) set profile photo, send photos in chat</string>
 	<key>UIBackgroundModes</key>

@@ -208,7 +208,7 @@
 }
 
 -(void)setCorrectText:(ChatMessage *)message text:(NSString *)text {
-    NSLog(@"setting text for: %@", message.text);
+//    NSLog(@"setting text for: %@", message.text);
     // text validation
     if (!text) { // never nil
         text = @"";

@@ -18,6 +18,7 @@
 @class ChatGroup;
 @class ChatMessage;
 @class ChatMessageMetadata;
+@class ChatImageDownloadManager;
 
 @interface ChatConversationHandler : NSObject //<ChatGroupsDelegate>
 
@@ -39,6 +40,7 @@
 @property (assign, nonatomic) FIRDatabaseHandle updated_messages_ref_handle;
 @property (strong, nonatomic) FirebaseCustomAuthHelper *authHelper;
 @property (strong, nonatomic) NSString *channel_type;
+@property (strong, nonatomic) ChatImageDownloadManager *imageDownloader;
 
 // observer
 @property (strong, nonatomic) NSMutableDictionary *eventObservers;

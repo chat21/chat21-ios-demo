@@ -23,6 +23,10 @@
 #import "ChatImageMessageRightCell.h"
 #import "ChatImageMessageLeftCell.h"
 #import "ChatImageCache.h"
+#import "ChatImageBrowserVC.h"
+#import "ChatImageDownloadManager.h"
+//#import "NYTPhotosViewController.h"
+#import "ChatNYTPhoto.h"
 
 @interface ChatMessagesTVC ()
 
@@ -70,7 +74,7 @@ static NSString *COPY_LINK_KEY = @"Copy link";
     popupMenu.height = 30;
     popupMenu.navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     popupMenu.statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    popupMenu.delegate = self;
+//    popupMenu.delegate = self;
     self.popupMenu = popupMenu;
 }
 
@@ -92,6 +96,16 @@ static NSString *COPY_LINK_KEY = @"Copy link";
 static NSString *MATCH_TYPE_URL = @"URL";
 static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 
+//-(BOOL)photosViewController:(NYTPhotosViewController *)controller handleActionButtonTappedForPhoto:(id <NYTPhoto>)photo {
+//    NSLog(@"Activity...");
+//    UIImage *image = photo.image;
+//    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
+//    activityViewController.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError) {
+//    };
+//        [self presentViewController:activityViewController animated:YES completion:nil];
+//    return NO;
+//}
+
 - (void)longTapOnCell:(UIGestureRecognizer *)recognizer
 {
     if (recognizer.state != UIGestureRecognizerStateBegan) {
@@ -99,15 +113,36 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     }
     
     NSLog(@"Long tap.");
-    UILabel *label = (UILabel *)recognizer.view;
     
-    // get the index path of tapped cell:
     CGPoint tapLocation = [recognizer locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    
-    
     ChatMessage *message = [self.conversationHandler.messages objectAtIndex:indexPath.row];
     self.selectedMessage = message;
+    NSLog(@"Message.text: %@", message.text);
+    if ([message typeImage]) {
+        NSLog(@"Long tap On Cell: Image message");
+        [self processLongTapOnImageMessage:recognizer message:message];
+    }
+    else {
+        NSLog(@"Long tap On Cell: Text message");
+        [self processLongTapOnTextMessage:recognizer message:message];
+    }
+    
+    // get the index path of tapped cell:
+//    CGPoint tapLocation = [recognizer locationInView:self.tableView];
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    
+    
+//    ChatMessage *message = [self.conversationHandler.messages objectAtIndex:indexPath.row];
+    
+}
+
+-(void)processLongTapOnImageMessage:(UIGestureRecognizer *)recognizer message:(ChatMessage *)message {
+    NSLog(@"Processing tap on Image message. Not implemented.");
+}
+
+-(void)processLongTapOnTextMessage:(UIGestureRecognizer *)recognizer message:(ChatMessage *)message {
+    UILabel *label = (UILabel *)recognizer.view;
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
     
     CGPoint locationOfTouchInLabel = [recognizer locationInView:label];
@@ -182,22 +217,61 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 - (void)tapOnCell:(UIGestureRecognizer *)recognizer
 {
     NSLog(@"TAP on: %@", recognizer.view);
-    UILabel *label = (UILabel *)recognizer.view;
-    
     // get the index path:
     CGPoint tapLocation = [recognizer locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    //    NSLog(@"TAP ON ROW %ld", indexPath.row);
-    //    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:pressIndexPath];
-    //    UILabel *message_label = (UILabel *)[cell viewWithTag:10];
-    //    self.selectedText = message_label.text;
+    ChatMessage *message = [self.conversationHandler.messages objectAtIndex:indexPath.row];
+    NSLog(@"Message.text: %@", message.text);
+    if ([message typeImage]) {
+        NSLog(@"tapOnCell: Image message");
+        [self processTapOnImageMessage:recognizer message:message];
+    }
+    else {
+        NSLog(@"tapOnCell: Text message");
+        [self processTapOnTextMessage:recognizer message:message];
+    }
+//    UIView *view = (UIView *)recognizer.view;
+//    if ([view isKindOfClass:[UIImageView class]]) {
+//        NSLog(@"UIImageView");
+//    }
+//    else if ([view isKindOfClass:[UILabel class]]) {
+//        NSLog(@"UILabel");
+//    }
+}
+
+-(void)processTapOnImageMessage:(UIGestureRecognizer *)recognizer message:(ChatMessage *)message {
+//    if (![recognizer.view isKindOfClass:[UIImageView class]]) {
+//        NSLog(@"Error. recognizer.view is not UILabel for a message of type text.");
+//        return;
+//    }
+    NSLog(@"Processing tap on Image message.");
+    self.selectedImageURL = [[NSString alloc] initWithFormat:@"file://%@", [message imagePathFromMediaFolder] ];
+    NSLog(@"Opening image: %@", self.selectedImageURL);
+//    [self performSegueWithIdentifier:@"imageView" sender:self];
+//    ChatNYTPhoto .image .placeholderImage
     
+    UIImage *image = [message imageFromMediaFolder];
+    ChatNYTPhoto *photo = [[ChatNYTPhoto alloc] init];
+    photo.image = image;
+    NSArray *photos = [NSArray arrayWithObjects:photo, nil];
+    NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:photos];
+    photosViewController.delegate = self;
+    [self presentViewController:photosViewController animated:YES completion:nil];
+    // TODO - remove image browser, view on storyboard and class
+}
+
+-(void)processTapOnTextMessage:(UIGestureRecognizer *)recognizer message:(ChatMessage *)message {
+    if (![recognizer.view isKindOfClass:[UILabel class]]) {
+        NSLog(@"Error. recognizer.view is not UILabel for a message of type text.");
+        return;
+    }
+    NSLog(@"Processing tap on Text message.");
+    UILabel *label = (UILabel *)recognizer.view;
     CGPoint locationOfTouchInLabel = [recognizer locationInView:label];
     NSInteger indexOfCharacter = [self indexOfCharacterInLabel:label onTapPoint:locationOfTouchInLabel];
     
-    NSLog(@"INDEX: %ld", indexOfCharacter);
+//    NSLog(@"INDEX: %ld", indexOfCharacter);
     
-    ChatMessage *message = [self.conversationHandler.messages objectAtIndex:indexPath.row];
     ChatMessageComponents *components = [self.rowComponents objectForKey:message.messageId];
     
     NSString *text = components.text;
@@ -209,9 +283,8 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     
     NSTextCheckingResult *selectedMatch = nil;
     NSString *selectedmatchType = nil;
-    
     NSArray *urlsMatches = components.urlsMatches;
-    NSLog(@"\"%@\"",[text substringWithRange:NSMakeRange(indexOfCharacter, 1)]);
+//    NSLog(@"\"%@\"",[text substringWithRange:NSMakeRange(indexOfCharacter, 1)]);
     if (urlsMatches) {
         for (NSTextCheckingResult *match in urlsMatches) {
             if (NSLocationInRange(indexOfCharacter, match.range)) {
@@ -256,19 +329,6 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
             //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.selectedHighlightLink]];
             [self performSegueWithIdentifier:@"webView" sender:self];
         }
-//        else if ([selectedmatchType isEqualToString:MATCH_TYPE_CHAT_LINK]) {
-//            [self highlightTappedLinkWithTimeout:YES];
-//            NSLog(@"chat link: %@", self.selectedHighlightLink);
-//            NSArray *parts = [self.selectedHighlightLink componentsSeparatedByString:@"//"];
-//            for (NSString *p in parts) {
-//                NSLog(@"part: %@", p);
-//            }
-//            NSString *chatToUser = parts[1];
-//            ChatUser *user = [[ChatUser alloc] init];
-//            user.userId = chatToUser;
-//            [ChatUtil moveToConversationViewWithUser:user];
-//            NSLog(@"MATCH_TYPE_CHAT_LINK");
-//        }
     }
 }
 
@@ -581,50 +641,68 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
 }
 
 - (void)downloadImage:(ChatMessage *)message onIndexPath:(NSIndexPath *)indexPath {
-    
-    NSURLSessionConfiguration *_config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *_session = [NSURLSession sessionWithConfiguration:_config];
-    
-    NSURL *url = [NSURL URLWithString:message.imageURL];
-    NSLog(@"Image url: %@", message.imageURL);
-    if (!url) {
-        NSLog(@"ERROR - Can't download image, URL is null");
-        return;
-    }
-    NSString *path = [message imagePathFromMediaFolder];
-    NSLog(@"image path to save: %@", path);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    NSURLSessionDataTask *task = [_session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"image downloaded.");
+    NSLog(@"Downloading image: %@", message.imageURL);
+    ChatMessagesTVC * __weak weakSelf = self;
+    [self.conversationHandler.imageDownloader downloadImage:message onIndexPath:indexPath completionHandler:^(NSIndexPath * indexPath, UIImage *image, NSError *error) {
         if (error) {
-            NSLog(@"%@", error);
+            NSLog(@"Image downloaded with error. %@", [error localizedDescription]);
+        }
+        ChatMessagesTVC *strongSelf = weakSelf;
+        if (strongSelf == nil) {
             return;
         }
-        
-        if (data) {
-            UIImage *image = [UIImage imageWithData:data];
-            if (image) {
-                NSData* imageData = [NSData dataWithData:UIImagePNGRepresentation(image)];
-                NSError *writeError = nil;
-                NSLog(@"image path: %@", path);
-                [message createMediaFolderPathIfNotExists];
-                if(![imageData writeToFile:path options:NSDataWritingAtomic error:&writeError]) {
-                    NSLog(@"%@: Error saving image: %@", [self class], [writeError localizedDescription]);
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.imageCache addImage:image withKey:message.messageId];
-                    if ([self isIndexPathVisible:indexPath]) {
-                        ChatImageMessageRightCell *updateCell = (id)[self.tableView cellForRowAtIndexPath:indexPath];
-                        if (updateCell) {
-                            updateCell.messageImageView.image = image;
-                        }
-                    }
-                });
+        [strongSelf.imageCache addImage:image withKey:message.messageId];
+        if ([strongSelf isIndexPathVisible:indexPath]) {
+            ChatImageMessageRightCell *updateCell = (id)[strongSelf.tableView cellForRowAtIndexPath:indexPath];
+            if (updateCell) {
+                updateCell.messageImageView.image = image;
             }
         }
     }];
-    [task resume];
+    
+//    NSURLSessionConfiguration *_config = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURLSession *_session = [NSURLSession sessionWithConfiguration:_config];
+//
+//    NSURL *url = [NSURL URLWithString:message.imageURL];
+//    NSLog(@"Image url: %@", message.imageURL);
+//    if (!url) {
+//        NSLog(@"ERROR - Can't download image, URL is null");
+//        return;
+//    }
+//    NSString *path = [message imagePathFromMediaFolder];
+//    NSLog(@"image path to save: %@", path);
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+//
+//    NSURLSessionDataTask *task = [_session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        NSLog(@"image downloaded.");
+//        if (error) {
+//            NSLog(@"%@", error);
+//            return;
+//        }
+//
+//        if (data) {
+//            UIImage *image = [UIImage imageWithData:data];
+//            if (image) {
+//                NSData* imageData = [NSData dataWithData:UIImagePNGRepresentation(image)];
+//                NSError *writeError = nil;
+//                NSLog(@"image path: %@", path);
+//                [message createMediaFolderPathIfNotExists];
+//                if(![imageData writeToFile:path options:NSDataWritingAtomic error:&writeError]) {
+//                    NSLog(@"%@: Error saving image: %@", [self class], [writeError localizedDescription]);
+//                }
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.imageCache addImage:image withKey:message.messageId];
+//                    if ([self isIndexPathVisible:indexPath]) {
+//                        ChatImageMessageRightCell *updateCell = (id)[self.tableView cellForRowAtIndexPath:indexPath];
+//                        if (updateCell) {
+//                            updateCell.messageImageView.image = image;
+//                        }
+//                    }
+//                });
+//            }
+//        }
+//    }];
+//    [task resume];
 }
 
 -(BOOL)isIndexPathVisible:(NSIndexPath *)indexPath {
@@ -715,6 +793,10 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         vc.hiddenToolBar = YES;
         vc.titlePage = @"";
         vc.urlPage = self.selectedHighlightLink;
+    }
+    if ([segue.identifier isEqualToString:@"imageView"]) {
+        ChatImageBrowserVC *vc = (ChatImageBrowserVC *)[segue destinationViewController];
+        vc.imageURL = self.selectedImageURL;
     }
     else if ([segue.identifier isEqualToString:@"info"]) {
         ChatInfoMessageTVC *vc = (ChatInfoMessageTVC *)[segue destinationViewController];

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ChatMessageCell.h"
+#import "ChatImageMessageCell.h"
 
-@interface ChatTextMessageRightCell : ChatMessageCell
+@interface ChatTextMessageRightCell : ChatImageMessageCell
 
 @property (weak, nonatomic) IBOutlet UIView *messageBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;

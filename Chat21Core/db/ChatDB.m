@@ -360,7 +360,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     if (snapshot_json_chars != NULL) {
         NSString *snapshot_json = nil;
         snapshot_json = [[NSString alloc] initWithUTF8String:snapshot_json_chars];
-        NSLog(@"snapshot_json: %@", snapshot_json);
+//        NSLog(@"snapshot_json: %@", snapshot_json);
         if (snapshot_json) {
             NSData *jsonData = [snapshot_json dataUsingEncoding:NSUTF8StringEncoding];
             NSError* error;
@@ -395,7 +395,7 @@ static NSString *SELECT_FROM_MESSAGES_STATEMENT = @"select messageId, conversati
     message.sender = sender;
     message.recipient = recipient;
     message.text = text;
-    NSLog(@"Restoring message: %@", text);
+//    NSLog(@"Restoring message: %@", text);
     message.mtype = type;
     message.channel_type = channel_type;
     message.status = status;
