@@ -768,6 +768,8 @@
 		B290B37B202DBD0E008CBC07 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B290B3A1202DBD0E008CBC07 /* ChatConversationsVC.h */,
+				B290B38D202DBD0E008CBC07 /* ChatConversationsVC.m */,
 				B290B395202DBD0E008CBC07 /* ChatMessagesTVC.h */,
 				B290B37C202DBD0E008CBC07 /* ChatMessagesTVC.m */,
 				B290B394202DBD0E008CBC07 /* ChatMessagesVC.h */,
@@ -794,8 +796,6 @@
 				B290B389202DBD0E008CBC07 /* ChatSelectUserLocalVC.m */,
 				B290B39D202DBD0E008CBC07 /* ChatGroupMembersVC.h */,
 				B290B38B202DBD0E008CBC07 /* ChatGroupMembersVC.m */,
-				B290B3A1202DBD0E008CBC07 /* ChatConversationsVC.h */,
-				B290B38D202DBD0E008CBC07 /* ChatConversationsVC.m */,
 				B290B399202DBD0E008CBC07 /* ChatModalCallerDelegate.h */,
 				B290B39B202DBD0E008CBC07 /* UIView+Property.h */,
 				B290B384202DBD0E008CBC07 /* UIView+Property.m */,

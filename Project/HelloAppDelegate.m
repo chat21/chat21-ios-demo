@@ -144,7 +144,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
     NSLog(@"REMOTE NOTIFICATION. didReceiveRemoteNotification: %@", userInfo);
     UIApplicationState state = [[UIApplication sharedApplication] applicationState];
-    NSLog(@"APPLICATION DID RECEIVE REMOTE NOTIFICATION IN STATE: %ld", state);
+    NSLog(@"APPLICATION DID RECEIVE REMOTE NOTIFICATION IN STATE: %ld", (long)state);
     if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
     {
         NSLog(@"APPLICATION WAS RUNNING IN BACKGROUND!");
@@ -174,6 +174,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
             ChatGroup *group = [[ChatGroup alloc] init];
             group.name = recipient_fullname;
             group.groupId = recipientid;
+//            [[ChatManager getInstance] createGroupFromPushNotificationWithName:group.name groupId:group.groupId];
             [ChatUIManager moveToConversationViewWithGroup:group];
         }
         else {

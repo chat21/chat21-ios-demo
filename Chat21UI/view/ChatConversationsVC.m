@@ -288,42 +288,6 @@
     self.disconnectedHandle = 0;
 }
 
-//-(void)initContactsSynchronizer {
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatContactsSynchronizer *synchronizer = chat.contactsSynchronizer;
-//    if (!synchronizer) {
-//        NSLog(@"Contacts Synchronizer not found. Creating & initializing a new one.");
-//        synchronizer = [chat createContactsSynchronizerForUser:self.me];
-//        [synchronizer startSynchro];
-//    } else {
-//        [synchronizer startSynchro];
-//    }
-//}
-
-//-(void)initPresenceHandler {
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatPresenceHandler *handler = chat.presenceHandler;
-//    if (!handler) {
-//        NSLog(@"Presence Handler not found. Creating & initializing a new one.");
-//        handler = [chat createPresenceHandlerForUser:self.me];
-//        handler.delegate = self;
-//        self.presenceHandler = handler;
-//        NSLog(@"Connecting handler to firebase.");
-//        [self.presenceHandler setupMyPresence];
-//    }
-//}
-
-//-(void)initGroupsHandler {
-//    ChatManager *chat = [ChatManager getSharedInstance];
-//    ChatGroupsHandler *handler = chat.groupsHandler;
-//    if (!handler) {
-//        NSLog(@"Groups Handler not found. Creating & initializing a new one.");
-//        handler = [chat createGroupsHandlerForUser:self.me];
-//        [handler restoreGroupsFromDB]; // not thread-safe, call this method before firebase synchronization start
-//        [handler connect]; // firebase synchronization starts
-//    }
-//}
-
 //#protocol SHPConversationsViewDelegate
 
 -(void)didFinishConnect:(ChatConversationsHandler *)handler error:(NSError *)error {
@@ -521,9 +485,6 @@
         ChatMessagesVC *vc = (ChatMessagesVC *)[segue destinationViewController];
         // conversationsHandler will update status of new conversations (they come with is_new = true) with is_new = false (because the conversation is open and so new messages are all read)
         self.conversationsHandler.currentOpenConversationId = self.selectedConversationId;
-//        NSLog(@"self.selectedConversationId = %@", self.selectedConversationId);
-//        NSLog(@"self.conversationsHandler.currentOpenConversationId = %@", self.selectedConversationId);
-//        NSLog(@"self.selectedRecipient: %@", self.selectedRecipientId);
         if (self.selectedRecipientId) {
             ChatUser *recipient = [[ChatUser alloc] init:self.selectedRecipientId fullname:self.selectedRecipientFullname];
             vc.recipient = recipient;
@@ -532,14 +493,22 @@
             vc.recipient = nil;
         }
         if (self.selectedGroupId) {
+            NSLog(@"SELECTED GROUP ID: %@", self.selectedGroupId);
             vc.group = [[ChatManager getInstance] groupById:self.selectedGroupId];
+            NSLog(@"vc.group: %@", vc.group);
             if (!vc.group) {
-//                NSLog(@"INFO X GRUPPO %@ NON TROVATE. PROBABILMENTE GRUPPI NON ANCORA SINCRONIZZATI. CARICO INFO GRUPPO DIRETTAMENTE DA VISTA MESSAGGI (CON ID GRUPPO)", self.selectedGroupId);
-                ChatGroup *emptyGroup = [[ChatGroup alloc] init];
-                emptyGroup.name = self.selectedGroupName;
-                emptyGroup.members = nil; // signals no group metadata
-                emptyGroup.groupId = self.selectedGroupId;
-                vc.group = emptyGroup;
+                // GROUP INFO NOT FOUND. GROUPS STILL NOT SYNCHONIZED OR I'M HERE
+                // BECAUSE A PUSH NOTIFICATION THAT STARTED THE APPLICATION (AND THE GROUP WASN'T STILL SYNCHRONIZED)
+                ChatGroup *temporaryGroup = [[ChatGroup alloc] init];
+                temporaryGroup.name = self.selectedGroupName;
+                temporaryGroup.groupId = self.selectedGroupId;
+//                emptyGroup.members = nil; // signals no group metadata
+                NSString *me = [ChatManager getInstance].loggedUser.userId;
+                NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
+                [membersIDs addObject:me]; // always add me
+                temporaryGroup.members = [ChatGroup membersArray2Dictionary:membersIDs];
+                
+                vc.group = temporaryGroup;
             }
         }
         vc.unread_count = self.unread_count;

@@ -899,5 +899,19 @@ static ChatManager *sharedInstance = nil;
 //    }];
 //}
 
+//-(void)createGroupFromPushNotificationWithName:(NSString *)groupName groupId:(NSString *)groupId {
+//    ChatGroup *group = [[ChatGroup alloc] init];
+//    group.name = groupName;
+//    group.groupId = groupId;
+//    NSMutableArray *membersIDs = [[NSMutableArray alloc] init];
+//    NSString *me = self.loggedUser.userId;
+//    [membersIDs addObject:me];
+//    group.members = [ChatGroup membersArray2Dictionary:membersIDs];
+//    group.owner = nil;
+//    group.user = me; // groupDB is multi-user.
+//    group.createdOn = [[NSDate alloc] init];
+//    [ChatGroupsHandler createGroupFromPushNotification:group];
+//}
+
 @end
 

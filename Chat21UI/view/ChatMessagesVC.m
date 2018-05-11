@@ -70,12 +70,6 @@
     if (self.recipient) { // online status only in DM mode
         [self setupForDirectMessageMode];
     }
-//    else if (self.group && !self.group.completeData) {
-//        // group's metadata not available, downloading
-//        // the conversationHandler object needs all group's metadata (members)
-//        // so it can't be initialized without completing group's info
-//        [self loadGroupInfo];
-//    }
     else if (self.group) { // all group metadata ok
         [self setupForGroupMode];
     }
@@ -795,7 +789,7 @@
         self.messagesArriving = YES;
         // fist message always shown
         [self renderMessages];
-        [self playSound];
+//        [self playSound];
     }
     else {
         NSLog(@"MESSAGES STILL ARRIVING, NOT RENDERING!");
@@ -846,11 +840,6 @@ static float messageTime = 0.5;
 }
 
 -(void)playSound {
-//    double now = [[NSDate alloc] init].timeIntervalSince1970;
-//    if (now - self.lastPlayedSoundTime < 3) {
-//        NSLog(@"TOO EARLY TO PLAY ANOTHER SOUND");
-//        return;
-//    }
     // help: https://github.com/TUNER88/iOSSystemSoundsLibrary
     // help: http://developer.boxcar.io/blog/2014-10-08-notification_sounds/
     NSString *path = [NSString stringWithFormat:@"%@/inline.caf", [[NSBundle mainBundle] resourcePath]];
