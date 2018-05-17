@@ -34,6 +34,7 @@
 #import <DBChooser/DBChooser.h>
 #import "ChatMessageMetadata.h"
 #import "ChatImageUtil.h"
+#import "ChatImagePreviewVC.h"
 
 @interface ChatMessagesVC (){
     SystemSoundID soundID;
@@ -921,6 +922,12 @@ static float messageTime = 0.5;
         //        vc.applicationContext = self.applicationContext;
         vc.group = self.group;
     }
+    else if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
+        NSLog(@"vc %@", vc);
+        vc.image = self.scaledImage;
+        vc.recipientFullname = self.recipient.fullname;
+    }
 }
 
 // **************************************************
@@ -961,6 +968,7 @@ static float messageTime = 0.5;
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // TODO apri showImagePreview
     [picker dismissViewControllerAnimated:YES completion:nil];
     [self afterPickerCompletion:picker withInfo:info];
 }
@@ -972,7 +980,6 @@ static float messageTime = 0.5;
 //    }
     NSURL *local_image_url = [info objectForKey:@"UIImagePickerControllerImageURL"];
     NSString *image_original_file_name = [local_image_url lastPathComponent];
-//    NSLog(@"IMAGE: %@", bigImage);
     NSLog(@"image_original_file_name: %@", image_original_file_name);
     self.scaledImage = bigImage;
     // save image in photos
@@ -983,11 +990,32 @@ static float messageTime = 0.5;
     NSLog(@"image: %@", self.scaledImage);
     self.scaledImage = [ChatImageUtil adjustEXIF:self.scaledImage];
     self.scaledImage = [ChatImageUtil scaleImage:self.scaledImage toSize:CGSizeMake(600, 600)];
-    [self.conversationHandler appendImagePlaceholderMessageWithImage:self.scaledImage attributes:nil completion:^(ChatMessage *message, NSError *error) {
+    [self performSegueWithIdentifier:@"imagePreview" sender:nil];
+}
+
+- (IBAction)unwindToMessagesVC:(UIStoryboardSegue*)sender {
+    NSLog(@"exited");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIViewController *sourceViewController = sender.sourceViewController;
+    if ([sourceViewController isKindOfClass:[ChatImagePreviewVC class]]) {
+        ChatImagePreviewVC *vc = (ChatImagePreviewVC *) sourceViewController;
+        if (vc.image) {
+            UIImage *imageToSend = vc.image;
+            NSLog(@"image to send: %@", imageToSend);
+            [self sendImage:imageToSend];
+        }
+        else {
+            NSLog(@"operation canceled");
+        }
+    }
+}
+
+-(void)sendImage:(UIImage *)image {
+    [self.conversationHandler appendImagePlaceholderMessageWithImage:image attributes:nil completion:^(ChatMessage *message, NSError *error) {
         NSLog(@"Image placeholder message created and appended.");
         // save image to cache
-        [[ChatImageCache getSharedInstance] addImage:self.scaledImage withKey:message.messageId];
-        [self.conversationHandler uploadImage:self.scaledImage fileName:message.imageFilename completion:^(NSURL *downloadURL, NSError *error) {
+        [[ChatImageCache getSharedInstance] addImage:image withKey:message.messageId];
+        [self.conversationHandler uploadImage:image fileName:message.imageFilename completion:^(NSURL *downloadURL, NSError *error) {
             NSLog(@"Image uploaded. Download url: %@", downloadURL);
             if (error) {
                 NSLog(@"Error during image upload.");
@@ -1007,8 +1035,6 @@ static float messageTime = 0.5;
             NSLog(@"progress: %f", fraction);
         }];
     }];
-    
-    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo

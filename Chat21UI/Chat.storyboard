@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pfg-RN-Typ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8532" y="342"/>
+            <point key="canvasLocation" x="-6255" y="1162"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9BY-0f-fAF">
@@ -145,7 +145,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="El8-qO-cvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9348" y="341"/>
+            <point key="canvasLocation" x="-7193" y="1162"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UMO-qt-ZTs">
@@ -161,7 +161,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucX-ri-2ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11017.5" y="1829.5774647887322"/>
+            <point key="canvasLocation" x="-10844" y="2101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fwG-Oy-Izr">
@@ -615,7 +615,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5U-Sh-JNV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9864" y="1801"/>
+            <point key="canvasLocation" x="-9866" y="2101"/>
         </scene>
         <!--Aggiungi Membri-->
         <scene sceneID="XXQ-0d-a3n">
@@ -778,7 +778,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAN-jD-kXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9864" y="2601"/>
+            <point key="canvasLocation" x="-9866" y="2934"/>
         </scene>
         <!--Info gruppo-->
         <scene sceneID="102-rg-dg6">
@@ -998,7 +998,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFN-Dd-HiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9864.7999999999993" y="1077.2113943028487"/>
+            <point key="canvasLocation" x="-9034" y="1162"/>
         </scene>
         <!--Chat Group MembersVC-->
         <scene sceneID="CyY-G4-pwM">
@@ -1063,7 +1063,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWU-aa-lNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8390" y="1078"/>
+            <point key="canvasLocation" x="-8151" y="1162"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zB9-p4-jel">
@@ -1628,7 +1628,6 @@
                     <connections>
                         <segue destination="tTE-Br-Nic" kind="show" identifier="webView" id="Hq6-YQ-YT8"/>
                         <segue destination="YFz-Q1-5xd" kind="show" identifier="info" id="XrK-ce-lum"/>
-                        <segue destination="dvz-Xm-ewE" kind="show" identifier="imageView" id="aXX-cO-E2C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWc-oH-eL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1649,7 +1648,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bS6-DZ-pOB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9033" y="1922"/>
+            <point key="canvasLocation" x="-9034" y="2101"/>
         </scene>
         <!--Chat Change Group NameVC-->
         <scene sceneID="GTF-mW-Tre">
@@ -1719,7 +1718,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DrC-ie-scb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NVt-Yy-02m" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-8331" y="1922"/>
+            <point key="canvasLocation" x="-8151" y="2101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oGl-l3-PeT">
@@ -1845,6 +1844,7 @@
                         <outlet property="sendButton" destination="nvi-z9-0uL" id="JUj-dX-Cyf"/>
                         <outlet property="viewContainer" destination="T46-i9-Q59" id="R2N-ie-Fm1"/>
                         <segue destination="AwH-i1-wi5" kind="show" identifier="GroupInfo" id="H6P-aU-qVr"/>
+                        <segue destination="vpO-G0-0np" kind="presentation" identifier="imagePreview" id="L1S-as-9Vq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9s-Xu-ncu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2278,43 +2278,86 @@
             </objects>
             <point key="canvasLocation" x="-5911" y="-91"/>
         </scene>
-        <!--Chat Image BrowserVC-->
-        <scene sceneID="47U-nM-E7k">
+        <!--Chat Image PreviewVC-->
+        <scene sceneID="XJk-2B-gqN">
             <objects>
-                <viewController id="dvz-Xm-ewE" customClass="ChatImageBrowserVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MkD-gV-bvq">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="559"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <viewController id="vpO-G0-0np" customClass="ChatImagePreviewVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="koN-Gn-3Rc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADe-h1-BrP">
-                                <rect key="frame" x="0.0" y="20" width="383" height="539"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                            </webView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image_message_placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="HF8-u4-q0z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3l-yo-JcE">
+                                <rect key="frame" x="310" y="610" width="36" height="30"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <segue destination="0Ac-X7-HbJ" kind="unwind" unwindAction="unwindToMessagesVC:" id="Odh-KB-x1P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evh-XT-ydt">
+                                <rect key="frame" x="15" y="20" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="pgb-uS-zRc"/>
+                                    <constraint firstAttribute="width" constant="25" id="uey-zt-EI6"/>
+                                </constraints>
+                                <state key="normal" title="Cancel" image="exiticonbutton.png"/>
+                                <connections>
+                                    <action selector="cancelAction:" destination="vpO-G0-0np" eventType="touchUpInside" id="FJm-uM-phW"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHR-sS-tcz">
+                                <rect key="frame" x="0.0" y="648" width="375" height="19"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCl-rR-J5y">
+                                        <rect key="frame" x="329.5" y="1" width="37.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.22848526554404147" green="0.22848526554404147" blue="0.22848526554404147" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="iCl-rR-J5y" firstAttribute="centerY" secondItem="qHR-sS-tcz" secondAttribute="centerY" id="1k1-Md-Bg3"/>
+                                    <constraint firstAttribute="trailing" secondItem="iCl-rR-J5y" secondAttribute="trailing" constant="8" id="R7r-zF-eiw"/>
+                                    <constraint firstAttribute="height" constant="19" id="jlM-Gc-zQX"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ADe-h1-BrP" firstAttribute="leading" secondItem="MkD-gV-bvq" secondAttribute="leadingMargin" constant="-16" id="AAU-TS-dQq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ADe-h1-BrP" secondAttribute="trailing" constant="-16" id="Sl3-19-JcX"/>
-                            <constraint firstItem="ADe-h1-BrP" firstAttribute="top" secondItem="ADQ-0e-3b7" secondAttribute="top" id="ZdA-gu-0pH"/>
-                            <constraint firstItem="ADQ-0e-3b7" firstAttribute="bottom" secondItem="ADe-h1-BrP" secondAttribute="bottom" id="skS-Eu-wNJ"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="bottom" secondItem="HF8-u4-q0z" secondAttribute="bottom" id="BAx-fj-g0c"/>
+                            <constraint firstItem="evh-XT-ydt" firstAttribute="leading" secondItem="9F0-Kp-dkJ" secondAttribute="leading" constant="15" id="CWM-d6-a1o"/>
+                            <constraint firstItem="evh-XT-ydt" firstAttribute="top" secondItem="9F0-Kp-dkJ" secondAttribute="top" id="Trh-LK-oW9"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="top" secondItem="HF8-u4-q0z" secondAttribute="top" constant="20" id="Xvp-ZE-b3g"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="trailing" secondItem="qHR-sS-tcz" secondAttribute="trailing" id="awP-Ic-Sln"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="trailing" secondItem="R3l-yo-JcE" secondAttribute="trailing" constant="29" id="nV0-KF-xEY"/>
+                            <constraint firstItem="qHR-sS-tcz" firstAttribute="leading" secondItem="9F0-Kp-dkJ" secondAttribute="leading" id="p0B-Dy-Kkb"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="trailing" secondItem="HF8-u4-q0z" secondAttribute="trailing" id="q8s-La-UUd"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="bottom" secondItem="qHR-sS-tcz" secondAttribute="bottom" id="uFN-6W-4gf"/>
+                            <constraint firstItem="9F0-Kp-dkJ" firstAttribute="bottom" secondItem="R3l-yo-JcE" secondAttribute="bottom" constant="27" id="wHR-GF-kgE"/>
+                            <constraint firstItem="HF8-u4-q0z" firstAttribute="leading" secondItem="9F0-Kp-dkJ" secondAttribute="leading" id="yI8-K3-nEa"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ADQ-0e-3b7"/>
+                        <viewLayoutGuide key="safeArea" id="9F0-Kp-dkJ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="chV-Bw-4Lb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="aBD-yk-PHz"/>
-                    </navigationItem>
                     <connections>
-                        <outlet property="webView" destination="ADe-h1-BrP" id="tiF-yH-hRL"/>
+                        <outlet property="imageView" destination="HF8-u4-q0z" id="Ure-0e-8O4"/>
+                        <outlet property="recipientFullnameLabel" destination="iCl-rR-J5y" id="wD6-5A-dIv"/>
+                        <segue destination="0Ac-X7-HbJ" kind="unwind" identifier="unwindToMessagesVCsegue" unwindAction="unwindToMessagesVC:" id="ee2-gp-CDD"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eMc-HM-E18" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Irp-kw-wPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0Ac-X7-HbJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5911.1999999999998" y="570.76461769115451"/>
+            <point key="canvasLocation" x="-8703.2000000000007" y="400.74962518740631"/>
         </scene>
     </scenes>
     <resources>
         <image name="chat_check.png" width="40" height="40"/>
+        <image name="exiticonbutton.png" width="512" height="512"/>
+        <image name="no_image_message_placeholder.png" width="500" height="500"/>
         <image name="plus_icon.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -23,7 +23,6 @@
 #import "ChatImageMessageRightCell.h"
 #import "ChatImageMessageLeftCell.h"
 #import "ChatImageCache.h"
-#import "ChatImageBrowserVC.h"
 #import "ChatImageDownloadManager.h"
 //#import "NYTPhotosViewController.h"
 #import "ChatNYTPhoto.h"
@@ -255,7 +254,7 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
     photo.image = image;
     NSArray *photos = [NSArray arrayWithObjects:photo, nil];
     NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:photos];
-    photosViewController.delegate = self;
+//    photosViewController.delegate = self;
     [self presentViewController:photosViewController animated:YES completion:nil];
     // TODO - remove image browser, view on storyboard and class
 }
@@ -794,10 +793,10 @@ static NSString *MATCH_TYPE_CHAT_LINK = @"CHATLINK";
         vc.titlePage = @"";
         vc.urlPage = self.selectedHighlightLink;
     }
-    if ([segue.identifier isEqualToString:@"imageView"]) {
-        ChatImageBrowserVC *vc = (ChatImageBrowserVC *)[segue destinationViewController];
-        vc.imageURL = self.selectedImageURL;
-    }
+//    if ([segue.identifier isEqualToString:@"imageView"]) {
+//        ChatImageBrowserVC *vc = (ChatImageBrowserVC *)[segue destinationViewController];
+//        vc.imageURL = self.selectedImageURL;
+//    }
     else if ([segue.identifier isEqualToString:@"info"]) {
         ChatInfoMessageTVC *vc = (ChatInfoMessageTVC *)[segue destinationViewController];
         vc.message = self.selectedMessage;

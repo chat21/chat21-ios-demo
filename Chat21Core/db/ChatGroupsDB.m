@@ -125,16 +125,16 @@ static ChatGroupsDB *sharedInstance = nil;
 //    });
 //}
 
--(void)insertGroupOnlyIfNotExistsSyncronized:(ChatGroup *)group completion:(void(^)()) callback {
-    dispatch_async(serialDatabaseQueue, ^{
-        ChatGroup *exists = [self getGroupById:group.groupId];
-        if (!exists) {
-            NSLog(@"GROUP %@/%@ IS NEW. INSERTING GROUP...", group.groupId, group.name);
-            [self insertGroup:group];
-            callback();
-        }
-    });
-}
+//-(void)insertGroupOnlyIfNotExistsSyncronized:(ChatGroup *)group completion:(void(^)()) callback {
+//    dispatch_async(serialDatabaseQueue, ^{
+//        ChatGroup *exists = [self getGroupById:group.groupId];
+//        if (!exists) {
+//            NSLog(@"GROUP %@/%@ IS NEW. INSERTING GROUP...", group.groupId, group.name);
+//            [self insertGroup:group];
+//            callback();
+//        }
+//    });
+//}
 
 -(void)insertOrUpdateGroupSyncronized:(ChatGroup *)group completion:(void(^)()) callback {
     dispatch_async(serialDatabaseQueue, ^{
