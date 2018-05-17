@@ -10,6 +10,7 @@
 		81B60948902262F929222CC3 /* libPods-Chat21Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3F9FEBB307E687684A0C5C /* libPods-Chat21Tests.a */; };
 		B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */; };
 		B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B21459BF1FFF7F1F0048535E /* Chat-Info.plist */; };
+		B217E04620ADEFBD00A2A4E1 /* sendbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B217E04520ADEFBC00A2A4E1 /* sendbutton.png */; };
 		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
 		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
 		B21A82DC207613F60068A2F9 /* ChatInfoMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21A82DB207613F60068A2F9 /* ChatInfoMessageTVC.m */; };
@@ -185,6 +186,7 @@
 		B20D93281D6C95A700ADC264 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B21172E31CD744B800E71694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B21459BF1FFF7F1F0048535E /* Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; sourceTree = "<group>"; };
+		B217E04520ADEFBC00A2A4E1 /* sendbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendbutton.png; sourceTree = "<group>"; };
 		B21A82D32075219A0068A2F9 /* DBChooser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBChooser.framework; sourceTree = "<group>"; };
 		B21A82D42075219B0068A2F9 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
 		B21A82DA207613F60068A2F9 /* ChatInfoMessageTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageTVC.h; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 		B290B367202DBD0E008CBC07 /* general */ = {
 			isa = PBXGroup;
 			children = (
+				B217E04520ADEFBC00A2A4E1 /* sendbutton.png */,
 				B2212E4620AD82DC00DE455C /* exiticonbutton.png */,
 				B2212E2C208F7AD300DE455C /* no_image_message_placeholder.png */,
 				B290B368202DBD0E008CBC07 /* avatar.png */,
@@ -1095,6 +1098,7 @@
 				B290B3D2202DBD0F008CBC07 /* plus_icon@3x.png in Resources */,
 				B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */,
 				B244170E202A2384001E95F8 /* GoogleService-Info.plist in Resources */,
+				B217E04620ADEFBD00A2A4E1 /* sendbutton.png in Resources */,
 				B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */,
 				B290B3CD202DBD0F008CBC07 /* ic_linear_support_gray_01@3x.png in Resources */,
 				B290B3C8202DBD0F008CBC07 /* icon_light_cerca@2x.png in Resources */,
