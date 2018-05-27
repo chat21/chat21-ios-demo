@@ -62,12 +62,13 @@
 }
 
 +(void)firebaseAuthEmail:(NSString *)email password:(NSString *)password completion:(void (^)(FIRUser *fir_user, NSError *))callback {
-    [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRUser *user, NSError *error) {
+    [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Firebase Auth error for email %@/%@: %@", email, password, error);
             callback(nil, error);
         }
         else {
+            FIRUser *user = authResult.user;
             NSLog(@"Firebase Auth success. email: %@, emailverified: %d, userid: %@", user.email, user.emailVerified, user.uid);
             callback(user, nil);
         }

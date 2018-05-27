@@ -72,7 +72,7 @@
     
     [[FIRAuth auth] createUserWithEmail:email
                                password:password
-                             completion:^(FIRUser *_Nullable fir_user, NSError *_Nullable error) {
+                             completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
          [weakSelf hideWaiting];
          if (error) {
              [weakSelf hideWaiting];
@@ -82,6 +82,7 @@
              weakSelf.registerButton.enabled = true;
          }
          else {
+             FIRUser *fir_user = authResult.user;
              NSLog(@"User %@ successfully created.", email);
              // AGGIUNGERE FIRSTNAME E LASTNAME IN CONTACTS
              
