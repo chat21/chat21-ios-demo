@@ -1,6 +1,0 @@
-framework module chat21_ios_sdk {
-  umbrella header "chat21_ios_sdk.h"
-
-  export *
-  module * { export * }
-}
