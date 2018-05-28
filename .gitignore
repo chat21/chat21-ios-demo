@@ -6,3 +6,5 @@ tilechat.xcworkspace/*
 tilechat.xcodeproj
 tilechat.xcodeproj/*
 Project/GoogleService-Info.plist
+/Chat21UI/*
+/Chat21Core/*
