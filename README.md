@@ -20,7 +20,7 @@ This demo shows the following features:
 * Synchronized contacts (with offline search and selection)
 * Integrates an example of a mobile live-chat support (an "help" button on the top left corner of every tab)
 
-# Install & run #
+# Build & run #
 
 Before you do anything else, you shoud change the Bundle Identifier, and assign an appropriate Team.
 
@@ -38,7 +38,7 @@ Then, from the **Team** menu, select the team associated with your developer acc
 
 Now open Xcode project using the new file "chat21.xcworkspace"
 
-**Download & install Chat21 libs**
+## Download & install Chat21 libs
 
 Download **Chat21Core** & **Chat21UI** folders from [here](https://github.com/chat21/chat21-ios-sdk).
 
