@@ -52,7 +52,7 @@ Verify that the target is correctly set to "chat21":
 
 <img width="1144" alt="screenshot verify-target" src="https://user-images.githubusercontent.com/32564846/40603760-351ae94a-625d-11e8-88a3-dd8b88c4119e.png">
 
-Now you can build & run the project.
+Setup finished. Now you can **build & run** the project!
 
 Enjoy!
 
