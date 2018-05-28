@@ -46,7 +46,7 @@ Download **Chat21Core** & **Chat21UI** folders from [here](https://github.com/ch
 
 Drag & drop the two folders in your Xcode project:
 
-<img width="1170" alt="screenshot drag-libs" src="https://user-images.githubusercontent.com/32564846/40603729-1d6282c2-625d-11e8-929b-b8b970074ba1.png">
+<img width="1136" alt="screenshot dragdroplibs" src="https://user-images.githubusercontent.com/32564846/40605514-ec150cde-6262-11e8-8ab3-c00214f4ab7c.png">
 
 Verify that the target is correctly set to "chat21":
 
