@@ -34,13 +34,27 @@ Then, from the **Team** menu, select the team associated with your developer acc
 2. Select the option **Add Firebase to your iOS app**
 3. Configure you Xcode project copying your Google-Info.plist (download the file from the Firebase iOS App dashboard).
 5. Run "pod install" in the Xcode project folder.
-6. Download & install libs: Chat21Core & Chat21UI folders from [here](https://github.com/chat21/chat21-ios-sdk). Drag & drop the two folders in the Xcode project
-7. Install the Firebase cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). Follow the included instructions. This will setup your backend.
+6. Install the Firebase cloud functions available [here](https://github.com/chat21/chat21-cloud-functions). Follow the included instructions. This will setup your backend.
 
-Now you can build & launch the project using the file "chat21.xcworkspace".
+Open Xcode project using the new file "chat21.xcworkspace"
 
-More detailed instructions will be available soon.
+Download & install libs:
 
-Meanwhile feel free to ask for support at support@frontiere21.it.
+Download Chat21Core & Chat21UI folders from [here](https://github.com/chat21/chat21-ios-sdk).
+
+<img width="629" alt="screenshot github-folders" src="https://user-images.githubusercontent.com/32564846/40603704-066f33f8-625d-11e8-9114-700d081f4f68.png">
+
+Drag & drop the two folders in the Xcode project:
+
+<img width="1170" alt="screenshot drag-libs" src="https://user-images.githubusercontent.com/32564846/40603729-1d6282c2-625d-11e8-929b-b8b970074ba1.png">
+
+Verify that the target is correctly set to "chat21":
+
+<img width="1144" alt="screenshot verify-target" src="https://user-images.githubusercontent.com/32564846/40603760-351ae94a-625d-11e8-88a3-dd8b88c4119e.png">
+
+
+Now you can build & run the project.
 
 Enjoy!
+
+If you need support please open a GitHub issue.
