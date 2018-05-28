@@ -31,6 +31,103 @@
 		B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AD7B81F86249C00A526E9 /* HelpFacade.m */; };
 		B24AD7C11F86392700A526E9 /* Help-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7C01F86392700A526E9 /* Help-Info.plist */; };
 		B24AD7C41F8670C400A526E9 /* HelpDescriptionStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AD7C31F8670C400A526E9 /* HelpDescriptionStepTVC.m */; };
+		B258967220BBF7940037764C /* notification_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25895BC20BBF7940037764C /* notification_view.xib */; };
+		B258967320BBF7940037764C /* status_title_ios11.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25895BD20BBF7940037764C /* status_title_ios11.xib */; };
+		B258967420BBF7940037764C /* ChatCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895BF20BBF7940037764C /* ChatCustomView.m */; };
+		B258967520BBF7940037764C /* ChatMessageComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895C020BBF7940037764C /* ChatMessageComponents.m */; };
+		B258967620BBF7940037764C /* CellConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895C120BBF7940037764C /* CellConfigurator.m */; };
+		B258967720BBF7940037764C /* ChatImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895C220BBF7940037764C /* ChatImageUtil.m */; };
+		B258967820BBF7940037764C /* ChatProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895C720BBF7940037764C /* ChatProgressView.m */; };
+		B258967920BBF7940037764C /* ChatLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895C820BBF7940037764C /* ChatLocal.m */; };
+		B258967A20BBF7940037764C /* sendbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895CD20BBF7940037764C /* sendbutton.png */; };
+		B258967B20BBF7940037764C /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895CE20BBF7940037764C /* avatar.png */; };
+		B258967C20BBF7940037764C /* no_image_message_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895CF20BBF7940037764C /* no_image_message_placeholder.png */; };
+		B258967D20BBF7940037764C /* group-conversation-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D020BBF7940037764C /* group-conversation-avatar.png */; };
+		B258967E20BBF7940037764C /* exiticonbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D120BBF7940037764C /* exiticonbutton.png */; };
+		B258967F20BBF7940037764C /* icon_light_home.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D320BBF7940037764C /* icon_light_home.png */; };
+		B258968020BBF7940037764C /* icon_light_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D420BBF7940037764C /* icon_light_home@2x.png */; };
+		B258968120BBF7940037764C /* icon_light_altro.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D520BBF7940037764C /* icon_light_altro.png */; };
+		B258968220BBF7940037764C /* icon_light_foto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D620BBF7940037764C /* icon_light_foto@2x.png */; };
+		B258968320BBF7940037764C /* icon_light_watch.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D720BBF7940037764C /* icon_light_watch.png */; };
+		B258968420BBF7940037764C /* icon_light_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D820BBF7940037764C /* icon_light_chat@2x.png */; };
+		B258968520BBF7940037764C /* icon_light_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895D920BBF7940037764C /* icon_light_profile.png */; };
+		B258968620BBF7940037764C /* icon_light_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895DA20BBF7940037764C /* icon_light_profile@2x.png */; };
+		B258968720BBF7940037764C /* icon_light_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895DB20BBF7940037764C /* icon_light_chat.png */; };
+		B258968820BBF7940037764C /* icon_light_cerca@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895DC20BBF7940037764C /* icon_light_cerca@2x.png */; };
+		B258968920BBF7940037764C /* icon_light_altro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895DD20BBF7940037764C /* icon_light_altro@2x.png */; };
+		B258968A20BBF7940037764C /* icon_light_foto.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895DE20BBF7940037764C /* icon_light_foto.png */; };
+		B258968B20BBF7940037764C /* icon_light_watch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895DF20BBF7940037764C /* icon_light_watch@2x.png */; };
+		B258968C20BBF7940037764C /* icon_light_cerca.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E020BBF7940037764C /* icon_light_cerca.png */; };
+		B258968D20BBF7940037764C /* ic_linear_support_gray_01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E220BBF7940037764C /* ic_linear_support_gray_01@3x.png */; };
+		B258968E20BBF7940037764C /* chat_check.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E320BBF7940037764C /* chat_check.png */; };
+		B258968F20BBF7940037764C /* ic_linear_support_gray_01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E420BBF7940037764C /* ic_linear_support_gray_01@2x.png */; };
+		B258969020BBF7940037764C /* chat_watch.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E520BBF7940037764C /* chat_watch.png */; };
+		B258969120BBF7940037764C /* chat_failed.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E620BBF7940037764C /* chat_failed.png */; };
+		B258969220BBF7940037764C /* plus_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E720BBF7940037764C /* plus_icon@3x.png */; };
+		B258969320BBF7940037764C /* ic_linear_support_gray_01.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E820BBF7940037764C /* ic_linear_support_gray_01.png */; };
+		B258969420BBF7940037764C /* chat_double_check.png in Resources */ = {isa = PBXBuildFile; fileRef = B25895E920BBF7940037764C /* chat_double_check.png */; };
+		B258969520BBF7940037764C /* ChatUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895EA20BBF7940037764C /* ChatUIManager.m */; };
+		B258969620BBF7940037764C /* QBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895EC20BBF7940037764C /* QBPopupMenu.m */; };
+		B258969720BBF7940037764C /* QBPopupMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895F020BBF7940037764C /* QBPopupMenuItemView.m */; };
+		B258969820BBF7940037764C /* QBPopupMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895F120BBF7940037764C /* QBPopupMenuItem.m */; };
+		B258969920BBF7940037764C /* QBPlasticPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895F220BBF7940037764C /* QBPlasticPopupMenu.m */; };
+		B258969A20BBF7940037764C /* QBPopupMenuOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895F520BBF7940037764C /* QBPopupMenuOverlayView.m */; };
+		B258969B20BBF7940037764C /* QBPopupMenuPagenatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895F620BBF7940037764C /* QBPopupMenuPagenatorView.m */; };
+		B258969C20BBF7940037764C /* newnotif.caf in Resources */ = {isa = PBXBuildFile; fileRef = B25895F920BBF7940037764C /* newnotif.caf */; };
+		B258969D20BBF7940037764C /* inline.caf in Resources */ = {isa = PBXBuildFile; fileRef = B25895FA20BBF7940037764C /* inline.caf */; };
+		B258969E20BBF7940037764C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B25895FB20BBF7940037764C /* Chat.storyboard */; };
+		B258969F20BBF7940037764C /* ChatMessagesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895FD20BBF7940037764C /* ChatMessagesTVC.m */; };
+		B25896A020BBF7940037764C /* ChatMessagesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895FE20BBF7940037764C /* ChatMessagesVC.m */; };
+		B25896A120BBF7940037764C /* ChatCreateGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B25895FF20BBF7940037764C /* ChatCreateGroupVC.m */; };
+		B25896A220BBF7940037764C /* ChatInfoMessageTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960020BBF7940037764C /* ChatInfoMessageTVC.m */; };
+		B25896A320BBF7940037764C /* ChatChangeGroupNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960120BBF7940037764C /* ChatChangeGroupNameVC.m */; };
+		B25896A420BBF7940037764C /* ChatMiniBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960220BBF7940037764C /* ChatMiniBrowserVC.m */; };
+		B25896A520BBF7940037764C /* ChatTextMessageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960320BBF7940037764C /* ChatTextMessageLeftCell.m */; };
+		B25896A620BBF7940037764C /* ChatTitleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960520BBF7940037764C /* ChatTitleVC.m */; };
+		B25896A720BBF7940037764C /* ChatTextMessageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960620BBF7940037764C /* ChatTextMessageRightCell.m */; };
+		B25896A820BBF7940037764C /* UIView+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960A20BBF7940037764C /* UIView+Property.m */; };
+		B25896A920BBF7940037764C /* ChatSelectGroupMembersLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960C20BBF7940037764C /* ChatSelectGroupMembersLocal.m */; };
+		B25896AA20BBF7940037764C /* ChatInfoMessageAttributesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258960E20BBF7940037764C /* ChatInfoMessageAttributesTVC.m */; };
+		B25896AB20BBF7940037764C /* ChatSelectGroupLocalTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961020BBF7940037764C /* ChatSelectGroupLocalTVC.m */; };
+		B25896AC20BBF7940037764C /* ChatSelectUserLocalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961220BBF7940037764C /* ChatSelectUserLocalVC.m */; };
+		B25896AD20BBF7940037764C /* ChatGroupMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961520BBF7940037764C /* ChatGroupMembersVC.m */; };
+		B25896AE20BBF7940037764C /* ChatConversationsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961620BBF7940037764C /* ChatConversationsVC.m */; };
+		B25896AF20BBF7940037764C /* ChatImageMessageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961720BBF7940037764C /* ChatImageMessageLeftCell.m */; };
+		B25896B020BBF7940037764C /* ChatInfoMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961820BBF7940037764C /* ChatInfoMessageCell.m */; };
+		B25896B120BBF7940037764C /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258961C20BBF7940037764C /* ChatMessageCell.m */; };
+		B25896B220BBF7940037764C /* ChatStatusTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962520BBF7940037764C /* ChatStatusTitle.m */; };
+		B25896B320BBF7940037764C /* ChatNYTPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962620BBF7940037764C /* ChatNYTPhoto.m */; };
+		B25896B420BBF7940037764C /* ChatGroupInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962920BBF7940037764C /* ChatGroupInfoVC.m */; };
+		B25896B520BBF7940037764C /* NotificationAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962B20BBF7940037764C /* NotificationAlertVC.m */; };
+		B25896B620BBF7940037764C /* ChatImagePreviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962C20BBF7940037764C /* ChatImagePreviewVC.m */; };
+		B25896B720BBF7940037764C /* ChatImageMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962E20BBF7940037764C /* ChatImageMessageCell.m */; };
+		B25896B820BBF7940037764C /* NotificationAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B258962F20BBF7940037764C /* NotificationAlertView.m */; };
+		B25896B920BBF7940037764C /* ChatImageMessageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B258963120BBF7940037764C /* ChatImageMessageRightCell.m */; };
+		B25896BA20BBF7940037764C /* Chat.strings in Resources */ = {isa = PBXBuildFile; fileRef = B258963620BBF7940037764C /* Chat.strings */; };
+		B25896BB20BBF7940037764C /* ChatImageWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B258963920BBF7940037764C /* ChatImageWrapper.m */; };
+		B25896BC20BBF7940037764C /* ChatStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B258963A20BBF7940037764C /* ChatStringUtil.m */; };
+		B25896BD20BBF7940037764C /* ChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B258963D20BBF7940037764C /* ChatUtil.m */; };
+		B25896BE20BBF7940037764C /* ChatUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = B258963E20BBF7940037764C /* ChatUpload.m */; };
+		B25896BF20BBF7940037764C /* ChatImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B258964120BBF7940037764C /* ChatImageCache.m */; };
+		B25896C020BBF7940037764C /* ChatUploadsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B258964420BBF7940037764C /* ChatUploadsController.m */; };
+		B25896C120BBF7940037764C /* ChatConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = B258964920BBF7940037764C /* ChatConversation.m */; };
+		B25896C220BBF7940037764C /* ChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B258964C20BBF7940037764C /* ChatUser.m */; };
+		B25896C320BBF7940037764C /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B258964F20BBF7940037764C /* ChatMessage.m */; };
+		B25896C420BBF7940037764C /* ChatGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965020BBF7940037764C /* ChatGroup.m */; };
+		B25896C520BBF7940037764C /* ChatConversationsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965320BBF7940037764C /* ChatConversationsHandler.m */; };
+		B25896C620BBF7940037764C /* ChatMessageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965620BBF7940037764C /* ChatMessageMetadata.m */; };
+		B25896C720BBF7940037764C /* ChatGroupsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965820BBF7940037764C /* ChatGroupsHandler.m */; };
+		B25896C820BBF7940037764C /* ChatPresenceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965920BBF7940037764C /* ChatPresenceHandler.m */; };
+		B25896C920BBF7940037764C /* ChatContactsSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965A20BBF7940037764C /* ChatContactsSynchronizer.m */; };
+		B25896CA20BBF7940037764C /* ChatAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965C20BBF7940037764C /* ChatAuth.m */; };
+		B25896CB20BBF7940037764C /* ChatImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B258965D20BBF7940037764C /* ChatImageDownloadManager.m */; };
+		B25896CC20BBF7940037764C /* ChatConversationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B258966020BBF7940037764C /* ChatConversationHandler.m */; };
+		B25896CD20BBF7940037764C /* FirebaseCustomAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B258966220BBF7940037764C /* FirebaseCustomAuthHelper.m */; };
+		B25896CE20BBF7940037764C /* ChatConnectionStatusHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B258966720BBF7940037764C /* ChatConnectionStatusHandler.m */; };
+		B25896CF20BBF7940037764C /* ChatDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B258966D20BBF7940037764C /* ChatDB.m */; };
+		B25896D020BBF7940037764C /* ChatGroupsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B258966E20BBF7940037764C /* ChatGroupsDB.m */; };
+		B25896D120BBF7940037764C /* ChatContactsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B258966F20BBF7940037764C /* ChatContactsDB.m */; };
+		B25896D220BBF7940037764C /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B258967120BBF7940037764C /* ChatManager.m */; };
 		B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */; };
 		B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */; };
 		B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC94611F1FCE04000DDF52 /* HelloMyProfileTVC.m */; };
@@ -113,174 +210,174 @@
 		B24AD7C01F86392700A526E9 /* Help-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Help-Info.plist"; sourceTree = "<group>"; };
 		B24AD7C21F8670C400A526E9 /* HelpDescriptionStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDescriptionStepTVC.h; sourceTree = "<group>"; };
 		B24AD7C31F8670C400A526E9 /* HelpDescriptionStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDescriptionStepTVC.m; sourceTree = "<group>"; };
-		B258950420BBF52F0037764C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Chat.strings; sourceTree = "<group>"; };
-		B258950620BBF52F0037764C /* ChatImageWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageWrapper.m; sourceTree = "<group>"; };
-		B258950720BBF52F0037764C /* ChatStringUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatStringUtil.m; sourceTree = "<group>"; };
-		B258950820BBF52F0037764C /* ChatImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageCache.h; sourceTree = "<group>"; };
-		B258950920BBF52F0037764C /* ChatUploadsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUploadsController.h; sourceTree = "<group>"; };
-		B258950A20BBF52F0037764C /* ChatUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUtil.m; sourceTree = "<group>"; };
-		B258950B20BBF52F0037764C /* ChatUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUpload.m; sourceTree = "<group>"; };
-		B258950C20BBF52F0037764C /* ChatStringUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatStringUtil.h; sourceTree = "<group>"; };
-		B258950D20BBF52F0037764C /* ChatImageWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageWrapper.h; sourceTree = "<group>"; };
-		B258950E20BBF52F0037764C /* ChatImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageCache.m; sourceTree = "<group>"; };
-		B258950F20BBF52F0037764C /* ChatUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUpload.h; sourceTree = "<group>"; };
-		B258951020BBF52F0037764C /* ChatUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUtil.h; sourceTree = "<group>"; };
-		B258951120BBF52F0037764C /* ChatUploadsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUploadsController.m; sourceTree = "<group>"; };
-		B258951220BBF52F0037764C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Chat.strings; sourceTree = "<group>"; };
-		B258951320BBF52F0037764C /* ChatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
-		B258951420BBF52F0037764C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Chat.strings; sourceTree = "<group>"; };
-		B258951620BBF52F0037764C /* ChatConversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConversation.m; sourceTree = "<group>"; };
-		B258951720BBF52F0037764C /* ChatEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatEventType.h; sourceTree = "<group>"; };
-		B258951820BBF52F0037764C /* ChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
-		B258951920BBF52F0037764C /* ChatUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
-		B258951A20BBF52F0037764C /* ChatGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroup.h; sourceTree = "<group>"; };
-		B258951B20BBF52F0037764C /* ChatConversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConversation.h; sourceTree = "<group>"; };
-		B258951C20BBF52F0037764C /* ChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
-		B258951D20BBF52F0037764C /* ChatGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatGroup.m; sourceTree = "<group>"; };
-		B258951E20BBF52F0037764C /* ChatUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUser.h; sourceTree = "<group>"; };
-		B258952020BBF52F0037764C /* ChatConversationsHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConversationsHandler.m; sourceTree = "<group>"; };
-		B258952120BBF52F0037764C /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
-		B258952220BBF52F0037764C /* FirebaseCustomAuthHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirebaseCustomAuthHelper.h; sourceTree = "<group>"; };
-		B258952320BBF52F0037764C /* ChatMessageMetadata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageMetadata.m; sourceTree = "<group>"; };
-		B258952420BBF52F0037764C /* ChatConversationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConversationHandler.h; sourceTree = "<group>"; };
-		B258952520BBF52F0037764C /* ChatGroupsHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsHandler.m; sourceTree = "<group>"; };
-		B258952620BBF52F0037764C /* ChatPresenceHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
-		B258952720BBF52F0037764C /* ChatContactsSynchronizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatContactsSynchronizer.m; sourceTree = "<group>"; };
-		B258952820BBF52F0037764C /* ChatConnectionStatusHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConnectionStatusHandler.h; sourceTree = "<group>"; };
-		B258952920BBF52F0037764C /* ChatAuth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatAuth.m; sourceTree = "<group>"; };
-		B258952A20BBF52F0037764C /* ChatImageDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageDownloadManager.m; sourceTree = "<group>"; };
-		B258952B20BBF52F0037764C /* ChatConversationsHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConversationsHandler.h; sourceTree = "<group>"; };
-		B258952C20BBF52F0037764C /* ChatGroupsSubscriber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroupsSubscriber.h; sourceTree = "<group>"; };
-		B258952D20BBF52F0037764C /* ChatConversationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConversationHandler.m; sourceTree = "<group>"; };
-		B258952E20BBF52F0037764C /* ChatMessageMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageMetadata.h; sourceTree = "<group>"; };
-		B258952F20BBF52F0037764C /* FirebaseCustomAuthHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirebaseCustomAuthHelper.m; sourceTree = "<group>"; };
-		B258953020BBF52F0037764C /* ChatPresenceHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
-		B258953120BBF52F0037764C /* ChatGroupsHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroupsHandler.h; sourceTree = "<group>"; };
-		B258953220BBF52F0037764C /* ChatImageDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageDownloadManager.h; sourceTree = "<group>"; };
-		B258953320BBF52F0037764C /* ChatAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatAuth.h; sourceTree = "<group>"; };
-		B258953420BBF52F0037764C /* ChatConnectionStatusHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConnectionStatusHandler.m; sourceTree = "<group>"; };
-		B258953520BBF52F0037764C /* ChatSynchDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSynchDelegate.h; sourceTree = "<group>"; };
-		B258953620BBF52F0037764C /* ChatContactsSynchronizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatContactsSynchronizer.h; sourceTree = "<group>"; };
-		B258953820BBF52F0037764C /* ChatGroupsDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroupsDB.h; sourceTree = "<group>"; };
-		B258953920BBF52F0037764C /* ChatContactsDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatContactsDB.h; sourceTree = "<group>"; };
-		B258953A20BBF52F0037764C /* ChatDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatDB.m; sourceTree = "<group>"; };
-		B258953B20BBF52F0037764C /* ChatGroupsDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsDB.m; sourceTree = "<group>"; };
-		B258953C20BBF52F0037764C /* ChatContactsDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatContactsDB.m; sourceTree = "<group>"; };
-		B258953D20BBF52F0037764C /* ChatDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatDB.h; sourceTree = "<group>"; };
-		B258953E20BBF52F0037764C /* ChatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
-		B258954120BBF52F0037764C /* notification_view.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = notification_view.xib; sourceTree = "<group>"; };
-		B258954220BBF52F0037764C /* status_title_ios11.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = status_title_ios11.xib; sourceTree = "<group>"; };
-		B258954420BBF52F0037764C /* ChatCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCustomView.m; sourceTree = "<group>"; };
-		B258954520BBF52F0037764C /* ChatMessageComponents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageComponents.m; sourceTree = "<group>"; };
-		B258954620BBF52F0037764C /* CellConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellConfigurator.m; sourceTree = "<group>"; };
-		B258954720BBF52F0037764C /* ChatImageUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageUtil.m; sourceTree = "<group>"; };
-		B258954820BBF52F0037764C /* ChatLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatLocal.h; sourceTree = "<group>"; };
-		B258954920BBF52F0037764C /* ChatProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatProgressView.h; sourceTree = "<group>"; };
-		B258954A20BBF52F0037764C /* ChatMessageComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageComponents.h; sourceTree = "<group>"; };
-		B258954B20BBF52F0037764C /* ChatCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatCustomView.h; sourceTree = "<group>"; };
-		B258954C20BBF52F0037764C /* ChatProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatProgressView.m; sourceTree = "<group>"; };
-		B258954D20BBF52F0037764C /* ChatLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatLocal.m; sourceTree = "<group>"; };
-		B258954E20BBF52F0037764C /* ChatImageUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageUtil.h; sourceTree = "<group>"; };
-		B258954F20BBF52F0037764C /* CellConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellConfigurator.h; sourceTree = "<group>"; };
-		B258955220BBF52F0037764C /* sendbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendbutton.png; sourceTree = "<group>"; };
-		B258955320BBF52F0037764C /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
-		B258955420BBF52F0037764C /* no_image_message_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image_message_placeholder.png; sourceTree = "<group>"; };
-		B258955520BBF52F0037764C /* group-conversation-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-conversation-avatar.png"; sourceTree = "<group>"; };
-		B258955620BBF52F0037764C /* exiticonbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exiticonbutton.png; sourceTree = "<group>"; };
-		B258955820BBF52F0037764C /* icon_light_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_home.png; sourceTree = "<group>"; };
-		B258955920BBF52F0037764C /* icon_light_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_home@2x.png"; sourceTree = "<group>"; };
-		B258955A20BBF52F0037764C /* icon_light_altro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_altro.png; sourceTree = "<group>"; };
-		B258955B20BBF52F0037764C /* icon_light_foto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_foto@2x.png"; sourceTree = "<group>"; };
-		B258955C20BBF52F0037764C /* icon_light_watch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_watch.png; sourceTree = "<group>"; };
-		B258955D20BBF52F0037764C /* icon_light_chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_chat@2x.png"; sourceTree = "<group>"; };
-		B258955E20BBF52F0037764C /* icon_light_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_profile.png; sourceTree = "<group>"; };
-		B258955F20BBF52F0037764C /* icon_light_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_profile@2x.png"; sourceTree = "<group>"; };
-		B258956020BBF52F0037764C /* icon_light_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_chat.png; sourceTree = "<group>"; };
-		B258956120BBF52F0037764C /* icon_light_cerca@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_cerca@2x.png"; sourceTree = "<group>"; };
-		B258956220BBF52F0037764C /* icon_light_altro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_altro@2x.png"; sourceTree = "<group>"; };
-		B258956320BBF52F0037764C /* icon_light_foto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_foto.png; sourceTree = "<group>"; };
-		B258956420BBF52F0037764C /* icon_light_watch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_watch@2x.png"; sourceTree = "<group>"; };
-		B258956520BBF52F0037764C /* icon_light_cerca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_cerca.png; sourceTree = "<group>"; };
-		B258956720BBF52F0037764C /* ic_linear_support_gray_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_support_gray_01@3x.png"; sourceTree = "<group>"; };
-		B258956820BBF52F0037764C /* chat_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_check.png; sourceTree = "<group>"; };
-		B258956920BBF52F0037764C /* ic_linear_support_gray_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_support_gray_01@2x.png"; sourceTree = "<group>"; };
-		B258956A20BBF52F0037764C /* chat_watch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_watch.png; sourceTree = "<group>"; };
-		B258956B20BBF52F0037764C /* chat_failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_failed.png; sourceTree = "<group>"; };
-		B258956C20BBF52F0037764C /* plus_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_icon@3x.png"; sourceTree = "<group>"; };
-		B258956D20BBF52F0037764C /* ic_linear_support_gray_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_linear_support_gray_01.png; sourceTree = "<group>"; };
-		B258956E20BBF52F0037764C /* chat_double_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_double_check.png; sourceTree = "<group>"; };
-		B258956F20BBF52F0037764C /* ChatUIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUIManager.m; sourceTree = "<group>"; };
-		B258957120BBF52F0037764C /* QBPopupMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenu.m; sourceTree = "<group>"; };
-		B258957220BBF52F0037764C /* QBPlasticPopupMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QBPlasticPopupMenu.h; sourceTree = "<group>"; };
-		B258957320BBF52F0037764C /* QBPopupMenuPagenatorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuPagenatorView.h; sourceTree = "<group>"; };
-		B258957420BBF52F0037764C /* QBPopupMenuOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuOverlayView.h; sourceTree = "<group>"; };
-		B258957520BBF52F0037764C /* QBPopupMenuItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuItemView.m; sourceTree = "<group>"; };
-		B258957620BBF52F0037764C /* QBPopupMenuItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuItem.m; sourceTree = "<group>"; };
-		B258957720BBF52F0037764C /* QBPlasticPopupMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBPlasticPopupMenu.m; sourceTree = "<group>"; };
-		B258957820BBF52F0037764C /* QBPopupMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QBPopupMenu.h; sourceTree = "<group>"; };
-		B258957920BBF52F0037764C /* QBPopupMenuItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuItemView.h; sourceTree = "<group>"; };
-		B258957A20BBF52F0037764C /* QBPopupMenuOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuOverlayView.m; sourceTree = "<group>"; };
-		B258957B20BBF52F0037764C /* QBPopupMenuPagenatorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuPagenatorView.m; sourceTree = "<group>"; };
-		B258957C20BBF52F0037764C /* QBPopupMenuItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuItem.h; sourceTree = "<group>"; };
-		B258957E20BBF52F0037764C /* newnotif.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newnotif.caf; sourceTree = "<group>"; };
-		B258957F20BBF52F0037764C /* inline.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = inline.caf; sourceTree = "<group>"; };
-		B258958020BBF52F0037764C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		B258958220BBF52F0037764C /* ChatMessagesTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessagesTVC.m; sourceTree = "<group>"; };
-		B258958320BBF52F0037764C /* ChatMessagesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessagesVC.m; sourceTree = "<group>"; };
-		B258958420BBF52F0037764C /* ChatCreateGroupVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatCreateGroupVC.m; sourceTree = "<group>"; };
-		B258958520BBF52F0037764C /* ChatInfoMessageTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageTVC.m; sourceTree = "<group>"; };
-		B258958620BBF52F0037764C /* ChatChangeGroupNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatChangeGroupNameVC.m; sourceTree = "<group>"; };
-		B258958720BBF52F0037764C /* ChatMiniBrowserVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMiniBrowserVC.m; sourceTree = "<group>"; };
-		B258958820BBF52F0037764C /* ChatTextMessageLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatTextMessageLeftCell.m; sourceTree = "<group>"; };
-		B258958920BBF52F0037764C /* ChatMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
-		B258958A20BBF52F0037764C /* ChatTitleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatTitleVC.m; sourceTree = "<group>"; };
-		B258958B20BBF52F0037764C /* ChatTextMessageRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatTextMessageRightCell.m; sourceTree = "<group>"; };
-		B258958C20BBF52F0037764C /* ChatInfoMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageCell.h; sourceTree = "<group>"; };
-		B258958D20BBF52F0037764C /* ChatImagePreviewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImagePreviewVC.h; sourceTree = "<group>"; };
-		B258958E20BBF52F0037764C /* NotificationAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationAlertVC.h; sourceTree = "<group>"; };
-		B258958F20BBF52F0037764C /* UIView+Property.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Property.m"; sourceTree = "<group>"; };
-		B258959020BBF52F0037764C /* ChatGroupInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroupInfoVC.h; sourceTree = "<group>"; };
-		B258959120BBF52F0037764C /* ChatSelectGroupMembersLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupMembersLocal.m; sourceTree = "<group>"; };
-		B258959220BBF52F0037764C /* ChatNYTPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatNYTPhoto.h; sourceTree = "<group>"; };
-		B258959320BBF52F0037764C /* ChatInfoMessageAttributesTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageAttributesTVC.m; sourceTree = "<group>"; };
-		B258959420BBF52F0037764C /* ChatStatusTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatStatusTitle.h; sourceTree = "<group>"; };
-		B258959520BBF52F0037764C /* ChatSelectGroupLocalTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupLocalTVC.m; sourceTree = "<group>"; };
-		B258959620BBF52F0037764C /* ChatImageMessageRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageRightCell.h; sourceTree = "<group>"; };
-		B258959720BBF52F0037764C /* ChatSelectUserLocalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatSelectUserLocalVC.m; sourceTree = "<group>"; };
-		B258959820BBF52F0037764C /* NotificationAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationAlertView.h; sourceTree = "<group>"; };
-		B258959920BBF52F0037764C /* ChatImageMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageCell.h; sourceTree = "<group>"; };
-		B258959A20BBF52F0037764C /* ChatGroupMembersVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMembersVC.m; sourceTree = "<group>"; };
-		B258959B20BBF52F0037764C /* ChatConversationsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatConversationsVC.m; sourceTree = "<group>"; };
-		B258959C20BBF52F0037764C /* ChatImageMessageLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageLeftCell.m; sourceTree = "<group>"; };
-		B258959D20BBF52F0037764C /* ChatInfoMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageCell.m; sourceTree = "<group>"; };
-		B258959E20BBF52F0037764C /* ChatTextMessageRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatTextMessageRightCell.h; sourceTree = "<group>"; };
-		B258959F20BBF52F0037764C /* ChatTitleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatTitleVC.h; sourceTree = "<group>"; };
-		B25895A020BBF52F0037764C /* ChatTextMessageLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatTextMessageLeftCell.h; sourceTree = "<group>"; };
-		B25895A120BBF52F0037764C /* ChatMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
-		B25895A220BBF52F0037764C /* ChatMiniBrowserVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMiniBrowserVC.h; sourceTree = "<group>"; };
-		B25895A320BBF52F0037764C /* ChatChangeGroupNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatChangeGroupNameVC.h; sourceTree = "<group>"; };
-		B25895A420BBF52F0037764C /* ChatInfoMessageTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageTVC.h; sourceTree = "<group>"; };
-		B25895A520BBF52F0037764C /* ChatCreateGroupVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatCreateGroupVC.h; sourceTree = "<group>"; };
-		B25895A620BBF52F0037764C /* ChatMessagesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessagesVC.h; sourceTree = "<group>"; };
-		B25895A720BBF52F0037764C /* ChatMessagesTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessagesTVC.h; sourceTree = "<group>"; };
-		B25895A820BBF52F0037764C /* ChatSelectGroupLocalTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupLocalTVC.h; sourceTree = "<group>"; };
-		B25895A920BBF52F0037764C /* ChatInfoMessageAttributesTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageAttributesTVC.h; sourceTree = "<group>"; };
-		B25895AA20BBF52F0037764C /* ChatStatusTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatStatusTitle.m; sourceTree = "<group>"; };
-		B25895AB20BBF52F0037764C /* ChatNYTPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatNYTPhoto.m; sourceTree = "<group>"; };
-		B25895AC20BBF52F0037764C /* ChatSelectGroupMembersLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupMembersLocal.h; sourceTree = "<group>"; };
-		B25895AD20BBF52F0037764C /* ChatModalCallerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatModalCallerDelegate.h; sourceTree = "<group>"; };
-		B25895AE20BBF52F0037764C /* ChatGroupInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatGroupInfoVC.m; sourceTree = "<group>"; };
-		B25895AF20BBF52F0037764C /* UIView+Property.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Property.h"; sourceTree = "<group>"; };
-		B25895B020BBF52F0037764C /* NotificationAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertVC.m; sourceTree = "<group>"; };
-		B25895B120BBF52F0037764C /* ChatImagePreviewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImagePreviewVC.m; sourceTree = "<group>"; };
-		B25895B220BBF52F0037764C /* ChatGroupMembersVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatGroupMembersVC.h; sourceTree = "<group>"; };
-		B25895B320BBF52F0037764C /* ChatImageMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageCell.m; sourceTree = "<group>"; };
-		B25895B420BBF52F0037764C /* NotificationAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertView.m; sourceTree = "<group>"; };
-		B25895B520BBF52F0037764C /* ChatSelectUserLocalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSelectUserLocalVC.h; sourceTree = "<group>"; };
-		B25895B620BBF52F0037764C /* ChatImageMessageRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageRightCell.m; sourceTree = "<group>"; };
-		B25895B720BBF52F0037764C /* ChatImageMessageLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageLeftCell.h; sourceTree = "<group>"; };
-		B25895B820BBF52F0037764C /* ChatConversationsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatConversationsVC.h; sourceTree = "<group>"; };
-		B25895B920BBF52F0037764C /* ChatUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUIManager.h; sourceTree = "<group>"; };
+		B25895BC20BBF7940037764C /* notification_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = notification_view.xib; sourceTree = "<group>"; };
+		B25895BD20BBF7940037764C /* status_title_ios11.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = status_title_ios11.xib; sourceTree = "<group>"; };
+		B25895BF20BBF7940037764C /* ChatCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCustomView.m; sourceTree = "<group>"; };
+		B25895C020BBF7940037764C /* ChatMessageComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageComponents.m; sourceTree = "<group>"; };
+		B25895C120BBF7940037764C /* CellConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellConfigurator.m; sourceTree = "<group>"; };
+		B25895C220BBF7940037764C /* ChatImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageUtil.m; sourceTree = "<group>"; };
+		B25895C320BBF7940037764C /* ChatLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLocal.h; sourceTree = "<group>"; };
+		B25895C420BBF7940037764C /* ChatProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProgressView.h; sourceTree = "<group>"; };
+		B25895C520BBF7940037764C /* ChatMessageComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageComponents.h; sourceTree = "<group>"; };
+		B25895C620BBF7940037764C /* ChatCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCustomView.h; sourceTree = "<group>"; };
+		B25895C720BBF7940037764C /* ChatProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProgressView.m; sourceTree = "<group>"; };
+		B25895C820BBF7940037764C /* ChatLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLocal.m; sourceTree = "<group>"; };
+		B25895C920BBF7940037764C /* ChatImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageUtil.h; sourceTree = "<group>"; };
+		B25895CA20BBF7940037764C /* CellConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellConfigurator.h; sourceTree = "<group>"; };
+		B25895CD20BBF7940037764C /* sendbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendbutton.png; sourceTree = "<group>"; };
+		B25895CE20BBF7940037764C /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		B25895CF20BBF7940037764C /* no_image_message_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image_message_placeholder.png; sourceTree = "<group>"; };
+		B25895D020BBF7940037764C /* group-conversation-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-conversation-avatar.png"; sourceTree = "<group>"; };
+		B25895D120BBF7940037764C /* exiticonbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exiticonbutton.png; sourceTree = "<group>"; };
+		B25895D320BBF7940037764C /* icon_light_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_home.png; sourceTree = "<group>"; };
+		B25895D420BBF7940037764C /* icon_light_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_home@2x.png"; sourceTree = "<group>"; };
+		B25895D520BBF7940037764C /* icon_light_altro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_altro.png; sourceTree = "<group>"; };
+		B25895D620BBF7940037764C /* icon_light_foto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_foto@2x.png"; sourceTree = "<group>"; };
+		B25895D720BBF7940037764C /* icon_light_watch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_watch.png; sourceTree = "<group>"; };
+		B25895D820BBF7940037764C /* icon_light_chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_chat@2x.png"; sourceTree = "<group>"; };
+		B25895D920BBF7940037764C /* icon_light_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_profile.png; sourceTree = "<group>"; };
+		B25895DA20BBF7940037764C /* icon_light_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_profile@2x.png"; sourceTree = "<group>"; };
+		B25895DB20BBF7940037764C /* icon_light_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_chat.png; sourceTree = "<group>"; };
+		B25895DC20BBF7940037764C /* icon_light_cerca@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_cerca@2x.png"; sourceTree = "<group>"; };
+		B25895DD20BBF7940037764C /* icon_light_altro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_altro@2x.png"; sourceTree = "<group>"; };
+		B25895DE20BBF7940037764C /* icon_light_foto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_foto.png; sourceTree = "<group>"; };
+		B25895DF20BBF7940037764C /* icon_light_watch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_light_watch@2x.png"; sourceTree = "<group>"; };
+		B25895E020BBF7940037764C /* icon_light_cerca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_light_cerca.png; sourceTree = "<group>"; };
+		B25895E220BBF7940037764C /* ic_linear_support_gray_01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_support_gray_01@3x.png"; sourceTree = "<group>"; };
+		B25895E320BBF7940037764C /* chat_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_check.png; sourceTree = "<group>"; };
+		B25895E420BBF7940037764C /* ic_linear_support_gray_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_support_gray_01@2x.png"; sourceTree = "<group>"; };
+		B25895E520BBF7940037764C /* chat_watch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_watch.png; sourceTree = "<group>"; };
+		B25895E620BBF7940037764C /* chat_failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_failed.png; sourceTree = "<group>"; };
+		B25895E720BBF7940037764C /* plus_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_icon@3x.png"; sourceTree = "<group>"; };
+		B25895E820BBF7940037764C /* ic_linear_support_gray_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_linear_support_gray_01.png; sourceTree = "<group>"; };
+		B25895E920BBF7940037764C /* chat_double_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_double_check.png; sourceTree = "<group>"; };
+		B25895EA20BBF7940037764C /* ChatUIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUIManager.m; sourceTree = "<group>"; };
+		B25895EC20BBF7940037764C /* QBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenu.m; sourceTree = "<group>"; };
+		B25895ED20BBF7940037764C /* QBPlasticPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPlasticPopupMenu.h; sourceTree = "<group>"; };
+		B25895EE20BBF7940037764C /* QBPopupMenuPagenatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuPagenatorView.h; sourceTree = "<group>"; };
+		B25895EF20BBF7940037764C /* QBPopupMenuOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuOverlayView.h; sourceTree = "<group>"; };
+		B25895F020BBF7940037764C /* QBPopupMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuItemView.m; sourceTree = "<group>"; };
+		B25895F120BBF7940037764C /* QBPopupMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuItem.m; sourceTree = "<group>"; };
+		B25895F220BBF7940037764C /* QBPlasticPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPlasticPopupMenu.m; sourceTree = "<group>"; };
+		B25895F320BBF7940037764C /* QBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenu.h; sourceTree = "<group>"; };
+		B25895F420BBF7940037764C /* QBPopupMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuItemView.h; sourceTree = "<group>"; };
+		B25895F520BBF7940037764C /* QBPopupMenuOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuOverlayView.m; sourceTree = "<group>"; };
+		B25895F620BBF7940037764C /* QBPopupMenuPagenatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBPopupMenuPagenatorView.m; sourceTree = "<group>"; };
+		B25895F720BBF7940037764C /* QBPopupMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBPopupMenuItem.h; sourceTree = "<group>"; };
+		B25895F920BBF7940037764C /* newnotif.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newnotif.caf; sourceTree = "<group>"; };
+		B25895FA20BBF7940037764C /* inline.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = inline.caf; sourceTree = "<group>"; };
+		B25895FB20BBF7940037764C /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		B25895FD20BBF7940037764C /* ChatMessagesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessagesTVC.m; sourceTree = "<group>"; };
+		B25895FE20BBF7940037764C /* ChatMessagesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessagesVC.m; sourceTree = "<group>"; };
+		B25895FF20BBF7940037764C /* ChatCreateGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCreateGroupVC.m; sourceTree = "<group>"; };
+		B258960020BBF7940037764C /* ChatInfoMessageTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageTVC.m; sourceTree = "<group>"; };
+		B258960120BBF7940037764C /* ChatChangeGroupNameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatChangeGroupNameVC.m; sourceTree = "<group>"; };
+		B258960220BBF7940037764C /* ChatMiniBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMiniBrowserVC.m; sourceTree = "<group>"; };
+		B258960320BBF7940037764C /* ChatTextMessageLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextMessageLeftCell.m; sourceTree = "<group>"; };
+		B258960420BBF7940037764C /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
+		B258960520BBF7940037764C /* ChatTitleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTitleVC.m; sourceTree = "<group>"; };
+		B258960620BBF7940037764C /* ChatTextMessageRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextMessageRightCell.m; sourceTree = "<group>"; };
+		B258960720BBF7940037764C /* ChatInfoMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageCell.h; sourceTree = "<group>"; };
+		B258960820BBF7940037764C /* ChatImagePreviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImagePreviewVC.h; sourceTree = "<group>"; };
+		B258960920BBF7940037764C /* NotificationAlertVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationAlertVC.h; sourceTree = "<group>"; };
+		B258960A20BBF7940037764C /* UIView+Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Property.m"; sourceTree = "<group>"; };
+		B258960B20BBF7940037764C /* ChatGroupInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupInfoVC.h; sourceTree = "<group>"; };
+		B258960C20BBF7940037764C /* ChatSelectGroupMembersLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupMembersLocal.m; sourceTree = "<group>"; };
+		B258960D20BBF7940037764C /* ChatNYTPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNYTPhoto.h; sourceTree = "<group>"; };
+		B258960E20BBF7940037764C /* ChatInfoMessageAttributesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageAttributesTVC.m; sourceTree = "<group>"; };
+		B258960F20BBF7940037764C /* ChatStatusTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStatusTitle.h; sourceTree = "<group>"; };
+		B258961020BBF7940037764C /* ChatSelectGroupLocalTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupLocalTVC.m; sourceTree = "<group>"; };
+		B258961120BBF7940037764C /* ChatImageMessageRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageRightCell.h; sourceTree = "<group>"; };
+		B258961220BBF7940037764C /* ChatSelectUserLocalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectUserLocalVC.m; sourceTree = "<group>"; };
+		B258961320BBF7940037764C /* NotificationAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationAlertView.h; sourceTree = "<group>"; };
+		B258961420BBF7940037764C /* ChatImageMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageCell.h; sourceTree = "<group>"; };
+		B258961520BBF7940037764C /* ChatGroupMembersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupMembersVC.m; sourceTree = "<group>"; };
+		B258961620BBF7940037764C /* ChatConversationsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversationsVC.m; sourceTree = "<group>"; };
+		B258961720BBF7940037764C /* ChatImageMessageLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageLeftCell.m; sourceTree = "<group>"; };
+		B258961820BBF7940037764C /* ChatInfoMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInfoMessageCell.m; sourceTree = "<group>"; };
+		B258961920BBF7940037764C /* ChatTextMessageRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextMessageRightCell.h; sourceTree = "<group>"; };
+		B258961A20BBF7940037764C /* ChatTitleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTitleVC.h; sourceTree = "<group>"; };
+		B258961B20BBF7940037764C /* ChatTextMessageLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextMessageLeftCell.h; sourceTree = "<group>"; };
+		B258961C20BBF7940037764C /* ChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
+		B258961D20BBF7940037764C /* ChatMiniBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMiniBrowserVC.h; sourceTree = "<group>"; };
+		B258961E20BBF7940037764C /* ChatChangeGroupNameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatChangeGroupNameVC.h; sourceTree = "<group>"; };
+		B258961F20BBF7940037764C /* ChatInfoMessageTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageTVC.h; sourceTree = "<group>"; };
+		B258962020BBF7940037764C /* ChatCreateGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCreateGroupVC.h; sourceTree = "<group>"; };
+		B258962120BBF7940037764C /* ChatMessagesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessagesVC.h; sourceTree = "<group>"; };
+		B258962220BBF7940037764C /* ChatMessagesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessagesTVC.h; sourceTree = "<group>"; };
+		B258962320BBF7940037764C /* ChatSelectGroupLocalTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupLocalTVC.h; sourceTree = "<group>"; };
+		B258962420BBF7940037764C /* ChatInfoMessageAttributesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInfoMessageAttributesTVC.h; sourceTree = "<group>"; };
+		B258962520BBF7940037764C /* ChatStatusTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStatusTitle.m; sourceTree = "<group>"; };
+		B258962620BBF7940037764C /* ChatNYTPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNYTPhoto.m; sourceTree = "<group>"; };
+		B258962720BBF7940037764C /* ChatSelectGroupMembersLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupMembersLocal.h; sourceTree = "<group>"; };
+		B258962820BBF7940037764C /* ChatModalCallerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModalCallerDelegate.h; sourceTree = "<group>"; };
+		B258962920BBF7940037764C /* ChatGroupInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupInfoVC.m; sourceTree = "<group>"; };
+		B258962A20BBF7940037764C /* UIView+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Property.h"; sourceTree = "<group>"; };
+		B258962B20BBF7940037764C /* NotificationAlertVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertVC.m; sourceTree = "<group>"; };
+		B258962C20BBF7940037764C /* ChatImagePreviewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImagePreviewVC.m; sourceTree = "<group>"; };
+		B258962D20BBF7940037764C /* ChatGroupMembersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupMembersVC.h; sourceTree = "<group>"; };
+		B258962E20BBF7940037764C /* ChatImageMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageCell.m; sourceTree = "<group>"; };
+		B258962F20BBF7940037764C /* NotificationAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationAlertView.m; sourceTree = "<group>"; };
+		B258963020BBF7940037764C /* ChatSelectUserLocalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectUserLocalVC.h; sourceTree = "<group>"; };
+		B258963120BBF7940037764C /* ChatImageMessageRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageMessageRightCell.m; sourceTree = "<group>"; };
+		B258963220BBF7940037764C /* ChatImageMessageLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageMessageLeftCell.h; sourceTree = "<group>"; };
+		B258963320BBF7940037764C /* ChatConversationsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsVC.h; sourceTree = "<group>"; };
+		B258963420BBF7940037764C /* ChatUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUIManager.h; sourceTree = "<group>"; };
+		B258963720BBF7940037764C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Chat.strings; sourceTree = "<group>"; };
+		B258963920BBF7940037764C /* ChatImageWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageWrapper.m; sourceTree = "<group>"; };
+		B258963A20BBF7940037764C /* ChatStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStringUtil.m; sourceTree = "<group>"; };
+		B258963B20BBF7940037764C /* ChatImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageCache.h; sourceTree = "<group>"; };
+		B258963C20BBF7940037764C /* ChatUploadsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUploadsController.h; sourceTree = "<group>"; };
+		B258963D20BBF7940037764C /* ChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUtil.m; sourceTree = "<group>"; };
+		B258963E20BBF7940037764C /* ChatUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUpload.m; sourceTree = "<group>"; };
+		B258963F20BBF7940037764C /* ChatStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStringUtil.h; sourceTree = "<group>"; };
+		B258964020BBF7940037764C /* ChatImageWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageWrapper.h; sourceTree = "<group>"; };
+		B258964120BBF7940037764C /* ChatImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageCache.m; sourceTree = "<group>"; };
+		B258964220BBF7940037764C /* ChatUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUpload.h; sourceTree = "<group>"; };
+		B258964320BBF7940037764C /* ChatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUtil.h; sourceTree = "<group>"; };
+		B258964420BBF7940037764C /* ChatUploadsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUploadsController.m; sourceTree = "<group>"; };
+		B258964520BBF7940037764C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Chat.strings; sourceTree = "<group>"; };
+		B258964620BBF7940037764C /* ChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
+		B258964720BBF7940037764C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Chat.strings; sourceTree = "<group>"; };
+		B258964920BBF7940037764C /* ChatConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversation.m; sourceTree = "<group>"; };
+		B258964A20BBF7940037764C /* ChatEventType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatEventType.h; sourceTree = "<group>"; };
+		B258964B20BBF7940037764C /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		B258964C20BBF7940037764C /* ChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUser.m; sourceTree = "<group>"; };
+		B258964D20BBF7940037764C /* ChatGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroup.h; sourceTree = "<group>"; };
+		B258964E20BBF7940037764C /* ChatConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversation.h; sourceTree = "<group>"; };
+		B258964F20BBF7940037764C /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
+		B258965020BBF7940037764C /* ChatGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroup.m; sourceTree = "<group>"; };
+		B258965120BBF7940037764C /* ChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUser.h; sourceTree = "<group>"; };
+		B258965320BBF7940037764C /* ChatConversationsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversationsHandler.m; sourceTree = "<group>"; };
+		B258965420BBF7940037764C /* ChatPresenceViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceViewDelegate.h; sourceTree = "<group>"; };
+		B258965520BBF7940037764C /* FirebaseCustomAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCustomAuthHelper.h; sourceTree = "<group>"; };
+		B258965620BBF7940037764C /* ChatMessageMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageMetadata.m; sourceTree = "<group>"; };
+		B258965720BBF7940037764C /* ChatConversationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationHandler.h; sourceTree = "<group>"; };
+		B258965820BBF7940037764C /* ChatGroupsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsHandler.m; sourceTree = "<group>"; };
+		B258965920BBF7940037764C /* ChatPresenceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatPresenceHandler.m; sourceTree = "<group>"; };
+		B258965A20BBF7940037764C /* ChatContactsSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsSynchronizer.m; sourceTree = "<group>"; };
+		B258965B20BBF7940037764C /* ChatConnectionStatusHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConnectionStatusHandler.h; sourceTree = "<group>"; };
+		B258965C20BBF7940037764C /* ChatAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAuth.m; sourceTree = "<group>"; };
+		B258965D20BBF7940037764C /* ChatImageDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImageDownloadManager.m; sourceTree = "<group>"; };
+		B258965E20BBF7940037764C /* ChatConversationsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatConversationsHandler.h; sourceTree = "<group>"; };
+		B258965F20BBF7940037764C /* ChatGroupsSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsSubscriber.h; sourceTree = "<group>"; };
+		B258966020BBF7940037764C /* ChatConversationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConversationHandler.m; sourceTree = "<group>"; };
+		B258966120BBF7940037764C /* ChatMessageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageMetadata.h; sourceTree = "<group>"; };
+		B258966220BBF7940037764C /* FirebaseCustomAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCustomAuthHelper.m; sourceTree = "<group>"; };
+		B258966320BBF7940037764C /* ChatPresenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPresenceHandler.h; sourceTree = "<group>"; };
+		B258966420BBF7940037764C /* ChatGroupsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsHandler.h; sourceTree = "<group>"; };
+		B258966520BBF7940037764C /* ChatImageDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImageDownloadManager.h; sourceTree = "<group>"; };
+		B258966620BBF7940037764C /* ChatAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAuth.h; sourceTree = "<group>"; };
+		B258966720BBF7940037764C /* ChatConnectionStatusHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatConnectionStatusHandler.m; sourceTree = "<group>"; };
+		B258966820BBF7940037764C /* ChatSynchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSynchDelegate.h; sourceTree = "<group>"; };
+		B258966920BBF7940037764C /* ChatContactsSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContactsSynchronizer.h; sourceTree = "<group>"; };
+		B258966B20BBF7940037764C /* ChatGroupsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatGroupsDB.h; sourceTree = "<group>"; };
+		B258966C20BBF7940037764C /* ChatContactsDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContactsDB.h; sourceTree = "<group>"; };
+		B258966D20BBF7940037764C /* ChatDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDB.m; sourceTree = "<group>"; };
+		B258966E20BBF7940037764C /* ChatGroupsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatGroupsDB.m; sourceTree = "<group>"; };
+		B258966F20BBF7940037764C /* ChatContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsDB.m; sourceTree = "<group>"; };
+		B258967020BBF7940037764C /* ChatDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDB.h; sourceTree = "<group>"; };
+		B258967120BBF7940037764C /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
 		B2A4C0511FE7D7A600AED2EE /* HelloUserProfileTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloUserProfileTVC.h; sourceTree = "<group>"; };
 		B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloUserProfileTVC.m; sourceTree = "<group>"; };
 		B2ABAE7E202228C200D6265A /* Chat21.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chat21.entitlements; sourceTree = "<group>"; };
@@ -423,290 +520,290 @@
 			path = Project/Support;
 			sourceTree = "<group>";
 		};
-		B258950220BBF52F0037764C /* Chat21Core */ = {
+		B25895BA20BBF7940037764C /* Chat21UI */ = {
 			isa = PBXGroup;
 			children = (
-				B258950320BBF52F0037764C /* Chat.strings */,
-				B258950520BBF52F0037764C /* util */,
-				B258951320BBF52F0037764C /* ChatManager.h */,
-				B258951520BBF52F0037764C /* model */,
-				B258951F20BBF52F0037764C /* lib */,
-				B258953720BBF52F0037764C /* DB */,
-				B258953E20BBF52F0037764C /* ChatManager.m */,
-			);
-			name = Chat21Core;
-			path = "../../../Downloads/chat21-ios-sdk-master 10/chat21-ios-sdk-master/Chat21Core";
-			sourceTree = "<group>";
-		};
-		B258950520BBF52F0037764C /* util */ = {
-			isa = PBXGroup;
-			children = (
-				B258950620BBF52F0037764C /* ChatImageWrapper.m */,
-				B258950720BBF52F0037764C /* ChatStringUtil.m */,
-				B258950820BBF52F0037764C /* ChatImageCache.h */,
-				B258950920BBF52F0037764C /* ChatUploadsController.h */,
-				B258950A20BBF52F0037764C /* ChatUtil.m */,
-				B258950B20BBF52F0037764C /* ChatUpload.m */,
-				B258950C20BBF52F0037764C /* ChatStringUtil.h */,
-				B258950D20BBF52F0037764C /* ChatImageWrapper.h */,
-				B258950E20BBF52F0037764C /* ChatImageCache.m */,
-				B258950F20BBF52F0037764C /* ChatUpload.h */,
-				B258951020BBF52F0037764C /* ChatUtil.h */,
-				B258951120BBF52F0037764C /* ChatUploadsController.m */,
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
-		B258951520BBF52F0037764C /* model */ = {
-			isa = PBXGroup;
-			children = (
-				B258951620BBF52F0037764C /* ChatConversation.m */,
-				B258951720BBF52F0037764C /* ChatEventType.h */,
-				B258951820BBF52F0037764C /* ChatMessage.h */,
-				B258951920BBF52F0037764C /* ChatUser.m */,
-				B258951A20BBF52F0037764C /* ChatGroup.h */,
-				B258951B20BBF52F0037764C /* ChatConversation.h */,
-				B258951C20BBF52F0037764C /* ChatMessage.m */,
-				B258951D20BBF52F0037764C /* ChatGroup.m */,
-				B258951E20BBF52F0037764C /* ChatUser.h */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		B258951F20BBF52F0037764C /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				B258952020BBF52F0037764C /* ChatConversationsHandler.m */,
-				B258952120BBF52F0037764C /* ChatPresenceViewDelegate.h */,
-				B258952220BBF52F0037764C /* FirebaseCustomAuthHelper.h */,
-				B258952320BBF52F0037764C /* ChatMessageMetadata.m */,
-				B258952420BBF52F0037764C /* ChatConversationHandler.h */,
-				B258952520BBF52F0037764C /* ChatGroupsHandler.m */,
-				B258952620BBF52F0037764C /* ChatPresenceHandler.m */,
-				B258952720BBF52F0037764C /* ChatContactsSynchronizer.m */,
-				B258952820BBF52F0037764C /* ChatConnectionStatusHandler.h */,
-				B258952920BBF52F0037764C /* ChatAuth.m */,
-				B258952A20BBF52F0037764C /* ChatImageDownloadManager.m */,
-				B258952B20BBF52F0037764C /* ChatConversationsHandler.h */,
-				B258952C20BBF52F0037764C /* ChatGroupsSubscriber.h */,
-				B258952D20BBF52F0037764C /* ChatConversationHandler.m */,
-				B258952E20BBF52F0037764C /* ChatMessageMetadata.h */,
-				B258952F20BBF52F0037764C /* FirebaseCustomAuthHelper.m */,
-				B258953020BBF52F0037764C /* ChatPresenceHandler.h */,
-				B258953120BBF52F0037764C /* ChatGroupsHandler.h */,
-				B258953220BBF52F0037764C /* ChatImageDownloadManager.h */,
-				B258953320BBF52F0037764C /* ChatAuth.h */,
-				B258953420BBF52F0037764C /* ChatConnectionStatusHandler.m */,
-				B258953520BBF52F0037764C /* ChatSynchDelegate.h */,
-				B258953620BBF52F0037764C /* ChatContactsSynchronizer.h */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		B258953720BBF52F0037764C /* DB */ = {
-			isa = PBXGroup;
-			children = (
-				B258953820BBF52F0037764C /* ChatGroupsDB.h */,
-				B258953920BBF52F0037764C /* ChatContactsDB.h */,
-				B258953A20BBF52F0037764C /* ChatDB.m */,
-				B258953B20BBF52F0037764C /* ChatGroupsDB.m */,
-				B258953C20BBF52F0037764C /* ChatContactsDB.m */,
-				B258953D20BBF52F0037764C /* ChatDB.h */,
-			);
-			path = DB;
-			sourceTree = "<group>";
-		};
-		B258953F20BBF52F0037764C /* Chat21UI */ = {
-			isa = PBXGroup;
-			children = (
-				B258954020BBF52F0037764C /* xib */,
-				B258954320BBF52F0037764C /* util */,
-				B258955020BBF52F0037764C /* images */,
-				B258956F20BBF52F0037764C /* ChatUIManager.m */,
-				B258957020BBF52F0037764C /* QBPopupMenu */,
-				B258957D20BBF52F0037764C /* sounds */,
-				B258958020BBF52F0037764C /* Chat.storyboard */,
-				B258958120BBF52F0037764C /* view */,
-				B25895B920BBF52F0037764C /* ChatUIManager.h */,
+				B25895BB20BBF7940037764C /* xib */,
+				B25895BE20BBF7940037764C /* util */,
+				B25895CB20BBF7940037764C /* images */,
+				B25895EA20BBF7940037764C /* ChatUIManager.m */,
+				B25895EB20BBF7940037764C /* QBPopupMenu */,
+				B25895F820BBF7940037764C /* sounds */,
+				B25895FB20BBF7940037764C /* Chat.storyboard */,
+				B25895FC20BBF7940037764C /* view */,
+				B258963420BBF7940037764C /* ChatUIManager.h */,
 			);
 			name = Chat21UI;
-			path = "../../../Downloads/chat21-ios-sdk-master 10/chat21-ios-sdk-master/Chat21UI";
+			path = "../chat21-ios-sdk/Chat21UI";
 			sourceTree = "<group>";
 		};
-		B258954020BBF52F0037764C /* xib */ = {
+		B25895BB20BBF7940037764C /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				B258954120BBF52F0037764C /* notification_view.xib */,
-				B258954220BBF52F0037764C /* status_title_ios11.xib */,
+				B25895BC20BBF7940037764C /* notification_view.xib */,
+				B25895BD20BBF7940037764C /* status_title_ios11.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
 		};
-		B258954320BBF52F0037764C /* util */ = {
+		B25895BE20BBF7940037764C /* util */ = {
 			isa = PBXGroup;
 			children = (
-				B258954420BBF52F0037764C /* ChatCustomView.m */,
-				B258954520BBF52F0037764C /* ChatMessageComponents.m */,
-				B258954620BBF52F0037764C /* CellConfigurator.m */,
-				B258954720BBF52F0037764C /* ChatImageUtil.m */,
-				B258954820BBF52F0037764C /* ChatLocal.h */,
-				B258954920BBF52F0037764C /* ChatProgressView.h */,
-				B258954A20BBF52F0037764C /* ChatMessageComponents.h */,
-				B258954B20BBF52F0037764C /* ChatCustomView.h */,
-				B258954C20BBF52F0037764C /* ChatProgressView.m */,
-				B258954D20BBF52F0037764C /* ChatLocal.m */,
-				B258954E20BBF52F0037764C /* ChatImageUtil.h */,
-				B258954F20BBF52F0037764C /* CellConfigurator.h */,
+				B25895BF20BBF7940037764C /* ChatCustomView.m */,
+				B25895C020BBF7940037764C /* ChatMessageComponents.m */,
+				B25895C120BBF7940037764C /* CellConfigurator.m */,
+				B25895C220BBF7940037764C /* ChatImageUtil.m */,
+				B25895C320BBF7940037764C /* ChatLocal.h */,
+				B25895C420BBF7940037764C /* ChatProgressView.h */,
+				B25895C520BBF7940037764C /* ChatMessageComponents.h */,
+				B25895C620BBF7940037764C /* ChatCustomView.h */,
+				B25895C720BBF7940037764C /* ChatProgressView.m */,
+				B25895C820BBF7940037764C /* ChatLocal.m */,
+				B25895C920BBF7940037764C /* ChatImageUtil.h */,
+				B25895CA20BBF7940037764C /* CellConfigurator.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
 		};
-		B258955020BBF52F0037764C /* images */ = {
+		B25895CB20BBF7940037764C /* images */ = {
 			isa = PBXGroup;
 			children = (
-				B258955120BBF52F0037764C /* general */,
-				B258955720BBF52F0037764C /* tabicons */,
-				B258956620BBF52F0037764C /* icons */,
+				B25895CC20BBF7940037764C /* general */,
+				B25895D220BBF7940037764C /* tabicons */,
+				B25895E120BBF7940037764C /* icons */,
 			);
 			path = images;
 			sourceTree = "<group>";
 		};
-		B258955120BBF52F0037764C /* general */ = {
+		B25895CC20BBF7940037764C /* general */ = {
 			isa = PBXGroup;
 			children = (
-				B258955220BBF52F0037764C /* sendbutton.png */,
-				B258955320BBF52F0037764C /* avatar.png */,
-				B258955420BBF52F0037764C /* no_image_message_placeholder.png */,
-				B258955520BBF52F0037764C /* group-conversation-avatar.png */,
-				B258955620BBF52F0037764C /* exiticonbutton.png */,
+				B25895CD20BBF7940037764C /* sendbutton.png */,
+				B25895CE20BBF7940037764C /* avatar.png */,
+				B25895CF20BBF7940037764C /* no_image_message_placeholder.png */,
+				B25895D020BBF7940037764C /* group-conversation-avatar.png */,
+				B25895D120BBF7940037764C /* exiticonbutton.png */,
 			);
 			path = general;
 			sourceTree = "<group>";
 		};
-		B258955720BBF52F0037764C /* tabicons */ = {
+		B25895D220BBF7940037764C /* tabicons */ = {
 			isa = PBXGroup;
 			children = (
-				B258955820BBF52F0037764C /* icon_light_home.png */,
-				B258955920BBF52F0037764C /* icon_light_home@2x.png */,
-				B258955A20BBF52F0037764C /* icon_light_altro.png */,
-				B258955B20BBF52F0037764C /* icon_light_foto@2x.png */,
-				B258955C20BBF52F0037764C /* icon_light_watch.png */,
-				B258955D20BBF52F0037764C /* icon_light_chat@2x.png */,
-				B258955E20BBF52F0037764C /* icon_light_profile.png */,
-				B258955F20BBF52F0037764C /* icon_light_profile@2x.png */,
-				B258956020BBF52F0037764C /* icon_light_chat.png */,
-				B258956120BBF52F0037764C /* icon_light_cerca@2x.png */,
-				B258956220BBF52F0037764C /* icon_light_altro@2x.png */,
-				B258956320BBF52F0037764C /* icon_light_foto.png */,
-				B258956420BBF52F0037764C /* icon_light_watch@2x.png */,
-				B258956520BBF52F0037764C /* icon_light_cerca.png */,
+				B25895D320BBF7940037764C /* icon_light_home.png */,
+				B25895D420BBF7940037764C /* icon_light_home@2x.png */,
+				B25895D520BBF7940037764C /* icon_light_altro.png */,
+				B25895D620BBF7940037764C /* icon_light_foto@2x.png */,
+				B25895D720BBF7940037764C /* icon_light_watch.png */,
+				B25895D820BBF7940037764C /* icon_light_chat@2x.png */,
+				B25895D920BBF7940037764C /* icon_light_profile.png */,
+				B25895DA20BBF7940037764C /* icon_light_profile@2x.png */,
+				B25895DB20BBF7940037764C /* icon_light_chat.png */,
+				B25895DC20BBF7940037764C /* icon_light_cerca@2x.png */,
+				B25895DD20BBF7940037764C /* icon_light_altro@2x.png */,
+				B25895DE20BBF7940037764C /* icon_light_foto.png */,
+				B25895DF20BBF7940037764C /* icon_light_watch@2x.png */,
+				B25895E020BBF7940037764C /* icon_light_cerca.png */,
 			);
 			path = tabicons;
 			sourceTree = "<group>";
 		};
-		B258956620BBF52F0037764C /* icons */ = {
+		B25895E120BBF7940037764C /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				B258956720BBF52F0037764C /* ic_linear_support_gray_01@3x.png */,
-				B258956820BBF52F0037764C /* chat_check.png */,
-				B258956920BBF52F0037764C /* ic_linear_support_gray_01@2x.png */,
-				B258956A20BBF52F0037764C /* chat_watch.png */,
-				B258956B20BBF52F0037764C /* chat_failed.png */,
-				B258956C20BBF52F0037764C /* plus_icon@3x.png */,
-				B258956D20BBF52F0037764C /* ic_linear_support_gray_01.png */,
-				B258956E20BBF52F0037764C /* chat_double_check.png */,
+				B25895E220BBF7940037764C /* ic_linear_support_gray_01@3x.png */,
+				B25895E320BBF7940037764C /* chat_check.png */,
+				B25895E420BBF7940037764C /* ic_linear_support_gray_01@2x.png */,
+				B25895E520BBF7940037764C /* chat_watch.png */,
+				B25895E620BBF7940037764C /* chat_failed.png */,
+				B25895E720BBF7940037764C /* plus_icon@3x.png */,
+				B25895E820BBF7940037764C /* ic_linear_support_gray_01.png */,
+				B25895E920BBF7940037764C /* chat_double_check.png */,
 			);
 			path = icons;
 			sourceTree = "<group>";
 		};
-		B258957020BBF52F0037764C /* QBPopupMenu */ = {
+		B25895EB20BBF7940037764C /* QBPopupMenu */ = {
 			isa = PBXGroup;
 			children = (
-				B258957120BBF52F0037764C /* QBPopupMenu.m */,
-				B258957220BBF52F0037764C /* QBPlasticPopupMenu.h */,
-				B258957320BBF52F0037764C /* QBPopupMenuPagenatorView.h */,
-				B258957420BBF52F0037764C /* QBPopupMenuOverlayView.h */,
-				B258957520BBF52F0037764C /* QBPopupMenuItemView.m */,
-				B258957620BBF52F0037764C /* QBPopupMenuItem.m */,
-				B258957720BBF52F0037764C /* QBPlasticPopupMenu.m */,
-				B258957820BBF52F0037764C /* QBPopupMenu.h */,
-				B258957920BBF52F0037764C /* QBPopupMenuItemView.h */,
-				B258957A20BBF52F0037764C /* QBPopupMenuOverlayView.m */,
-				B258957B20BBF52F0037764C /* QBPopupMenuPagenatorView.m */,
-				B258957C20BBF52F0037764C /* QBPopupMenuItem.h */,
+				B25895EC20BBF7940037764C /* QBPopupMenu.m */,
+				B25895ED20BBF7940037764C /* QBPlasticPopupMenu.h */,
+				B25895EE20BBF7940037764C /* QBPopupMenuPagenatorView.h */,
+				B25895EF20BBF7940037764C /* QBPopupMenuOverlayView.h */,
+				B25895F020BBF7940037764C /* QBPopupMenuItemView.m */,
+				B25895F120BBF7940037764C /* QBPopupMenuItem.m */,
+				B25895F220BBF7940037764C /* QBPlasticPopupMenu.m */,
+				B25895F320BBF7940037764C /* QBPopupMenu.h */,
+				B25895F420BBF7940037764C /* QBPopupMenuItemView.h */,
+				B25895F520BBF7940037764C /* QBPopupMenuOverlayView.m */,
+				B25895F620BBF7940037764C /* QBPopupMenuPagenatorView.m */,
+				B25895F720BBF7940037764C /* QBPopupMenuItem.h */,
 			);
 			path = QBPopupMenu;
 			sourceTree = "<group>";
 		};
-		B258957D20BBF52F0037764C /* sounds */ = {
+		B25895F820BBF7940037764C /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				B258957E20BBF52F0037764C /* newnotif.caf */,
-				B258957F20BBF52F0037764C /* inline.caf */,
+				B25895F920BBF7940037764C /* newnotif.caf */,
+				B25895FA20BBF7940037764C /* inline.caf */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
 		};
-		B258958120BBF52F0037764C /* view */ = {
+		B25895FC20BBF7940037764C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				B258958220BBF52F0037764C /* ChatMessagesTVC.m */,
-				B258958320BBF52F0037764C /* ChatMessagesVC.m */,
-				B258958420BBF52F0037764C /* ChatCreateGroupVC.m */,
-				B258958520BBF52F0037764C /* ChatInfoMessageTVC.m */,
-				B258958620BBF52F0037764C /* ChatChangeGroupNameVC.m */,
-				B258958720BBF52F0037764C /* ChatMiniBrowserVC.m */,
-				B258958820BBF52F0037764C /* ChatTextMessageLeftCell.m */,
-				B258958920BBF52F0037764C /* ChatMessageCell.h */,
-				B258958A20BBF52F0037764C /* ChatTitleVC.m */,
-				B258958B20BBF52F0037764C /* ChatTextMessageRightCell.m */,
-				B258958C20BBF52F0037764C /* ChatInfoMessageCell.h */,
-				B258958D20BBF52F0037764C /* ChatImagePreviewVC.h */,
-				B258958E20BBF52F0037764C /* NotificationAlertVC.h */,
-				B258958F20BBF52F0037764C /* UIView+Property.m */,
-				B258959020BBF52F0037764C /* ChatGroupInfoVC.h */,
-				B258959120BBF52F0037764C /* ChatSelectGroupMembersLocal.m */,
-				B258959220BBF52F0037764C /* ChatNYTPhoto.h */,
-				B258959320BBF52F0037764C /* ChatInfoMessageAttributesTVC.m */,
-				B258959420BBF52F0037764C /* ChatStatusTitle.h */,
-				B258959520BBF52F0037764C /* ChatSelectGroupLocalTVC.m */,
-				B258959620BBF52F0037764C /* ChatImageMessageRightCell.h */,
-				B258959720BBF52F0037764C /* ChatSelectUserLocalVC.m */,
-				B258959820BBF52F0037764C /* NotificationAlertView.h */,
-				B258959920BBF52F0037764C /* ChatImageMessageCell.h */,
-				B258959A20BBF52F0037764C /* ChatGroupMembersVC.m */,
-				B258959B20BBF52F0037764C /* ChatConversationsVC.m */,
-				B258959C20BBF52F0037764C /* ChatImageMessageLeftCell.m */,
-				B258959D20BBF52F0037764C /* ChatInfoMessageCell.m */,
-				B258959E20BBF52F0037764C /* ChatTextMessageRightCell.h */,
-				B258959F20BBF52F0037764C /* ChatTitleVC.h */,
-				B25895A020BBF52F0037764C /* ChatTextMessageLeftCell.h */,
-				B25895A120BBF52F0037764C /* ChatMessageCell.m */,
-				B25895A220BBF52F0037764C /* ChatMiniBrowserVC.h */,
-				B25895A320BBF52F0037764C /* ChatChangeGroupNameVC.h */,
-				B25895A420BBF52F0037764C /* ChatInfoMessageTVC.h */,
-				B25895A520BBF52F0037764C /* ChatCreateGroupVC.h */,
-				B25895A620BBF52F0037764C /* ChatMessagesVC.h */,
-				B25895A720BBF52F0037764C /* ChatMessagesTVC.h */,
-				B25895A820BBF52F0037764C /* ChatSelectGroupLocalTVC.h */,
-				B25895A920BBF52F0037764C /* ChatInfoMessageAttributesTVC.h */,
-				B25895AA20BBF52F0037764C /* ChatStatusTitle.m */,
-				B25895AB20BBF52F0037764C /* ChatNYTPhoto.m */,
-				B25895AC20BBF52F0037764C /* ChatSelectGroupMembersLocal.h */,
-				B25895AD20BBF52F0037764C /* ChatModalCallerDelegate.h */,
-				B25895AE20BBF52F0037764C /* ChatGroupInfoVC.m */,
-				B25895AF20BBF52F0037764C /* UIView+Property.h */,
-				B25895B020BBF52F0037764C /* NotificationAlertVC.m */,
-				B25895B120BBF52F0037764C /* ChatImagePreviewVC.m */,
-				B25895B220BBF52F0037764C /* ChatGroupMembersVC.h */,
-				B25895B320BBF52F0037764C /* ChatImageMessageCell.m */,
-				B25895B420BBF52F0037764C /* NotificationAlertView.m */,
-				B25895B520BBF52F0037764C /* ChatSelectUserLocalVC.h */,
-				B25895B620BBF52F0037764C /* ChatImageMessageRightCell.m */,
-				B25895B720BBF52F0037764C /* ChatImageMessageLeftCell.h */,
-				B25895B820BBF52F0037764C /* ChatConversationsVC.h */,
+				B25895FD20BBF7940037764C /* ChatMessagesTVC.m */,
+				B25895FE20BBF7940037764C /* ChatMessagesVC.m */,
+				B25895FF20BBF7940037764C /* ChatCreateGroupVC.m */,
+				B258960020BBF7940037764C /* ChatInfoMessageTVC.m */,
+				B258960120BBF7940037764C /* ChatChangeGroupNameVC.m */,
+				B258960220BBF7940037764C /* ChatMiniBrowserVC.m */,
+				B258960320BBF7940037764C /* ChatTextMessageLeftCell.m */,
+				B258960420BBF7940037764C /* ChatMessageCell.h */,
+				B258960520BBF7940037764C /* ChatTitleVC.m */,
+				B258960620BBF7940037764C /* ChatTextMessageRightCell.m */,
+				B258960720BBF7940037764C /* ChatInfoMessageCell.h */,
+				B258960820BBF7940037764C /* ChatImagePreviewVC.h */,
+				B258960920BBF7940037764C /* NotificationAlertVC.h */,
+				B258960A20BBF7940037764C /* UIView+Property.m */,
+				B258960B20BBF7940037764C /* ChatGroupInfoVC.h */,
+				B258960C20BBF7940037764C /* ChatSelectGroupMembersLocal.m */,
+				B258960D20BBF7940037764C /* ChatNYTPhoto.h */,
+				B258960E20BBF7940037764C /* ChatInfoMessageAttributesTVC.m */,
+				B258960F20BBF7940037764C /* ChatStatusTitle.h */,
+				B258961020BBF7940037764C /* ChatSelectGroupLocalTVC.m */,
+				B258961120BBF7940037764C /* ChatImageMessageRightCell.h */,
+				B258961220BBF7940037764C /* ChatSelectUserLocalVC.m */,
+				B258961320BBF7940037764C /* NotificationAlertView.h */,
+				B258961420BBF7940037764C /* ChatImageMessageCell.h */,
+				B258961520BBF7940037764C /* ChatGroupMembersVC.m */,
+				B258961620BBF7940037764C /* ChatConversationsVC.m */,
+				B258961720BBF7940037764C /* ChatImageMessageLeftCell.m */,
+				B258961820BBF7940037764C /* ChatInfoMessageCell.m */,
+				B258961920BBF7940037764C /* ChatTextMessageRightCell.h */,
+				B258961A20BBF7940037764C /* ChatTitleVC.h */,
+				B258961B20BBF7940037764C /* ChatTextMessageLeftCell.h */,
+				B258961C20BBF7940037764C /* ChatMessageCell.m */,
+				B258961D20BBF7940037764C /* ChatMiniBrowserVC.h */,
+				B258961E20BBF7940037764C /* ChatChangeGroupNameVC.h */,
+				B258961F20BBF7940037764C /* ChatInfoMessageTVC.h */,
+				B258962020BBF7940037764C /* ChatCreateGroupVC.h */,
+				B258962120BBF7940037764C /* ChatMessagesVC.h */,
+				B258962220BBF7940037764C /* ChatMessagesTVC.h */,
+				B258962320BBF7940037764C /* ChatSelectGroupLocalTVC.h */,
+				B258962420BBF7940037764C /* ChatInfoMessageAttributesTVC.h */,
+				B258962520BBF7940037764C /* ChatStatusTitle.m */,
+				B258962620BBF7940037764C /* ChatNYTPhoto.m */,
+				B258962720BBF7940037764C /* ChatSelectGroupMembersLocal.h */,
+				B258962820BBF7940037764C /* ChatModalCallerDelegate.h */,
+				B258962920BBF7940037764C /* ChatGroupInfoVC.m */,
+				B258962A20BBF7940037764C /* UIView+Property.h */,
+				B258962B20BBF7940037764C /* NotificationAlertVC.m */,
+				B258962C20BBF7940037764C /* ChatImagePreviewVC.m */,
+				B258962D20BBF7940037764C /* ChatGroupMembersVC.h */,
+				B258962E20BBF7940037764C /* ChatImageMessageCell.m */,
+				B258962F20BBF7940037764C /* NotificationAlertView.m */,
+				B258963020BBF7940037764C /* ChatSelectUserLocalVC.h */,
+				B258963120BBF7940037764C /* ChatImageMessageRightCell.m */,
+				B258963220BBF7940037764C /* ChatImageMessageLeftCell.h */,
+				B258963320BBF7940037764C /* ChatConversationsVC.h */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		B258963520BBF7940037764C /* Chat21Core */ = {
+			isa = PBXGroup;
+			children = (
+				B258963620BBF7940037764C /* Chat.strings */,
+				B258963820BBF7940037764C /* util */,
+				B258964620BBF7940037764C /* ChatManager.h */,
+				B258964820BBF7940037764C /* model */,
+				B258965220BBF7940037764C /* lib */,
+				B258966A20BBF7940037764C /* db */,
+				B258967120BBF7940037764C /* ChatManager.m */,
+			);
+			name = Chat21Core;
+			path = "../chat21-ios-sdk/Chat21Core";
+			sourceTree = "<group>";
+		};
+		B258963820BBF7940037764C /* util */ = {
+			isa = PBXGroup;
+			children = (
+				B258963920BBF7940037764C /* ChatImageWrapper.m */,
+				B258963A20BBF7940037764C /* ChatStringUtil.m */,
+				B258963B20BBF7940037764C /* ChatImageCache.h */,
+				B258963C20BBF7940037764C /* ChatUploadsController.h */,
+				B258963D20BBF7940037764C /* ChatUtil.m */,
+				B258963E20BBF7940037764C /* ChatUpload.m */,
+				B258963F20BBF7940037764C /* ChatStringUtil.h */,
+				B258964020BBF7940037764C /* ChatImageWrapper.h */,
+				B258964120BBF7940037764C /* ChatImageCache.m */,
+				B258964220BBF7940037764C /* ChatUpload.h */,
+				B258964320BBF7940037764C /* ChatUtil.h */,
+				B258964420BBF7940037764C /* ChatUploadsController.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		B258964820BBF7940037764C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B258964920BBF7940037764C /* ChatConversation.m */,
+				B258964A20BBF7940037764C /* ChatEventType.h */,
+				B258964B20BBF7940037764C /* ChatMessage.h */,
+				B258964C20BBF7940037764C /* ChatUser.m */,
+				B258964D20BBF7940037764C /* ChatGroup.h */,
+				B258964E20BBF7940037764C /* ChatConversation.h */,
+				B258964F20BBF7940037764C /* ChatMessage.m */,
+				B258965020BBF7940037764C /* ChatGroup.m */,
+				B258965120BBF7940037764C /* ChatUser.h */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B258965220BBF7940037764C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				B258965320BBF7940037764C /* ChatConversationsHandler.m */,
+				B258965420BBF7940037764C /* ChatPresenceViewDelegate.h */,
+				B258965520BBF7940037764C /* FirebaseCustomAuthHelper.h */,
+				B258965620BBF7940037764C /* ChatMessageMetadata.m */,
+				B258965720BBF7940037764C /* ChatConversationHandler.h */,
+				B258965820BBF7940037764C /* ChatGroupsHandler.m */,
+				B258965920BBF7940037764C /* ChatPresenceHandler.m */,
+				B258965A20BBF7940037764C /* ChatContactsSynchronizer.m */,
+				B258965B20BBF7940037764C /* ChatConnectionStatusHandler.h */,
+				B258965C20BBF7940037764C /* ChatAuth.m */,
+				B258965D20BBF7940037764C /* ChatImageDownloadManager.m */,
+				B258965E20BBF7940037764C /* ChatConversationsHandler.h */,
+				B258965F20BBF7940037764C /* ChatGroupsSubscriber.h */,
+				B258966020BBF7940037764C /* ChatConversationHandler.m */,
+				B258966120BBF7940037764C /* ChatMessageMetadata.h */,
+				B258966220BBF7940037764C /* FirebaseCustomAuthHelper.m */,
+				B258966320BBF7940037764C /* ChatPresenceHandler.h */,
+				B258966420BBF7940037764C /* ChatGroupsHandler.h */,
+				B258966520BBF7940037764C /* ChatImageDownloadManager.h */,
+				B258966620BBF7940037764C /* ChatAuth.h */,
+				B258966720BBF7940037764C /* ChatConnectionStatusHandler.m */,
+				B258966820BBF7940037764C /* ChatSynchDelegate.h */,
+				B258966920BBF7940037764C /* ChatContactsSynchronizer.h */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		B258966A20BBF7940037764C /* db */ = {
+			isa = PBXGroup;
+			children = (
+				B258966B20BBF7940037764C /* ChatGroupsDB.h */,
+				B258966C20BBF7940037764C /* ChatContactsDB.h */,
+				B258966D20BBF7940037764C /* ChatDB.m */,
+				B258966E20BBF7940037764C /* ChatGroupsDB.m */,
+				B258966F20BBF7940037764C /* ChatContactsDB.m */,
+				B258967020BBF7940037764C /* ChatDB.h */,
+			);
+			path = db;
 			sourceTree = "<group>";
 		};
 		B2CE2F391F19314E002E2150 /* Hello */ = {
@@ -742,8 +839,8 @@
 			children = (
 				B2ABAE7E202228C200D6265A /* Chat21.entitlements */,
 				B2DC48F71FBB7EFC00698CE7 /* Media.xcassets */,
-				B258950220BBF52F0037764C /* Chat21Core */,
-				B258953F20BBF52F0037764C /* Chat21UI */,
+				B258963520BBF7940037764C /* Chat21Core */,
+				B25895BA20BBF7940037764C /* Chat21UI */,
 				B24AD7B11F8612A400A526E9 /* Support */,
 				B2CE2F391F19314E002E2150 /* Hello */,
 				BFBFD36A1AEA544F00657874 /* Project */,
@@ -951,28 +1048,61 @@
 			files = (
 				B23AE8F81F28F54500BEB4B8 /* user-profile-man.jpg in Resources */,
 				B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */,
+				B258968F20BBF7940037764C /* ic_linear_support_gray_01@2x.png in Resources */,
 				B23AE8ED1F278E8800BEB4B8 /* ic_linear_file@3x.png in Resources */,
+				B258968E20BBF7940037764C /* chat_check.png in Resources */,
+				B258968A20BBF7940037764C /* icon_light_foto.png in Resources */,
 				B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */,
 				B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */,
+				B25896BA20BBF7940037764C /* Chat.strings in Resources */,
+				B258967A20BBF7940037764C /* sendbutton.png in Resources */,
+				B258967E20BBF7940037764C /* exiticonbutton.png in Resources */,
 				B244170E202A2384001E95F8 /* GoogleService-Info.plist in Resources */,
 				B2DC48F81FBB7EFC00698CE7 /* Media.xcassets in Resources */,
+				B258968920BBF7940037764C /* icon_light_altro@2x.png in Resources */,
+				B258967B20BBF7940037764C /* avatar.png in Resources */,
+				B258969E20BBF7940037764C /* Chat.storyboard in Resources */,
 				BFBBC2E71B1EDCC90028EA4F /* Localizable.strings in Resources */,
+				B258969220BBF7940037764C /* plus_icon@3x.png in Resources */,
 				B2CE2F411F1CF60C002E2150 /* HelloChat.storyboard in Resources */,
+				B258969120BBF7940037764C /* chat_failed.png in Resources */,
+				B258968820BBF7940037764C /* icon_light_cerca@2x.png in Resources */,
 				B23AE8EC1F278E8800BEB4B8 /* ic_linear_file@2x.png in Resources */,
 				B23AE8EF1F278E8800BEB4B8 /* ic_linear_home@2x.png in Resources */,
+				B258968020BBF7940037764C /* icon_light_home@2x.png in Resources */,
+				B258967F20BBF7940037764C /* icon_light_home.png in Resources */,
 				B23AE8F01F278E8800BEB4B8 /* ic_linear_home@3x.png in Resources */,
+				B258969420BBF7940037764C /* chat_double_check.png in Resources */,
+				B258968520BBF7940037764C /* icon_light_profile.png in Resources */,
+				B258967C20BBF7940037764C /* no_image_message_placeholder.png in Resources */,
+				B258968C20BBF7940037764C /* icon_light_cerca.png in Resources */,
+				B258968120BBF7940037764C /* icon_light_altro.png in Resources */,
 				B2DB07A61FD3E3640062E8D0 /* Help_request.storyboard in Resources */,
+				B258968720BBF7940037764C /* icon_light_chat.png in Resources */,
 				B23AE8F31F278E8800BEB4B8 /* ic_linear_profile@3x.png in Resources */,
+				B258969020BBF7940037764C /* chat_watch.png in Resources */,
 				B23AE8F11F278E8800BEB4B8 /* ic_linear_profile.png in Resources */,
 				B23AE8F21F278E8800BEB4B8 /* ic_linear_profile@2x.png in Resources */,
+				B258967D20BBF7940037764C /* group-conversation-avatar.png in Resources */,
+				B258969C20BBF7940037764C /* newnotif.caf in Resources */,
+				B258968620BBF7940037764C /* icon_light_profile@2x.png in Resources */,
+				B258967220BBF7940037764C /* notification_view.xib in Resources */,
+				B258968D20BBF7940037764C /* ic_linear_support_gray_01@3x.png in Resources */,
+				B258968320BBF7940037764C /* icon_light_watch.png in Resources */,
 				B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */,
 				B23AE8EE1F278E8800BEB4B8 /* ic_linear_home.png in Resources */,
+				B258968B20BBF7940037764C /* icon_light_watch@2x.png in Resources */,
 				B23AE8EA1F278E8800BEB4B8 /* ic_linear_chat@3x.png in Resources */,
 				BFBBC2C01B1ED7E30028EA4F /* settings.plist in Resources */,
 				B23AE8E91F278E8800BEB4B8 /* ic_linear_chat@2x.png in Resources */,
+				B258967320BBF7940037764C /* status_title_ios11.xib in Resources */,
+				B258968220BBF7940037764C /* icon_light_foto@2x.png in Resources */,
 				B24AD7C11F86392700A526E9 /* Help-Info.plist in Resources */,
+				B258969320BBF7940037764C /* ic_linear_support_gray_01.png in Resources */,
 				B23AE8EB1F278E8800BEB4B8 /* ic_linear_file.png in Resources */,
 				B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */,
+				B258968420BBF7940037764C /* icon_light_chat@2x.png in Resources */,
+				B258969D20BBF7940037764C /* inline.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,21 +1173,85 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25896A920BBF7940037764C /* ChatSelectGroupMembersLocal.m in Sources */,
+				B25896B620BBF7940037764C /* ChatImagePreviewVC.m in Sources */,
 				BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */,
+				B258967420BBF7940037764C /* ChatCustomView.m in Sources */,
+				B258967620BBF7940037764C /* CellConfigurator.m in Sources */,
+				B25896C520BBF7940037764C /* ChatConversationsHandler.m in Sources */,
+				B25896B320BBF7940037764C /* ChatNYTPhoto.m in Sources */,
+				B258969820BBF7940037764C /* QBPopupMenuItem.m in Sources */,
+				B258967920BBF7940037764C /* ChatLocal.m in Sources */,
+				B25896B920BBF7940037764C /* ChatImageMessageRightCell.m in Sources */,
+				B25896B520BBF7940037764C /* NotificationAlertVC.m in Sources */,
+				B25896A820BBF7940037764C /* UIView+Property.m in Sources */,
+				B25896CE20BBF7940037764C /* ChatConnectionStatusHandler.m in Sources */,
+				B25896AE20BBF7940037764C /* ChatConversationsVC.m in Sources */,
+				B25896D020BBF7940037764C /* ChatGroupsDB.m in Sources */,
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
+				B25896BE20BBF7940037764C /* ChatUpload.m in Sources */,
+				B25896C820BBF7940037764C /* ChatPresenceHandler.m in Sources */,
+				B25896D220BBF7940037764C /* ChatManager.m in Sources */,
+				B25896D120BBF7940037764C /* ChatContactsDB.m in Sources */,
+				B25896B020BBF7940037764C /* ChatInfoMessageCell.m in Sources */,
+				B25896C720BBF7940037764C /* ChatGroupsHandler.m in Sources */,
+				B25896A120BBF7940037764C /* ChatCreateGroupVC.m in Sources */,
+				B25896C020BBF7940037764C /* ChatUploadsController.m in Sources */,
+				B25896AD20BBF7940037764C /* ChatGroupMembersVC.m in Sources */,
+				B25896CD20BBF7940037764C /* FirebaseCustomAuthHelper.m in Sources */,
+				B258967720BBF7940037764C /* ChatImageUtil.m in Sources */,
+				B25896CA20BBF7940037764C /* ChatAuth.m in Sources */,
+				B25896BF20BBF7940037764C /* ChatImageCache.m in Sources */,
+				B25896BC20BBF7940037764C /* ChatStringUtil.m in Sources */,
+				B25896BB20BBF7940037764C /* ChatImageWrapper.m in Sources */,
 				BFBFD4E31AEA59D100657874 /* main.m in Sources */,
+				B25896A720BBF7940037764C /* ChatTextMessageRightCell.m in Sources */,
+				B25896B820BBF7940037764C /* NotificationAlertView.m in Sources */,
+				B25896C920BBF7940037764C /* ChatContactsSynchronizer.m in Sources */,
 				BFBFD4D71AEA598000657874 /* HelloUser.m in Sources */,
+				B25896CF20BBF7940037764C /* ChatDB.m in Sources */,
 				B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */,
 				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
+				B258967820BBF7940037764C /* ChatProgressView.m in Sources */,
+				B25896A220BBF7940037764C /* ChatInfoMessageTVC.m in Sources */,
+				B25896A520BBF7940037764C /* ChatTextMessageLeftCell.m in Sources */,
 				B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */,
+				B25896AB20BBF7940037764C /* ChatSelectGroupLocalTVC.m in Sources */,
+				B258969A20BBF7940037764C /* QBPopupMenuOverlayView.m in Sources */,
+				B25896BD20BBF7940037764C /* ChatUtil.m in Sources */,
+				B25896A020BBF7940037764C /* ChatMessagesVC.m in Sources */,
+				B25896B420BBF7940037764C /* ChatGroupInfoVC.m in Sources */,
+				B25896B120BBF7940037764C /* ChatMessageCell.m in Sources */,
+				B25896CC20BBF7940037764C /* ChatConversationHandler.m in Sources */,
+				B258969620BBF7940037764C /* QBPopupMenu.m in Sources */,
+				B25896AA20BBF7940037764C /* ChatInfoMessageAttributesTVC.m in Sources */,
+				B25896AF20BBF7940037764C /* ChatImageMessageLeftCell.m in Sources */,
+				B25896C620BBF7940037764C /* ChatMessageMetadata.m in Sources */,
+				B25896A420BBF7940037764C /* ChatMiniBrowserVC.m in Sources */,
+				B25896C120BBF7940037764C /* ChatConversation.m in Sources */,
 				BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */,
+				B25896A320BBF7940037764C /* ChatChangeGroupNameVC.m in Sources */,
+				B25896C320BBF7940037764C /* ChatMessage.m in Sources */,
+				B25896C420BBF7940037764C /* ChatGroup.m in Sources */,
+				B25896B720BBF7940037764C /* ChatImageMessageCell.m in Sources */,
+				B258969720BBF7940037764C /* QBPopupMenuItemView.m in Sources */,
 				B24AD7C41F8670C400A526E9 /* HelpDescriptionStepTVC.m in Sources */,
+				B25896B220BBF7940037764C /* ChatStatusTitle.m in Sources */,
+				B258969920BBF7940037764C /* QBPlasticPopupMenu.m in Sources */,
 				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
+				B25896CB20BBF7940037764C /* ChatImageDownloadManager.m in Sources */,
 				B24AD7B91F86249C00A526E9 /* HelpFacade.m in Sources */,
+				B25896A620BBF7940037764C /* ChatTitleVC.m in Sources */,
+				B258969B20BBF7940037764C /* QBPopupMenuPagenatorView.m in Sources */,
 				B2C7CB9D1FDAFD1400F2EFFE /* HelloVC.m in Sources */,
 				B2DB07A81FD3E37B0062E8D0 /* HelpCategoryStepTVC.m in Sources */,
+				B258969F20BBF7940037764C /* ChatMessagesTVC.m in Sources */,
+				B25896AC20BBF7940037764C /* ChatSelectUserLocalVC.m in Sources */,
 				B24AD7B61F86134800A526E9 /* HelpCategory.m in Sources */,
+				B258967520BBF7940037764C /* ChatMessageComponents.m in Sources */,
+				B25896C220BBF7940037764C /* ChatUser.m in Sources */,
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
+				B258969520BBF7940037764C /* ChatUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,12 +1266,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B258950320BBF52F0037764C /* Chat.strings */ = {
+		B258963620BBF7940037764C /* Chat.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B258950420BBF52F0037764C /* en */,
-				B258951220BBF52F0037764C /* it */,
-				B258951420BBF52F0037764C /* Base */,
+				B258963720BBF7940037764C /* en */,
+				B258964520BBF7940037764C /* it */,
+				B258964720BBF7940037764C /* Base */,
 			);
 			name = Chat.strings;
 			sourceTree = "<group>";
