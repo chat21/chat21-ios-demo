@@ -106,6 +106,8 @@
 		B2151C4B20BC6C1A005B397B /* ChatGroupsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151BE920BC6C1A005B397B /* ChatGroupsDB.m */; };
 		B2151C4C20BC6C1A005B397B /* ChatContactsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151BEA20BC6C1A005B397B /* ChatContactsDB.m */; };
 		B2151C4D20BC6C1A005B397B /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151BEC20BC6C1A005B397B /* ChatManager.m */; };
+		B2151C5020BD6B9E005B397B /* HelpDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151C4F20BD6B9E005B397B /* HelpDataService.m */; };
+		B2151C5320BDBA11005B397B /* HelpDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151C5220BDBA11005B397B /* HelpDepartment.m */; };
 		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
 		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
@@ -349,6 +351,10 @@
 		B2151BEA20BC6C1A005B397B /* ChatContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsDB.m; sourceTree = "<group>"; };
 		B2151BEB20BC6C1A005B397B /* ChatDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDB.h; sourceTree = "<group>"; };
 		B2151BEC20BC6C1A005B397B /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
+		B2151C4E20BD6B9E005B397B /* HelpDataService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpDataService.h; sourceTree = "<group>"; };
+		B2151C4F20BD6B9E005B397B /* HelpDataService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpDataService.m; sourceTree = "<group>"; };
+		B2151C5120BDBA11005B397B /* HelpDepartment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpDepartment.h; sourceTree = "<group>"; };
+		B2151C5220BDBA11005B397B /* HelpDepartment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpDepartment.m; sourceTree = "<group>"; };
 		B21A82D32075219A0068A2F9 /* DBChooser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBChooser.framework; sourceTree = "<group>"; };
 		B21A82D42075219B0068A2F9 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
@@ -801,6 +807,10 @@
 				B2DB07A71FD3E37B0062E8D0 /* HelpCategoryStepTVC.m */,
 				B24AD7C21F8670C400A526E9 /* HelpDescriptionStepTVC.h */,
 				B24AD7C31F8670C400A526E9 /* HelpDescriptionStepTVC.m */,
+				B2151C4E20BD6B9E005B397B /* HelpDataService.h */,
+				B2151C4F20BD6B9E005B397B /* HelpDataService.m */,
+				B2151C5120BDBA11005B397B /* HelpDepartment.h */,
+				B2151C5220BDBA11005B397B /* HelpDepartment.m */,
 			);
 			name = Support;
 			path = Project/Support;
@@ -1205,6 +1215,8 @@
 				B2151C3720BC6C1A005B397B /* ChatStringUtil.m in Sources */,
 				B2151C3620BC6C1A005B397B /* ChatImageWrapper.m in Sources */,
 				BFBFD4E31AEA59D100657874 /* main.m in Sources */,
+				B2151C5320BDBA11005B397B /* HelpDepartment.m in Sources */,
+				B2151C5020BD6B9E005B397B /* HelpDataService.m in Sources */,
 				B2151C2220BC6C1A005B397B /* ChatTextMessageRightCell.m in Sources */,
 				B2151C3320BC6C1A005B397B /* NotificationAlertView.m in Sources */,
 				B2151C4420BC6C1A005B397B /* ChatContactsSynchronizer.m in Sources */,

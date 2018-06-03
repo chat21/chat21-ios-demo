@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>main-agent-name</key>
-	<string>Support</string>
-	<key>main-agent-id</key>
-	<string>6qI3oekSwabW9w05JHd2SQlV2rz2</string>
+	<key>projectId</key>
+	<string>5ad4c101e774ac0014ae0d07</string>
+	<key>host</key>
+	<string>https://andrea.leo:123456@chat21-api-nodejs.herokuapp.com</string>
+	<key>departments-service</key>
+	<string>/%@/departments</string>
 	<key>help-categories</key>
 	<array>
 		<dict>

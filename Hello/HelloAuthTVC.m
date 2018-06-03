@@ -30,6 +30,10 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    
+    HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
+    NSString *appName = [app.applicationContext.settings objectForKey:@"app-name"];
+    self.navigationItem.title = appName;
 }
 
 -(void)dismissKeyboard {
