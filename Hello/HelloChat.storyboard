@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -77,6 +77,7 @@
                     <navigationItem key="navigationItem" id="6mJ-ZS-Ddh"/>
                     <connections>
                         <outlet property="appName" destination="ngm-j6-aqk" id="zl3-RB-uJx"/>
+                        <outlet property="selectContactButton" destination="PRq-JH-RTC" id="xRp-4y-ghJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfG-MP-4b3" userLabel="First Responder" sceneMemberID="firstResponder"/>

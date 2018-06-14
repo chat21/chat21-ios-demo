@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface HelloVC : UIViewController
+
 @property (weak, nonatomic) IBOutlet UILabel *appName;
+@property (weak, nonatomic) IBOutlet UIButton *selectContactButton;
 
 @end

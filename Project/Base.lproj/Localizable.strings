@@ -6,12 +6,4 @@
  
  */
 
-// Help
-"help wizard title" = "Synthesize your problem";
-"help wizard description" = "Briefly describe your problem, we'll put you in touch with a skilled operator";
-"help wizard navigation title" = "Ask for support";
-"Help wizard select argument" = "Select a topic";
-"Help wizard send button" = "Send";
-"Help wizard not now button" = "Not now";
-"help wizard title topic" = "Topic";
-
+"select a contact" = "Select a contact";

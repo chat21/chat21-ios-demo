@@ -125,13 +125,16 @@
 		B23AE8F81F28F54500BEB4B8 /* user-profile-man.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8F71F28F54500BEB4B8 /* user-profile-man.jpg */; };
 		B23CD80620C526A200A0B3F0 /* HelpDescriptionStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD7F920C526A200A0B3F0 /* HelpDescriptionStepTVC.m */; };
 		B23CD80720C526A200A0B3F0 /* HelpDepartment.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD7FB20C526A200A0B3F0 /* HelpDepartment.m */; };
-		B23CD80820C526A200A0B3F0 /* HelpCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD7FF20C526A200A0B3F0 /* HelpCategory.m */; };
 		B23CD80920C526A200A0B3F0 /* HelpDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD80220C526A200A0B3F0 /* HelpDataService.m */; };
 		B23CD80A20C526A200A0B3F0 /* HelpFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD80320C526A200A0B3F0 /* HelpFacade.m */; };
 		B23CD80B20C526A200A0B3F0 /* HelpCategoryStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD80420C526A200A0B3F0 /* HelpCategoryStepTVC.m */; };
 		B23CD80C20C526A200A0B3F0 /* Help_request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23CD80520C526A200A0B3F0 /* Help_request.storyboard */; };
+		B23CD81220C7228B00A0B3F0 /* HelpStartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B23CD81120C7228B00A0B3F0 /* HelpStartVC.m */; };
 		B244170E202A2384001E95F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B244170D202A2384001E95F8 /* GoogleService-Info.plist */; };
 		B24AD7C11F86392700A526E9 /* Help-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B24AD7C01F86392700A526E9 /* Help-Info.plist */; };
+		B253C72F20CFB1FA00F0EB20 /* HelpLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B253C72E20CFB1FA00F0EB20 /* HelpLocal.m */; };
+		B253C73220CFB3E300F0EB20 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = B253C73420CFB3E300F0EB20 /* Help.strings */; };
+		B253C73920CFEAF400F0EB20 /* HelpAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B253C73820CFEAF400F0EB20 /* HelpAction.m */; };
 		B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */; };
 		B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */; };
 		B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC94611F1FCE04000DDF52 /* HelloMyProfileTVC.m */; };
@@ -372,20 +375,27 @@
 		B23AE8E71F278E8800BEB4B8 /* ic_linear_profile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_linear_profile@3x.png"; sourceTree = "<group>"; };
 		B23AE8F71F28F54500BEB4B8 /* user-profile-man.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "user-profile-man.jpg"; sourceTree = "<group>"; };
 		B23CD7F920C526A200A0B3F0 /* HelpDescriptionStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDescriptionStepTVC.m; sourceTree = "<group>"; };
-		B23CD7FA20C526A200A0B3F0 /* HelpCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCategory.h; sourceTree = "<group>"; };
 		B23CD7FB20C526A200A0B3F0 /* HelpDepartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDepartment.m; sourceTree = "<group>"; };
 		B23CD7FC20C526A200A0B3F0 /* HelpDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDataService.h; sourceTree = "<group>"; };
 		B23CD7FD20C526A200A0B3F0 /* HelpCategoryStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCategoryStepTVC.h; sourceTree = "<group>"; };
 		B23CD7FE20C526A200A0B3F0 /* HelpFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFacade.h; sourceTree = "<group>"; };
-		B23CD7FF20C526A200A0B3F0 /* HelpCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategory.m; sourceTree = "<group>"; };
 		B23CD80020C526A200A0B3F0 /* HelpDescriptionStepTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDescriptionStepTVC.h; sourceTree = "<group>"; };
 		B23CD80120C526A200A0B3F0 /* HelpDepartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpDepartment.h; sourceTree = "<group>"; };
 		B23CD80220C526A200A0B3F0 /* HelpDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpDataService.m; sourceTree = "<group>"; };
 		B23CD80320C526A200A0B3F0 /* HelpFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFacade.m; sourceTree = "<group>"; };
 		B23CD80420C526A200A0B3F0 /* HelpCategoryStepTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCategoryStepTVC.m; sourceTree = "<group>"; };
 		B23CD80520C526A200A0B3F0 /* Help_request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Help_request.storyboard; sourceTree = "<group>"; };
+		B23CD81020C7228B00A0B3F0 /* HelpStartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpStartVC.h; sourceTree = "<group>"; };
+		B23CD81120C7228B00A0B3F0 /* HelpStartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpStartVC.m; sourceTree = "<group>"; };
 		B244170D202A2384001E95F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B24AD7C01F86392700A526E9 /* Help-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Help-Info.plist"; sourceTree = "<group>"; };
+		B253C72D20CFB1FA00F0EB20 /* HelpLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpLocal.h; sourceTree = "<group>"; };
+		B253C72E20CFB1FA00F0EB20 /* HelpLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpLocal.m; sourceTree = "<group>"; };
+		B253C73320CFB3E300F0EB20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Help.strings; sourceTree = "<group>"; };
+		B253C73520CFB3E800F0EB20 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Help.strings; sourceTree = "<group>"; };
+		B253C73620CFB46B00F0EB20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Help.strings; sourceTree = "<group>"; };
+		B253C73720CFEAF400F0EB20 /* HelpAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpAction.h; sourceTree = "<group>"; };
+		B253C73820CFEAF400F0EB20 /* HelpAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpAction.m; sourceTree = "<group>"; };
 		B2A4C0511FE7D7A600AED2EE /* HelloUserProfileTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloUserProfileTVC.h; sourceTree = "<group>"; };
 		B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloUserProfileTVC.m; sourceTree = "<group>"; };
 		B2ABAE7E202228C200D6265A /* Chat21.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chat21.entitlements; sourceTree = "<group>"; };
@@ -798,19 +808,24 @@
 		B23CD7F820C526A200A0B3F0 /* TildeskWidget */ = {
 			isa = PBXGroup;
 			children = (
-				B23CD7F920C526A200A0B3F0 /* HelpDescriptionStepTVC.m */,
-				B23CD7FA20C526A200A0B3F0 /* HelpCategory.h */,
-				B23CD7FB20C526A200A0B3F0 /* HelpDepartment.m */,
-				B23CD7FC20C526A200A0B3F0 /* HelpDataService.h */,
-				B23CD7FD20C526A200A0B3F0 /* HelpCategoryStepTVC.h */,
-				B23CD7FE20C526A200A0B3F0 /* HelpFacade.h */,
-				B23CD7FF20C526A200A0B3F0 /* HelpCategory.m */,
-				B23CD80020C526A200A0B3F0 /* HelpDescriptionStepTVC.h */,
-				B23CD80120C526A200A0B3F0 /* HelpDepartment.h */,
-				B23CD80220C526A200A0B3F0 /* HelpDataService.m */,
-				B23CD80320C526A200A0B3F0 /* HelpFacade.m */,
-				B23CD80420C526A200A0B3F0 /* HelpCategoryStepTVC.m */,
 				B23CD80520C526A200A0B3F0 /* Help_request.storyboard */,
+				B23CD7FD20C526A200A0B3F0 /* HelpCategoryStepTVC.h */,
+				B23CD80420C526A200A0B3F0 /* HelpCategoryStepTVC.m */,
+				B23CD7FC20C526A200A0B3F0 /* HelpDataService.h */,
+				B23CD80220C526A200A0B3F0 /* HelpDataService.m */,
+				B23CD80120C526A200A0B3F0 /* HelpDepartment.h */,
+				B23CD7FB20C526A200A0B3F0 /* HelpDepartment.m */,
+				B23CD80020C526A200A0B3F0 /* HelpDescriptionStepTVC.h */,
+				B23CD7F920C526A200A0B3F0 /* HelpDescriptionStepTVC.m */,
+				B23CD7FE20C526A200A0B3F0 /* HelpFacade.h */,
+				B23CD80320C526A200A0B3F0 /* HelpFacade.m */,
+				B23CD81020C7228B00A0B3F0 /* HelpStartVC.h */,
+				B23CD81120C7228B00A0B3F0 /* HelpStartVC.m */,
+				B253C72D20CFB1FA00F0EB20 /* HelpLocal.h */,
+				B253C72E20CFB1FA00F0EB20 /* HelpLocal.m */,
+				B253C73720CFEAF400F0EB20 /* HelpAction.h */,
+				B253C73820CFEAF400F0EB20 /* HelpAction.m */,
+				B253C73420CFB3E300F0EB20 /* Help.strings */,
 			);
 			name = TildeskWidget;
 			path = "../tiledesk-ios-sdk/TildeskWidget";
@@ -1109,6 +1124,7 @@
 				B2151BFD20BC6C1A005B397B /* icon_light_foto@2x.png in Resources */,
 				B24AD7C11F86392700A526E9 /* Help-Info.plist in Resources */,
 				B2151C0E20BC6C1A005B397B /* ic_linear_support_gray_01.png in Resources */,
+				B253C73220CFB3E300F0EB20 /* Help.strings in Resources */,
 				B23AE8EB1F278E8800BEB4B8 /* ic_linear_file.png in Resources */,
 				B20D93291D6C95A700ADC264 /* MainStoryboard.storyboard in Resources */,
 				B2151BFF20BC6C1A005B397B /* icon_light_chat@2x.png in Resources */,
@@ -1197,6 +1213,7 @@
 				B2151C3020BC6C1A005B397B /* NotificationAlertVC.m in Sources */,
 				B2151C2320BC6C1A005B397B /* UIView+Property.m in Sources */,
 				B2151C4920BC6C1A005B397B /* ChatConnectionStatusHandler.m in Sources */,
+				B253C72F20CFB1FA00F0EB20 /* HelpLocal.m in Sources */,
 				B2151C2920BC6C1A005B397B /* ChatConversationsVC.m in Sources */,
 				B2151C4B20BC6C1A005B397B /* ChatGroupsDB.m in Sources */,
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
@@ -1242,13 +1259,13 @@
 				B2151C2A20BC6C1A005B397B /* ChatImageMessageLeftCell.m in Sources */,
 				B2151C4120BC6C1A005B397B /* ChatMessageMetadata.m in Sources */,
 				B2151C1F20BC6C1A005B397B /* ChatMiniBrowserVC.m in Sources */,
+				B23CD81220C7228B00A0B3F0 /* HelpStartVC.m in Sources */,
 				B2151C3C20BC6C1A005B397B /* ChatConversation.m in Sources */,
 				BFBFD5291AEA5F4E00657874 /* HelloApplicationContext.m in Sources */,
 				B2151C1E20BC6C1A005B397B /* ChatChangeGroupNameVC.m in Sources */,
 				B2151C3E20BC6C1A005B397B /* ChatMessage.m in Sources */,
 				B2151C3F20BC6C1A005B397B /* ChatGroup.m in Sources */,
 				B2151C3220BC6C1A005B397B /* ChatImageMessageCell.m in Sources */,
-				B23CD80820C526A200A0B3F0 /* HelpCategory.m in Sources */,
 				B23CD80620C526A200A0B3F0 /* HelpDescriptionStepTVC.m in Sources */,
 				B2151C1220BC6C1A005B397B /* QBPopupMenuItemView.m in Sources */,
 				B2151C2D20BC6C1A005B397B /* ChatStatusTitle.m in Sources */,
@@ -1264,6 +1281,7 @@
 				B2151C3D20BC6C1A005B397B /* ChatUser.m in Sources */,
 				B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */,
 				B2151C1020BC6C1A005B397B /* ChatUIManager.m in Sources */,
+				B253C73920CFEAF400F0EB20 /* HelpAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1304,16 @@
 				B2151BC220BC6C1A005B397B /* Base */,
 			);
 			name = Chat.strings;
+			sourceTree = "<group>";
+		};
+		B253C73420CFB3E300F0EB20 /* Help.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B253C73320CFB3E300F0EB20 /* en */,
+				B253C73520CFB3E800F0EB20 /* it */,
+				B253C73620CFB46B00F0EB20 /* Base */,
+			);
+			name = Help.strings;
 			sourceTree = "<group>";
 		};
 		BFBBC2E91B1EDCC90028EA4F /* Localizable.strings */ = {

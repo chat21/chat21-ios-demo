@@ -3,107 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>projectId</key>
-	<string>5ad4c101e774ac0014ae0d07</string>
+	<string>5b22a6cf33d09700149a6db2</string>
 	<key>host</key>
-	<string>https://andrea.leo:123456@chat21-api-nodejs.herokuapp.com</string>
+	<string>https://chat21-api-nodejs.herokuapp.com</string>
 	<key>departments-service</key>
 	<string>/%@/departments</string>
-	<key>help-categories</key>
-	<array>
-		<dict>
-			<key>children</key>
-			<array>
-				<dict>
-					<key>it</key>
-					<string>Menu principale</string>
-					<key>en</key>
-					<string>Main menu</string>
-					<key>id</key>
-					<string>main-menu</string>
-				</dict>
-				<dict>
-					<key>it</key>
-					<string>Accesso documenti</string>
-					<key>en</key>
-					<string>Documents</string>
-					<key>id</key>
-					<string>documents</string>
-				</dict>
-				<dict>
-					<key>it</key>
-					<string>Chat</string>
-					<key>en</key>
-					<string>Chat</string>
-					<key>id</key>
-					<string>chat</string>
-				</dict>
-				<dict>
-					<key>it</key>
-					<string>Login</string>
-					<key>en</key>
-					<string>Sign in</string>
-					<key>id</key>
-					<string>sign-in</string>
-				</dict>
-			</array>
-			<key>it</key>
-			<string>Mobile App</string>
-			<key>en</key>
-			<string>Mobile App</string>
-			<key>id</key>
-			<string>mobile-app</string>
-		</dict>
-		<dict>
-			<key>it</key>
-			<string>Connettività</string>
-			<key>en</key>
-			<string>Connectivity</string>
-			<key>id</key>
-			<string>connectivity</string>
-		</dict>
-		<dict>
-			<key>children</key>
-			<array>
-				<dict>
-					<key>it</key>
-					<string>Non ricevo più messaggi</string>
-					<key>en</key>
-					<string>I don&apos;t receive messages</string>
-					<key>id</key>
-					<string>no-messages</string>
-				</dict>
-				<dict>
-					<key>it</key>
-					<string>Non riesco a inviare messaggi</string>
-					<key>en</key>
-					<string>I can&apos;t send messages</string>
-					<key>id</key>
-					<string>cant-send-messages</string>
-				</dict>
-				<dict>
-					<key>it</key>
-					<string>Non visualizzo il mio profilo</string>
-					<key>en</key>
-					<string>I can&apos;t see my profile</string>
-					<key>id</key>
-					<string>no-profile</string>
-				</dict>
-			</array>
-			<key>it</key>
-			<string>Email</string>
-			<key>en</key>
-			<string>Email</string>
-			<key>id</key>
-			<string>Email</string>
-		</dict>
-		<dict>
-			<key>it</key>
-			<string>Altro</string>
-			<key>en</key>
-			<string>Other</string>
-			<key>id</key>
-			<string>other</string>
-		</dict>
-	</array>
 </dict>
 </plist>

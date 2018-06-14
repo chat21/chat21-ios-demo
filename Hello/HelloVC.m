@@ -25,7 +25,7 @@
     [super viewDidLoad];
     HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
     self.appName.text = [app.applicationContext.settings objectForKey:@"app-name"];
-    
+    [self.selectContactButton setTitle:NSLocalizedString(@"select a contact", nil) forState:UIControlStateNormal];
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }
 
@@ -68,11 +68,11 @@
     [[HelpFacade sharedInstance] openSupportView:self];
 }
 
--(void)helpWizardEnd:(NSDictionary *)context {
-    NSLog(@"helpWizardEnd");
-    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
-    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
-}
+//-(void)helpWizardEnd:(NSDictionary *)context {
+//    NSLog(@"helpWizardEnd");
+//    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
+//    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
+//}
 
 - (IBAction)openConversationsAction:(id)sender {
     [[ChatUIManager getInstance] openConversationsViewAsModal:self withCompletionBlock:^{
@@ -82,7 +82,7 @@
 
 - (IBAction)openConversationWithSomeone:(id)sender {
     ChatUser *recipient = [[ChatUser alloc] init:@"y4QN01LIgGPGnoV6ql07hwPAQg23" fullname:@"Andrew Sponzillo"];
-    [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)recipient viewController:self withCompletionBlock:^{
+    [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)recipient viewController:self attributes:nil withCompletionBlock:^{
         NSLog(@"Messages view dismissed.");
     }];
 }
@@ -109,7 +109,7 @@
         }
         else {
             NSLog(@"Selected contact: %@/%@", contact.fullname, contact.userId);
-            [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)contact viewController:self withCompletionBlock:^{
+            [[ChatUIManager getInstance] openConversationMessagesViewAsModalWith:(ChatUser *)contact viewController:self attributes:nil withCompletionBlock:^{
                 NSLog(@"Messages view dismissed.");
             }];
         }
