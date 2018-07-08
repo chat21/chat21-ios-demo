@@ -138,11 +138,11 @@
     __weak HelloAuthTVC *weakSelf = self;
     
     [HelloChatUtil firebaseAuthEmail:email password:password completion:^(FIRUser *fir_user, NSError *error) {
-        [weakSelf hideWaiting];
         if (error) {
             NSLog(@"Firebase auth error: %@", error);
             weakSelf.loginButton.enabled = true;
             [weakSelf hideWaiting];
+            [self showAlert:@"Authentication error."];
         }
         else {
             NSLog(@"Firebase auth ok.");

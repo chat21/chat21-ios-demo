@@ -5,6 +5,6 @@
 	<key>app-name</key>
 	<string>Chat21</string>
 	<key>chat-support</key>
-	<true/>
+	<false/>
 </dict>
 </plist>
