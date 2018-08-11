@@ -15,6 +15,8 @@
 #import "ChatManager.h"
 #import "HelloChatUtil.h"
 @import Firebase;
+#import <Crashlytics/Crashlytics.h>
+#import "HelloLocale.h"
 
 @interface HelloAuthTVC () {
     ChatProgressView *HUD;
@@ -112,6 +114,10 @@
 }
 
 - (IBAction)loginAction:(id)sender {
+//    NSLog(@"crashing in the middle of nothing...");
+//    @throw NSInternalInconsistencyException;
+//    [[Crashlytics sharedInstance] crash];
+    
     NSString *email = self.usernameTextField.text;
     NSString *password = self.passwordTextLabel.text;
     
@@ -122,7 +128,7 @@
     }
     
     self.loginButton.enabled = false;
-    [self showWaiting:@"Autenticazione..."];
+    [self showWaiting:[HelloLocale translate:@"authenticating"]];
     [self firebaseLogin:email password:password];
 }
 
@@ -142,7 +148,7 @@
             NSLog(@"Firebase auth error: %@", error);
             weakSelf.loginButton.enabled = true;
             [weakSelf hideWaiting];
-            [self showAlert:@"Authentication error."];
+            [self showAlert:[HelloLocale translate:@"authentication error"]];
         }
         else {
             NSLog(@"Firebase auth ok.");
@@ -167,6 +173,7 @@
                     signedUser.firstName = user.firstname;
                     signedUser.lastName = user.lastname;
                     [context signin:signedUser];
+                    [weakSelf hideWaiting];
                     [self initChatAndCloseView:weakSelf];
                 }
                 else {
@@ -174,6 +181,7 @@
                         signedUser.firstName = user.firstname;
                         signedUser.lastName = user.lastname;
                         [context signin:signedUser];
+                        [weakSelf hideWaiting];
                         [self initChatAndCloseView:weakSelf];
                     }];
                 }

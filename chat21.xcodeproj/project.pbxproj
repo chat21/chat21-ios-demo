@@ -106,8 +106,16 @@
 		B2151C4B20BC6C1A005B397B /* ChatGroupsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151BE920BC6C1A005B397B /* ChatGroupsDB.m */; };
 		B2151C4C20BC6C1A005B397B /* ChatContactsDB.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151BEA20BC6C1A005B397B /* ChatContactsDB.m */; };
 		B2151C4D20BC6C1A005B397B /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2151BEC20BC6C1A005B397B /* ChatManager.m */; };
+		B217DC4E2107A7B9000B7502 /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = B217DC4C2107A7B8000B7502 /* ChatService.m */; };
+		B217DC512107A813000B7502 /* ChatArchivedConversationsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B217DC502107A813000B7502 /* ChatArchivedConversationsTVC.m */; };
+		B217DC562108D001000B7502 /* baseline_history_black_24pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC522108CFFE000B7502 /* baseline_history_black_24pt@2x.png */; };
+		B217DC572108D001000B7502 /* baseline_create_black_24pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC532108D000000B7502 /* baseline_create_black_24pt@3x.png */; };
+		B217DC582108D001000B7502 /* baseline_history_black_24pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC542108D000000B7502 /* baseline_history_black_24pt@3x.png */; };
+		B217DC592108D001000B7502 /* baseline_create_black_24pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC552108D001000B7502 /* baseline_create_black_24pt@2x.png */; };
 		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
 		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
+		B21BE78A211D996900C2A8D1 /* ChatStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BE789211D996900C2A8D1 /* ChatStyles.m */; };
+		B21BE78D211E214D00C2A8D1 /* HelloLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BE78C211E214D00C2A8D1 /* HelloLocale.m */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
@@ -354,8 +362,20 @@
 		B2151BEA20BC6C1A005B397B /* ChatContactsDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContactsDB.m; sourceTree = "<group>"; };
 		B2151BEB20BC6C1A005B397B /* ChatDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDB.h; sourceTree = "<group>"; };
 		B2151BEC20BC6C1A005B397B /* ChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
+		B217DC4C2107A7B8000B7502 /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
+		B217DC4D2107A7B8000B7502 /* ChatService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatService.h; sourceTree = "<group>"; };
+		B217DC4F2107A812000B7502 /* ChatArchivedConversationsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatArchivedConversationsTVC.h; sourceTree = "<group>"; };
+		B217DC502107A813000B7502 /* ChatArchivedConversationsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatArchivedConversationsTVC.m; sourceTree = "<group>"; };
+		B217DC522108CFFE000B7502 /* baseline_history_black_24pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_history_black_24pt@2x.png"; sourceTree = "<group>"; };
+		B217DC532108D000000B7502 /* baseline_create_black_24pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_create_black_24pt@3x.png"; sourceTree = "<group>"; };
+		B217DC542108D000000B7502 /* baseline_history_black_24pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_history_black_24pt@3x.png"; sourceTree = "<group>"; };
+		B217DC552108D001000B7502 /* baseline_create_black_24pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_create_black_24pt@2x.png"; sourceTree = "<group>"; };
 		B21A82D32075219A0068A2F9 /* DBChooser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBChooser.framework; sourceTree = "<group>"; };
 		B21A82D42075219B0068A2F9 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
+		B21BE788211D996800C2A8D1 /* ChatStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStyles.h; sourceTree = "<group>"; };
+		B21BE789211D996900C2A8D1 /* ChatStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStyles.m; sourceTree = "<group>"; };
+		B21BE78B211E214D00C2A8D1 /* HelloLocale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloLocale.h; sourceTree = "<group>"; };
+		B21BE78C211E214D00C2A8D1 /* HelloLocale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloLocale.m; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B238ECFD2084A4C500D50285 /* Chat21Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Chat21Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,15 +514,15 @@
 		B2151B3520BC6C1A005B397B /* Chat21UI */ = {
 			isa = PBXGroup;
 			children = (
-				B2151B3620BC6C1A005B397B /* xib */,
-				B2151B3920BC6C1A005B397B /* util */,
-				B2151B4620BC6C1A005B397B /* images */,
+				B2151B7620BC6C1A005B397B /* Chat.storyboard */,
+				B2151BAF20BC6C1A005B397B /* ChatUIManager.h */,
 				B2151B6520BC6C1A005B397B /* ChatUIManager.m */,
+				B2151B4620BC6C1A005B397B /* images */,
 				B2151B6620BC6C1A005B397B /* QBPopupMenu */,
 				B2151B7320BC6C1A005B397B /* sounds */,
-				B2151B7620BC6C1A005B397B /* Chat.storyboard */,
+				B2151B3920BC6C1A005B397B /* util */,
 				B2151B7720BC6C1A005B397B /* view */,
-				B2151BAF20BC6C1A005B397B /* ChatUIManager.h */,
+				B2151B3620BC6C1A005B397B /* xib */,
 			);
 			name = Chat21UI;
 			path = "../chat21-ios-sdk/Chat21UI";
@@ -532,6 +552,8 @@
 				B2151B4320BC6C1A005B397B /* ChatLocal.m */,
 				B2151B4420BC6C1A005B397B /* ChatImageUtil.h */,
 				B2151B4520BC6C1A005B397B /* CellConfigurator.h */,
+				B21BE788211D996800C2A8D1 /* ChatStyles.h */,
+				B21BE789211D996900C2A8D1 /* ChatStyles.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -582,6 +604,10 @@
 		B2151B5C20BC6C1A005B397B /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				B217DC552108D001000B7502 /* baseline_create_black_24pt@2x.png */,
+				B217DC532108D000000B7502 /* baseline_create_black_24pt@3x.png */,
+				B217DC522108CFFE000B7502 /* baseline_history_black_24pt@2x.png */,
+				B217DC542108D000000B7502 /* baseline_history_black_24pt@3x.png */,
 				B2151B5D20BC6C1A005B397B /* ic_linear_support_gray_01@3x.png */,
 				B2151B5E20BC6C1A005B397B /* chat_check.png */,
 				B2151B5F20BC6C1A005B397B /* ic_linear_support_gray_01@2x.png */,
@@ -625,6 +651,8 @@
 		B2151B7720BC6C1A005B397B /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B217DC4F2107A812000B7502 /* ChatArchivedConversationsTVC.h */,
+				B217DC502107A813000B7502 /* ChatArchivedConversationsTVC.m */,
 				B2151B9920BC6C1A005B397B /* ChatChangeGroupNameVC.h */,
 				B2151B7C20BC6C1A005B397B /* ChatChangeGroupNameVC.m */,
 				B2151BAE20BC6C1A005B397B /* ChatConversationsVC.h */,
@@ -737,6 +765,8 @@
 		B2151BCD20BC6C1A005B397B /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B217DC4D2107A7B8000B7502 /* ChatService.h */,
+				B217DC4C2107A7B8000B7502 /* ChatService.m */,
 				B2151BCE20BC6C1A005B397B /* ChatConversationsHandler.m */,
 				B2151BCF20BC6C1A005B397B /* ChatPresenceViewDelegate.h */,
 				B2151BD020BC6C1A005B397B /* FirebaseCustomAuthHelper.h */,
@@ -855,6 +885,8 @@
 				BFBFD55F1AEA80CC00657874 /* HelloAuth.m */,
 				BFBFD5271AEA5F4E00657874 /* HelloApplicationContext.h */,
 				BFBFD5281AEA5F4E00657874 /* HelloApplicationContext.m */,
+				B21BE78B211E214D00C2A8D1 /* HelloLocale.h */,
+				B21BE78C211E214D00C2A8D1 /* HelloLocale.m */,
 			);
 			path = Hello;
 			sourceTree = "<group>";
@@ -962,6 +994,7 @@
 				BFBFD3651AEA544F00657874 /* Frameworks */,
 				BFBFD3661AEA544F00657874 /* Resources */,
 				D80688ECD831BAFD38AE0DA8 /* [CP] Embed Pods Frameworks */,
+				B21BE787211D98B700C2A8D1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1069,6 +1102,7 @@
 				B2151C0A20BC6C1A005B397B /* ic_linear_support_gray_01@2x.png in Resources */,
 				B23AE8ED1F278E8800BEB4B8 /* ic_linear_file@3x.png in Resources */,
 				B2151C0920BC6C1A005B397B /* chat_check.png in Resources */,
+				B217DC592108D001000B7502 /* baseline_create_black_24pt@2x.png in Resources */,
 				B2151C0520BC6C1A005B397B /* icon_light_foto.png in Resources */,
 				B2F2AA1F1FB43B7700E6C7E3 /* app-icon-mobichat.png in Resources */,
 				B21459C01FFF7F1F0048535E /* Chat-Info.plist in Resources */,
@@ -1082,17 +1116,20 @@
 				B2151C1920BC6C1A005B397B /* Chat.storyboard in Resources */,
 				BFBBC2E71B1EDCC90028EA4F /* Localizable.strings in Resources */,
 				B2151C0D20BC6C1A005B397B /* plus_icon@3x.png in Resources */,
+				B217DC572108D001000B7502 /* baseline_create_black_24pt@3x.png in Resources */,
 				B2CE2F411F1CF60C002E2150 /* HelloChat.storyboard in Resources */,
 				B2151C0C20BC6C1A005B397B /* chat_failed.png in Resources */,
 				B2151C0320BC6C1A005B397B /* icon_light_cerca@2x.png in Resources */,
 				B23AE8EC1F278E8800BEB4B8 /* ic_linear_file@2x.png in Resources */,
 				B23AE8EF1F278E8800BEB4B8 /* ic_linear_home@2x.png in Resources */,
 				B2151BFB20BC6C1A005B397B /* icon_light_home@2x.png in Resources */,
+				B217DC562108D001000B7502 /* baseline_history_black_24pt@2x.png in Resources */,
 				B2151BFA20BC6C1A005B397B /* icon_light_home.png in Resources */,
 				B23AE8F01F278E8800BEB4B8 /* ic_linear_home@3x.png in Resources */,
 				B2151C0F20BC6C1A005B397B /* chat_double_check.png in Resources */,
 				B2151C0020BC6C1A005B397B /* icon_light_profile.png in Resources */,
 				B2151BF720BC6C1A005B397B /* no_image_message_placeholder.png in Resources */,
+				B217DC582108D001000B7502 /* baseline_history_black_24pt@3x.png in Resources */,
 				B2151C0720BC6C1A005B397B /* icon_light_cerca.png in Resources */,
 				B2151BFC20BC6C1A005B397B /* icon_light_altro.png in Resources */,
 				B2151C0220BC6C1A005B397B /* icon_light_chat.png in Resources */,
@@ -1146,6 +1183,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B21BE787211D98B700C2A8D1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
 		D80688ECD831BAFD38AE0DA8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1193,6 +1243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2151C2420BC6C1A005B397B /* ChatSelectGroupMembersLocal.m in Sources */,
+				B217DC4E2107A7B9000B7502 /* ChatService.m in Sources */,
 				B2151C3120BC6C1A005B397B /* ChatImagePreviewVC.m in Sources */,
 				BFBFD3951AEA54DA00657874 /* HelloAppDelegate.m in Sources */,
 				B2151BEF20BC6C1A005B397B /* ChatCustomView.m in Sources */,
@@ -1208,6 +1259,7 @@
 				B2151C4920BC6C1A005B397B /* ChatConnectionStatusHandler.m in Sources */,
 				B253C72F20CFB1FA00F0EB20 /* HelpLocal.m in Sources */,
 				B2151C2920BC6C1A005B397B /* ChatConversationsVC.m in Sources */,
+				B21BE78A211D996900C2A8D1 /* ChatStyles.m in Sources */,
 				B2151C4B20BC6C1A005B397B /* ChatGroupsDB.m in Sources */,
 				B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */,
 				B2151C3920BC6C1A005B397B /* ChatUpload.m in Sources */,
@@ -1239,6 +1291,7 @@
 				B2151BF320BC6C1A005B397B /* ChatProgressView.m in Sources */,
 				B2151C1D20BC6C1A005B397B /* ChatInfoMessageTVC.m in Sources */,
 				B2151C2020BC6C1A005B397B /* ChatTextMessageLeftCell.m in Sources */,
+				B21BE78D211E214D00C2A8D1 /* HelloLocale.m in Sources */,
 				B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */,
 				B2151C2620BC6C1A005B397B /* ChatSelectGroupLocalTVC.m in Sources */,
 				B2151C1520BC6C1A005B397B /* QBPopupMenuOverlayView.m in Sources */,
@@ -1268,6 +1321,7 @@
 				B2151C2120BC6C1A005B397B /* ChatTitleVC.m in Sources */,
 				B2151C1620BC6C1A005B397B /* QBPopupMenuPagenatorView.m in Sources */,
 				B2C7CB9D1FDAFD1400F2EFFE /* HelloVC.m in Sources */,
+				B217DC512107A813000B7502 /* ChatArchivedConversationsTVC.m in Sources */,
 				B2151C1A20BC6C1A005B397B /* ChatMessagesTVC.m in Sources */,
 				B2151C2720BC6C1A005B397B /* ChatSelectUserLocalVC.m in Sources */,
 				B2151BF020BC6C1A005B397B /* ChatMessageComponents.m in Sources */,

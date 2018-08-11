@@ -7,3 +7,8 @@
 */
 
 "select a contact" = "Seleziona un contatto";
+"Want you exit" = "Sei siuro di voler uscire?";
+"Yes" = "Si";
+"Cancel" = "Annulla";
+"authentication error" = "Errore autenticazione";
+"authenticating" = "Autenticazione...";
