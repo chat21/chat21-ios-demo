@@ -765,31 +765,31 @@
 		B2151BCD20BC6C1A005B397B /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B2151BE120BC6C1A005B397B /* ChatAuth.h */,
+				B2151BD720BC6C1A005B397B /* ChatAuth.m */,
+				B2151BD620BC6C1A005B397B /* ChatConnectionStatusHandler.h */,
+				B2151BE220BC6C1A005B397B /* ChatConnectionStatusHandler.m */,
+				B2151BE420BC6C1A005B397B /* ChatContactsSynchronizer.h */,
+				B2151BD520BC6C1A005B397B /* ChatContactsSynchronizer.m */,
+				B2151BD220BC6C1A005B397B /* ChatConversationHandler.h */,
+				B2151BDB20BC6C1A005B397B /* ChatConversationHandler.m */,
+				B2151BD920BC6C1A005B397B /* ChatConversationsHandler.h */,
+				B2151BCE20BC6C1A005B397B /* ChatConversationsHandler.m */,
+				B2151BDF20BC6C1A005B397B /* ChatGroupsHandler.h */,
+				B2151BD320BC6C1A005B397B /* ChatGroupsHandler.m */,
+				B2151BDA20BC6C1A005B397B /* ChatGroupsSubscriber.h */,
+				B2151BE020BC6C1A005B397B /* ChatImageDownloadManager.h */,
+				B2151BD820BC6C1A005B397B /* ChatImageDownloadManager.m */,
+				B2151BDC20BC6C1A005B397B /* ChatMessageMetadata.h */,
+				B2151BD120BC6C1A005B397B /* ChatMessageMetadata.m */,
+				B2151BDE20BC6C1A005B397B /* ChatPresenceHandler.h */,
+				B2151BD420BC6C1A005B397B /* ChatPresenceHandler.m */,
+				B2151BCF20BC6C1A005B397B /* ChatPresenceViewDelegate.h */,
 				B217DC4D2107A7B8000B7502 /* ChatService.h */,
 				B217DC4C2107A7B8000B7502 /* ChatService.m */,
-				B2151BCE20BC6C1A005B397B /* ChatConversationsHandler.m */,
-				B2151BCF20BC6C1A005B397B /* ChatPresenceViewDelegate.h */,
-				B2151BD020BC6C1A005B397B /* FirebaseCustomAuthHelper.h */,
-				B2151BD120BC6C1A005B397B /* ChatMessageMetadata.m */,
-				B2151BD220BC6C1A005B397B /* ChatConversationHandler.h */,
-				B2151BD320BC6C1A005B397B /* ChatGroupsHandler.m */,
-				B2151BD420BC6C1A005B397B /* ChatPresenceHandler.m */,
-				B2151BD520BC6C1A005B397B /* ChatContactsSynchronizer.m */,
-				B2151BD620BC6C1A005B397B /* ChatConnectionStatusHandler.h */,
-				B2151BD720BC6C1A005B397B /* ChatAuth.m */,
-				B2151BD820BC6C1A005B397B /* ChatImageDownloadManager.m */,
-				B2151BD920BC6C1A005B397B /* ChatConversationsHandler.h */,
-				B2151BDA20BC6C1A005B397B /* ChatGroupsSubscriber.h */,
-				B2151BDB20BC6C1A005B397B /* ChatConversationHandler.m */,
-				B2151BDC20BC6C1A005B397B /* ChatMessageMetadata.h */,
-				B2151BDD20BC6C1A005B397B /* FirebaseCustomAuthHelper.m */,
-				B2151BDE20BC6C1A005B397B /* ChatPresenceHandler.h */,
-				B2151BDF20BC6C1A005B397B /* ChatGroupsHandler.h */,
-				B2151BE020BC6C1A005B397B /* ChatImageDownloadManager.h */,
-				B2151BE120BC6C1A005B397B /* ChatAuth.h */,
-				B2151BE220BC6C1A005B397B /* ChatConnectionStatusHandler.m */,
 				B2151BE320BC6C1A005B397B /* ChatSynchDelegate.h */,
-				B2151BE420BC6C1A005B397B /* ChatContactsSynchronizer.h */,
+				B2151BD020BC6C1A005B397B /* FirebaseCustomAuthHelper.h */,
+				B2151BDD20BC6C1A005B397B /* FirebaseCustomAuthHelper.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -797,12 +797,12 @@
 		B2151BE520BC6C1A005B397B /* db */ = {
 			isa = PBXGroup;
 			children = (
-				B2151BE620BC6C1A005B397B /* ChatGroupsDB.h */,
 				B2151BE720BC6C1A005B397B /* ChatContactsDB.h */,
-				B2151BE820BC6C1A005B397B /* ChatDB.m */,
-				B2151BE920BC6C1A005B397B /* ChatGroupsDB.m */,
 				B2151BEA20BC6C1A005B397B /* ChatContactsDB.m */,
 				B2151BEB20BC6C1A005B397B /* ChatDB.h */,
+				B2151BE820BC6C1A005B397B /* ChatDB.m */,
+				B2151BE620BC6C1A005B397B /* ChatGroupsDB.h */,
+				B2151BE920BC6C1A005B397B /* ChatGroupsDB.m */,
 			);
 			path = db;
 			sourceTree = "<group>";

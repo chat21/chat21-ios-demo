@@ -155,6 +155,32 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     }
 }
 
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"call -> application:didReceiveRemoteNotification:fetchCompletionHandler:");
+    
+    // DECODE NOTIFICATION...
+    
+    // THEN...
+    
+    ChatManager *chatm = [ChatManager getInstance];
+    // initialize and connect ChatConversationsHandler
+    [chatm getAndStartConversationsHandler];
+    
+    // for any unread-conversation?
+    //   initialize and connect ChatConversationHandler
+    //
+    //    ChatConversationHandler *handler;
+    //    if (self.recipient) {
+    //        handler = [chatm getConversationHandlerForRecipient:self.recipient];
+    //    } else {
+    //        ChatGroup *group = [[ChatGroup alloc] init];
+    //        group.name = recipient_fullname;
+    //        group.groupId = recipientid;
+    //        handler = [chatm getConversationHandlerForGroup:group];
+    //    }
+    // Start a 5 seconds timer. Call completionHandler on timer-end
+}
+
 // #notificationsworkflow
 -(void)processRemoteNotification:(NSDictionary*)userInfo {
     NSDictionary *aps = [userInfo objectForKey:NOTIFICATION_KEY_APS];
@@ -174,18 +200,19 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
             ChatGroup *group = [[ChatGroup alloc] init];
             group.name = recipient_fullname;
             group.groupId = recipientid;
-//            [[ChatManager getInstance] createGroupFromPushNotificationWithName:group.name groupId:group.groupId];
             [ChatUIManager moveToConversationViewWithGroup:group];
         }
         else {
             // DIRECT MESSAGE
-            NSString *trimmedSender = [senderid stringByTrimmingCharactersInSet:
-                                       [NSCharacterSet whitespaceCharacterSet]];
+            NSString *trimmedSender = [senderid stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
             if (trimmedSender.length > 0) {
                 ChatUser *user = [[ChatUser alloc] init];
                 user.userId = senderid;
                 user.fullname = sender_fullname;
                 [ChatUIManager moveToConversationViewWithUser:user];
+            }
+            else {
+                NSLog(@"Error: invalid sender (0 length). Message notification discarded.");
             }
         }
     }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HelloMyProfileTVC : UITableViewController
+@interface HelloMyProfileTVC : UITableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 - (IBAction)logoutAction:(id)sender;
@@ -20,6 +20,15 @@
 - (IBAction)helpAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableViewCell *helpCell;
 @property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
+
+// imagepicker
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) UIImagePickerController *photoLibraryController;
+@property (nonatomic, strong) UIImage *scaledImage;
+@property (strong, nonatomic) UIImage *bigImage;
+
+- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender;
 
 @end
 
