@@ -127,7 +127,7 @@
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-profile-man.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="d3I-YM-RXw">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-profile-man.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="d3I-YM-RXw">
                                                     <rect key="frame" x="27" y="27" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="VAG-RO-xPq"/>
@@ -877,7 +877,7 @@
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-profile-man.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dho-e4-How">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-profile-man.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dho-e4-How">
                                                     <rect key="frame" x="27" y="27" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="ZKA-3P-fi5"/>

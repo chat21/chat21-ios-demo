@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ChatDiskImageCache;
+
 @interface HelloMyProfileTVC : UITableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
@@ -21,12 +23,14 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *helpCell;
 @property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
+@property (assign, nonatomic) BOOL currentProfilePhoto;
 
 // imagepicker
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) UIImagePickerController *photoLibraryController;
 @property (nonatomic, strong) UIImage *scaledImage;
 @property (strong, nonatomic) UIImage *bigImage;
+@property (strong, nonatomic) ChatDiskImageCache *imageCache;
 
 - (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender;
 

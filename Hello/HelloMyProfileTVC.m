@@ -18,7 +18,8 @@
 #import "HelpFacade.h"
 #import "ChatImageUtil.h"
 #import "ChatImagePreviewVC.h"
-#import "ChatImageCache.h"
+#import "ChatDiskImageCache.h"
+#import "SVProgressHUD.h"
 
 @interface HelloMyProfileTVC ()
 
@@ -41,6 +42,24 @@
     [self.profilePhotoImageView addGestureRecognizer:singleTap];
     
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
+    [self setupProfileImage];
+}
+
+-(void)setupProfileImage {
+    self.currentProfilePhoto = NO;
+    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
+    self.profilePhotoImageView.clipsToBounds = YES;
+    self.imageCache = [[ChatDiskImageCache alloc] init];
+    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+    NSString *imageURL = loggedUser.profileImageURL;
+    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
+        [self setupCurrentProfileViewWithImage:image];
+    }];
+}
+
+-(void)setupCurrentProfileViewWithImage:(UIImage *)image {
+    self.currentProfilePhoto = YES;
+    self.profilePhotoImageView.image = image;
 }
 
 -(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
@@ -78,7 +97,9 @@
                              {
                                  NSLog(@"cancel");
                              }];
-    [alert addAction:delete];
+    if (self.currentProfilePhoto) {
+        [alert addAction:delete];
+    }
     [alert addAction:photo];
     [alert addAction:photo_from_library];
     [alert addAction:cancel];
@@ -247,101 +268,75 @@
     NSLog(@"image: %@", self.scaledImage);
     self.scaledImage = [ChatImageUtil adjustEXIF:self.scaledImage];
     self.scaledImage = [ChatImageUtil scaleImage:self.scaledImage toSize:CGSizeMake(1200, 1200)];
-    [self performSegueWithIdentifier:@"imagePreview" sender:nil];
+//    [self performSegueWithIdentifier:@"imagePreview" sender:nil];
+    [self sendImage:self.scaledImage];
 }
 
-- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender {
-    NSLog(@"exited");
-    [self dismissViewControllerAnimated:YES completion:nil];
-    UIViewController *sourceViewController = sender.sourceViewController;
-    if ([sourceViewController isKindOfClass:[ChatImagePreviewVC class]]) {
-        ChatImagePreviewVC *vc = (ChatImagePreviewVC *) sourceViewController;
-        if (vc.image) {
-            UIImage *imageToSend = vc.image;
-            NSLog(@"image to send: %@", imageToSend);
-            [self sendImage:imageToSend];
-        }
-        else {
-            NSLog(@"operation canceled");
-        }
-    }
-}
+//- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender {
+//    NSLog(@"exited");
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    UIViewController *sourceViewController = sender.sourceViewController;
+//    if ([sourceViewController isKindOfClass:[ChatImagePreviewVC class]]) {
+//        ChatImagePreviewVC *vc = (ChatImagePreviewVC *) sourceViewController;
+//        if (vc.image) {
+//            UIImage *imageToSend = vc.image;
+//            NSLog(@"image to send: %@", imageToSend);
+//            [self sendImage:imageToSend];
+//        }
+//        else {
+//            NSLog(@"operation canceled");
+//        }
+//    }
+//}
 
 -(void)sendImage:(UIImage *)image {
     NSLog(@"Sending image...");
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD show];
     // save image to cache
-//    [[ChatImageCache getSharedInstance] addImage:image withKey:@""];
-    HelloUser *loggedUser = [HelloApplicationContext getSharedInstance].loggedUser;
-    [self uploadProfileImage:image userId:loggedUser.userid completion:^(NSURL *downloadURL, NSError *error) {
+    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+    [[ChatManager getInstance] uploadProfileImage:image userId:loggedUser.userId completion:^(NSString *downloadURL, NSError *error) {
             NSLog(@"Image uploaded. Download url: %@", downloadURL);
+            [SVProgressHUD dismiss];
             if (error) {
                 NSLog(@"Error during image upload.");
             }
             else {
-                self.profilePhotoImageView.image = image;
+                [self setupCurrentProfileViewWithImage:image];
                 // TODO:
                 // cache photo on file (with expiration date)
-                // update photo url in user's contact entry
+                [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
                 // get photo from cache
                 // get photo from remote
-                
-                
-//                NSString *image_text = [ChatMessage imageTextPlaceholder:downloadURL.absoluteString];
-//                message.metadata.src = downloadURL.absoluteString;
-//                message.text = image_text;
-//                message.status = MSG_STATUS_SENDING;
-//                [self.conversationHandler sendImagePlaceholderMessage:message completion:^(ChatMessage *m, NSError *e) {
-//                    NSLog(@"Image message successfully sent.");
-//                }];
+                // group profile photo
             }
         } progressCallback:^(double fraction) {
             //            NSLog(@"progress: %f", fraction);
         }];
 }
 
--(void)uploadProfileImage:(UIImage *)image userId:(NSString *)userId completion:(void(^)(NSURL *downloadURL, NSError *error))callback progressCallback:(void(^)(double fraction))progressCallback {
-    NSData *data = UIImagePNGRepresentation(image);
-    // Get a reference to the storage service using the default Firebase App
-    FIRStorage *storage = [FIRStorage storage];
-    // Create a root reference
-    FIRStorageReference *storageRef = [storage reference];
-    NSString * uuid = [[NSUUID UUID] UUIDString];
-    NSString *file_path = [[NSString alloc] initWithFormat:@"profiles/%@/photo.png", uuid];
-    NSLog(@"image remote file path: %@", file_path);
-    // Create a reference to the file you want to upload
-    FIRStorageReference *storeRef = [storageRef child:file_path];
-    // Create file metadata including the content type
-    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
-    metadata.contentType = @"image/png";
-    // Upload the file to the path
-//    FIRStorageUploadTask *uploadTask =
-    [storeRef putData:data metadata:metadata completion:^(FIRStorageMetadata *metadata, NSError *error) {
-          if (error != nil) {
-              NSLog(@"an error occurred!");
-              callback(nil, error);
-          } else {
-              // Metadata contains file metadata such as size, content-type, and download URL
-              [storeRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
-                  if (error != nil) {
-                      NSLog(@"an error occurred! %@", error);
-                      callback(nil, error);
-                  } else {
-                      NSLog(@"Download url: %@", URL);
-                      callback(URL, error);
-                  }
-              }];
-          }
-      }];
-//    FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
-//                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
-//                                                      //                                                      NSLog(@"uploading %@", snapshot);
-//                                                      //                                                      NSLog(@"completion: %f, %lld", snapshot.progress.fractionCompleted, snapshot.progress.completedUnitCount);
-//                                                      progressCallback(snapshot.progress.fractionCompleted);
-//                                                  }];
-}
-
 -(void)deleteImage {
-    
+    NSLog(@"deleting profile image");
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD show];
+    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+    [[ChatManager getInstance] deleteProfileImageOfUser:loggedUser.userId completion:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        // remove this three lines of code
+        self.currentProfilePhoto = NO;
+        self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+        ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+        [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
+        if (error) {
+            NSLog(@"Error while deleting profile image.");
+        }
+        else {
+            self.currentProfilePhoto = NO;
+            self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+            ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
+            [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
+        }
+    }];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
@@ -354,13 +349,13 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
-        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
-        NSLog(@"vc %@", vc);
-        vc.image = self.scaledImage;
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+//        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
+//        NSLog(@"vc %@", vc);
+//        vc.image = self.scaledImage;
+//    }
+//}
 
 // **************************************************
 // *************** END PHOTO SECTION ****************

@@ -14,5 +14,6 @@ target 'chat21' do
   pod 'Firebase/Storage'
   pod 'Fabric', '~> 1.7.9'
   pod 'Crashlytics', '~> 3.10.5'
+  pod 'SVProgressHUD'
   
 end

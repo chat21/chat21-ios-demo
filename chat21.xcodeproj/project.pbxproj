@@ -143,6 +143,7 @@
 		B253C72F20CFB1FA00F0EB20 /* HelpLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B253C72E20CFB1FA00F0EB20 /* HelpLocal.m */; };
 		B253C73220CFB3E300F0EB20 /* Help.strings in Resources */ = {isa = PBXBuildFile; fileRef = B253C73420CFB3E300F0EB20 /* Help.strings */; };
 		B253C73920CFEAF400F0EB20 /* HelpAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B253C73820CFEAF400F0EB20 /* HelpAction.m */; };
+		B26FBD9D21341D1800FA82E2 /* ChatDiskImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FBD9C21341D1800FA82E2 /* ChatDiskImageCache.m */; };
 		B2A4C0531FE7D7A600AED2EE /* HelloUserProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */; };
 		B2BC945F1F1F68EF000DDF52 /* HelloAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC945E1F1F68EF000DDF52 /* HelloAuthTVC.m */; };
 		B2BC94621F1FCE04000DDF52 /* HelloMyProfileTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC94611F1FCE04000DDF52 /* HelloMyProfileTVC.m */; };
@@ -416,6 +417,8 @@
 		B253C73620CFB46B00F0EB20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Help.strings; sourceTree = "<group>"; };
 		B253C73720CFEAF400F0EB20 /* HelpAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpAction.h; sourceTree = "<group>"; };
 		B253C73820CFEAF400F0EB20 /* HelpAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpAction.m; sourceTree = "<group>"; };
+		B26FBD9B21341D1800FA82E2 /* ChatDiskImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatDiskImageCache.h; sourceTree = "<group>"; };
+		B26FBD9C21341D1800FA82E2 /* ChatDiskImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatDiskImageCache.m; sourceTree = "<group>"; };
 		B2A4C0511FE7D7A600AED2EE /* HelloUserProfileTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloUserProfileTVC.h; sourceTree = "<group>"; };
 		B2A4C0521FE7D7A600AED2EE /* HelloUserProfileTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloUserProfileTVC.m; sourceTree = "<group>"; };
 		B2ABAE7E202228C200D6265A /* Chat21.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chat21.entitlements; sourceTree = "<group>"; };
@@ -730,18 +733,20 @@
 		B2151BB320BC6C1A005B397B /* util */ = {
 			isa = PBXGroup;
 			children = (
-				B2151BB420BC6C1A005B397B /* ChatImageWrapper.m */,
-				B2151BB520BC6C1A005B397B /* ChatStringUtil.m */,
+				B26FBD9B21341D1800FA82E2 /* ChatDiskImageCache.h */,
+				B26FBD9C21341D1800FA82E2 /* ChatDiskImageCache.m */,
 				B2151BB620BC6C1A005B397B /* ChatImageCache.h */,
-				B2151BB720BC6C1A005B397B /* ChatUploadsController.h */,
-				B2151BB820BC6C1A005B397B /* ChatUtil.m */,
-				B2151BB920BC6C1A005B397B /* ChatUpload.m */,
-				B2151BBA20BC6C1A005B397B /* ChatStringUtil.h */,
-				B2151BBB20BC6C1A005B397B /* ChatImageWrapper.h */,
 				B2151BBC20BC6C1A005B397B /* ChatImageCache.m */,
+				B2151BBB20BC6C1A005B397B /* ChatImageWrapper.h */,
+				B2151BB420BC6C1A005B397B /* ChatImageWrapper.m */,
+				B2151BBA20BC6C1A005B397B /* ChatStringUtil.h */,
+				B2151BB520BC6C1A005B397B /* ChatStringUtil.m */,
 				B2151BBD20BC6C1A005B397B /* ChatUpload.h */,
-				B2151BBE20BC6C1A005B397B /* ChatUtil.h */,
+				B2151BB920BC6C1A005B397B /* ChatUpload.m */,
+				B2151BB720BC6C1A005B397B /* ChatUploadsController.h */,
 				B2151BBF20BC6C1A005B397B /* ChatUploadsController.m */,
+				B2151BBE20BC6C1A005B397B /* ChatUtil.h */,
+				B2151BB820BC6C1A005B397B /* ChatUtil.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1209,6 +1214,7 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainItemWrapper/KeychainItemWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1220,6 +1226,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainItemWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NYTPhotoViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -1299,6 +1306,7 @@
 				B2151C1B20BC6C1A005B397B /* ChatMessagesVC.m in Sources */,
 				B2151C2F20BC6C1A005B397B /* ChatGroupInfoVC.m in Sources */,
 				B2151C2C20BC6C1A005B397B /* ChatMessageCell.m in Sources */,
+				B26FBD9D21341D1800FA82E2 /* ChatDiskImageCache.m in Sources */,
 				B2151C4720BC6C1A005B397B /* ChatConversationHandler.m in Sources */,
 				B2151C1120BC6C1A005B397B /* QBPopupMenu.m in Sources */,
 				B2151C2520BC6C1A005B397B /* ChatInfoMessageAttributesTVC.m in Sources */,
