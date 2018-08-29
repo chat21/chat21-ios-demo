@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *helpCell;
 @property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
-@property (assign, nonatomic) BOOL currentProfilePhoto;
+@property (assign, nonatomic) UIImage *currentProfilePhoto;
 
 // imagepicker
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;

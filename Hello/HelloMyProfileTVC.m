@@ -46,7 +46,7 @@
 }
 
 -(void)setupProfileImage {
-    self.currentProfilePhoto = NO;
+    self.currentProfilePhoto = nil;
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
     self.profilePhotoImageView.clipsToBounds = YES;
     self.imageCache = [[ChatDiskImageCache alloc] init];
@@ -58,7 +58,7 @@
 }
 
 -(void)setupCurrentProfileViewWithImage:(UIImage *)image {
-    self.currentProfilePhoto = YES;
+    self.currentProfilePhoto = image;
     self.profilePhotoImageView.image = image;
 }
 
@@ -74,6 +74,16 @@
                               {
                                   [self deleteImage];
                               }];
+    
+    UIAlertAction* show = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"Show Photo", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                NSLog(@"Show photo");
+                                [self showPhoto];
+                            }];
+    
     UIAlertAction* photo = [UIAlertAction
                             actionWithTitle:NSLocalizedString(@"Photo", nil)
                             style:UIAlertActionStyleDefault
@@ -97,8 +107,9 @@
                              {
                                  NSLog(@"cancel");
                              }];
-    if (self.currentProfilePhoto) {
+    if (self.currentProfilePhoto != nil) {
         [alert addAction:delete];
+        [alert addAction:show];
     }
     [alert addAction:photo];
     [alert addAction:photo_from_library];
@@ -209,6 +220,10 @@
     [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
 }
 
+-(void)showPhoto {
+    [self performSegueWithIdentifier:@"imagePreview" sender:nil];
+}
+
 // **************************************************
 // **************** TAKE PHOTO SECTION **************
 // **************************************************
@@ -272,11 +287,12 @@
     [self sendImage:self.scaledImage];
 }
 
-//- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender {
-//    NSLog(@"exited");
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//    UIViewController *sourceViewController = sender.sourceViewController;
-//    if ([sourceViewController isKindOfClass:[ChatImagePreviewVC class]]) {
+- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender {
+    NSLog(@"exited");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    UIViewController *sourceViewController = sender.sourceViewController;
+    if ([sourceViewController isKindOfClass:[ChatImagePreviewVC class]]) {
+        NSLog(@"operation canceled");
 //        ChatImagePreviewVC *vc = (ChatImagePreviewVC *) sourceViewController;
 //        if (vc.image) {
 //            UIImage *imageToSend = vc.image;
@@ -286,8 +302,8 @@
 //        else {
 //            NSLog(@"operation canceled");
 //        }
-//    }
-//}
+    }
+}
 
 -(void)sendImage:(UIImage *)image {
     NSLog(@"Sending image...");
@@ -323,7 +339,7 @@
     [[ChatManager getInstance] deleteProfileImageOfUser:loggedUser.userId completion:^(NSError *error) {
         [SVProgressHUD dismiss];
         // remove this three lines of code
-        self.currentProfilePhoto = NO;
+        self.currentProfilePhoto = nil;
         self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
         ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
         [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
@@ -331,7 +347,7 @@
             NSLog(@"Error while deleting profile image.");
         }
         else {
-            self.currentProfilePhoto = NO;
+            self.currentProfilePhoto = nil;
             self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
             ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
             [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
@@ -349,13 +365,13 @@
     }
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
-//        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
-//        NSLog(@"vc %@", vc);
-//        vc.image = self.scaledImage;
-//    }
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
+        NSLog(@"vc %@", vc);
+        vc.image = self.currentProfilePhoto;
+    }
+}
 
 // **************************************************
 // *************** END PHOTO SECTION ****************
