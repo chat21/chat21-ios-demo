@@ -543,18 +543,18 @@
 		B2151B3920BC6C1A005B397B /* util */ = {
 			isa = PBXGroup;
 			children = (
-				B2151B3A20BC6C1A005B397B /* ChatCustomView.m */,
-				B2151B3B20BC6C1A005B397B /* ChatMessageComponents.m */,
+				B2151B4520BC6C1A005B397B /* CellConfigurator.h */,
 				B2151B3C20BC6C1A005B397B /* CellConfigurator.m */,
+				B2151B4120BC6C1A005B397B /* ChatCustomView.h */,
+				B2151B3A20BC6C1A005B397B /* ChatCustomView.m */,
+				B2151B4420BC6C1A005B397B /* ChatImageUtil.h */,
 				B2151B3D20BC6C1A005B397B /* ChatImageUtil.m */,
 				B2151B3E20BC6C1A005B397B /* ChatLocal.h */,
-				B2151B3F20BC6C1A005B397B /* ChatProgressView.h */,
-				B2151B4020BC6C1A005B397B /* ChatMessageComponents.h */,
-				B2151B4120BC6C1A005B397B /* ChatCustomView.h */,
-				B2151B4220BC6C1A005B397B /* ChatProgressView.m */,
 				B2151B4320BC6C1A005B397B /* ChatLocal.m */,
-				B2151B4420BC6C1A005B397B /* ChatImageUtil.h */,
-				B2151B4520BC6C1A005B397B /* CellConfigurator.h */,
+				B2151B4020BC6C1A005B397B /* ChatMessageComponents.h */,
+				B2151B3B20BC6C1A005B397B /* ChatMessageComponents.m */,
+				B2151B3F20BC6C1A005B397B /* ChatProgressView.h */,
+				B2151B4220BC6C1A005B397B /* ChatProgressView.m */,
 				B21BE788211D996800C2A8D1 /* ChatStyles.h */,
 				B21BE789211D996900C2A8D1 /* ChatStyles.m */,
 			);
@@ -719,12 +719,12 @@
 			isa = PBXGroup;
 			children = (
 				B2151BB120BC6C1A005B397B /* Chat.strings */,
-				B2151BB320BC6C1A005B397B /* util */,
 				B2151BC120BC6C1A005B397B /* ChatManager.h */,
-				B2151BC320BC6C1A005B397B /* model */,
-				B2151BCD20BC6C1A005B397B /* lib */,
-				B2151BE520BC6C1A005B397B /* db */,
 				B2151BEC20BC6C1A005B397B /* ChatManager.m */,
+				B2151BE520BC6C1A005B397B /* db */,
+				B2151BCD20BC6C1A005B397B /* lib */,
+				B2151BC320BC6C1A005B397B /* model */,
+				B2151BB320BC6C1A005B397B /* util */,
 			);
 			name = Chat21Core;
 			path = "../chat21-ios-sdk/Chat21Core";

@@ -42,24 +42,38 @@
     [self.profilePhotoImageView addGestureRecognizer:singleTap];
     
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
-    [self setupProfileImage];
 }
 
 -(void)setupProfileImage {
     self.currentProfilePhoto = nil;
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
     self.profilePhotoImageView.clipsToBounds = YES;
-    self.imageCache = [[ChatDiskImageCache alloc] init];
+    self.imageCache = [ChatManager getInstance].imageCache;
     ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
     NSString *imageURL = loggedUser.profileImageURL;
+    NSLog(@"profile image url: %@", imageURL);
     [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
         [self setupCurrentProfileViewWithImage:image];
     }];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setupProfileImage];
+}
+
 -(void)setupCurrentProfileViewWithImage:(UIImage *)image {
     self.currentProfilePhoto = image;
-    self.profilePhotoImageView.image = image;
+    if (image == nil) {
+        [self resetProfilePhoto];
+    }
+    else {
+        self.profilePhotoImageView.image = image;
+    }
+}
+
+-(void)resetProfilePhoto {
+    self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
 }
 
 -(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
@@ -340,7 +354,7 @@
         [SVProgressHUD dismiss];
         // remove this three lines of code
         self.currentProfilePhoto = nil;
-        self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+        [self resetProfilePhoto];
         ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
         [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
         if (error) {
@@ -348,7 +362,7 @@
         }
         else {
             self.currentProfilePhoto = nil;
-            self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+            [self resetProfilePhoto];
             ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
             [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
         }
