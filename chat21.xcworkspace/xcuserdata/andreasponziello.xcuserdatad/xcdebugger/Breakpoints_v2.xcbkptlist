@@ -6,16 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21UI/util/CellConfigurator.m"
-            timestampString = "557344164.067952"
+            timestampString = "557434186.590821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "+configureDirectConversationCell:tableView:indexPath:imageCache:"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "-setImageForIndexPath:cell:imageURL:typeDirect:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../chat21-ios-sdk/Chat21UI/util/CellConfigurator.m"
+            timestampString = "557434186.590881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "-resetCellPhotoForCell:typeDirect:imageURL:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

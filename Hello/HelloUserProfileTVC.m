@@ -12,6 +12,10 @@
 #import <DBChooser/DBChooser.h>
 #import "ChatMessagesVC.h"
 #import "ChatUIManager.h"
+#import "ChatManager.h"
+#import "ChatDiskImageCache.h"
+#import "ChatImagePreviewVC.h"
+#import "ChatUtil.h"
 
 @interface HelloUserProfileTVC ()
 
@@ -21,6 +25,61 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapProfilePhoto:)];
+    singleTap.numberOfTapsRequired = 1;
+    [self.profilePhotoImageView setUserInteractionEnabled:YES];
+    [self.profilePhotoImageView addGestureRecognizer:singleTap];
+    
+    [self setupProfileImage];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+-(void)setupProfileImage {
+    self.currentProfilePhoto = nil;
+    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
+    self.profilePhotoImageView.clipsToBounds = YES;
+    self.imageCache = [ChatManager getInstance].imageCache;
+    NSString *imageURL = [ChatUtil imageURLOfProfile:self.user.userid];
+    NSLog(@"profile image url: %@", imageURL);
+    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
+        [self setupCurrentProfileViewWithImage:image];
+    }];
+}
+
+-(void)setupCurrentProfileViewWithImage:(UIImage *)image {
+    self.currentProfilePhoto = image;
+    if (image == nil) {
+        [self resetProfilePhoto];
+    }
+    else {
+        self.profilePhotoImageView.image = image;
+    }
+}
+
+-(void)resetProfilePhoto {
+    self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+}
+
+-(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
+    [self showPhoto];
+}
+
+-(void)showPhoto {
+    if (self.currentProfilePhoto) {
+        [self performSegueWithIdentifier:@"imagePreview" sender:nil];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
+        NSLog(@"vc %@", vc);
+        vc.image = self.currentProfilePhoto;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

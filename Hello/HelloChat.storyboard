@@ -1011,8 +1011,10 @@
                     <connections>
                         <outlet property="emailLabel" destination="ksw-Of-aHU" id="gd9-TO-mC4"/>
                         <outlet property="fullNameLabel" destination="C0N-6n-mi6" id="NQp-Lh-pEF"/>
+                        <outlet property="profilePhotoImageView" destination="dho-e4-How" id="xlW-9w-xpG"/>
                         <outlet property="useridLabel" destination="389-TR-5J3" id="0cX-wU-hlv"/>
                         <outlet property="usernameLabel" destination="pvt-QD-jX2" id="7BS-vU-eXz"/>
+                        <segue destination="txC-Uh-cOq" kind="presentation" identifier="imagePreview" id="eyz-MI-UzD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9B8-ea-GFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1127,4 +1129,7 @@
         <image name="sendbutton.png" width="137" height="136"/>
         <image name="user-profile-man.jpg" width="1200" height="1200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="eyz-MI-UzD"/>
+    </inferredMetricsTieBreakers>
 </document>
