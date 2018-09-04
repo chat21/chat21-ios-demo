@@ -238,6 +238,14 @@
     [self performSegueWithIdentifier:@"imagePreview" sender:nil];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
+        NSLog(@"vc %@", vc);
+        vc.image = self.currentProfilePhoto;
+    }
+}
+
 // **************************************************
 // **************** TAKE PHOTO SECTION **************
 // **************************************************
@@ -263,7 +271,7 @@
     self.imagePickerController = [[UIImagePickerController alloc] init];
     self.imagePickerController.delegate = self;
     self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    self.imagePickerController.allowsEditing = NO;
+    self.imagePickerController.allowsEditing = YES;
 }
 
 -(void)initializePhotoLibrary {
@@ -271,7 +279,7 @@
     self.photoLibraryController = [[UIImagePickerController alloc] init];
     self.photoLibraryController.delegate = self;
     self.photoLibraryController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;// SavedPhotosAlbum;
-    self.photoLibraryController.allowsEditing = NO;
+    self.photoLibraryController.allowsEditing = YES;
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -282,41 +290,15 @@
 
 -(void)afterPickerCompletion:(UIImagePickerController *)picker withInfo:(NSDictionary *)info {
     UIImage *bigImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    //    for(id i in info.allKeys) {
-    //        NSLog(@"k: %@, v: %@ [class:%@]", i, info[i], NSStringFromClass([info[i] class]));
-    //    }
     NSURL *local_image_url = [info objectForKey:@"UIImagePickerControllerImageURL"];
     NSString *image_original_file_name = [local_image_url lastPathComponent];
     NSLog(@"image_original_file_name: %@", image_original_file_name);
     self.scaledImage = bigImage;
-    // save image in photos
-    //    if (picker == self.imagePickerController) {
-    //        UIImageWriteToSavedPhotosAlbum(self.bigImage, self,
-    //                                       @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    //    }
     NSLog(@"image: %@", self.scaledImage);
     self.scaledImage = [ChatImageUtil adjustEXIF:self.scaledImage];
     self.scaledImage = [ChatImageUtil scaleImage:self.scaledImage toSize:CGSizeMake(1200, 1200)];
 //    [self performSegueWithIdentifier:@"imagePreview" sender:nil];
     [self sendImage:self.scaledImage];
-}
-
-- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender {
-    NSLog(@"exited");
-    [self dismissViewControllerAnimated:YES completion:nil];
-    UIViewController *sourceViewController = sender.sourceViewController;
-    if ([sourceViewController isKindOfClass:[ChatImagePreviewVC class]]) {
-        NSLog(@"operation canceled");
-//        ChatImagePreviewVC *vc = (ChatImagePreviewVC *) sourceViewController;
-//        if (vc.image) {
-//            UIImage *imageToSend = vc.image;
-//            NSLog(@"image to send: %@", imageToSend);
-//            [self sendImage:imageToSend];
-//        }
-//        else {
-//            NSLog(@"operation canceled");
-//        }
-    }
 }
 
 -(void)sendImage:(UIImage *)image {
@@ -325,7 +307,7 @@
     [SVProgressHUD show];
     // save image to cache
     ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-    [[ChatManager getInstance] uploadProfileImage:image userId:loggedUser.userId completion:^(NSString *downloadURL, NSError *error) {
+    [[ChatManager getInstance] uploadProfileImage:image profileId:loggedUser.userId completion:^(NSString *downloadURL, NSError *error) {
             NSLog(@"Image uploaded. Download url: %@", downloadURL);
             [SVProgressHUD dismiss];
             if (error) {
@@ -333,15 +315,11 @@
             }
             else {
                 [self setupCurrentProfileViewWithImage:image];
-                // TODO:
-                // cache photo on file (with expiration date)
                 [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
-                // get photo from cache
-                // get photo from remote
                 // group profile photo
             }
         } progressCallback:^(double fraction) {
-            //            NSLog(@"progress: %f", fraction);
+            // NSLog(@"progress: %f", fraction);
         }];
 }
 
@@ -367,24 +345,6 @@
             [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
         }
     }];
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    if (error != NULL) {
-        NSLog(@"(SHPTakePhotoViewController) Error saving image to camera roll.");
-    }
-    else {
-        //NSLog(@"(SHPTakePhotoViewController) Image saved to camera roll. w:%f h:%f", self.image.size.width, self.image.size.height);
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
-        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
-        NSLog(@"vc %@", vc);
-        vc.image = self.currentProfilePhoto;
-    }
 }
 
 // **************************************************

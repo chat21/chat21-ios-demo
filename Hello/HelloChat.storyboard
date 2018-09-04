@@ -1037,10 +1037,10 @@
             </objects>
             <point key="canvasLocation" x="185" y="2970"/>
         </scene>
-        <!--Chat Image PreviewVC-->
+        <!--Chat Show Image-->
         <scene sceneID="aeD-pO-rWL">
             <objects>
-                <viewController id="txC-Uh-cOq" customClass="ChatImagePreviewVC" sceneMemberID="viewController">
+                <viewController id="txC-Uh-cOq" customClass="ChatShowImage" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="arA-Ax-MWp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1061,46 +1061,13 @@
                                     <segue destination="Ce1-e1-SAf" kind="unwind" unwindAction="unwindToProfileVC:" id="Blp-ti-gZQ"/>
                                 </connections>
                             </button>
-                            <view alpha="0.44999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-Mr-Uke">
-                                <rect key="frame" x="0.0" y="648" width="375" height="19"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alj-ED-eSl">
-                                        <rect key="frame" x="329.5" y="1" width="37.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.22848526550000001" green="0.22848526550000001" blue="0.22848526550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="JIe-5f-ldv"/>
-                                    <constraint firstAttribute="trailing" secondItem="Alj-ED-eSl" secondAttribute="trailing" constant="8" id="P5n-cc-OfT"/>
-                                    <constraint firstItem="Alj-ED-eSl" firstAttribute="centerY" secondItem="tQk-Mr-Uke" secondAttribute="centerY" id="V9o-Nt-iSN"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5g-hh-0Vp">
-                                <rect key="frame" x="313" y="595" width="33" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="33" id="0dC-JP-6Xw"/>
-                                    <constraint firstAttribute="height" constant="31" id="WqS-HL-xbD"/>
-                                </constraints>
-                                <state key="normal" image="sendbutton.png"/>
-                                <connections>
-                                    <segue destination="Ce1-e1-SAf" kind="unwind" unwindAction="unwindToProfileVC:" id="yJr-vk-jUc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="tQk-Mr-Uke" firstAttribute="leading" secondItem="97c-HZ-rSC" secondAttribute="leading" id="3XH-ec-khP"/>
-                            <constraint firstItem="97c-HZ-rSC" firstAttribute="trailing" secondItem="tQk-Mr-Uke" secondAttribute="trailing" id="7af-u3-g6L"/>
-                            <constraint firstItem="97c-HZ-rSC" firstAttribute="bottom" secondItem="u5g-hh-0Vp" secondAttribute="bottom" constant="41" id="Gsa-kl-IXK"/>
                             <constraint firstItem="Hvy-dE-N2K" firstAttribute="leading" secondItem="97c-HZ-rSC" secondAttribute="leading" id="IcT-dl-weG"/>
-                            <constraint firstItem="97c-HZ-rSC" firstAttribute="bottom" secondItem="tQk-Mr-Uke" secondAttribute="bottom" id="Khl-Sk-irY"/>
                             <constraint firstItem="pZv-Ke-4kr" firstAttribute="leading" secondItem="97c-HZ-rSC" secondAttribute="leading" constant="15" id="KxT-sD-otb"/>
                             <constraint firstItem="97c-HZ-rSC" firstAttribute="top" secondItem="Hvy-dE-N2K" secondAttribute="top" constant="20" id="RNc-AO-2Rl"/>
                             <constraint firstItem="pZv-Ke-4kr" firstAttribute="top" secondItem="97c-HZ-rSC" secondAttribute="top" id="VPB-Dv-MEU"/>
-                            <constraint firstItem="97c-HZ-rSC" firstAttribute="trailing" secondItem="u5g-hh-0Vp" secondAttribute="trailing" constant="29" id="bLz-OT-UAL"/>
                             <constraint firstItem="97c-HZ-rSC" firstAttribute="trailing" secondItem="Hvy-dE-N2K" secondAttribute="trailing" id="qYN-cv-Rkc"/>
                             <constraint firstItem="97c-HZ-rSC" firstAttribute="bottom" secondItem="Hvy-dE-N2K" secondAttribute="bottom" id="uVm-qo-CZ1"/>
                         </constraints>
@@ -1108,7 +1075,6 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="Hvy-dE-N2K" id="eD5-Zs-Q9Q"/>
-                        <outlet property="recipientFullnameLabel" destination="Alj-ED-eSl" id="ePB-Bf-4wR"/>
                         <segue destination="Ce1-e1-SAf" kind="unwind" identifier="unwindToMessagesVCsegue" unwindAction="unwindToMessagesVC:" id="bYA-WE-wUv"/>
                     </connections>
                 </viewController>
@@ -1126,7 +1092,6 @@
         <image name="ic_linear_support_gray_01.png" width="32" height="32"/>
         <image name="icon_light_home.png" width="32" height="32"/>
         <image name="no_image_message_placeholder.png" width="500" height="500"/>
-        <image name="sendbutton.png" width="137" height="136"/>
         <image name="user-profile-man.jpg" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>

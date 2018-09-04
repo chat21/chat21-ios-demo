@@ -112,6 +112,7 @@
 		B217DC572108D001000B7502 /* baseline_create_black_24pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC532108D000000B7502 /* baseline_create_black_24pt@3x.png */; };
 		B217DC582108D001000B7502 /* baseline_history_black_24pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC542108D000000B7502 /* baseline_history_black_24pt@3x.png */; };
 		B217DC592108D001000B7502 /* baseline_create_black_24pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B217DC552108D001000B7502 /* baseline_create_black_24pt@2x.png */; };
+		B219A0EA213A757800D76205 /* ChatShowImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B219A0E9213A757800D76205 /* ChatShowImage.m */; };
 		B21A82D52075219B0068A2F9 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21A82D32075219A0068A2F9 /* DBChooser.framework */; };
 		B21A82D62075219B0068A2F9 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B21A82D42075219B0068A2F9 /* DBChooser.bundle */; };
 		B21BE78A211D996900C2A8D1 /* ChatStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BE789211D996900C2A8D1 /* ChatStyles.m */; };
@@ -371,6 +372,8 @@
 		B217DC532108D000000B7502 /* baseline_create_black_24pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_create_black_24pt@3x.png"; sourceTree = "<group>"; };
 		B217DC542108D000000B7502 /* baseline_history_black_24pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_history_black_24pt@3x.png"; sourceTree = "<group>"; };
 		B217DC552108D001000B7502 /* baseline_create_black_24pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baseline_create_black_24pt@2x.png"; sourceTree = "<group>"; };
+		B219A0E8213A757800D76205 /* ChatShowImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatShowImage.h; sourceTree = "<group>"; };
+		B219A0E9213A757800D76205 /* ChatShowImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatShowImage.m; sourceTree = "<group>"; };
 		B21A82D32075219A0068A2F9 /* DBChooser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBChooser.framework; sourceTree = "<group>"; };
 		B21A82D42075219B0068A2F9 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
 		B21BE788211D996800C2A8D1 /* ChatStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStyles.h; sourceTree = "<group>"; };
@@ -711,6 +714,8 @@
 				B2151BAA20BC6C1A005B397B /* NotificationAlertView.m */,
 				B2151BA520BC6C1A005B397B /* UIView+Property.h */,
 				B2151B8520BC6C1A005B397B /* UIView+Property.m */,
+				B219A0E8213A757800D76205 /* ChatShowImage.h */,
+				B219A0E9213A757800D76205 /* ChatShowImage.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1294,6 +1299,7 @@
 				B2151C4A20BC6C1A005B397B /* ChatDB.m in Sources */,
 				B23CD80B20C526A200A0B3F0 /* HelpCategoryStepTVC.m in Sources */,
 				B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */,
+				B219A0EA213A757800D76205 /* ChatShowImage.m in Sources */,
 				B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */,
 				B2151BF320BC6C1A005B397B /* ChatProgressView.m in Sources */,
 				B2151C1D20BC6C1A005B397B /* ChatInfoMessageTVC.m in Sources */,

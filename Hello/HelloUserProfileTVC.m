@@ -43,7 +43,7 @@
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
     self.profilePhotoImageView.clipsToBounds = YES;
     self.imageCache = [ChatManager getInstance].imageCache;
-    NSString *imageURL = [ChatUtil imageURLOfProfile:self.user.userid];
+    NSString *imageURL = [ChatUtil profileImageURLOf:self.user.userid];
     NSLog(@"profile image url: %@", imageURL);
     [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
         [self setupCurrentProfileViewWithImage:image];

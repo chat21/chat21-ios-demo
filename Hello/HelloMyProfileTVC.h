@@ -32,7 +32,5 @@
 @property (strong, nonatomic) UIImage *bigImage;
 @property (strong, nonatomic) ChatDiskImageCache *imageCache;
 
-- (IBAction)unwindToProfileVC:(UIStoryboardSegue*)sender;
-
 @end
 

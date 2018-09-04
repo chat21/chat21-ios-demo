@@ -6,32 +6,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/util/CellConfigurator.m"
-            timestampString = "557434186.590821"
+            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
+            timestampString = "557781971.9365081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-setImageForIndexPath:cell:imageURL:typeDirect:"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "-createGroupAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/util/CellConfigurator.m"
-            timestampString = "557434186.590881"
+            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
+            timestampString = "557781971.936601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "-resetCellPhotoForCell:typeDirect:imageURL:"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
+            landmarkName = "-createGroupAction:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
+            timestampString = "557781971.936691"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "-createGroupAction:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../chat21-ios-sdk/Chat21Core/ChatManager.m"
+            timestampString = "557781971.936748"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "660"
+            endingLineNumber = "660"
+            landmarkName = "-uploadProfileImage:profileId:completion:progressCallback:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../chat21-ios-sdk/Chat21Core/ChatManager.m"
+            timestampString = "557781971.936792"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
+            landmarkName = "-uploadProfileImage:profileId:completion:progressCallback:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
