@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
-            timestampString = "557781971.9365081"
+            timestampString = "557869172.394665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "458"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
-            timestampString = "557781971.936601"
+            timestampString = "557869172.394767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "462"
@@ -42,44 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
-            timestampString = "557781971.936691"
+            timestampString = "557869172.394839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "467"
             endingLineNumber = "467"
             landmarkName = "-createGroupAction:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21Core/ChatManager.m"
-            timestampString = "557781971.936748"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
-            landmarkName = "-uploadProfileImage:profileId:completion:progressCallback:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21Core/ChatManager.m"
-            timestampString = "557781971.936792"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "675"
-            endingLineNumber = "675"
-            landmarkName = "-uploadProfileImage:profileId:completion:progressCallback:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

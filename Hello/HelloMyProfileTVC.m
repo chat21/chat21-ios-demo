@@ -44,23 +44,39 @@
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }
 
--(void)setupProfileImage {
-    self.currentProfilePhoto = nil;
+-(void)setupProfileImage:(NSString *)profileId {
+    self.imageCache = [ChatManager getInstance].imageCache;
+    
+    // setup circle image view
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
     self.profilePhotoImageView.clipsToBounds = YES;
-    self.imageCache = [ChatManager getInstance].imageCache;
-    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-    NSString *imageURL = loggedUser.profileImageURL;
-    NSLog(@"profile image url: %@", imageURL);
+    
+    // try to get image from cache
+    NSString *imageURL = [ChatUtil profileImageURLOf:profileId];
+    NSURL *url = [NSURL URLWithString:imageURL];
+    NSString *cache_key = [self.imageCache urlAsKey:url];
+    UIImage *cachedProfileImage = [self.imageCache getCachedImage:cache_key];
+    [self setupCurrentProfileViewWithImage:cachedProfileImage];
     [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
         [self setupCurrentProfileViewWithImage:image];
     }];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self setupProfileImage];
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    HelloUser *loggedUser = [HelloApplicationContext getSharedInstance].loggedUser;
+    self.profileId = loggedUser.userid;
+    self.usernameLabel.text = loggedUser.username;
+    self.useridLabel.text = loggedUser.userid;
+    self.emailLabel.text = loggedUser.email;
+    self.fullNameLabel.text = loggedUser.displayName;
+    [self setupProfileImage:self.profileId];
 }
+
+//-(void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    [self setupProfileImage];
+//}
 
 -(void)setupCurrentProfileViewWithImage:(UIImage *)image {
     self.currentProfilePhoto = image;
@@ -183,15 +199,6 @@
     [self presentViewController:view animated:YES completion:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    HelloUser *loggedUser = [HelloApplicationContext getSharedInstance].loggedUser;
-    self.usernameLabel.text = loggedUser.username;
-    self.useridLabel.text = loggedUser.userid;
-    self.emailLabel.text = loggedUser.email;
-    self.fullNameLabel.text = loggedUser.displayName;
-}
-
 - (void)confirmLogout {
     NSLog(@"LOGOUT");
     
@@ -305,30 +312,27 @@
     NSLog(@"Sending image...");
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD show];
-    // save image to cache
-    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-    [[ChatManager getInstance] uploadProfileImage:image profileId:loggedUser.userId completion:^(NSString *downloadURL, NSError *error) {
-            NSLog(@"Image uploaded. Download url: %@", downloadURL);
-            [SVProgressHUD dismiss];
-            if (error) {
-                NSLog(@"Error during image upload.");
-            }
-            else {
-                [self setupCurrentProfileViewWithImage:image];
-                [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
-                // group profile photo
-            }
-        } progressCallback:^(double fraction) {
-            // NSLog(@"progress: %f", fraction);
-        }];
+    [[ChatManager getInstance] uploadProfileImage:image profileId:self.profileId completion:^(NSString *downloadURL, NSError *error) {
+        NSLog(@"Image uploaded. Download url: %@", downloadURL);
+        [SVProgressHUD dismiss];
+        if (error) {
+            NSLog(@"Error during image upload.");
+        }
+        else {
+            [self setupCurrentProfileViewWithImage:image];
+            [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
+            // group profile photo
+        }
+    } progressCallback:^(double fraction) {
+        // NSLog(@"progress: %f", fraction);
+    }];
 }
 
 -(void)deleteImage {
     NSLog(@"deleting profile image");
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD show];
-    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-    [[ChatManager getInstance] deleteProfileImageOfUser:loggedUser.userId completion:^(NSError *error) {
+    [[ChatManager getInstance] deleteProfileImage:self.profileId completion:^(NSError *error) {
         [SVProgressHUD dismiss];
         // remove this three lines of code
         self.currentProfilePhoto = nil;

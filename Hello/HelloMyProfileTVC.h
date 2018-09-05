@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
 @property (assign, nonatomic) UIImage *currentProfilePhoto;
+@property (assign, nonatomic) NSString *profileId;
 
 // imagepicker
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
