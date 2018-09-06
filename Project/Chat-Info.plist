@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>delete-profile-photo-uri</key>
-	<string>/api/deletephoto/%@/</string>
+	<string>/api/%@/contacts/me/photo</string>
 	<key>profile-image-base-url</key>
 	<string>https://firebasestorage.googleapis.com/v0/b/%@/o</string>
 	<key>archive-and-support-conversation-uri</key>
