@@ -320,8 +320,8 @@
         }
         else {
             [self setupCurrentProfileViewWithImage:image];
-            [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
-            // group profile photo
+//            [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
+            [self.imageCache updateProfile:self.profileId image:image];
         }
     } progressCallback:^(double fraction) {
         // NSLog(@"progress: %f", fraction);
