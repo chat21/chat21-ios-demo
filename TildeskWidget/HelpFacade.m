@@ -12,10 +12,12 @@
 #import "HelpCategoryStepTVC.h"
 #import "ChatUser.h"
 #import "ChatUtil.h"
-#import "HelpCategory.h"
+//#import "HelpCategory.h"
+#import "HelpStartVC.h"
 #import <sys/utsname.h>
 #import "HelpDescriptionStepTVC.h"
 #import "ChatUIManager.h"
+#import "HelpAction.h"
 
 static HelpFacade *sharedInstance = nil;
 
@@ -49,12 +51,25 @@ static HelpFacade *sharedInstance = nil;
 }
 
 -(void)openSupportView:(UIViewController *)sourcevc {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Help_request" bundle:nil];
-    UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:@"help-wizard"];
-    HelpCategoryStepTVC *firstStep = (HelpCategoryStepTVC *)[[nc viewControllers] objectAtIndex:0];
-    firstStep.context = [[NSMutableDictionary alloc] init];
-    [firstStep.context setObject:sourcevc forKey:@"view-controller"];
-    [sourcevc presentViewController:nc animated:YES completion:nil];
+    HelpAction *action = [[HelpAction alloc] init];
+    [action openSupportView:sourcevc];
+}
+
+//-(void)openSupportView:(UIViewController *)sourcevc {
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Help_request" bundle:nil];
+//    UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:@"help-wizard"];
+//    HelpStartVC *firstStep = (HelpStartVC *)[[nc viewControllers] objectAtIndex:0];
+////    firstStep.context = [[NSMutableDictionary alloc] init];
+////    [firstStep.context setObject:sourcevc forKey:@"view-controller"];
+//    [sourcevc presentViewController:nc animated:YES completion:^{
+//        // NSLog(@"Presented");
+//    }];
+//}
+
+-(void)dismissWizard:(UIViewController *)sourcevc {
+    [sourcevc dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"Wizard dismissed...");
+    }];
 }
 
 -(void)handleWizardSupportFromViewController:(UIViewController *)vc helpContext:(NSDictionary *)context {
@@ -72,17 +87,17 @@ static HelpFacade *sharedInstance = nil;
 
 -(void)chatAction:(NSDictionary *)context fromSection:(NSString *)section {
     NSLog(@"Passing control to support agent");
-    HelpCategory *cat = [context objectForKey:@"category"];
+    HelpCategory *cat = [context objectForKey:@"department"];
     // Agent user
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Help-Info" ofType:@"plist"]];
     NSString *client = [[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleNameKey]; //[dictionary objectForKey:@"client-name"];
-    NSString *cat_name = cat.nameInCurrentLocale;
-    NSString *cat_id = cat.pathId;
+//    NSString *cat_name = cat.nameInCurrentLocale;
+//    NSString *cat_id = cat.pathId;
     NSString *description = [context objectForKey:@"description"];
     NSString *platform = [[NSString alloc] initWithFormat:@" %@/%@", [HelpFacade deviceName], [[UIDevice currentDevice] systemVersion] ]; //"iPhone 6/11.0.2";
     NSDictionary *attributes = @{
-                                 @"cat_id" : cat_id,
-                                 @"cat_name" : cat_name,
+//                                 @"cat_id" : cat_id,
+//                                 @"cat_name" : cat_name,
                                  @"description": description,
                                  @"client": client,
                                  @"platform": platform,
@@ -96,6 +111,8 @@ static HelpFacade *sharedInstance = nil;
 }
 
 -(void)sendMessage:(NSString *)text toRecipient:(ChatUser *)recipient attributes:(NSDictionary *)attributes {
+    
+    // TODO open stand-alone conversation view
     NSInteger chat_tab_index = [ChatUIManager getInstance].tabBarIndex; //[HelloApplicationContext tabIndexByName:@"ChatController"];
     // move to the converstations tab
     if (chat_tab_index >= 0) {

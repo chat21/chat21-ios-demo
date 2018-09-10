@@ -7,9 +7,10 @@
 //
 
 #import "HelpCategoryStepTVC.h"
-#import "HelpCategory.h"
 #import "HelpDataService.h"
 #import "HelpDepartment.h"
+#import "HelpLocal.h"
+#import "HelpAction.h"
 
 @interface HelpCategoryStepTVC ()
 
@@ -20,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    NSLog(@"test key: %@", self.context[@"test key"]);
     
 //    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Help-Info" ofType:@"plist"]];
 //    NSArray *plist_categories = [dictionary objectForKey:@"help-categories"];
@@ -43,24 +45,25 @@
 //        self.navigationItem.title = self.category.nameInCurrentLocale;
 //    }
     
-    self.cancelButton.title = NSLocalizedString(@"cancel", nil);
-    self.navigationItem.title = NSLocalizedString(@"help wizard title topic", nil);
+    self.cancelButton.title = [HelpLocal translate:@"cancel"];
+    self.navigationItem.title = [HelpLocal translate:@"help wizard title topic"];
 
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    HelpDataService *service =[[HelpDataService alloc] init];
-    [service downloadDepartmentsWithCompletionHandler:^(NSArray<HelpDepartment *> *departments, NSError *error) {
-        // TODO
-        NSLog(@"count deps: %@", departments);
-        self.departments = departments;
-        for (HelpDepartment *dep in departments) {
-            NSLog(@"dep id: %@, name: %@ isDefault: %d", dep.departmentId, dep.name, dep.isDefault);
-        }
-        [self.tableView reloadData];
-    }];
+    [super viewDidAppear:animated];
+//    HelpDataService *service =[[HelpDataService alloc] init];
+//    [service downloadDepartmentsWithCompletionHandler:^(NSArray<HelpDepartment *> *departments, NSError *error) {
+//        // TODO
+//        NSLog(@"count deps: %@", departments);
+//        self.departments = departments;
+//        for (HelpDepartment *dep in departments) {
+//            NSLog(@"dep id: %@, name: %@ isDefault: %d", dep.departmentId, dep.name, dep.isDefault);
+//        }
+//        [self.tableView reloadData];
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +78,7 @@
 }
 
 static NSInteger FIRST_STEP_CELL_HEIGHT = 60;
-static NSInteger NEXT_STEP_CELL_HEIGHT = 60;
+//static NSInteger NEXT_STEP_CELL_HEIGHT = 60;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -106,7 +109,7 @@ static NSInteger NEXT_STEP_CELL_HEIGHT = 60;
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"title-cell" forIndexPath:indexPath];
         UILabel *titleLabel = [cell viewWithTag:1];
-        titleLabel.text = NSLocalizedString(@"Help wizard select argument", nil);
+        titleLabel.text = [HelpLocal translate:@"Help wizard select argument"];
     }
     if (indexPath.section == 1) {
 //        HelpCategory *category = self.categories[indexPath.row];
@@ -128,25 +131,9 @@ static NSInteger NEXT_STEP_CELL_HEIGHT = 60;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    if (indexPath.section == 1) {
-    //        [self.context setObject:[self.categories objectAtIndex:indexPath.row] forKey:@"category"];
-    //        [self performSegueWithIdentifier:@"next" sender:self];
-    //    }
-    
-//    HelpCategory *selectedCategory = [self.categories objectAtIndex:indexPath.row];
-    HelpDepartment *selectedCategory = [self.departments objectAtIndex:indexPath.row];
-//    if (selectedCategory.children) {
-//        // call yourself, no prepareForSegue is called, all init here.
-//        HelpCategoryStepTVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"request-vc"];
-//        vc.category = selectedCategory;
-//        vc.context = self.context;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    } else {
-        [self.context setObject:selectedCategory forKey:@"category"];
-        [self performSegueWithIdentifier:@"next" sender:self];
-//    }
-    
-    //    NSLog(@"context %@", self.context);
+    HelpDepartment *selectedDepartment = [self.departments objectAtIndex:indexPath.row];
+    self.helpAction.department = selectedDepartment;
+    [self performSegueWithIdentifier:@"next" sender:self];
 }
 
 #pragma mark - Navigation
@@ -154,7 +141,7 @@ static NSInteger NEXT_STEP_CELL_HEIGHT = 60;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"next"]) {
         NSObject *vc = (NSObject *)[segue destinationViewController];
-        [vc setValue:self.context forKey:@"context"];
+        [vc setValue:self.helpAction forKey:@"helpAction"];
     }
 }
 

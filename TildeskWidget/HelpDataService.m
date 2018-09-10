@@ -21,11 +21,11 @@
 
 + (NSString *)departmentsService {
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Help-Info" ofType:@"plist"]];
-    NSString *host = [dictionary objectForKey:@"host"];
+    NSString *baseURL = [dictionary objectForKey:@"base-url"];
     NSString *departmentsService = [dictionary objectForKey:@"departments-service"];
     NSString *projectId = [dictionary objectForKey:@"projectId"];
-    NSString *departmentServiceURI = [NSString stringWithFormat:NSLocalizedString(departmentsService, nil), projectId];
-    NSString *service = [NSString stringWithFormat:@"%@%@", host, departmentServiceURI];
+    NSString *departmentServiceURI = [NSString stringWithFormat:departmentsService, projectId];
+    NSString *service = [NSString stringWithFormat:@"%@%@", baseURL, departmentServiceURI];
     NSLog(@"departments service url: %@", service);
     return service;
 }

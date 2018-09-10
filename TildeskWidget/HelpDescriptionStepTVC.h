@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class HelpAction;
 
 @interface HelpDescriptionStepTVC : UITableViewController<UITextViewDelegate> {
     NSString *kPlaceholderDescription;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *context;
+@property (strong, nonatomic) HelpAction *helpAction;
+//@property (strong, nonatomic) NSMutableDictionary *context;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;

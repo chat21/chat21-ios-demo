@@ -259,7 +259,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="hQY-ET-9KB"/>
                                                     </constraints>
-                                                    <state key="normal" title="Supporto" image="ic_linear_support_gray_01.png">
+                                                    <state key="normal" title="Support" image="ic_linear_support_gray_01.png">
                                                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -1095,6 +1095,6 @@
         <image name="user-profile-man.jpg" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eyz-MI-UzD"/>
+        <segue reference="t9Y-zw-hlZ"/>
     </inferredMetricsTieBreakers>
 </document>

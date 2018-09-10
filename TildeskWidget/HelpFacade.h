@@ -21,5 +21,6 @@
 +(NSString*)deviceName;
 -(void)chatAction:(NSDictionary *)context fromSection:(NSString *)section;
 -(void)handleWizardSupportFromViewController:(UIViewController *)vc helpContext:(NSDictionary *)context;
+-(void)dismissWizard:(UIViewController *)sourcevc;
 
 @end
