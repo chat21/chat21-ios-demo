@@ -22,11 +22,16 @@
 #import "ChatMessage.h"
 #import "ChatAuth.h"
 #import <DBChooser/DBChooser.h>
+#import "ChatConversationHandler.h"
+#import "HelpDataService.h"
+#import "HelpDepartment.h"
 
 #import <sys/utsname.h>
 @import Firebase;
 
-@implementation HelloAppDelegate
+@implementation HelloAppDelegate {
+    NSTimer * _Nullable backgroundDownloadTimer;
+}
 
 static NSString *NOTIFICATION_KEY_TYPE = @"t"; //type
 static NSString *NOTIFICATION_KEY_TYPE_CHAT = @"chat";
@@ -89,7 +94,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"REMOTE NOTIFICATION STARTED THE APPLICATION!");
-        [self processRemoteNotification:userInfo];
+        [self processRemoteNotification:userInfo moveToConversation:YES];
     }
     
     // the chat app only asks notification permission when user is logged in
@@ -141,50 +146,83 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 }
 
 // #notificationsworkflow
-- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
+//- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
+//    NSLog(@"REMOTE NOTIFICATION. didReceiveRemoteNotification: %@", userInfo);
+//    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+//    NSLog(@"APPLICATION DID RECEIVE REMOTE NOTIFICATION IN STATE: %ld", (long)state);
+//    if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
+//    {
+//        NSLog(@"APPLICATION WAS RUNNING IN BACKGROUND!");
+//        [self processRemoteNotification:userInfo];
+//    }
+//    else {
+//        NSLog(@"APPLICATION IS RUNNING IN FOREGROUND! NOTIFICATION IGNORED.");
+//    }
+//}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"call -> application:didReceiveRemoteNotification:fetchCompletionHandler:UIBackgroundFetchResultNewData");
     NSLog(@"REMOTE NOTIFICATION. didReceiveRemoteNotification: %@", userInfo);
     UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     NSLog(@"APPLICATION DID RECEIVE REMOTE NOTIFICATION IN STATE: %ld", (long)state);
-    if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
-    {
-        NSLog(@"APPLICATION WAS RUNNING IN BACKGROUND!");
-        [self processRemoteNotification:userInfo];
+    if (state == UIApplicationStateBackground) {
+        NSLog(@"APPLICATION state == UIApplicationStateBackground");
+        [self processRemoteNotification:userInfo moveToConversation:YES];
+        [self startBackgroundDownloadTimerFetchCompletionHandler:completionHandler];
+    }
+    else if (state == UIApplicationStateInactive) {
+        NSLog(@"APPLICATION state == UIApplicationStateInactive");
+        [self processRemoteNotification:userInfo moveToConversation:YES];
+        [self startBackgroundDownloadTimerFetchCompletionHandler:completionHandler];
     }
     else {
         NSLog(@"APPLICATION IS RUNNING IN FOREGROUND! NOTIFICATION IGNORED.");
+        [self processRemoteNotification:userInfo moveToConversation:NO];
+        completionHandler(UIBackgroundFetchResultNewData);
     }
 }
 
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
-    NSLog(@"call -> application:didReceiveRemoteNotification:fetchCompletionHandler:");
+-(void)startBackgroundDownloadTimerFetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    if (backgroundDownloadTimer) {
+        completionHandler(UIBackgroundFetchResultNewData);
+        return;
+    }
+    else {
+        self.fetchCompletionHandler = completionHandler;
+        backgroundDownloadTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(backgroundDownloadTimerEnd:) userInfo:nil repeats:NO];
+    }
     
-    // DECODE NOTIFICATION...
+    // testing network available on new push with content-available: 1
+//    HelpDataService *service =[[HelpDataService alloc] init];
+//    [service downloadDepartmentsWithCompletionHandler:^(NSArray<HelpDepartment *> *departments, NSError *error) {
+//        NSLog(@"count deps: %lu", (unsigned long)departments.count);
+//        for (HelpDepartment *dep in departments) {
+//            NSLog(@"dep id: %@, name: %@ isDefault: %d", dep.departmentId, dep.name, dep.isDefault);
+//        }
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }];
     
-    // THEN...
     
-    ChatManager *chatm = [ChatManager getInstance];
-    // initialize and connect ChatConversationsHandler
-    [chatm getAndStartConversationsHandler];
-    
-    // for any unread-conversation?
-    //   initialize and connect ChatConversationHandler
-    //
-    //    ChatConversationHandler *handler;
-    //    if (self.recipient) {
-    //        handler = [chatm getConversationHandlerForRecipient:self.recipient];
-    //    } else {
-    //        ChatGroup *group = [[ChatGroup alloc] init];
-    //        group.name = recipient_fullname;
-    //        group.groupId = recipientid;
-    //        handler = [chatm getConversationHandlerForGroup:group];
-    //    }
-    // Start a 5 seconds timer. Call completionHandler on timer-end
+}
+
+-(void)backgroundDownloadTimerEnd:(NSTimer *)timer {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Timer END");
+        if (backgroundDownloadTimer) {
+            if ([backgroundDownloadTimer isValid]) {
+                [backgroundDownloadTimer invalidate];
+            }
+            backgroundDownloadTimer = nil;
+        }
+        self.fetchCompletionHandler(UIBackgroundFetchResultNewData);
+    });
 }
 
 // #notificationsworkflow
--(void)processRemoteNotification:(NSDictionary*)userInfo {
+-(void)processRemoteNotification:(NSDictionary*)userInfo moveToConversation:(BOOL)moveToConversation{
     NSDictionary *aps = [userInfo objectForKey:NOTIFICATION_KEY_APS];
-//    NSString *alert = [aps objectForKey:NOTIFICATION_KEY_ALERT];
+    NSString *content_available = [[userInfo objectForKey:NOTIFICATION_KEY_APS] objectForKey:@"content-available"];
+    NSLog(@"CONTENT-AVAILABLE: %@", content_available);
     NSString *category = [aps objectForKey:NOTIFICATION_KEY_CATEGORY];
     
     if ([category isEqualToString:NOTIFICATION_VALUE_NEW_MESSAGE]) {
@@ -193,14 +231,19 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
         NSString *recipientid = [userInfo objectForKey:@"recipient"];
         NSString *recipient_fullname = [userInfo objectForKey:@"recipient_fullname"];
         NSString *channel_type = [userInfo objectForKey:@"channel_type"];
-//        NSString *badge = [[userInfo objectForKey:NOTIFICATION_KEY_APS] objectForKey:NOTIFICATION_KEY_BADGE];
         
+        ChatManager *chatm = [ChatManager getInstance];
+        [chatm getAndStartConversationsHandler];
         if ([channel_type isEqualToString:MSG_CHANNEL_TYPE_GROUP]) {
             // GROUP MESSAGE
             ChatGroup *group = [[ChatGroup alloc] init];
             group.name = recipient_fullname;
             group.groupId = recipientid;
-            [ChatUIManager moveToConversationViewWithGroup:group];
+            ChatConversationHandler *handler = [chatm getConversationHandlerForGroup:group];
+            [handler connect];
+            if (moveToConversation) {
+                [ChatUIManager moveToConversationViewWithGroup:group];
+            }
         }
         else {
             // DIRECT MESSAGE
@@ -209,7 +252,11 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
                 ChatUser *user = [[ChatUser alloc] init];
                 user.userId = senderid;
                 user.fullname = sender_fullname;
-                [ChatUIManager moveToConversationViewWithUser:user];
+                ChatConversationHandler *handler = [chatm getConversationHandlerForRecipient:user];
+                [handler connect];
+                if (moveToConversation) {
+                    [ChatUIManager moveToConversationViewWithUser:user];
+                }
             }
             else {
                 NSLog(@"Error: invalid sender (0 length). Message notification discarded.");
@@ -285,7 +332,7 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    NSLog(@"App >> applicationWillResignActive...");
+    NSLog(@"App >> Suspending...applicationWillResignActive()");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

@@ -38,68 +38,6 @@
     [super viewDidAppear:animated];
 }
 
--(void)setupProfileImage:(NSString *)profileId {
-    self.imageCache = [ChatManager getInstance].imageCache;
-    
-    // setup circle image view
-    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
-    self.profilePhotoImageView.clipsToBounds = YES;
-    
-    // try to get image from cache
-    NSString *imageURL = [ChatManager profileImageURLOf:profileId];
-    NSURL *url = [NSURL URLWithString:imageURL];
-    NSString *cache_key = [self.imageCache urlAsKey:url];
-    UIImage *cachedProfileImage = [self.imageCache getCachedImage:cache_key];
-    [self setupCurrentProfileViewWithImage:cachedProfileImage];
-    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
-        [self setupCurrentProfileViewWithImage:image];
-    }];
-}
-
-//-(void)setupProfileImage {
-//    self.currentProfilePhoto = nil;
-//    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
-//    self.profilePhotoImageView.clipsToBounds = YES;
-//    self.imageCache = [ChatManager getInstance].imageCache;
-//    NSString *imageURL = [ChatUtil profileImageURLOf:self.user.userid];
-//    NSLog(@"profile image url: %@", imageURL);
-//    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
-//        [self setupCurrentProfileViewWithImage:image];
-//    }];
-//}
-
--(void)setupCurrentProfileViewWithImage:(UIImage *)image {
-    self.currentProfilePhoto = image;
-    if (image == nil) {
-        [self resetProfilePhoto];
-    }
-    else {
-        self.profilePhotoImageView.image = image;
-    }
-}
-
--(void)resetProfilePhoto {
-    self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
-}
-
--(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
-    [self showPhoto];
-}
-
--(void)showPhoto {
-    if (self.currentProfilePhoto) {
-        [self performSegueWithIdentifier:@"imagePreview" sender:nil];
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
-        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
-        NSLog(@"vc %@", vc);
-        vc.image = self.currentProfilePhoto;
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -156,5 +94,62 @@
     else
         return [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
 }
+
+// **************************************************
+// ************** PROFILE PHOTO SECTION *************
+// **************************************************
+
+-(void)setupProfileImage:(NSString *)profileId {
+    self.imageCache = [ChatManager getInstance].imageCache;
+    
+    // setup circle image view
+    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
+    self.profilePhotoImageView.clipsToBounds = YES;
+    
+    // try to get image from cache
+    NSString *imageURL = [ChatManager profileImageURLOf:profileId];
+    NSURL *url = [NSURL URLWithString:imageURL];
+    NSString *cache_key = [self.imageCache urlAsKey:url];
+    UIImage *cachedProfileImage = [self.imageCache getCachedImage:cache_key];
+    [self setupCurrentProfileViewWithImage:cachedProfileImage];
+    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
+        [self setupCurrentProfileViewWithImage:image];
+    }];
+}
+
+-(void)setupCurrentProfileViewWithImage:(UIImage *)image {
+    self.currentProfilePhoto = image;
+    if (image == nil) {
+        [self resetProfilePhoto];
+    }
+    else {
+        self.profilePhotoImageView.image = image;
+    }
+}
+
+-(void)resetProfilePhoto {
+    self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+}
+
+-(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
+    [self showPhoto];
+}
+
+-(void)showPhoto {
+    if (self.currentProfilePhoto) {
+        [self performSegueWithIdentifier:@"imagePreview" sender:nil];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
+        vc.image = self.currentProfilePhoto;
+    }
+}
+
+// **************************************************
+// ************ END PROFILE PHOTO SECTION ***********
+// **************************************************
 
 @end

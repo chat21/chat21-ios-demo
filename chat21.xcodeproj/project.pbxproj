@@ -128,6 +128,7 @@
 		B225D03D214683C30020EAB7 /* HelpCategoryStepTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B225D033214683C30020EAB7 /* HelpCategoryStepTVC.m */; };
 		B225D03E214683C30020EAB7 /* Help_request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B225D034214683C30020EAB7 /* Help_request.storyboard */; };
 		B225D04121468D0D0020EAB7 /* ChatUserCellConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = B225D04021468D0D0020EAB7 /* ChatUserCellConfigurator.m */; };
+		B225D0442147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = B225D0432147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.m */; };
 		B2348E8E1FE29E4400406D81 /* HelloRegisterTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */; };
 		B23A812B1F95D31F001344C0 /* HelloChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B23A812A1F95D31E001344C0 /* HelloChatUtil.m */; };
 		B23AE8E81F278E8800BEB4B8 /* ic_linear_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = B23AE8DC1F278E8800BEB4B8 /* ic_linear_chat.png */; };
@@ -403,6 +404,8 @@
 		B225D034214683C30020EAB7 /* Help_request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Help_request.storyboard; sourceTree = "<group>"; };
 		B225D03F21468D0D0020EAB7 /* ChatUserCellConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUserCellConfigurator.h; sourceTree = "<group>"; };
 		B225D04021468D0D0020EAB7 /* ChatUserCellConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUserCellConfigurator.m; sourceTree = "<group>"; };
+		B225D0422147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatSelectGroupMembersCellConfigurator.h; sourceTree = "<group>"; };
+		B225D0432147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatSelectGroupMembersCellConfigurator.m; sourceTree = "<group>"; };
 		B2348E8C1FE29E4400406D81 /* HelloRegisterTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloRegisterTVC.h; sourceTree = "<group>"; };
 		B2348E8D1FE29E4400406D81 /* HelloRegisterTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloRegisterTVC.m; sourceTree = "<group>"; };
 		B238ECFD2084A4C500D50285 /* Chat21Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Chat21Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -721,6 +724,8 @@
 				B219A0E9213A757800D76205 /* ChatShowImage.m */,
 				B225D03F21468D0D0020EAB7 /* ChatUserCellConfigurator.h */,
 				B225D04021468D0D0020EAB7 /* ChatUserCellConfigurator.m */,
+				B225D0422147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.h */,
+				B225D0432147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1335,6 +1340,7 @@
 				B2151C1420BC6C1A005B397B /* QBPlasticPopupMenu.m in Sources */,
 				B225D038214683C30020EAB7 /* HelpLocal.m in Sources */,
 				BFBFD5601AEA80CC00657874 /* HelloAuth.m in Sources */,
+				B225D0442147F4670020EAB7 /* ChatSelectGroupMembersCellConfigurator.m in Sources */,
 				B2151C4620BC6C1A005B397B /* ChatImageDownloadManager.m in Sources */,
 				B225D03A214683C30020EAB7 /* HelpDataService.m in Sources */,
 				B2151C2120BC6C1A005B397B /* ChatTitleVC.m in Sources */,

@@ -22,6 +22,8 @@
 - (IBAction)helpAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableViewCell *helpCell;
 @property (weak, nonatomic) IBOutlet UILabel *appNameLabel;
+
+// profile photo
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
 @property (assign, nonatomic) UIImage *currentProfilePhoto;
 @property (assign, nonatomic) NSString *profileId;

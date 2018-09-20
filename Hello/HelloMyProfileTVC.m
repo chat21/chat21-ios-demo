@@ -17,7 +17,7 @@
 #import "ChatUser.h"
 #import "HelpFacade.h"
 #import "ChatImageUtil.h"
-#import "ChatImagePreviewVC.h"
+#import "ChatShowImage.h"
 #import "ChatDiskImageCache.h"
 #import "SVProgressHUD.h"
 
@@ -44,24 +44,6 @@
     [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }
 
--(void)setupProfileImage:(NSString *)profileId {
-    self.imageCache = [ChatManager getInstance].imageCache;
-    
-    // setup circle image view
-    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
-    self.profilePhotoImageView.clipsToBounds = YES;
-    
-    // try to get image from cache
-    NSString *imageURL = [ChatManager profileImageURLOf:profileId];
-    NSURL *url = [NSURL URLWithString:imageURL];
-    NSString *cache_key = [self.imageCache urlAsKey:url];
-    UIImage *cachedProfileImage = [self.imageCache getCachedImage:cache_key];
-    [self setupCurrentProfileViewWithImage:cachedProfileImage];
-    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
-        [self setupCurrentProfileViewWithImage:image];
-    }];
-}
-
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     HelloUser *loggedUser = [HelloApplicationContext getSharedInstance].loggedUser;
@@ -77,80 +59,6 @@
 //    [super viewDidAppear:animated];
 //    [self setupProfileImage];
 //}
-
--(void)setupCurrentProfileViewWithImage:(UIImage *)image {
-    self.currentProfilePhoto = image;
-    if (image == nil) {
-        [self resetProfilePhoto];
-    }
-    else {
-        self.profilePhotoImageView.image = image;
-    }
-}
-
--(void)resetProfilePhoto {
-    self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
-}
-
--(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
-    UIAlertController * alert =   [UIAlertController
-                                  alertControllerWithTitle:nil
-                                  message:NSLocalizedString(@"Change Profile Photo", nil)
-                                  preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* delete = [UIAlertAction
-                              actionWithTitle:NSLocalizedString(@"Remove Current Photo", nil)
-                              style:UIAlertActionStyleDestructive
-                              handler:^(UIAlertAction * action)
-                              {
-                                  [self deleteImage];
-                              }];
-    
-    UIAlertAction* show = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"Show Photo", nil)
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                NSLog(@"Show photo");
-                                [self showPhoto];
-                            }];
-    
-    UIAlertAction* photo = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"Photo", nil)
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action)
-                            {
-                                NSLog(@"Open photo");
-                                [self takePhoto];
-                            }];
-    UIAlertAction* photo_from_library = [UIAlertAction
-                                         actionWithTitle:NSLocalizedString(@"Photo from library", nil)
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action)
-                                         {
-                                             NSLog(@"Open photo");
-                                             [self chooseExisting];
-                                         }];
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Cancel", nil)
-                             style:UIAlertActionStyleCancel
-                             handler:^(UIAlertAction * action)
-                             {
-                                 NSLog(@"cancel");
-                             }];
-    if (self.currentProfilePhoto != nil) {
-        [alert addAction:delete];
-        [alert addAction:show];
-    }
-    [alert addAction:photo];
-    [alert addAction:photo_from_library];
-    [alert addAction:cancel];
-    UIPopoverPresentationController *popPresenter = [alert
-                                                     popoverPresentationController];
-    UIView *view = gestureRecognizer.view;
-    popPresenter.sourceView = view;
-    popPresenter.sourceRect = view.bounds;
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -241,17 +149,116 @@
     [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
+        ChatShowImage *vc = (ChatShowImage *)[segue destinationViewController];
+        vc.image = self.currentProfilePhoto;
+    }
+}
+
+// **************************************************
+// ************** PROFILE PHOTO SECTION *************
+// **************************************************
+
+-(void)setupProfileImage:(NSString *)profileId {
+    self.imageCache = [ChatManager getInstance].imageCache;
+    
+    // setup circle image view
+    self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
+    self.profilePhotoImageView.clipsToBounds = YES;
+    
+    // try to get image from cache
+    NSString *imageURL = [ChatManager profileImageURLOf:profileId];
+    NSURL *url = [NSURL URLWithString:imageURL];
+    NSString *cache_key = [self.imageCache urlAsKey:url];
+    UIImage *cachedProfileImage = [self.imageCache getCachedImage:cache_key];
+    [self setupCurrentProfileViewWithImage:cachedProfileImage];
+    [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
+        [self setupCurrentProfileViewWithImage:image];
+    }];
+}
+
 -(void)showPhoto {
     [self performSegueWithIdentifier:@"imagePreview" sender:nil];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"imagePreview"]) {
-        ChatImagePreviewVC *vc = (ChatImagePreviewVC *)[segue destinationViewController];
-        NSLog(@"vc %@", vc);
-        vc.image = self.currentProfilePhoto;
+-(void)setupCurrentProfileViewWithImage:(UIImage *)image {
+    self.currentProfilePhoto = image;
+    if (image == nil) {
+        [self resetProfilePhoto];
+    }
+    else {
+        self.profilePhotoImageView.image = image;
     }
 }
+
+-(void)resetProfilePhoto {
+    self.profilePhotoImageView.image = [UIImage imageNamed:@"user-profile-man.jpg"];
+}
+
+-(void)tapProfilePhoto:(UITapGestureRecognizer *)gestureRecognizer {
+    UIAlertController * alert =   [UIAlertController
+                                   alertControllerWithTitle:nil
+                                   message:NSLocalizedString(@"Change Profile Photo", nil)
+                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* delete = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Remove Current Photo", nil)
+                             style:UIAlertActionStyleDestructive
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [self deleteImage];
+                             }];
+    
+    UIAlertAction* show = [UIAlertAction
+                           actionWithTitle:NSLocalizedString(@"Show Photo", nil)
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               NSLog(@"Show photo");
+                               [self showPhoto];
+                           }];
+    
+    UIAlertAction* photo = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"Photo", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                NSLog(@"Open photo");
+                                [self takePhoto];
+                            }];
+    UIAlertAction* photo_from_library = [UIAlertAction
+                                         actionWithTitle:NSLocalizedString(@"Photo from library", nil)
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             NSLog(@"Open photo");
+                                             [self chooseExisting];
+                                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                             style:UIAlertActionStyleCancel
+                             handler:^(UIAlertAction * action)
+                             {
+                                 NSLog(@"cancel");
+                             }];
+    if (self.currentProfilePhoto != nil) {
+        [alert addAction:delete];
+        [alert addAction:show];
+    }
+    [alert addAction:photo];
+    [alert addAction:photo_from_library];
+    [alert addAction:cancel];
+    UIPopoverPresentationController *popPresenter = [alert
+                                                     popoverPresentationController];
+    UIView *view = gestureRecognizer.view;
+    popPresenter.sourceView = view;
+    popPresenter.sourceRect = view.bounds;
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+// **************************************************
+// ************ END PROFILE PHOTO SECTION ***********
+// **************************************************
 
 // **************************************************
 // **************** TAKE PHOTO SECTION **************
