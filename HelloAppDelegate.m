@@ -165,6 +165,12 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     NSLog(@"REMOTE NOTIFICATION. didReceiveRemoteNotification: %@", userInfo);
     UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     NSLog(@"APPLICATION DID RECEIVE REMOTE NOTIFICATION IN STATE: %ld", (long)state);
+    
+    // can't avoid to switch to user conversation on every notification.
+    // switch to conversation should appen only on notification tap on user screen
+    // using background state delegates to set a applition var (ex. appBackgrounded) doesn't work
+    // beacause you can't reset the var on app-> foreground:
+    // didReceiveRemoteNotification() always called before willEnter/didEnterForeground
     if (state == UIApplicationStateBackground) {
         NSLog(@"APPLICATION state == UIApplicationStateBackground");
         [self processRemoteNotification:userInfo moveToConversation:YES];
@@ -347,7 +353,6 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     NSLog(@"App >> applicationWillEnterForeground...");
     //    NSLog(@"notifications are active? %d", [self checkPushNotificationsActive]);
-    //    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
