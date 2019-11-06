@@ -30,7 +30,7 @@
     
     ChatManager *chatm = [ChatManager getInstance];
     [chatm startWithUser:chatUser];
-    NSLog(@"Updates user from local contacts synch...");
+    NSLog(@"Updating user from local contacts synch...");
     [chatm getContactLocalDB:chatUser.userId withCompletion:^(ChatUser *user) {
         NSLog(@"user found: %@, user_id: %@, user.firstname: %@", user, user.userId, user.firstname);
         if (user && user.userId && ![user.firstname isEqualToString:@""]) {
@@ -72,11 +72,6 @@
             NSLog(@"Firebase Auth success. email: %@, emailverified: %d, userid: %@", user.email, user.emailVerified, user.uid);
             callback(user, nil);
         }
-//        if (!user.emailVerified) {
-//            NSLog(@"Email non verificata. Invio email verifica...");
-//                [user sendEmailVerificationWithCompletion:^(NSError * _Nullable error) {
-//                NSLog(@"Email verifica inviata.");
-//        }
     }];
 }
 

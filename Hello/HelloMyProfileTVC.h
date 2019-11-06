@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatSynchDelegate.h"
 
 @class ChatDiskImageCache;
 
-@interface HelloMyProfileTVC : UITableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface HelloMyProfileTVC : UITableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChatSynchDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 - (IBAction)logoutAction:(id)sender;

@@ -6,7 +6,6 @@
 
 #import "HelloAppDelegate.h"
 #import "HelloApplicationContext.h"
-//#import "SHPCaching.h"
 #import "HelloUser.h"
 #import "HelloAuth.h"
 #import "ChatManager.h"
@@ -23,8 +22,7 @@
 #import "ChatAuth.h"
 #import <DBChooser/DBChooser.h>
 #import "ChatConversationHandler.h"
-#import "HelpDataService.h"
-#import "HelpDepartment.h"
+#import "HelloSelectUserViewController.h"
 
 #import <sys/utsname.h>
 @import Firebase;
@@ -57,6 +55,13 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     // chat config
     [FIRApp configure];
     [ChatManager configure];
+    
+//    // TEST
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"HelloChat" bundle:nil];
+//    HelloSelectUserViewController *select_user_vc = [sb instantiateViewControllerWithIdentifier:@"select-user-vc"];
+//    [ChatUIManager getInstance].selectUserViewController = select_user_vc;
+//    // END TEST
+    
     // initial chat signin
     if ((context.loggedUser)) {
         // initialize signed-in user so I can get chat-history from DB, using offline mode, regardless of a real remote (Firebase) successfull authentication&connection
@@ -245,11 +250,12 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
             ChatGroup *group = [[ChatGroup alloc] init];
             group.name = recipient_fullname;
             group.groupId = recipientid;
-            ChatConversationHandler *handler = [chatm getConversationHandlerForGroup:group];
-            [handler connect];
-            if (moveToConversation) {
-                [ChatUIManager moveToConversationViewWithGroup:group];
-            }
+            [chatm getConversationHandlerForGroup:group completion:^(ChatConversationHandler *handler) {
+                [handler connect];
+                if (moveToConversation) {
+                    [ChatUIManager moveToConversationViewWithGroup:group];
+                }
+            }];
         }
         else {
             // DIRECT MESSAGE
@@ -258,11 +264,12 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
                 ChatUser *user = [[ChatUser alloc] init];
                 user.userId = senderid;
                 user.fullname = sender_fullname;
-                ChatConversationHandler *handler = [chatm getConversationHandlerForRecipient:user];
-                [handler connect];
-                if (moveToConversation) {
-                    [ChatUIManager moveToConversationViewWithUser:user];
-                }
+                [chatm getConversationHandlerForRecipient:user completion:^(ChatConversationHandler *handler) {
+                    [handler connect];
+                    if (moveToConversation) {
+                        [ChatUIManager moveToConversationViewWithUser:user];
+                    }
+                }];
             }
             else {
                 NSLog(@"Error: invalid sender (0 length). Message notification discarded.");
@@ -274,29 +281,8 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
 // #notificationsworkflow
 // Delegation methods
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
-    
     NSLog(@"Application successfully registered to APN with devToken %@", devToken);
     [[ChatManager getInstance] registerForNotifications:devToken];
-//    NSString *FCMToken = [FIRMessaging messaging].FCMToken;
-//    NSLog(@"FCMToken: %@", FCMToken);
-//    [FIRMessaging messaging].APNSToken = devToken;
-//    NSLog(@"[FIRMessaging messaging].APNSToken: %@", [FIRMessaging messaging].APNSToken);
-//    ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-//    if (loggedUser) {
-//        NSString *user_path = [ChatUtil userPath:loggedUser.userId];
-//        NSLog(@"Writing instanceId (FCMToken) %@ on path: %@", FCMToken, user_path);
-//        [[[[[FIRDatabase database] reference] child:user_path] child:@"instanceId"] setValue:FCMToken withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-//            if (error) {
-//                NSLog(@"Error saving instanceId (FCMToken) on user_path %@: %@", error, user_path);
-//            }
-//            else {
-//                NSLog(@"instanceId (FCMToken) %@ saved", FCMToken);
-//            }
-//        }];
-//    }
-//    else {
-//        NSLog(@"No user is signed in for push notifications token.");
-//    }
 }
 
 // #notificationsworkflow
@@ -309,15 +295,15 @@ static NSString *NOTIFICATION_VALUE_NEW_MESSAGE = @"NEW_MESSAGE";
     // Note that this callback will be fired everytime a new token is generated, including the first
     // time. So if you need to retrieve the token as soon as it is available this is where that
     // should be done.
-    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-    NSLog(@"InstanceID token: %@", refreshedToken);
+    NSLog(@"Token refreshed. Unimpemented.");
+    //    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+    //    NSLog(@"InstanceID token: %@", refreshedToken);
     
     // Connect to FCM since connection may have failed when attempted before having a token.
     //    [self connectToFcm];
     
     // TODO: If necessary send token to appliation server.
 }
-// [END refresh_token]
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"Tab selected.");

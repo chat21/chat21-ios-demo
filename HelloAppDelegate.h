@@ -17,7 +17,6 @@
 @property (strong, nonatomic) HelloApplicationContext *applicationContext;
 
 -(void)startPushNotifications;
-//@property (nonatomic, copy) void (^pushProfileCallback)(ChatUser *user, ChatMessagesVC *vc);
 @property (nonatomic, copy) void (^fetchCompletionHandler)(UIBackgroundFetchResult result);
 
 @end

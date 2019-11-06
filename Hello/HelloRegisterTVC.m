@@ -14,6 +14,7 @@
 #import "ChatManager.h"
 #import "HelloChatUtil.h"
 #import "HelloAppDelegate.h"
+#import "ChatAuth.h"
 
 @import Firebase;
 
@@ -70,56 +71,101 @@
     
     __weak HelloRegisterTVC *weakSelf = self;
     
-    [[FIRAuth auth] createUserWithEmail:email
-                               password:password
-                             completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
-         [weakSelf hideWaiting];
-         if (error) {
-             [weakSelf hideWaiting];
-             NSLog(@"Error creating user %@. Error: %@", email, error);
-             NSString *message = [[NSString alloc] initWithFormat:@"Error creating user %@. %@", email, error];
-             [self alert:message];
-             weakSelf.registerButton.enabled = true;
-         }
-         else {
-             FIRUser *fir_user = authResult.user;
-             NSLog(@"User %@ successfully created.", email);
-             // AGGIUNGERE FIRSTNAME E LASTNAME IN CONTACTS
-             
-             HelloUser *signedUser = [[HelloUser alloc] init];
-             signedUser.userid = fir_user.uid;
-             signedUser.username = fir_user.uid;
-             signedUser.email = email;
-             signedUser.password = password;
-             signedUser.firstName = firstname;
-             signedUser.lastName = lastname;
-             [context signin:signedUser];
-             NSLog(@"first name: %@", context.loggedUser.firstName);
-             
-             // store user info for next login (DANGEROUS! JUST FOR TESTING)
-             NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
-             [userPreferences setObject:password forKey:@"stored_password"];
-             [userPreferences setObject:email forKey:@"stored_username"];
-             [userPreferences synchronize];
-             
-             [HelloChatUtil initChat];
-             ChatManager *chat = [ChatManager getInstance];
-             [chat createContactFor:chat.loggedUser withCompletionBlock:^(NSError *error) {
-                 if (error) {
-                     NSLog(@"Error in contact creation after login. User: %@, Error: %@", chat.loggedUser.fullname, error);
-                 }
-                 else {
-                     NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
-                     NSLog(@"first name: %@", context.loggedUser.firstName);
-                 }
-             }];
-             
-             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
-                 HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
-                 [app startPushNotifications];
-             }];
-         }
-     }];
+//    [[FIRAuth auth] createUserWithEmail:email
+//                               password:password
+//                             completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
+//         [weakSelf hideWaiting];
+//         if (error) {
+//             [weakSelf hideWaiting];
+//             NSLog(@"Error creating user %@. Error: %@", email, error);
+//             NSString *message = [[NSString alloc] initWithFormat:@"Error creating user %@. %@", email, error];
+//             [self alert:message];
+//             weakSelf.registerButton.enabled = true;
+//         }
+//         else {
+//             FIRUser *fir_user = authResult.user;
+//             NSLog(@"User %@ successfully created.", email);
+//             // AGGIUNGERE FIRSTNAME E LASTNAME IN CONTACTS
+//
+//             HelloUser *signedUser = [[HelloUser alloc] init];
+//             signedUser.userid = fir_user.uid;
+//             signedUser.username = fir_user.uid;
+//             signedUser.email = email;
+//             signedUser.password = password;
+//             signedUser.firstName = firstname;
+//             signedUser.lastName = lastname;
+//             [context signin:signedUser];
+//             NSLog(@"first name: %@", context.loggedUser.firstName);
+//
+//             // store user info for next login (DANGEROUS! JUST FOR TESTING)
+//             NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
+//             [userPreferences setObject:password forKey:@"stored_password"];
+//             [userPreferences setObject:email forKey:@"stored_username"];
+//             [userPreferences synchronize];
+//
+//             [HelloChatUtil initChat];
+//             ChatManager *chat = [ChatManager getInstance];
+//             [chat createContactFor:chat.loggedUser withCompletionBlock:^(NSError *error) {
+//                 if (error) {
+//                     NSLog(@"Error in contact creation after login. User: %@, Error: %@", chat.loggedUser.fullname, error);
+//                 }
+//                 else {
+//                     NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
+//                     NSLog(@"first name: %@", context.loggedUser.firstName);
+//                 }
+//             }];
+//
+//             [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
+//                 HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
+//                 [app startPushNotifications];
+//             }];
+//         }
+//     }];
+    [ChatAuth createUserWithEmail:email
+                              password:password
+                            completion:^(ChatUser * _Nullable user, NSError * _Nullable error) {
+        [weakSelf hideWaiting];
+        if (error) {
+            [weakSelf hideWaiting];
+            NSLog(@"Error creating user %@. Error: %@", email, error);
+            NSString *message = [[NSString alloc] initWithFormat:@"Error creating user %@. %@", email, error];
+            [self alert:message];
+            weakSelf.registerButton.enabled = true;
+        }
+        else {
+            NSLog(@"User %@ successfully created.", email);
+            HelloUser *signedUser = [[HelloUser alloc] init];
+            signedUser.userid = user.userId;
+            signedUser.email = email;
+            signedUser.firstName = firstname;
+            signedUser.lastName = lastname;
+            [context signin:signedUser];
+            NSLog(@"first name: %@", context.loggedUser.firstName);
+            
+            // store user info for next login (DANGEROUS! JUST FOR TESTING)
+            NSUserDefaults *userPreferences = [NSUserDefaults standardUserDefaults];
+            [userPreferences setObject:password forKey:@"stored_password"];
+            [userPreferences setObject:email forKey:@"stored_username"];
+            [userPreferences synchronize];
+            
+            [HelloChatUtil initChat];
+            ChatManager *chat = [ChatManager getInstance];
+            [chat createContactFor:chat.loggedUser withCompletionBlock:^(NSError *error) {
+                if (error) {
+                    NSLog(@"Error in contact creation after login. User: %@, Error: %@", chat.loggedUser.fullname, error);
+                }
+                else {
+                    NSLog(@"Successfully created contact: %@", chat.loggedUser.fullname);
+                    NSLog(@"first name: %@", context.loggedUser.firstName);
+                }
+            }];
+            
+            [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
+                HelloAppDelegate *app = (HelloAppDelegate *) [[UIApplication sharedApplication] delegate];
+                [app startPushNotifications];
+            }];
+        }
+    }];
 }
 
 -(void)alert:(NSString *)message {

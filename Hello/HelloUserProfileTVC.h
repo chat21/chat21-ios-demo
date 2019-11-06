@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatSynchDelegate.h"
 
 @class HelloUser;
 @class ChatDiskImageCache;
 
-@interface HelloUserProfileTVC : UITableViewController
+@interface HelloUserProfileTVC : UITableViewController <ChatSynchDelegate>
 
 @property (strong, nonatomic) HelloUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;

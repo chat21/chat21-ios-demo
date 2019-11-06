@@ -15,7 +15,6 @@
 #import "ChatManager.h"
 #import "HelloChatUtil.h"
 @import Firebase;
-#import <Crashlytics/Crashlytics.h>
 #import "HelloLocale.h"
 
 @interface HelloAuthTVC () {

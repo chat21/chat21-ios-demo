@@ -15,11 +15,11 @@
 #import "ChatUtil.h"
 #import "ChatManager.h"
 #import "ChatUser.h"
-#import "HelpFacade.h"
 #import "ChatImageUtil.h"
 #import "ChatShowImage.h"
 #import "ChatDiskImageCache.h"
 #import "SVProgressHUD.h"
+#import "ChatContactsSynchronizer.h"
 
 @interface HelloMyProfileTVC ()
 
@@ -29,6 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = NSLocalizedString(@"profile", nil);
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
@@ -41,7 +43,10 @@
     [self.profilePhotoImageView setUserInteractionEnabled:YES];
     [self.profilePhotoImageView addGestureRecognizer:singleTap];
     
-    [[HelpFacade sharedInstance] activateSupportBarButton:self];
+    ChatManager *chatm = [ChatManager getInstance];
+    ChatContactsSynchronizer *contacts = chatm.contactsSynchronizer;
+    [contacts addSynchSubscriber:self];
+//    [[HelpFacade sharedInstance] activateSupportBarButton:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -55,11 +60,6 @@
     [self setupProfileImage:self.profileId];
 }
 
-//-(void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    [self setupProfileImage];
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -68,9 +68,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 2) { // cella supporto
-        if (![HelpFacade sharedInstance].supportEnabled) {
+//        if (![HelpFacade sharedInstance].supportEnabled) {
             return 0;
-        }
+//        }
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -80,11 +80,11 @@
     NSLog(@"Logout");
     UIAlertController * view =   [UIAlertController
                                   alertControllerWithTitle:nil
-                                  message:@"Vuoi uscire?"
+                                  message:NSLocalizedString(@"Are you sure", nil)
                                   preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction* logout = [UIAlertAction
-                             actionWithTitle:@"Si"
+                             actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -93,7 +93,7 @@
                              }];
     
     UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"Annulla"
+                             actionWithTitle:NSLocalizedString(@"Cancel", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -140,13 +140,13 @@
 
 - (IBAction)helpAction:(id)sender {
     NSLog(@"Help in %@ view.", NSStringFromClass([self class]));
-    [[HelpFacade sharedInstance] openSupportView:self];
+//    [[HelpFacade sharedInstance] openSupportView:self];
 }
 
 -(void)helpWizardEnd:(NSDictionary *)context {
     NSLog(@"helpWizardEnd");
-    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
-    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
+//    [context setValue:NSStringFromClass([self class]) forKey:@"section"];
+//    [[HelpFacade sharedInstance] handleWizardSupportFromViewController:self helpContext:context];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -167,10 +167,10 @@
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2;
     self.profilePhotoImageView.clipsToBounds = YES;
     
-    // try to get image from cache
+    // trying to get image from cache
     NSString *imageURL = [ChatManager profileImageURLOf:profileId];
     NSURL *url = [NSURL URLWithString:imageURL];
-    NSString *cache_key = [self.imageCache urlAsKey:url];
+    NSString *cache_key = [ChatDiskImageCache urlAsKey:url];
     UIImage *cachedProfileImage = [self.imageCache getCachedImage:cache_key];
     [self setupCurrentProfileViewWithImage:cachedProfileImage];
     [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
@@ -327,8 +327,15 @@
         }
         else {
             [self setupCurrentProfileViewWithImage:image];
-//            [self.imageCache addImageToCache:image withKey:[self.imageCache urlAsKey:[NSURL URLWithString:downloadURL]]];
             [self.imageCache updateProfile:self.profileId image:image];
+            [[ChatManager getInstance] updateContactFor:self.profileId ImageChagedWithCompletionBlock:^(NSError *error) {
+                NSLog(@"ImageChagedAt is ok.");
+            }];
+            // [X] MODIFY DB, ADD "CONTACT.IMAGECHANGEDAT"
+            // UPDATE PROFILE PHOTO IN USER-PROFILE-VIEW.contactUpdated
+            // SET SYNCH IN CONNVERSATIONS
+            // ADD USER.ID ATTRIBUTE IN CONV.CELL
+            // UPDATE PROFILE PHOTO IN CONVS-VIEW.contactUpdated (SEARCH IN VISIBLE-CELLS,USER-ID.CHANGED AND UPDATE IMAGE-VIEW
         }
     } progressCallback:^(double fraction) {
         // NSLog(@"progress: %f", fraction);
@@ -345,7 +352,7 @@
         self.currentProfilePhoto = nil;
         [self resetProfilePhoto];
         ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-        [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
+        [self.imageCache deleteImageFromCacheWithKey:[ChatDiskImageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
         if (error) {
             NSLog(@"Error while deleting profile image.");
         }
@@ -353,7 +360,7 @@
             self.currentProfilePhoto = nil;
             [self resetProfilePhoto];
             ChatUser *loggedUser = [ChatManager getInstance].loggedUser;
-            [self.imageCache deleteImageFromCacheWithKey:[self.imageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
+            [self.imageCache deleteImageFromCacheWithKey:[ChatDiskImageCache urlAsKey:[NSURL URLWithString:loggedUser.profileImageURL]]];
         }
     }];
 }
@@ -361,5 +368,40 @@
 // **************************************************
 // *************** END PHOTO SECTION ****************
 // **************************************************
+
+// CONTACT SYNCH PROTOCOL
+
+-(void)synchStart {
+    NSLog(@"SYNCH-START");
+}
+
+- (void)synchEnd {
+    NSLog(@"SYNCH-END");
+}
+
+- (void)contactUpdated:(ChatUser *)oldContact newContact:(ChatUser *)newContact {
+    NSLog(@"Contact updated: %@", oldContact.userId);
+}
+
+- (void)contactImageChanged:(ChatUser *)contact {
+    NSString *profileId = self.profileId;
+    if ([contact.userId isEqualToString:profileId]) {
+        NSLog(@"Contact image changed: %@", contact.fullname);
+        NSString *imageURL = [ChatManager profileImageURLOf:profileId];
+        [self.imageCache getImage:imageURL completionHandler:^(NSString *imageURL, UIImage *image) {
+            [self setupCurrentProfileViewWithImage:image];
+        }];
+    }
+}
+
+- (void)contactAdded:(ChatUser *)contact {
+    NSLog(@"Contact added: %@", contact.fullname);
+}
+
+- (void)contactRemoved:(ChatUser *)contact {
+    NSLog(@"Contact removed: %@", contact.fullname);
+}
+
+// #- END CONTACT SYNCH PROTOCOL
 
 @end

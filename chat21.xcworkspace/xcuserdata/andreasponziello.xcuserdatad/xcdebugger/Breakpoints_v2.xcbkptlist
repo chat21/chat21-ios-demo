@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21Core/util/ChatDiskImageCache.m"
-            timestampString = "559157100.2258331"
+            timestampString = "573567317.667277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "141"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21Core/util/ChatDiskImageCache.m"
-            timestampString = "559157100.225926"
+            timestampString = "573567317.667345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../chat21-ios-sdk/Chat21Core/util/ChatDiskImageCache.m"
-            timestampString = "559157100.225996"
+            timestampString = "573567317.667388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -54,16 +54,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatConversationsVC.m"
-            timestampString = "561055424.9053299"
+            filePath = "../chat21-ios-sdk/Chat21UI/util/CellConfigurator.m"
+            timestampString = "573636708.99857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "629"
-            endingLineNumber = "629"
-            landmarkName = "-openConversationWithUser:orGroup:sendMessage:attributes:"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-configureDirectConversationCell:indexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../chat21-ios-sdk/Chat21UI/util/CellConfigurator.m"
+            timestampString = "573636708.998724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "+archiveLabel:archived:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,61 +89,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatConversationsVC.m"
-            timestampString = "561055424.9056081"
+            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatGroupMembersVC.m"
+            timestampString = "573563882.053471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "648"
-            endingLineNumber = "648"
-            landmarkName = "-openConversationWithUser:orGroup:sendMessage:attributes:"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatConversationsVC.m"
-            timestampString = "561055424.905863"
+            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
+            timestampString = "573636708.998956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "644"
-            endingLineNumber = "644"
-            landmarkName = "-openConversationWithUser:orGroup:sendMessage:attributes:"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-searchBar:textDidChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatConversationsVC.m"
-            timestampString = "561055424.906108"
+            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatSelectGroupMembersLocal.m"
+            timestampString = "573636708.999208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "675"
-            endingLineNumber = "675"
-            landmarkName = "-openConversationWithUser:orGroup:sendMessage:attributes:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../chat21-ios-sdk/Chat21UI/view/ChatConversationsVC.m"
-            timestampString = "561055424.906345"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "678"
-            endingLineNumber = "678"
-            landmarkName = "-openConversationWithUser:orGroup:sendMessage:attributes:"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-searchBar:textDidChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
